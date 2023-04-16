@@ -2,6 +2,7 @@ package main;
 
 import entities.Shark;
 import objects.Coin;
+import objects.Question;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static constants.ObjectConstants.ObjectType.COIN_TYPE;
+import static constants.ObjectConstants.ObjectType.QUESTION_TYPE;
 import static main.Game.TILES_SIZE;
 
 /**
@@ -18,28 +20,27 @@ import static main.Game.TILES_SIZE;
 public class Level {
 
     // ====== Red Values ======
-    public static final int LEVEL_MAX_TILES = 100;
+    public static final int DOWN_SLOPE = 6;
+    public static final int UP_SLOPE = 7;
     public static final int TRANSPARENT_TILE = 90;
-    public static final int DOWN_SLOPE = 20;
-    public static final int UP_SLOPE = 21;
-    public static final int FLAG1 = 99;
-    public static final int FLAG2 = 89;
-    public static final int FLAG3 = 79;
-    public static final int FLAG4 = 69;
-    public static final ArrayList<Integer> transparentTiles = new ArrayList<>(Arrays.asList(TRANSPARENT_TILE,DOWN_SLOPE,UP_SLOPE,FLAG1,FLAG2,FLAG3,FLAG4));
+    public static final ArrayList<Integer> transparentTiles = new ArrayList<>(Arrays.asList(TRANSPARENT_TILE, DOWN_SLOPE, UP_SLOPE));
 
     // ====== Green Values ======
-    private static final int PLAYER	= 10;
-    private static final int FINAL_POINT = 150;
     private static final int SHARK = 0;
+    private static final int PLAYER	= 1;
+    private static final int FINAL_POINT = 2;
 
     // ====== Blue Values ======
-    public static final int COIN = 170;
+    public static final int COIN = 0;
+    public static final int QUESTION = 1;
 
-    // ====== Level Data ======
-    private int[][] levelData;
+    // ====== Enemies and objects ======
     private final List<Shark> sharks = new ArrayList<>();
     private final List<Coin> coins = new ArrayList<>();
+    private final List<Question> questions = new ArrayList<>();
+
+    // ====== Level data ======
+    private int[][] levelData;
     private Point spawnPoint = new Point();
     private Point finalPoint = new Point();
     private final int maxLevelOffset;
@@ -68,8 +69,6 @@ public class Level {
                 int blue = color.getBlue();
 
                 // Set red data
-                if (red >= LEVEL_MAX_TILES)
-                    red = TRANSPARENT_TILE;
                 levelData[y][x] = red;
 
                 // Set green data
@@ -83,6 +82,8 @@ public class Level {
                 // Set blue data
                 if (blue == COIN)
                     coins.add(new Coin(x * TILES_SIZE, y * TILES_SIZE, COIN_TYPE));
+                if (blue == QUESTION)
+                    questions.add(new Question(x * TILES_SIZE, y * TILES_SIZE, QUESTION_TYPE));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);
@@ -92,6 +93,10 @@ public class Level {
     }
 
     // ====== Getters ======
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
 
     public List<Coin> getCoins() {
         return coins;

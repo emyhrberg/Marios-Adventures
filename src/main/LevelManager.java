@@ -5,13 +5,10 @@ import helpers.ImageLoader;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static main.Level.LEVEL_MAX_TILES;
 
 /**
  * This class manages all the levels for the game
@@ -22,10 +19,10 @@ public class LevelManager {
 
     // ====== Sprite atlas ======
     private static final BufferedImage TILESET = ImageLoader.loadImage("tileset.png");
-    private static final int PIXELS_SIZE 	= 16;
-    private static final int ROWS			= 10;
-    private static final int IMAGES_IN_ROW 	= 10;
-    private final BufferedImage[] tileset 		= new BufferedImage[LEVEL_MAX_TILES];
+    private static final int PIXELS_SIZE 		= 16;
+    private static final int ROWS				= 10;
+    private static final int IMAGES_IN_ROW 		= 10;
+    private final BufferedImage[] tileset 		= new BufferedImage[100];
 
     // ====== List of levels ======
     private List<Level> levels;

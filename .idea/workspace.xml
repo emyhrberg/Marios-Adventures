@@ -4,53 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/Direction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/EnemyConstants$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/EnemyConstants$EnemyAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/EnemyConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/GameState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/ObjectConstants$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/ObjectConstants$ObjectType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/ObjectConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/PlayerConstants$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/PlayerConstants$PlayerAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/constants/PlayerConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/entities/Enemy$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/entities/Enemy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/entities/EnemyManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/entities/Entity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/entities/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/entities/Shark.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/helpers/FontLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/helpers/GifLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/helpers/ImageLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/helpers/LoggerWriter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/helpers/SoundLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/Game$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/GameComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/GameFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/Level.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/LevelManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/Playing.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/main/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/GameRunner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/KeyboardInput$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/KeyboardInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/MenuButton$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/MenuButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/MouseInput$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/misc/MouseInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/objects/Coin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/objects/GameObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/objects/ObjectManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/overlays/GameCompletedOverlay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/overlays/GameOverOverlay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/overlays/LevelCompletedOverlay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/tddd78-projekt-2023-u1-g26-09/overlays/PauseOverlay.class" beforeDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Test commit to GitHub">
+      <change afterPath="$PROJECT_DIR$/resources/images/sprites_question.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/levels/1.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/entities/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tileset.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tileset.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tileset.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tileset.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tileset.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tileset.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tileset.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tileset.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,18 +42,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2OWFMzBghIyPeKZpezzeNMZREVE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Erik/Skola/TDDD78/tutorial-ep19-objects",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,12 +70,16 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\resources\images\unused" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="objects" />
     </key>
   </component>
   <component name="RunManager">
@@ -145,11 +142,33 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1681668386878</updated>
-      <workItem from="1681668388147" duration="629000" />
+      <workItem from="1681668388147" duration="5669000" />
     </task>
+    <task id="LOCAL-00001" summary="Test commit to GitHub">
+      <created>1681669227950</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681669227950</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test commit to GitHub">
+      <created>1681669238267</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681669238267</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Test commit to GitHub" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test commit to GitHub" />
   </component>
 </project>

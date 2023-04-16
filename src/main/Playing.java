@@ -162,8 +162,8 @@ public class Playing extends State {
 
         levelManager.draw(g, levelOffset + shakeOffset);
         enemyManager.draw(g, levelOffset + shakeOffset * 2);
-        player.draw(g, levelOffset);
         objectManager.draw(g, levelOffset);
+        player.draw(g, levelOffset);
     }
 
     private void drawSky(Graphics g) {
@@ -238,6 +238,7 @@ public class Playing extends State {
     public void resetGame() {
         player.resetPlayer();
         enemyManager.resetEnemies();
+        objectManager.resetAllObjects();
         setCurrentLevelSpawnPoint();
     }
 

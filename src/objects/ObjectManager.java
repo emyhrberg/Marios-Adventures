@@ -9,39 +9,57 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Game.SCALE;
+import static main.Game.TILES_SIZE;
 
 public class ObjectManager {
 
     // ====== Coins =======
-    private static final int ROWS 						= 1;
     private static final int IMAGES_IN_ROW 				= 4;
     private final BufferedImage[] coinImages            = new BufferedImage[IMAGES_IN_ROW];
     private static final BufferedImage COIN_ATLAS       = ImageLoader.loadImage("sprites_coin.png");
-    private static final int COIN_X_OFFSET              = 8;
-    private static final int COIN_Y_OFFSET              = 4;
-    public static final int COIN_WIDTH_DEFAULT          = 16;
-    public static final int COIN_HEIGHT_DEFAULT         = 16;
-    public static final int COIN_WIDTH                  = (int) (COIN_WIDTH_DEFAULT *2* SCALE);
-    public static final int COIN_HEIGHT                 = (int) (COIN_HEIGHT_DEFAULT *2* SCALE);
+    public static final int PIXEL_SIZE                  = 16;
+    private int coinCount;
+
+    // ====== Questions =======
+    private final BufferedImage[] questionImages        = new BufferedImage[IMAGES_IN_ROW];
+    private static final BufferedImage QUESTION_ATLAS   = ImageLoader.loadImage("sprites_question.png");
 
     // ====== Game values ======
     private List<Coin> coins = new ArrayList<>();
+    private List<Question> questions = new ArrayList<>();
 
     public ObjectManager() {
-        initCoins();
+        initObjects();
     }
 
-    private void initCoins() {
+    private void initObjects() {
         // Loop through the 2D array of animation images
         for (int i = 0; i < IMAGES_IN_ROW; i++) {
-            coinImages[i] = COIN_ATLAS.getSubimage(COIN_WIDTH_DEFAULT * i, 0, COIN_WIDTH_DEFAULT, COIN_HEIGHT_DEFAULT);
+            coinImages[i] = COIN_ATLAS.getSubimage(PIXEL_SIZE * i, 0, PIXEL_SIZE, PIXEL_SIZE);
+            questionImages[i] = QUESTION_ATLAS.getSubimage(PIXEL_SIZE * i, 0, PIXEL_SIZE, PIXEL_SIZE);
         }
     }
 
-    int coinCount = 0;
-
     public void update(Level level, Player player) {
+        updateCoins(level, player);
+        updateQuestions(level, player);
+    }
+
+    private void updateQuestions(Level level, Player player) {
+        questions = level.getQuestions();
+
+        for (Question q : questions)
+            if (q.isActive()) {
+
+                if (q.hitbox.intersects(player.getHitbox())) {
+                    System.out.println("question intersect");
+                }
+
+                q.update();
+            }
+    }
+
+    private void updateCoins(Level level, Player player) {
         coins = level.getCoins();
 
         for (Coin c : coins)
@@ -60,18 +78,42 @@ public class ObjectManager {
 
     public void draw(Graphics g, int levelOffset) {
         drawCoins(g, levelOffset);
+        drawQuestion(g, levelOffset);
+    }
+
+    private void drawQuestion(Graphics g, int levelOffset) {
+        for (Question q : questions)  {
+            if (q.isActive()) {
+                int x = (int) q.hitbox.x - levelOffset;
+                int y = (int) q.hitbox.y;
+                g.drawImage(questionImages[q.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
+
+                // debug
+//                q.drawHitbox(g, levelOffset);
+            }
+        }
     }
 
     private void drawCoins(Graphics g, int levelOffset) {
         for (Coin c : coins)  {
             if (c.isActive()) {
-                int x = (int) c.hitbox.x + COIN_X_OFFSET - levelOffset;
-                int y = (int) c.hitbox.y + COIN_Y_OFFSET;
-                g.drawImage(coinImages[c.getAnimationIndex()],x,y, COIN_WIDTH, COIN_HEIGHT,null);
+                int x = (int) c.hitbox.x - levelOffset;
+                int y = (int) c.hitbox.y;
+                g.drawImage(coinImages[c.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
 
                 // debug
 //                c.drawHitbox(g, levelOffset);
             }
         }
     }
+
+    public void resetAllObjects() {
+        for (Question q : questions)
+            q.resetObject();
+
+        for (Coin c : coins)
+            c.resetObject();
+    }
+
+
 }

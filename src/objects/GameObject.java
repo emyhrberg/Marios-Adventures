@@ -1,14 +1,12 @@
 package objects;
 
 
-import entities.Player;
-
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-import static main.Game.SCALE;
+import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
-import static constants.ObjectConstants.*;
+import static main.Game.SCALE;
 
 public class GameObject {
     // Object position

@@ -34,9 +34,9 @@ public class Player extends Entity {
     private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("sprites_player.png");
     public static final int PLAYER_WIDTH 				= 50;
     public static final int PLAYER_HEIGHT 				= 50;
-    private static final int IMAGE_X_OFFSET 			= (int) (18 * SCALE);
+    private static final int IMAGE_X_OFFSET 			= (int) (14 * SCALE);
     private static final int IMAGE_Y_OFFSET 			= (int) (18 * SCALE);
-    private static final int HITBOX_WIDTH 				= (int) (20 * SCALE);
+    private static final int HITBOX_WIDTH 				= (int) (30 * SCALE);
     private static final int HITBOX_HEIGHT 				= (int) (39 * SCALE);
     private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
     private static final int ATTACKBOX_HEIGHT 			= HITBOX_HEIGHT;
