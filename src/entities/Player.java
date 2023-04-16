@@ -84,24 +84,18 @@ public class Player extends Entity {
 		moveToPosition(hitbox.x + xDirection, hitbox.y, hitbox.width, hitbox.height, level);
 
 		if (jumping) {
-
 			if (canJump) {
 				jump();
-			} else {
-				if (airSpeed < 0)
-					hitbox.y -= 10;
 			}
 		}
 	}
-
-	private long jumpStartTime = 0;
 
 	// ====== Jumping ======
 	private boolean canJump = true;
 	private boolean jumping = false;
 	private static final float MAX_JUMP_HEIGHT = 8.0f * SCALE;
-	private static final float MIN_JUMP_HEIGHT = 2.0f * SCALE;
-	private float jumpHeight 					= MIN_JUMP_HEIGHT;
+	private static final float MIN_JUMP_HEIGHT = 3.5f * SCALE;
+	private float jumpHeight = MIN_JUMP_HEIGHT;
 
 	public void jump() {
 		if (inAir || !canJump)
