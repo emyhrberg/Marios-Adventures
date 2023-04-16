@@ -22,7 +22,7 @@ public class GameCompletedOverlay extends State {
 
     public void drawGameCompleted(Graphics g) {
 		// Draw the gif at the center of the screen
-		GifLoader gifImage = GifLoader.loadGif("stars.gif");
+		GifLoader gifImage = GifLoader.loadGif("overlay_stars.gif");
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.translate(gifImage.getPosition().getWidth(), gifImage.getPosition().getHeight());
 		g2d.drawImage(gifImage.getImageIcon().getImage(), gifImage.getTransform(), game.getGameComponent());

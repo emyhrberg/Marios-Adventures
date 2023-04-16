@@ -18,7 +18,7 @@ import java.awt.image.BufferedImage;
 public class Menu extends State {
 
     // ====== Images ======
-    private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("bg1.jpg");
+    private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("menu_bg.jpg");
     private static final BufferedImage TITLE_IMAGE        = ImageLoader.loadImage("menu_title.png");
 
     // ====== Title Position ======

@@ -35,9 +35,9 @@ public class Playing extends State {
     private final ObjectManager objectManager;
 
     // Drawing background sky, hills, clouds
-    private static final BufferedImage SKY = ImageLoader.loadImage("sky.png");
+    private static final BufferedImage SKY = ImageLoader.loadImage("bg_sky.png");
     private static final BufferedImage HILLS = ImageLoader.loadImage("hills.png");
-    private static final BufferedImage CLOUDS = ImageLoader.loadImage("clouds.png");
+    private static final BufferedImage CLOUDS = ImageLoader.loadImage("bg_clouds.png");
     private static final int HILLS_WIDTH = 320*3;
     private static final int HILLS_HEIGHT = 192*3;
     private static final int CLOUDS_WIDTH = 640/2;

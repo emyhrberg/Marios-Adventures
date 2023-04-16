@@ -5,7 +5,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="tddd78-projekt-2023-u1-g26-09" options="--add-modules java.desktop" />
+      <module name="MainModule" options="--add-modules java.desktop" />
     </option>
   </component>
 </project>
