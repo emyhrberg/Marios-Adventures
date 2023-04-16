@@ -1,0 +1,38 @@
+package misc;
+
+import main.Game;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+/**
+ * This class handles mouse press, releases and moves
+ * Is used with constructor in gameComponent
+ * Extends MouseAdapter for overriding methods
+ * Every game state has different keyboard inputs as defined in the switch
+ */
+public class MouseInput extends MouseAdapter {
+
+    // ====== Variables ======
+    private Game game;
+
+    // ====== Constructor ======
+    public MouseInput(Game game) {
+        this.game = game;
+    }
+
+    @Override public void mousePressed(final MouseEvent e) {
+        switch (game.getGameState()) {
+            case MENU       -> game.getMenu().updateMousePress(e);
+            case PLAYING    -> game.getPlaying().pressedMouse(e);
+        }
+    }
+
+    @Override public void mouseReleased(final MouseEvent e) {
+        game.getMenu().updateMouseReleased(e);
+    }
+
+    @Override public void mouseMoved(MouseEvent e) {
+        game.getMenu().setMouseOverButton(e);
+    }
+}
