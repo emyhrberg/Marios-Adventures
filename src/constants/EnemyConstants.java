@@ -12,7 +12,7 @@ public class EnemyConstants {
 		ATTACKING,
 		HIT,
 		DEAD
-    }
+	}
 
     /**
      * Returns the number of images to fit the player action

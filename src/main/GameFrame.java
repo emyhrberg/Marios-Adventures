@@ -24,7 +24,7 @@ public class GameFrame extends JFrame {
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
+		setResizable(true);
 //		setUndecorated(true);
 		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
 

@@ -2,6 +2,7 @@ package main;
 
 import entities.Shark;
 import objects.Coin;
+import objects.Platform;
 import objects.Question;
 
 import java.awt.*;
@@ -10,8 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static constants.ObjectConstants.ObjectType.COIN_TYPE;
-import static constants.ObjectConstants.ObjectType.QUESTION_TYPE;
+import static constants.ObjectConstants.ObjectType.*;
 import static main.Game.TILES_SIZE;
 
 /**
@@ -19,11 +19,13 @@ import static main.Game.TILES_SIZE;
  */
 public class Level {
 
+    // List of all the transparent tiles from the tileset
+    public static final ArrayList<Integer> transparentTiles = new ArrayList<>(Arrays.asList(6,7,76,85,85,86,90,92,93,94,95,96,97,98,99));
+
     // ====== Red Values ======
     public static final int DOWN_SLOPE = 6;
     public static final int UP_SLOPE = 7;
-    public static final int TRANSPARENT_TILE = 90;
-    public static final ArrayList<Integer> transparentTiles = new ArrayList<>(Arrays.asList(TRANSPARENT_TILE, DOWN_SLOPE, UP_SLOPE));
+    public static final int QUESTION_BLOCK = 91;
 
     // ====== Green Values ======
     private static final int SHARK = 0;
@@ -33,13 +35,15 @@ public class Level {
     // ====== Blue Values ======
     public static final int COIN = 0;
     public static final int QUESTION = 1;
+    public static final int PLATFORM = 2;
 
-    // ====== Enemies and objects ======
-    private final List<Shark> sharks = new ArrayList<>();
+    // ====== Objects ======
     private final List<Coin> coins = new ArrayList<>();
     private final List<Question> questions = new ArrayList<>();
+    private final List<Platform> platforms = new ArrayList<>();
 
     // ====== Level data ======
+    private final List<Shark> sharks = new ArrayList<>();
     private int[][] levelData;
     private Point spawnPoint = new Point();
     private Point finalPoint = new Point();
@@ -84,6 +88,8 @@ public class Level {
                     coins.add(new Coin(x * TILES_SIZE, y * TILES_SIZE, COIN_TYPE));
                 if (blue == QUESTION)
                     questions.add(new Question(x * TILES_SIZE, y * TILES_SIZE, QUESTION_TYPE));
+                if (blue == PLATFORM)
+                    platforms.add(new Platform(x * TILES_SIZE, y * TILES_SIZE, PLATFORM_TYPE));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);
@@ -93,6 +99,10 @@ public class Level {
     }
 
     // ====== Getters ======
+
+    public List<Platform> getPlatforms() {
+        return platforms;
+    }
 
     public List<Question> getQuestions() {
         return questions;

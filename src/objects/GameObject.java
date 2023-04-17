@@ -18,6 +18,7 @@ public class GameObject {
     protected static final int ANIMATION_SPEED = 20;
     protected boolean doAnimation = true;
     protected boolean active = true;
+    protected boolean isHit = false;
     protected int animationTick, animationIndex;
 
     public GameObject(int x, int y, ObjectType objectType) {
@@ -49,7 +50,7 @@ public class GameObject {
 
     // Hitboxes
 
-    protected void initHitbox(float width, float height) {
+    protected void initHitbox(float x, float y, float width, float height) {
         hitbox = new Rectangle2D.Float(x, y, width * SCALE, height * SCALE);
     }
 
@@ -70,6 +71,8 @@ public class GameObject {
     public boolean isActive() {
         return active;
     }
+
+
 
     public void setActive(boolean active) {
         this.active = active;

@@ -43,8 +43,8 @@ public class Player extends Entity {
 	private int imageFlipX, imageFlipWidth = 1;
 
     // ====== Player Settings ======
-    private static final float SPEED		= 0.7f * SCALE;
-    private static final int MAX_HEALTH 	= 100;
+    private static final float SPEED					= 0.7f * SCALE;
+    private static final int MAX_HEALTH 				= 100;
 
     // ====== Game variables =======
     private final Game game;
@@ -90,19 +90,13 @@ public class Player extends Entity {
 		}
 	}
 
-	// ====== Jumping ======
-	private boolean canJump = true;
-	private boolean jumping = false;
-	private static final float MAX_JUMP_HEIGHT = 8.0f * SCALE;
-	private static final float MIN_JUMP_HEIGHT = 3.5f * SCALE;
-	private float jumpHeight = MIN_JUMP_HEIGHT;
-
 	public void jump() {
 		if (inAir || !canJump)
 			return;
 		inAir = true;
 		airSpeed = -jumpHeight;
 		canJump = false;
+		jumpHeight = MAX_JUMP_HEIGHT;
 	}
 
     private void updateAttacking() {
@@ -189,7 +183,7 @@ public class Player extends Entity {
 		updateAttackBox();
 
 		// Debug hitbox
-//		drawHitbox(g, levelOffset);
+		drawHitbox(g, levelOffset);
 //		drawAttackBox(g, levelOffset);
     }
 

@@ -10,7 +10,7 @@ public class Coin extends GameObject {
 
     public Coin(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(HITBOX_WIDTH, HITBOX_HEIGHT);
+        initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
         doAnimation = true;
     }
 

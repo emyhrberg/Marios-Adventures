@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.*;
+import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static main.Level.*;
 
@@ -190,7 +191,14 @@ public class Entity {
 		return !isBottomLeftSolid && !isBottomRightSolid && !isBottomLeftSlopedDown && !isBottomRightSlopedUp;
 	}
 
+	// ====== Jumping ======
+	protected boolean canJump = true;
+	protected boolean jumping = false;
+	protected static final float MAX_JUMP_HEIGHT = 3.5f * SCALE;
+	protected float jumpHeight = MAX_JUMP_HEIGHT;
+
 	protected void startFalling(Level level) {
+		jumpHeight = MAX_JUMP_HEIGHT;
 		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
 			// Set ySpeed
 			airSpeed += GRAVITY;
@@ -270,6 +278,21 @@ public class Entity {
 
     // ====== Getters ======
 
+	public void setInAir(boolean inAir) {
+		this.inAir = inAir;
+	}
+
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
+	}
+
+	public void setAirSpeed(float airSpeed) {
+		this.airSpeed = airSpeed;
+	}
+
+	public float getAirSpeed() {
+		return airSpeed;
+	}
 
 	public boolean isInAir() {
 		return inAir;

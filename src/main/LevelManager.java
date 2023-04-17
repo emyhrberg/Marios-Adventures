@@ -18,7 +18,7 @@ import java.util.List;
 public class LevelManager {
 
     // ====== Sprite atlas ======
-    private static final BufferedImage TILESET = ImageLoader.loadImage("tileset.png");
+    private static final BufferedImage TILESET = ImageLoader.loadImage("tileset_numbered.png");
     private static final int PIXELS_SIZE 		= 16;
     private static final int ROWS				= 10;
     private static final int IMAGES_IN_ROW 		= 10;

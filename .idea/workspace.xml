@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Test commit to GitHub">
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_question.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/levels/1.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated tileset and levels and question tiles">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/coin.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/sprites_platform.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" afterDir="false" />
@@ -16,30 +17,44 @@
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/entities/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tileset.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tileset.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tileset.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tileset.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tileset_numbered.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tileset_numbered.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/GameFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/GameFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Question.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/images/tileset.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tileset.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/images/tileset.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tileset.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tileset_numbered.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tileset_numbered.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/EnemyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/EnemyConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
@@ -61,8 +76,9 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Skola/TDDD78/tutorial-ep19-objects",
+    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -120,19 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="MainModule" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="MainModule" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -142,7 +145,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1681668386878</updated>
-      <workItem from="1681668388147" duration="5669000" />
+      <workItem from="1681668388147" duration="5778000" />
+      <workItem from="1681676259386" duration="4385000" />
+      <workItem from="1681747211209" duration="11750000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -158,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681669238267</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updated tileset and levels and question tiles">
+      <created>1681675144585</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681675144585</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +181,7 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Test commit to GitHub" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test commit to GitHub" />
+    <MESSAGE value="Updated tileset and levels and question tiles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated tileset and levels and question tiles" />
   </component>
 </project>
