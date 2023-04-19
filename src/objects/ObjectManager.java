@@ -1,5 +1,7 @@
 package objects;
 
+import constants.Direction;
+import constants.PlayerConstants;
 import entities.Player;
 import helpers.ImageLoader;
 import helpers.SoundLoader;
@@ -10,7 +12,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
+import static objects.Coin.*;
+import static objects.Platform.*;
 
 public class ObjectManager {
 
@@ -54,18 +59,23 @@ public class ObjectManager {
     private void updatePlatforms(Level level, Player player) {
         platforms = level.getPlatforms();
 
-        for (Platform p : platforms)
+        for (Platform p : platforms) {
             if (p.isActive()) {
 
-                if (p.hitbox.intersects(player.getHitbox())) {
-                    System.out.println("platform intersect");
-                    player.setAirSpeed(0);
-                    player.setInAir(false);
-                    player.setJumping(false);
+                if (p.getBottom().intersects(player.getHitbox())) {
+                    // player is colliding with bottom of platform. make player fall down
+                    player.setAirSpeed(1 * SCALE);
+                    if (!p.getBottomLine().intersects(player.getHitboxTop())) {
+                        player.getHitbox().x = p.getXOfClosestHitbox(player);
+                    }
+                } else if (p.getTop().intersects(player.getHitbox())) {
+                    player.bindPlatform(p);
+                } else {
+                    player.unbindPlatform();
                 }
-
-                p.update();
+                p.update(player);
             }
+        }
     }
 
     private void updateQuestions(Level level, Player player) {
@@ -74,9 +84,9 @@ public class ObjectManager {
         for (Question q : questions)
             if (q.isActive()) {
                 if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
-                    System.out.println("collided with question");
+                    // Player got a question collision
                     SoundLoader.playAudio("coin.wav", 0.5);
-                    q.setActive(false);
+                    q.hitbox.y += 1;
                 }
                 q.update();
             }
@@ -110,8 +120,8 @@ public class ObjectManager {
         for (Platform p : platforms)  {
             if (p.isActive()) {
                 int x = (int) p.hitbox.x - levelOffset;
-                int y = (int) p.hitbox.y;
-                g.drawImage(PLATFORM_ATLAS, x, y, TILES_SIZE, TILES_SIZE, null);
+                int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
+                g.drawImage(PLATFORM_ATLAS, x, y, PLATFORM_WIDTH * 2, PLATFORM_HEIGHT * 2, null);
                 p.drawHitbox(g, levelOffset);
             }
         }
@@ -133,12 +143,12 @@ public class ObjectManager {
     private void drawCoins(Graphics g, int levelOffset) {
         for (Coin c : coins)  {
             if (c.isActive()) {
-                int x = (int) c.hitbox.x - levelOffset;
-                int y = (int) c.hitbox.y;
-                g.drawImage(coinImages[c.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
+                int x = (int) c.hitbox.x - levelOffset + COIN_WIDTH_DEF / 2;
+                int y = (int) c.hitbox.y + COIN_HEIGHT_DEF / 2;
+                g.drawImage(coinImages[c.getAnimationIndex()],x,y,COIN_WIDTH,COIN_HEIGHT,null);
 
                 // debug
-//                c.drawHitbox(g, levelOffset);
+                c.drawHitbox(g, levelOffset);
             }
         }
     }

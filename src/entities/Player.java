@@ -97,6 +97,7 @@ public class Player extends Entity {
 		airSpeed = -jumpHeight;
 		canJump = false;
 		jumpHeight = MAX_JUMP_HEIGHT;
+		unbindPlatform();
 	}
 
     private void updateAttacking() {
@@ -278,7 +279,13 @@ public class Player extends Entity {
 		return health;
 	}
 
+
+
 	// ====== Setters ======
+
+	public void setPlayerAction(PlayerAction playerAction) {
+		this.playerAction = playerAction;
+	}
 
 	public void setCanJump(boolean canJump) {
 		this.canJump = canJump;

@@ -72,6 +72,10 @@ public class Level {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
+                // Change red data to transparent tile if drawing with a red value beyond the tileset
+                if (red > 100)
+                    red = 90;
+
                 // Set red data
                 levelData[y][x] = red;
 

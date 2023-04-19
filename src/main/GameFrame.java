@@ -19,7 +19,7 @@ public class GameFrame extends JFrame {
     public GameFrame(GameComponent gameComponent) {
 		// title and icon
 		setTitle("Mario's Adventures!");
-		BufferedImage image = ImageLoader.loadImage("icon6.png");
+		BufferedImage image = ImageLoader.loadImage("icon.png");
 		setIconImage(image);
 
 		// settings

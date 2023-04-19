@@ -71,7 +71,7 @@ public class Game implements Runnable {
         }
 
         // Play main menu sound
-        menuClip = SoundLoader.playAudio("menu.wav");
+//        menuClip = SoundLoader.playAudio("menu.wav");
 
         startGameLoop();
     }

@@ -16,5 +16,10 @@ public class Question extends GameObject {
 
     public void update() {
         updateAnimationTick();
+        updateQuestionCollision();
+    }
+
+    private void updateQuestionCollision() {
+
     }
 }

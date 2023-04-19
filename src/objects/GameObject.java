@@ -72,8 +72,6 @@ public class GameObject {
         return active;
     }
 
-
-
     public void setActive(boolean active) {
         this.active = active;
     }

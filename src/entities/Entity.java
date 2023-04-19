@@ -3,6 +3,7 @@ package entities;
 import constants.Direction;
 import main.Game;
 import main.Level;
+import objects.Platform;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -75,6 +76,60 @@ public class Entity {
 		return false;
 	}
 
+	protected boolean isSolid(float x, float y, Level level) {
+		// Set left and right edge of world to be solid when player walks into them
+		int w = level.getLevelData()[0].length * TILES_SIZE - 1;
+		if (x >= w || x <= 0) { return true; }
+
+		int tileX = (int) (x / TILES_SIZE);
+		int tileY = (int) (y / TILES_SIZE);
+
+		// Fall through outside level
+		if (isTileOutsideLevel(tileY)) { return false; }
+
+		return isTileSolid(tileX,tileY,level);
+	}
+
+	protected boolean isTileSolid(int tileX, int tileY, Level level) {
+		return !transparentTiles.contains(level.getLevelData()[tileY][tileX]);
+	}
+
+	protected boolean isTileOutsideLevel(int tileY) {
+		return tileY < 0 || tileY >= Game.TILES_IN_HEIGHT;
+	}
+
+	// ====== Platforms ======
+
+	public Rectangle2D.Float getHitboxTop() {
+		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
+	}
+
+	private Platform currentPlatform;
+	private float xOnPlatform;
+	private boolean onPlatform = false;
+
+	public void bindPlatform(Platform p) {
+		if(currentPlatform != null || airSpeed <= 0) {
+			return;
+		}
+		onPlatform = true;
+		currentPlatform = p;
+		this.setAirSpeed(0);
+		this.setInAir(false);
+		this.setJumping(false);
+	}
+
+	public void unbindPlatform() {
+		currentPlatform = null;
+		onPlatform = false;
+	}
+
+	public boolean isOnPlatform() {
+		return onPlatform;
+	}
+
+	// ====== Slopes ======
+
 	protected boolean moveDownSlope() {
 		// Update x position
 		hitbox.x += xDirection;
@@ -133,20 +188,6 @@ public class Entity {
 		return false;
 	}
 
-	protected boolean isSolid(float x, float y, Level level) {
-		// Set left and right edge of world to be solid when player walks into them
-		int w = level.getLevelData()[0].length * TILES_SIZE - 1;
-		if (x >= w || x <= 0) { return true; }
-
-		int tileX = (int) (x / TILES_SIZE);
-		int tileY = (int) (y / TILES_SIZE);
-
-		// Fall through outside level
-		if (isTileOutsideLevel(tileY)) { return false; }
-
-		return isTileSolid(tileX,tileY,level);
-	}
-
 	protected boolean isDownSlope(Level level) {
 		int tileX = (int) (hitbox.x / TILES_SIZE);
 		int tileY = (int) (hitbox.y + hitbox.height) / TILES_SIZE;
@@ -168,17 +209,14 @@ public class Entity {
 		return tileValue == UP_SLOPE;
 	}
 
-	protected boolean isTileSolid(int tileX, int tileY, Level level) {
-		return !transparentTiles.contains(level.getLevelData()[tileY][tileX]);
-	}
-
-	protected boolean isTileOutsideLevel(int tileY) {
-		return tileY < 0 || tileY >= Game.TILES_IN_HEIGHT;
-	}
-
 	// ====== Entity falling ======
 
 	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
+		// check platform
+		if (currentPlatform != null) {
+			return false;
+		}
+
 		// check the bottom left and bottom right corner of the hitbox
 		boolean isBottomLeftSolid = isSolid(hitbox.x, hitbox.y + hitbox.height + 1, level);
 		boolean isBottomRightSolid = isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, level);
@@ -277,6 +315,10 @@ public class Entity {
     }
 
     // ====== Getters ======
+
+	public float getXDirection() {
+		return xDirection;
+	}
 
 	public void setInAir(boolean inAir) {
 		this.inAir = inAir;
