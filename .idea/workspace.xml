@@ -4,43 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated question tiles to only accept collision from below and not when falling">
-      <change afterPath="$PROJECT_DIR$/resources/images/icon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_platform_old.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/levels/1_inprogress.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/levels/1_inprogress.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/QuestionContainer.java" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Moving platforms working!">
+      <change afterPath="$PROJECT_DIR$/resources/images/sprites_question_old.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/icon6.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/icon6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_question.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_question.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/GameFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/GameFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Platform.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/icon6.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/icon6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/sprites_platform.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_platform.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/sprites_player.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_player.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_question.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_question.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
@@ -150,7 +123,7 @@
       <workItem from="1681676259386" duration="4385000" />
       <workItem from="1681747211209" duration="14579000" />
       <workItem from="1681817716746" duration="3706000" />
-      <workItem from="1681911348182" duration="4697000" />
+      <workItem from="1681911348182" duration="7900000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -180,7 +153,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681759454896</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Moving platforms working!">
+      <created>1681923808810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681923808810</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Moving platforms working!">
+      <created>1681923820693</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681923820693</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +180,7 @@
     <MESSAGE value="Test commit to GitHub" />
     <MESSAGE value="Updated tileset and levels and question tiles" />
     <MESSAGE value="Updated question tiles to only accept collision from below and not when falling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated question tiles to only accept collision from below and not when falling" />
+    <MESSAGE value="Moving platforms working!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moving platforms working!" />
   </component>
 </project>

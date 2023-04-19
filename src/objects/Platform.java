@@ -14,8 +14,8 @@ public class Platform extends GameObject {
     // Platform hitbox
     public static final int PLATFORM_WIDTH_DEF = 32;
     public static final int PLATFORM_HEIGHT_DEF = 8;
-    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * SCALE);
-    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * SCALE);
+    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * 2 * SCALE);
+    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * 2 * SCALE);
     public static final int PLATFORM_Y_OFFSET = 5;
     private final Rectangle2D.Float bottom;
     private final Rectangle2D.Float top;

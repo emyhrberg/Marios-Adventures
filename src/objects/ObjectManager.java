@@ -1,7 +1,5 @@
 package objects;
 
-import constants.Direction;
-import constants.PlayerConstants;
 import entities.Player;
 import helpers.ImageLoader;
 import helpers.SoundLoader;
@@ -12,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constants.Direction.UP;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static objects.Coin.*;
@@ -27,7 +26,8 @@ public class ObjectManager {
     private int coinCount;
 
     // ====== Questions =======
-    private final BufferedImage[] questionImages        = new BufferedImage[IMAGES_IN_ROW];
+    private static final int ROWS                       = 2;
+    private final BufferedImage[][] questionImages      = new BufferedImage[ROWS][IMAGES_IN_ROW];
     private static final BufferedImage QUESTION_ATLAS   = ImageLoader.loadImage("sprites_question.png");
 
     // ====== Platforms =======
@@ -40,13 +40,20 @@ public class ObjectManager {
 
     public ObjectManager() {
         initObjects();
+
     }
 
     private void initObjects() {
-        // Loop through the 2D array of animation images
+        // Init coins
         for (int i = 0; i < IMAGES_IN_ROW; i++) {
             coinImages[i] = COIN_ATLAS.getSubimage(PIXEL_SIZE * i, 0, PIXEL_SIZE, PIXEL_SIZE);
-            questionImages[i] = QUESTION_ATLAS.getSubimage(PIXEL_SIZE * i, 0, PIXEL_SIZE, PIXEL_SIZE);
+        }
+
+        // Init questions
+        for (int j = 0; j < ROWS; j++) {
+            for (int i = 0; i < IMAGES_IN_ROW; i++) {
+                questionImages[j][i] = QUESTION_ATLAS.getSubimage(PIXEL_SIZE * i, PIXEL_SIZE * j, PIXEL_SIZE, PIXEL_SIZE);
+            }
         }
     }
 
@@ -83,12 +90,21 @@ public class ObjectManager {
 
         for (Question q : questions)
             if (q.isActive()) {
-                if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
-                    // Player got a question collision
-                    SoundLoader.playAudio("coin.wav", 0.5);
-                    q.hitbox.y += 1;
-                }
+                // update question regularly
                 q.update();
+
+                // handle player question collision
+                if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
+
+                    // Bounce question up
+                    q.setPushBackOffsetDir(UP);
+
+                    // Question collision first time!
+                    if (!q.isHit()) {
+                        SoundLoader.playAudio("coin.wav", 0.5);
+                        coinCount++;
+                    }
+                }
             }
     }
 
@@ -121,7 +137,7 @@ public class ObjectManager {
             if (p.isActive()) {
                 int x = (int) p.hitbox.x - levelOffset;
                 int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
-                g.drawImage(PLATFORM_ATLAS, x, y, PLATFORM_WIDTH * 2, PLATFORM_HEIGHT * 2, null);
+                g.drawImage(PLATFORM_ATLAS, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
                 p.drawHitbox(g, levelOffset);
             }
         }
@@ -130,9 +146,15 @@ public class ObjectManager {
     private void drawQuestion(Graphics g, int levelOffset) {
         for (Question q : questions)  {
             if (q.isActive()) {
-                int x = (int) q.hitbox.x - levelOffset;
-                int y = (int) q.hitbox.y;
-                g.drawImage(questionImages[q.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
+                int x = (int) (q.hitbox.x - levelOffset);
+                int y = (int) (q.hitbox.y + q.getPushDrawOffset());
+
+                // draw 1st or 2nd row in the sprite-sheet depending on the question hit state
+                if (q.isHit()) {
+                    g.drawImage(questionImages[1][q.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
+                } else {
+                    g.drawImage(questionImages[0][q.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
+                }
 
                 // debug
                 q.drawHitbox(g, levelOffset);
