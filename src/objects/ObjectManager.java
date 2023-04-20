@@ -204,8 +204,10 @@ public class ObjectManager {
     }
 
     public void resetAllObjects() {
-        for (Question q : questions)
+        for (Question q : questions) {
             q.resetObject();
+            q.setHit(false);
+        }
 
         for (Coin c : coins)
             c.resetObject();

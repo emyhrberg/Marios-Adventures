@@ -46,7 +46,6 @@ public class GameObject {
         animationTick = 0;
         active = true;
         doAnimation = true;
-        isHit = false;
     }
 
     // Hitboxes

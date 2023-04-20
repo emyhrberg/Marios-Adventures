@@ -30,6 +30,10 @@ public class Question extends GameObject {
         return isHit;
     }
 
+    public void setHit(boolean hit) {
+        isHit = hit;
+    }
+
     public void update() {
         updateAnimationTick();
         updateQuestionCollision();

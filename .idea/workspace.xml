@@ -4,71 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Questions working, just need to add animation">
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_lava.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_platform_backup.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_player_backup2.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Lava.java" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Platforms working between two solid points!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/PlayerConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/PlayerConstants$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/PlayerConstants$PlayerAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/PlayerConstants$PlayerAction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/PlayerConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/PlayerConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Enemy$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Enemy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/EnemyManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Entity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/entities/Shark.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/helpers/ImageLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/helpers/ImageLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_platform.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_platform.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/GameFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/GameFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/misc/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/misc/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/misc/MenuButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/misc/MenuButton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Platform.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/overlays/GameCompletedOverlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/overlays/GameCompletedOverlay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/overlays/GameOverOverlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/overlays/GameOverOverlay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/overlays/LevelCompletedOverlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/overlays/LevelCompletedOverlay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/overlays/PauseOverlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/overlays/PauseOverlay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/sprites_platform.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_platform.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/sprites_player.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_player.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/sprites_player.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_player.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/PlayerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/PlayerConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ImageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/misc/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/misc/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/MenuButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/GameCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameCompletedOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/LevelCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/LevelCompletedOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/PauseOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/PauseOverlay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +120,7 @@
       <workItem from="1681817716746" duration="3706000" />
       <workItem from="1681911348182" duration="7997000" />
       <workItem from="1681927259986" duration="112000" />
-      <workItem from="1682007642323" duration="13271000" />
+      <workItem from="1682007642323" duration="13852000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -228,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681926944089</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Platforms working between two solid points!">
+      <created>1682032287027</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682032287028</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +193,7 @@
     <MESSAGE value="Updated question tiles to only accept collision from below and not when falling" />
     <MESSAGE value="Moving platforms working!" />
     <MESSAGE value="Questions working, just need to add animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Questions working, just need to add animation" />
+    <MESSAGE value="Platforms working between two solid points!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Platforms working between two solid points!" />
   </component>
 </project>
