@@ -1,7 +1,5 @@
 package main;
 
-import entities.EnemyManager;
-import entities.Player;
 import helpers.FontLoader;
 import helpers.ImageLoader;
 import objects.ObjectManager;
@@ -13,8 +11,8 @@ import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
-import static entities.Player.PLAYER_HEIGHT;
-import static entities.Player.PLAYER_WIDTH;
+import static main.Player.PLAYER_HEIGHT;
+import static main.Player.PLAYER_WIDTH;
 import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
 
@@ -29,23 +27,26 @@ public class Playing extends State {
     private final Player player;
     private int levelOffset;
     private int shakeOffset;
+    private boolean movingLeft, movingRight;
+    private boolean playerDying = false;
 
     private final EnemyManager enemyManager;
     private final LevelManager levelManager;
     private final ObjectManager objectManager;
 
     // Drawing background sky, hills, clouds
-    private static final BufferedImage SKY = ImageLoader.loadImage("bg_sky.png");
-    private static final BufferedImage HILLS = ImageLoader.loadImage("hills.png");
-    private static final BufferedImage CLOUDS = ImageLoader.loadImage("bg_clouds.png");
+    private static final BufferedImage SKY = ImageLoader.loadImage("/images/bg_sky.png");
+    private static final BufferedImage HILLS = ImageLoader.loadImage("/images/hills.png");
+    private static final BufferedImage CLOUDS = ImageLoader.loadImage("/images/bg_clouds.png");
     private static final int HILLS_WIDTH = 320*3;
     private static final int HILLS_HEIGHT = 192*3;
     private static final int CLOUDS_WIDTH = 640/2;
     private static final int CLOUDS_HEIGHT = 360/2;
 
     // Drawing health and level
-    private static final BufferedImage HEART = ImageLoader.loadImage("heart.png");
-    private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("health_bar.png");
+    private static final Font RETRO_FONT = FontLoader.loadFont("retro.ttf");
+    private static final BufferedImage HEART = ImageLoader.loadImage("/images/heart.png");
+    private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("/images/health_bar.png");
     private static final int HEART_WIDTH = 90/2;
     private static final int HEART_HEIGHT = 90/2;
     private static final int BAR_WIDTH = 510/2;
@@ -61,12 +62,6 @@ public class Playing extends State {
     private static final int LEVEL_X = (int) (GAME_WIDTH - 150 * SCALE);
     private static final int LEVEL_Y = (int) (50 * SCALE);
 
-    // Custom font
-    private static final Font RETRO_FONT = FontLoader.loadFont("retro.ttf");
-
-    // Fix when holding two keys at the same time
-    private boolean movingLeft, movingRight;
-
     // ====== Constructor ======
     public Playing(Game game) {
         super(game);
@@ -76,7 +71,7 @@ public class Playing extends State {
         player          = new Player(0,0,PLAYER_WIDTH * SCALE * 1.33f, PLAYER_HEIGHT * SCALE * 1.33f, game);
         player.setLevel(levelManager.getLevel());
         enemyManager    = new EnemyManager();
-        objectManager   = new ObjectManager();
+        objectManager   = new ObjectManager(game);
 
         // Set spawn point
         setCurrentLevelSpawnPoint();
@@ -160,8 +155,8 @@ public class Playing extends State {
         drawHealth(g);
         drawHeart(g);
 
-        levelManager.draw(g, levelOffset + shakeOffset);
-        enemyManager.draw(g, levelOffset + shakeOffset * 2);
+        levelManager.draw(g, levelOffset);
+        enemyManager.draw(g, levelOffset);
         objectManager.draw(g, levelOffset);
         player.draw(g, levelOffset);
     }
@@ -341,5 +336,11 @@ public class Playing extends State {
 
     public LevelManager getLevelManager() {
         return levelManager;
+    }
+
+    // ====== Setters ======
+
+    public void setPlayerDying(boolean playerDying) {
+        this.playerDying = playerDying;
     }
 }

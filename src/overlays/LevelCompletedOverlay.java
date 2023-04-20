@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public class LevelCompletedOverlay extends State {
     // ====== Variables ======
-    private static final BufferedImage LEVEL_COMPLETED_IMAGE = ImageLoader.loadImage("overlay_level_completed.png");
+    private static final BufferedImage LEVEL_COMPLETED_IMAGE = ImageLoader.loadImage("/images/overlay_level_completed.png");
 
     // ====== Constructor ======
     public LevelCompletedOverlay(Game game) {

@@ -1,9 +1,11 @@
-package entities;
+package main;
 
+import main.Enemy;
 import main.Level;
+import main.Player;
 
-import static entities.EnemyManager.SHARK_HEIGHT;
-import static entities.EnemyManager.SHARK_WIDTH;
+import static main.EnemyManager.SHARK_HEIGHT;
+import static main.EnemyManager.SHARK_WIDTH;
 import static main.Game.SCALE;
 
 /**

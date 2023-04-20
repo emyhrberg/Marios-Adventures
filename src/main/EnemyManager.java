@@ -1,7 +1,6 @@
-package entities;
+package main;
 
 import helpers.ImageLoader;
-import main.Level;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,7 +21,7 @@ public class EnemyManager {
     private static final int ROWS 						= 5;
     private static final int IMAGES_IN_ROW 				= 7;
     private final BufferedImage[][] sharkImages			 = new BufferedImage[ROWS][IMAGES_IN_ROW];
-    private static final BufferedImage SHARK_IMG 		= ImageLoader.loadImage("sprites_shark.png");
+    private static final BufferedImage SHARK_IMG 		= ImageLoader.loadImage("/images/sprites_shark.png");
     private static final int SHARK_X_OFFSET 			= (int) (12 * SCALE);
     private static final int SHARK_Y_OFFSET 			= (int) (10 * SCALE);
 	public static final int SHARK_WIDTH_DEFAULT        	= 34;

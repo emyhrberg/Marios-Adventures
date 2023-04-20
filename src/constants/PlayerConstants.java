@@ -9,7 +9,8 @@ public class PlayerConstants {
 		JUMPING,
 		FALLING,
 		ATTACKING,
-		HIT
+		HIT,
+		DYING
     }
 
     /**
@@ -23,6 +24,7 @@ public class PlayerConstants {
 			case FALLING 	-> 2;
 			case ATTACKING 	-> 4;
 			case HIT 		-> 5;
+			case DYING		-> 5;
 		};
     }
 }

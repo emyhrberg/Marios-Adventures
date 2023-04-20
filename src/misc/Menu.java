@@ -18,8 +18,8 @@ import java.awt.image.BufferedImage;
 public class Menu extends State {
 
     // ====== Images ======
-    private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("menu_bg.jpg");
-    private static final BufferedImage TITLE_IMAGE        = ImageLoader.loadImage("menu_title.png");
+    private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("/images/menu_bg.jpg");
+    private static final BufferedImage TITLE_IMAGE        = ImageLoader.loadImage("/images/menu_title.png");
 
     // ====== Title Position ======
     private static final int TITLE_WIDTH    = (int) (1280 / 2 * Game.SCALE);

@@ -1,8 +1,9 @@
-package entities;
+package main;
 
 import constants.Direction;
 import main.Game;
 import main.Level;
+import objects.Lava;
 import objects.Platform;
 
 import java.awt.*;
@@ -105,7 +106,6 @@ public class Entity {
 	}
 
 	private Platform currentPlatform;
-	private float xOnPlatform;
 	private boolean onPlatform = false;
 
 	public void bindPlatform(Platform p) {
@@ -126,6 +126,17 @@ public class Entity {
 
 	public boolean isOnPlatform() {
 		return onPlatform;
+	}
+
+	// ====== Lava ======
+
+	private boolean inLava = false;
+
+	public void setInLava(boolean inLava) {
+		this.inLava = inLava;
+		this.setAirSpeed(0);
+		this.setInAir(false);
+		this.setJumping(false);
 	}
 
 	// ====== Slopes ======
@@ -213,7 +224,7 @@ public class Entity {
 
 	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
 		// check platform
-		if (currentPlatform != null) {
+		if (currentPlatform != null || inLava) {
 			return false;
 		}
 
@@ -314,11 +325,11 @@ public class Entity {
 		this.direction = direction;
     }
 
-    // ====== Getters ======
-
-	public float getXDirection() {
-		return xDirection;
+	public void setHealth(int health) {
+		this.health = health;
 	}
+
+	// ====== Getters ======
 
 	public void setInAir(boolean inAir) {
 		this.inAir = inAir;
@@ -334,10 +345,6 @@ public class Entity {
 
 	public float getAirSpeed() {
 		return airSpeed;
-	}
-
-	public boolean isInAir() {
-		return inAir;
 	}
 
 	public Rectangle2D.Float getHitbox() {

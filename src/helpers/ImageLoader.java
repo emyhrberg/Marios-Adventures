@@ -18,7 +18,7 @@ public class ImageLoader {
     public static BufferedImage loadImage(String fileName) {
 		BufferedImage image = null;
 		// Try to load the image from the input-stream
-		try (InputStream is = ImageLoader.class.getResourceAsStream("/images/" + fileName)) {
+		try (InputStream is = ImageLoader.class.getResourceAsStream(fileName)) {
 
 			// Read the image only if it exists
 			if (is != null)

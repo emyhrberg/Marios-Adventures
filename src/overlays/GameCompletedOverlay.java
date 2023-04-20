@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public class GameCompletedOverlay extends State {
     // ======= Variables =======
-    private static final BufferedImage YOU_WIN_IMAGE = ImageLoader.loadImage("overlay_you_win.png");
+    private static final BufferedImage YOU_WIN_IMAGE = ImageLoader.loadImage("/images/overlay_you_win.png");
 
     // ====== Constructor ======
     public GameCompletedOverlay(Game game) {

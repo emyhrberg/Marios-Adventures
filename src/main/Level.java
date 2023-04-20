@@ -1,7 +1,7 @@
 package main;
 
-import entities.Shark;
 import objects.Coin;
+import objects.Lava;
 import objects.Platform;
 import objects.Question;
 
@@ -33,14 +33,16 @@ public class Level {
     private static final int FINAL_POINT = 2;
 
     // ====== Blue Values ======
-    public static final int COIN = 0;
-    public static final int QUESTION = 1;
-    public static final int PLATFORM = 2;
+    private static final int COIN = 0;
+    private static final int QUESTION = 1;
+    private static final int PLATFORM = 2;
+    private static final int LAVA = 3;
 
     // ====== Objects ======
     private final List<Coin> coins = new ArrayList<>();
     private final List<Question> questions = new ArrayList<>();
     private final List<Platform> platforms = new ArrayList<>();
+    private final List<Lava> lava = new ArrayList<>();
 
     // ====== Level data ======
     private final List<Shark> sharks = new ArrayList<>();
@@ -94,6 +96,8 @@ public class Level {
                     questions.add(new Question(x * TILES_SIZE, y * TILES_SIZE, QUESTION_TYPE));
                 if (blue == PLATFORM)
                     platforms.add(new Platform(x * TILES_SIZE, y * TILES_SIZE, PLATFORM_TYPE));
+                if (blue == LAVA)
+                    lava.add(new Lava(x * TILES_SIZE, y * TILES_SIZE, LAVA_TYPE));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);
@@ -103,6 +107,10 @@ public class Level {
     }
 
     // ====== Getters ======
+
+    public List<Lava> getLava() {
+        return lava;
+    }
 
     public List<Platform> getPlatforms() {
         return platforms;

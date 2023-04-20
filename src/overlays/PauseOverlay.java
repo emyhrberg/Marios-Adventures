@@ -15,7 +15,7 @@ import static constants.GameState.PLAYING;
  */
 public class PauseOverlay extends State {
     // ====== Variables ======
-    private static final BufferedImage PAUSED_IMAGE = ImageLoader.loadImage("overlay_paused.png");
+    private static final BufferedImage PAUSED_IMAGE = ImageLoader.loadImage("/images/overlay_paused.png");
 
     // ====== Constructor ======
     public PauseOverlay(Game game) {

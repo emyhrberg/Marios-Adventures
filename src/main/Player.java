@@ -1,7 +1,9 @@
-package entities;
+package main;
 
 import helpers.ImageLoader;
 import helpers.SoundLoader;
+import main.Enemy;
+import main.Entity;
 import main.Game;
 import main.Level;
 
@@ -25,13 +27,13 @@ public class Player extends Entity {
     // ====== Player Animation ======
     private int animationTick, animationIndex;
     private static final int ANIMATION_SPEED 			= 15;
-    private static final int ROWS 						= 6;
+    private static final int ROWS 						= 7;
     private static final int IMAGES_IN_ROW 				= 8;
     private final BufferedImage[][] playerImages 		= new BufferedImage[ROWS][IMAGES_IN_ROW];
     private PlayerAction playerAction 					= IDLE;
 
     // ====== Player Size ======
-    private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("sprites_player.png");
+    private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/images/sprites_player.png");
     public static final int PLAYER_WIDTH 				= 50;
     public static final int PLAYER_HEIGHT 				= 50;
     private static final int IMAGE_X_OFFSET 			= (int) (14 * SCALE);
@@ -44,7 +46,7 @@ public class Player extends Entity {
 
     // ====== Player Settings ======
     private static final float SPEED					= 0.7f * SCALE;
-    private static final int MAX_HEALTH 				= 100;
+    private static final int MAX_HEALTH 				= 40;
 
     // ====== Game variables =======
     private final Game game;
@@ -128,9 +130,6 @@ public class Player extends Entity {
 		health -= value;
 		hit = true;
 
-		if (health <= 0)
-			game.setGameState(GAME_OVER);
-
 		SoundLoader.playAudio("player_taking_damage.wav");
 
 		// Update push back direction
@@ -159,9 +158,14 @@ public class Player extends Entity {
 		moveToPosition((float) (hitbox.x + xDirection * 0.8), hitbox.y, hitbox.width, hitbox.height, level);
 
 		// Move player Y, small jump
+		pushbackY();
+    }
+
+	private void pushbackY() {
 		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
 		jump();
-    }
+		canJump = true;
+	}
 
     // ====== Draw and Animations ======
 
@@ -176,7 +180,8 @@ public class Player extends Entity {
 		final float h = height;
 
 		// Get the proper image representing the right action
-		final BufferedImage img = playerImages[playerAction.ordinal()][animationIndex];
+		final int action = playerAction.ordinal();
+		final BufferedImage img = playerImages[action][animationIndex];
 
 		// Draw the image according to the player action and loop through the animation index to show all the images
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) h, null);
@@ -211,7 +216,7 @@ public class Player extends Entity {
 			}
     }
 
-    private void updateAnimationTick() {
+    public void updateAnimationTick() {
 		// Update animation tick
 		animationTick++;
 
@@ -235,23 +240,19 @@ public class Player extends Entity {
     private void updateAnimation() {
 		final PlayerAction startAnimation = playerAction;
 
-		// Update animation depending on playerAction
-		if (hit) {
+		if (health <= 0) {
+			playerDeathAndGameOver();
+		} else if (hit) {
 			playerAction = HIT;
 			pushBack();
 		} else if (attacking) {
 			playerAction = ATTACKING;
-		} else if (inAir) {
-			if (airSpeed < 0) {
-				// todo make better jumping anim with fist up in the air
-				playerAction = JUMPING;
-			} else {
-//				if (direction == LEFT || direction == RIGHT) {
-//					playerAction = RUNNING;
-//				} else
-					// todo add falling anim?
-					playerAction = JUMPING;
-			}
+		} else if (inAir && airSpeed < 0) {
+			// todo add better jumping anim
+			playerAction = JUMPING;
+		} else if (inAir && airSpeed > 0) {
+			// todo add falling
+			playerAction = JUMPING;
 		} else if (direction == LEFT || direction == RIGHT) {
 			playerAction = RUNNING;
 		} else {
@@ -264,6 +265,20 @@ public class Player extends Entity {
 			animationIndex = 0;
 		}
     }
+
+	public void playerDeathAndGameOver() {
+		pushbackY();
+		if (playerAction != DYING) {
+			playerAction = DYING;
+			animationIndex = 0;
+			animationTick = 0;
+		}
+
+		if (animationIndex == getSpriteAmount(DYING) - 1) {
+			// here we reached final death animation shown, now set game over!
+			game.setGameState(GAME_OVER);
+		}
+	}
 
     // ====== Getters ======
 
@@ -279,13 +294,7 @@ public class Player extends Entity {
 		return health;
 	}
 
-
-
 	// ====== Setters ======
-
-	public void setPlayerAction(PlayerAction playerAction) {
-		this.playerAction = playerAction;
-	}
 
 	public void setCanJump(boolean canJump) {
 		this.canJump = canJump;

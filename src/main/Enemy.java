@@ -1,9 +1,7 @@
-package entities;
+package main;
 
 import constants.Direction;
 import helpers.SoundLoader;
-import main.Game;
-import main.Level;
 
 import java.awt.geom.Rectangle2D;
 

@@ -1,59 +1,89 @@
 package objects;
 
-import entities.Player;
-import main.Game;
+import constants.Direction;
+import main.Level;
+import main.Player;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
+import static constants.Direction.LEFT;
+import static constants.Direction.RIGHT;
 import static constants.ObjectConstants.ObjectType;
 import static main.Game.SCALE;
+import static main.Game.TILES_SIZE;
+import static main.Level.transparentTiles;
 
 public class Platform extends GameObject {
 
     // Platform hitbox
-    public static final int PLATFORM_WIDTH_DEF = 32;
-    public static final int PLATFORM_HEIGHT_DEF = 8;
-    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * 2 * SCALE);
-    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * 2 * SCALE);
+    public static final int PLATFORM_WIDTH_HITBOX = 20 * 2;
+    public static final int PLATFORM_WIDTH_DEF = 32 * 2;
+    public static final int PLATFORM_HEIGHT_DEF = 8 * 2;
+    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * SCALE);
+    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * SCALE);
     public static final int PLATFORM_Y_OFFSET = 5;
     private final Rectangle2D.Float bottom;
     private final Rectangle2D.Float top;
 
     // Platform moving
-    private final long lastMoveTime = System.currentTimeMillis();
-    private static final int MOVE_DURATION = 2000;
-    private float direction;
 
     public Platform(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y, PLATFORM_WIDTH_DEF * 2, PLATFORM_HEIGHT_DEF * 2);
+        initHitbox(x, y, PLATFORM_WIDTH_HITBOX, PLATFORM_HEIGHT_DEF);
         bottom = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y+5, hitbox.width, hitbox.height));
         top = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y, hitbox.width, 5));
     }
 
-    public void update(Player player) {
+    public void update(Player player, Level level) {
         updateAnimationTick();
-        updatePlatformPosition(player);
+        updatePlatformPosition(player, level);
     }
 
-    private void updatePlatformPosition(Player player) {
-        // Odd seconds -> move right
-        // Even seconds -> move left
-        direction = -0.7f;
-        if ((System.currentTimeMillis() - lastMoveTime) / MOVE_DURATION % 2 == 0) {
-            direction = 0.7f;
+    private Direction direction = RIGHT;
+    private static final float SPEED = 1.5f;
+    private float platformSpeed;
+
+    private void updatePlatformPosition(Player player, Level level) {
+        if (direction == RIGHT) {
+            platformSpeed = SPEED;
+        } else if (direction == LEFT) {
+            platformSpeed = -SPEED;
         }
 
-        // move platform position
-        hitbox.x += direction;
-        bottom.x += direction;
-        top.x += direction;
+        if (hitSolidTileLeft(level)) {
+            direction = RIGHT;
+        } else if (hitSolidTileRight(level)) {
+            direction = LEFT;
+        }
+
+        // Move platform position
+        hitbox.x += platformSpeed;
+        bottom.x += platformSpeed;
+        top.x += platformSpeed;
 
         // move player with the platform's direction
         if (player.isOnPlatform()) {
-            player.getHitbox().x += direction;
+            player.getHitbox().x += platformSpeed;
         }
+    }
+
+    private boolean hitSolidTileLeft(Level level) {
+        int tileX = (int) (hitbox.x / TILES_SIZE);
+        int tileY = (int) (hitbox.y / TILES_SIZE);
+
+        int distanceToTile = 0;
+
+        return !transparentTiles.contains(level.getLevelData()[tileY][tileX - distanceToTile]);
+    }
+
+    private boolean hitSolidTileRight(Level level) {
+        int tileX = (int) (hitbox.x / TILES_SIZE);
+        int tileY = (int) (hitbox.y / TILES_SIZE);
+
+        int distanceToTile = 0;
+
+        return !transparentTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
     }
 
     // getters
@@ -67,10 +97,6 @@ public class Platform extends GameObject {
         } else {
             return hitbox.x + hitbox.width;
         }
-    }
-
-    public float getDirection() {
-        return direction;
     }
 
     public Rectangle2D.Float getBottom() {

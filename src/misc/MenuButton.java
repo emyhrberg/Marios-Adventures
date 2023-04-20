@@ -17,7 +17,7 @@ import static main.Game.SCALE;
 public class MenuButton {
 
     // ====== Button Variables ======
-    private static final BufferedImage BUTTON_SPRITES = ImageLoader.loadImage("menu_button_atlas.png");
+    private static final BufferedImage BUTTON_SPRITES = ImageLoader.loadImage("/images/menu_button_atlas.png");
     private static final int NUMBER_OF_IMAGES = 3;
     private static final int BUTTON_WIDTH_PIXELS = 125;
     private static final int BUTTON_HEIGHT_PIXELS = 40;

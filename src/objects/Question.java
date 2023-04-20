@@ -16,7 +16,7 @@ public class Question extends GameObject {
     // Pushback
     private float pushDrawOffset;
     private Direction pushBackOffsetDir;
-    private static final float BLOCK_SPEED = 0.7f * SCALE;
+    private static final float BLOCK_SPEED = 1.2f * SCALE;
     private static final float BLOCK_LIMIT = 20f * SCALE;
     private boolean isHit = false;
 
