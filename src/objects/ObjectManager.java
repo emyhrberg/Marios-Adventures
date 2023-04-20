@@ -167,7 +167,7 @@ public class ObjectManager {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
             g.drawImage(PLATFORM_ATLAS, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
-//            p.drawHitbox(g, levelOffset);
+            p.drawHitbox(g, levelOffset);
         }
     }
 
@@ -193,8 +193,8 @@ public class ObjectManager {
     private void drawCoins(Graphics g, int levelOffset) {
         for (Coin c : coins)  {
             if (c.isActive()) {
-                int x = (int) c.hitbox.x - levelOffset + COIN_WIDTH_DEF / 2;
-                int y = (int) c.hitbox.y + COIN_HEIGHT_DEF / 2;
+                int x = (int) c.hitbox.x - levelOffset;
+                int y = (int) c.hitbox.y;
                 g.drawImage(coinImages[c.getAnimationIndex()],x,y,COIN_WIDTH,COIN_HEIGHT,null);
 
                 // debug
