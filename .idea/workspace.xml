@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Question work">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added plant enemies, working ok!, still some minor collision detection bug with player">
       <change afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/images/1_inprogress.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/images/2.png" afterDir="false" />
@@ -305,7 +305,7 @@
       <workItem from="1682007642323" duration="18282000" />
       <workItem from="1682082416543" duration="5799000" />
       <workItem from="1682089500652" duration="941000" />
-      <workItem from="1682112589552" duration="7080000" />
+      <workItem from="1682112589552" duration="7472000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -412,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682085271235</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added plant enemies, working ok!, still some minor collision detection bug with player">
+      <created>1682120145641</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682120145641</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,6 +439,7 @@
     <MESSAGE value="Fixed coin size" />
     <MESSAGE value="Added sparkle to coins" />
     <MESSAGE value="Question work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Question work" />
+    <MESSAGE value="Added plant enemies, working ok!, still some minor collision detection bug with player" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added plant enemies, working ok!, still some minor collision detection bug with player" />
   </component>
 </project>
