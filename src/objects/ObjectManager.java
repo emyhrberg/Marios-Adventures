@@ -69,7 +69,7 @@ public class ObjectManager {
 
         // Init sparkles
         for (int i = 0; i < 7; i++) {
-            sparkleImages[i] = SPARKLE_IMAGES.getSubimage(100 * i, 0, 100, 100);
+            sparkleImages[i] = SPARKLE_IMAGES.getSubimage(SPARKLE_ACTUAL_W * i, 0, SPARKLE_ACTUAL_W, SPARKLE_ACTUAL_H);
         }
     }
 
@@ -142,11 +142,10 @@ public class ObjectManager {
             if (c.isActive()) {
 
                 if (c.hitbox.intersects(player.getHitbox())) {
-                    // Player picked up a coin!
-//                    c.setActive(false);
                     coinCount++;
                     SoundLoader.playAudio("coin.wav", 0.5);
                     c.setSparkle(true);
+//                    c.animationIndex = 0;
                 }
 
                 c.update(c);
@@ -204,7 +203,7 @@ public class ObjectManager {
                 int y = (int) c.hitbox.y;
 
                 if (c.isSparkle()) {
-                    g.drawImage(sparkleImages[c.getAnimationIndex()],x,y,40,40,null);
+                    g.drawImage(sparkleImages[c.getAnimationIndex()],x,y,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
                 } else {
                     g.drawImage(coinImages[c.getAnimationIndex()],x,y,COIN_WIDTH,COIN_HEIGHT,null);
                 }

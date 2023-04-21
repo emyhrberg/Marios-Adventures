@@ -4,26 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed coin size">
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_sparkle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_sparkle.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Sparkle.java" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added sparkle to coins">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_player.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tileset.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tileset.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/LevelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/misc/MenuButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/misc/MenuButton.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/sprites_player.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_player.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/misc/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/MenuButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
     </list>
@@ -134,7 +118,7 @@
       <workItem from="1681817716746" duration="3706000" />
       <workItem from="1681911348182" duration="7997000" />
       <workItem from="1681927259986" duration="112000" />
-      <workItem from="1682007642323" duration="17597000" />
+      <workItem from="1682007642323" duration="18208000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -213,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682033866099</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added sparkle to coins">
+      <created>1682037297827</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682037297827</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +222,7 @@
     <MESSAGE value="Platforms working between two solid points!" />
     <MESSAGE value="Fixed question reset" />
     <MESSAGE value="Fixed coin size" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed coin size" />
+    <MESSAGE value="Added sparkle to coins" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sparkle to coins" />
   </component>
 </project>
