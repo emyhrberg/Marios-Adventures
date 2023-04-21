@@ -83,8 +83,8 @@ public class Plant extends Enemy {
         attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * SCALE;
         attackBox.y = hitbox.y;
 
-        if (hitbox.intersects(player.getHitbox()) && canDealDamage) {
-            player.reducePlayerHealth(1, this);
+        if (attackBox.intersects(player.getHitbox()) && canDealDamage) {
+            player.reducePlayerHealth(20, this);
             canDealDamage = false;
         }
     }
