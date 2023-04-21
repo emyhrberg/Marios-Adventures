@@ -5,6 +5,7 @@ import constants.Direction;
 import static constants.Direction.DOWN;
 import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType;
+import static constants.ObjectConstants.getSpriteAmount;
 import static main.Game.SCALE;
 
 public class Question extends GameObject {
@@ -19,6 +20,7 @@ public class Question extends GameObject {
     private static final float BLOCK_SPEED = 1.2f * SCALE;
     private static final float BLOCK_LIMIT = 20f * SCALE;
     private boolean isHit = false;
+    private boolean isSparkle = false;
 
     public Question(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -26,17 +28,35 @@ public class Question extends GameObject {
         doAnimation = true;
     }
 
-    public boolean isHit() {
-        return isHit;
-    }
-
-    public void setHit(boolean hit) {
-        isHit = hit;
-    }
-
     public void update() {
-        updateAnimationTick();
         updateQuestionCollision();
+        updateQuestionAnimation();
+    }
+
+    private void updateQuestionAnimation() {
+        animationTick++;
+
+        // Sparkle anim
+        if (isSparkle) {
+            if (animationTick >= ANIMATION_SPEED / 2) {
+                animationTick = 0;
+                animationIndex++;
+            }
+            // at final sparkle image, disable the animation!
+            if (animationIndex == 7) {
+                setSparkle(false);
+            }
+
+            // Coin anim
+        } else {
+            if (animationTick >= ANIMATION_SPEED) {
+                animationTick = 0;
+                animationIndex++;
+                if (animationIndex >= getSpriteAmount(objectType)) {
+                    animationIndex = 0;
+                }
+            }
+        }
     }
 
     public void updateQuestionCollision() {
@@ -51,6 +71,24 @@ public class Question extends GameObject {
             if (pushDrawOffset >= 0)
                 pushDrawOffset = 0;
         }
+    }
+
+    // getters and setters
+
+    public boolean isHit() {
+        return isHit;
+    }
+
+    public void setHit(boolean hit) {
+        isHit = hit;
+    }
+
+    public boolean isSparkle() {
+        return isSparkle;
+    }
+
+    public void setSparkle(boolean sparkle) {
+        isSparkle = sparkle;
     }
 
     public void setPushBackOffsetDir(Direction pushBackOffsetDir) {

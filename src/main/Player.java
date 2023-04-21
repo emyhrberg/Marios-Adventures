@@ -1,5 +1,6 @@
 package main;
 
+import constants.Direction;
 import helpers.ImageLoader;
 import helpers.SoundLoader;
 import main.Enemy;
@@ -241,6 +242,7 @@ public class Player extends Entity {
 		final PlayerAction startAnimation = playerAction;
 
 		if (health <= 0) {
+			health = 0;
 			playerDeathAndGameOver();
 		} else if (hit) {
 			playerAction = HIT;
@@ -267,7 +269,6 @@ public class Player extends Entity {
     }
 
 	public void playerDeathAndGameOver() {
-		pushbackY();
 		if (playerAction != DYING) {
 			playerAction = DYING;
 			animationIndex = 0;
@@ -280,7 +281,7 @@ public class Player extends Entity {
 		}
 	}
 
-    // ====== Getters ======
+    // ====== Getters & Setters ======
 
 	public boolean isHit() {
 		return hit;
@@ -294,7 +295,7 @@ public class Player extends Entity {
 		return health;
 	}
 
-	// ====== Setters ======
+
 
 	public void setCanJump(boolean canJump) {
 		this.canJump = canJump;

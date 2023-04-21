@@ -37,7 +37,7 @@ public class Coin extends GameObject {
 
         // Sparkle anim
         if (isSparkle) {
-            if (animationTick >= ANIMATION_SPEED / 1.5) {
+            if (animationTick >= ANIMATION_SPEED / 2) {
                 animationTick = 0;
                 animationIndex++;
             }

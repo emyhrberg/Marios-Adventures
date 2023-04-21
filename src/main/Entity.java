@@ -68,7 +68,7 @@ public class Entity {
 			return moveUpSlope(x+width);
 
 		// Handle if entity can move to position
-		if (canMoveToPosition(x, y, width, height, level)) {
+		if (canMoveToPosition(x, y, width, height, level) && health > 0) {
 			// Update hitbox x and y position
 			hitbox.x += x - hitbox.x;
 			hitbox.y += y - hitbox.y;
@@ -319,7 +319,7 @@ public class Entity {
 		this.health = maxHealth;
     }
 
-    // ====== Setters ======
+    // ====== Getters & Setters ======
 
 	public void setDirection(final Direction direction) {
 		this.direction = direction;
@@ -329,7 +329,9 @@ public class Entity {
 		this.health = health;
 	}
 
-	// ====== Getters ======
+	public void setJumpHeight(float jumpHeight) {
+		this.jumpHeight = jumpHeight;
+	}
 
 	public void setInAir(boolean inAir) {
 		this.inAir = inAir;

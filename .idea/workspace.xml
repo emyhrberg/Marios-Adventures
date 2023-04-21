@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added sparkle to coins">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,25 +40,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Skola/TDDD78/tutorial-ep28-final",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Skola/TDDD78/tutorial-ep28-final&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\resources\images\unused" />
@@ -118,7 +120,8 @@
       <workItem from="1681817716746" duration="3706000" />
       <workItem from="1681911348182" duration="7997000" />
       <workItem from="1681927259986" duration="112000" />
-      <workItem from="1682007642323" duration="18208000" />
+      <workItem from="1682007642323" duration="18282000" />
+      <workItem from="1682082416543" duration="2762000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -204,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682037297827</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added sparkle to coins">
+      <created>1682037694910</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682037694910</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

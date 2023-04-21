@@ -86,8 +86,11 @@ public class ObjectManager {
         for (Lava l: lava)
             if (player.getHitbox().intersects(l.hitbox)) {
                 player.setInLava(true);
+                player.setJumpHeight(0.9f * SCALE);
+                player.jump();
                 player.setHealth(0);
                 player.setInLava(false);
+                player.setCanJump(true);
             }
     }
 
@@ -124,12 +127,12 @@ public class ObjectManager {
                     // Bounce question up
                     q.setPushBackOffsetDir(UP);
 
-                    // Question collision first time!
+                    // Question collision first time, create a sparkle and increase coin count!
                     if (!q.isHit()) {
-                        // todo create an animation of coins sparkling right above the question mark
-                        // go through a few animation images and then disappear
                         SoundLoader.playAudio("coin.wav", 0.5);
                         coinCount++;
+                        q.setSparkle(true);
+                        q.animationIndex = 0;
                     }
                 }
             }
@@ -145,7 +148,6 @@ public class ObjectManager {
                     coinCount++;
                     SoundLoader.playAudio("coin.wav", 0.5);
                     c.setSparkle(true);
-//                    c.animationIndex = 0;
                 }
 
                 c.update(c);
@@ -185,7 +187,10 @@ public class ObjectManager {
 
                 // draw 1st or 2nd row in the sprite-sheet depending on the question hit state
                 if (q.isHit()) {
-                    g.drawImage(questionImages[1][q.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
+                    g.drawImage(questionImages[1][0],x,y, TILES_SIZE, TILES_SIZE,null);
+                    if (q.isSparkle()) {
+                        g.drawImage(sparkleImages[q.getAnimationIndex()],x + 10,y-TILES_SIZE,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
+                    }
                 } else {
                     g.drawImage(questionImages[0][q.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
                 }
@@ -226,6 +231,5 @@ public class ObjectManager {
             c.setSparkle(false);
         }
     }
-
 
 }
