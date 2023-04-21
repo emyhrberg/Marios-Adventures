@@ -17,12 +17,12 @@ import java.util.List;
  */
 public class LevelManager {
 
-    // ====== Sprite atlas ======
-    private static final BufferedImage TILESET = ImageLoader.loadImage("/images/tileset.png");
+    // ====== Tileset ======
+    private static final BufferedImage TILES 	= ImageLoader.loadImage("/images/tileset.png");
     private static final int PIXELS_SIZE 		= 16;
     private static final int ROWS				= 10;
     private static final int IMAGES_IN_ROW 		= 10;
-    private final BufferedImage[] tileset 		= new BufferedImage[100];
+    private final BufferedImage[] tilesImages 	= new BufferedImage[100];
 
     // ====== List of levels ======
     private List<Level> levels;
@@ -43,7 +43,7 @@ public class LevelManager {
 				int xIndex = y * IMAGES_IN_ROW + x;
 
 				// Populate the sprite atlas!
-				tileset[xIndex] = TILESET.getSubimage(x * PIXELS_SIZE, y * PIXELS_SIZE, PIXELS_SIZE, PIXELS_SIZE);
+				tilesImages[xIndex] = TILES.getSubimage(x * PIXELS_SIZE, y * PIXELS_SIZE, PIXELS_SIZE, PIXELS_SIZE);
 			}
     }
 
@@ -93,7 +93,7 @@ public class LevelManager {
 				int index = levelData[j][i];
 
 				// Draw tiles
-				g.drawImage(tileset[index], x, y, Game.TILES_SIZE, Game.TILES_SIZE, null);
+				g.drawImage(tilesImages[index], x, y, Game.TILES_SIZE, Game.TILES_SIZE, null);
 			}
     }
 

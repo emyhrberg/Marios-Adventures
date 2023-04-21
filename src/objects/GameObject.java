@@ -18,7 +18,6 @@ public class GameObject {
     protected static final int ANIMATION_SPEED = 20;
     protected boolean doAnimation = true;
     protected boolean active = true;
-    protected boolean isHit = false;
     protected int animationTick, animationIndex;
 
     public GameObject(int x, int y, ObjectType objectType) {

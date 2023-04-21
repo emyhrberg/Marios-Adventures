@@ -24,22 +24,24 @@ public class ObjectManager {
     private Game game;
 
     // ====== Coins =======
-    private static final int IMAGES_IN_ROW 				= 4;
-    private final BufferedImage[] coinImages            = new BufferedImage[IMAGES_IN_ROW];
-    private static final BufferedImage COIN_ATLAS       = ImageLoader.loadImage("/images/sprites_coin.png");
+    private final BufferedImage[] coinImages            = new BufferedImage[4];
+    private static final BufferedImage COIN_IMAGES      = ImageLoader.loadImage("/images/sprites_coin.png");
     public static final int PIXEL_SIZE                  = 16;
     private int coinCount;
 
     // ====== Questions =======
-    private static final int ROWS                       = 2;
-    private final BufferedImage[][] questionImages      = new BufferedImage[ROWS][IMAGES_IN_ROW];
-    private static final BufferedImage QUESTION_ATLAS   = ImageLoader.loadImage("/images/sprites_question.png");
+    private final BufferedImage[][] questionImages      = new BufferedImage[2][4];
+    private static final BufferedImage QUESTION_IMAGES  = ImageLoader.loadImage("/images/sprites_question.png");
 
     // ====== Platforms =======
-    private static final BufferedImage PLATFORM_ATLAS   = ImageLoader.loadImage("/images/sprites_platform.png");
+    private static final BufferedImage PLATFORM_IMAGES  = ImageLoader.loadImage("/images/sprites_platform.png");
 
     // ====== Lava =======
-    private static final BufferedImage LAVA_ATLAS       = ImageLoader.loadImage("/images/sprites_lava.png");
+    private static final BufferedImage LAVA_IMAGES      = ImageLoader.loadImage("/images/sprites_lava.png");
+
+    // ====== Sparkle =======
+    private static final BufferedImage SPARKLE_IMAGES   = ImageLoader.loadImage("/images/sprites_sparkle.png");
+    private final BufferedImage[] sparkleImages         = new BufferedImage[7];
 
     // ====== Game values ======
     private List<Coin> coins = new ArrayList<>();
@@ -54,15 +56,20 @@ public class ObjectManager {
 
     private void initObjects() {
         // Init coins
-        for (int i = 0; i < IMAGES_IN_ROW; i++) {
-            coinImages[i] = COIN_ATLAS.getSubimage(PIXEL_SIZE * i, 0, PIXEL_SIZE, PIXEL_SIZE);
+        for (int i = 0; i < 4; i++) {
+            coinImages[i] = COIN_IMAGES.getSubimage(PIXEL_SIZE * i, 0, PIXEL_SIZE, PIXEL_SIZE);
         }
 
         // Init questions
-        for (int j = 0; j < ROWS; j++) {
-            for (int i = 0; i < IMAGES_IN_ROW; i++) {
-                questionImages[j][i] = QUESTION_ATLAS.getSubimage(PIXEL_SIZE * i, PIXEL_SIZE * j, PIXEL_SIZE, PIXEL_SIZE);
+        for (int j = 0; j < 2; j++) {
+            for (int i = 0; i < 4; i++) {
+                questionImages[j][i] = QUESTION_IMAGES.getSubimage(PIXEL_SIZE * i, PIXEL_SIZE * j, PIXEL_SIZE, PIXEL_SIZE);
             }
+        }
+
+        // Init sparkles
+        for (int i = 0; i < 7; i++) {
+            sparkleImages[i] = SPARKLE_IMAGES.getSubimage(100 * i, 0, 100, 100);
         }
     }
 
@@ -136,13 +143,13 @@ public class ObjectManager {
 
                 if (c.hitbox.intersects(player.getHitbox())) {
                     // Player picked up a coin!
-                    c.setActive(false);
+//                    c.setActive(false);
                     coinCount++;
-                    System.out.println(coinCount);
                     SoundLoader.playAudio("coin.wav", 0.5);
+                    c.setSparkle(true);
                 }
 
-                c.update();
+                c.update(c);
             }
     }
 
@@ -157,7 +164,7 @@ public class ObjectManager {
         for (Lava l : lava)  {
             int x = (int) l.hitbox.x - levelOffset;
             int y = (int) l.hitbox.y - LAVA_Y_OFFSET;
-            g.drawImage(LAVA_ATLAS, x, y, LAVA_WIDTH, LAVA_HEIGHT, null);
+            g.drawImage(LAVA_IMAGES, x, y, LAVA_WIDTH, LAVA_HEIGHT, null);
 //            l.drawHitbox(g, levelOffset);
         }
     }
@@ -166,7 +173,7 @@ public class ObjectManager {
         for (Platform p : platforms)  {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
-            g.drawImage(PLATFORM_ATLAS, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
+            g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
             p.drawHitbox(g, levelOffset);
         }
     }
@@ -195,7 +202,13 @@ public class ObjectManager {
             if (c.isActive()) {
                 int x = (int) c.hitbox.x - levelOffset;
                 int y = (int) c.hitbox.y;
-                g.drawImage(coinImages[c.getAnimationIndex()],x,y,COIN_WIDTH,COIN_HEIGHT,null);
+
+                if (c.isSparkle()) {
+                    g.drawImage(sparkleImages[c.getAnimationIndex()],x,y,40,40,null);
+                } else {
+                    g.drawImage(coinImages[c.getAnimationIndex()],x,y,COIN_WIDTH,COIN_HEIGHT,null);
+                }
+
 
                 // debug
 //                c.drawHitbox(g, levelOffset);
@@ -209,8 +222,10 @@ public class ObjectManager {
             q.setHit(false);
         }
 
-        for (Coin c : coins)
+        for (Coin c : coins) {
             c.resetObject();
+            c.setSparkle(false);
+        }
     }
 
 

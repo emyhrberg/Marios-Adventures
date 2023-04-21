@@ -17,7 +17,7 @@ import static main.Game.SCALE;
 public class MenuButton {
 
     // ====== Button Variables ======
-    private static final BufferedImage BUTTON_SPRITES = ImageLoader.loadImage("/images/menu_button_atlas.png");
+    private static final BufferedImage BUTTON_IMAGES = ImageLoader.loadImage("/images/menu_button_atlas.png");
     private static final int NUMBER_OF_IMAGES = 3;
     private static final int BUTTON_WIDTH_PIXELS = 125;
     private static final int BUTTON_HEIGHT_PIXELS = 40;
@@ -59,7 +59,7 @@ public class MenuButton {
         for (int i = 0; i < animations.length; i++) {
             int x = i * BUTTON_WIDTH_PIXELS;
             int y = buttonIndex * BUTTON_HEIGHT_PIXELS;
-            animations[i] = BUTTON_SPRITES.getSubimage(x, y, BUTTON_WIDTH_PIXELS, BUTTON_HEIGHT_PIXELS);
+            animations[i] = BUTTON_IMAGES.getSubimage(x, y, BUTTON_WIDTH_PIXELS, BUTTON_HEIGHT_PIXELS);
         }
     }
 
