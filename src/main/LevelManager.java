@@ -18,7 +18,7 @@ import java.util.List;
 public class LevelManager {
 
     // ====== Tileset ======
-    private static final BufferedImage TILES 	= ImageLoader.loadImage("/images/tileset.png");
+    private static final BufferedImage TILES 	= ImageLoader.loadImage("/images/tiles.png");
     private static final int PIXELS_SIZE 		= 16;
     private static final int ROWS				= 10;
     private static final int IMAGES_IN_ROW 		= 10;
@@ -52,25 +52,13 @@ public class LevelManager {
 		levels = new ArrayList<>();
 
 		// Load the levels!
-		final int numberOfLevels = 2;
-		for (int i = 1; i < numberOfLevels + 1; i++) {
-			BufferedImage image = loadLevel(i + ".png"); // loads 1.png, 2.png, etc
-			levels.add(new Level(image));
-		}
-    }
-
-    private BufferedImage loadLevel(String fileName) {
-		// Try and load the level image
-		try (InputStream is = LevelManager.class.getResourceAsStream("/levels/" + fileName)) {
-			if (is == null) {
-				System.err.println("Error: Failed to load the level file. The file or folder path may be incorrect.\n" + fileName); System.exit(1);
-			} else {
-				return ImageIO.read(is);
+		for (int i = 0; i < 2; i++) {
+			try (InputStream is = LevelManager.class.getResourceAsStream("/images/" + (i + 1) + ".png")) {
+				levels.add(new Level(ImageIO.read(is)));
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			System.err.println("\nFailed to load level!\n" + e.getMessage());
 		}
-		return null;
     }
 
     // ====== Draw ======

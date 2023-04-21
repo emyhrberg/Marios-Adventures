@@ -16,6 +16,8 @@ import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static objects.Coin.*;
 import static objects.Lava.*;
+import static objects.Pipe.PIPE_HEIGHT;
+import static objects.Pipe.PIPE_WIDTH;
 import static objects.Platform.*;
 
 public class ObjectManager {
@@ -43,11 +45,15 @@ public class ObjectManager {
     private static final BufferedImage SPARKLE_IMAGES   = ImageLoader.loadImage("/images/sprites_sparkle.png");
     private final BufferedImage[] sparkleImages         = new BufferedImage[7];
 
+    // ====== Pipes =======
+    private static final BufferedImage PIPE_IMAGES      = ImageLoader.loadImage("/images/sprites_pipe.png");
+
     // ====== Game values ======
     private List<Coin> coins = new ArrayList<>();
     private List<Question> questions = new ArrayList<>();
     private List<Platform> platforms = new ArrayList<>();
     private List<Lava> lava = new ArrayList<>();
+    private List<Pipe> pipes = new ArrayList<>();
 
     public ObjectManager(Game game) {
         this.game = game;
@@ -78,6 +84,7 @@ public class ObjectManager {
         updateQuestions(level, player);
         updatePlatforms(level, player);
         updateLava(level, player);
+        updatePipes(level, player);
     }
 
     private void updateLava(Level level, Player player) {
@@ -92,6 +99,10 @@ public class ObjectManager {
                 player.setInLava(false);
                 player.setCanJump(true);
             }
+    }
+
+    private void updatePipes(Level level, Player player) {
+        pipes = level.getPipes();
     }
 
     private void updatePlatforms(Level level, Player player) {
@@ -159,6 +170,16 @@ public class ObjectManager {
         drawQuestion(g, levelOffset);
         drawPlatforms(g, levelOffset);
         drawLava(g, levelOffset);
+        drawPipe(g, levelOffset);
+    }
+
+    private void drawPipe(Graphics g, int levelOffset) {
+        for (Pipe p : pipes)  {
+            int x = (int) p.hitbox.x - levelOffset;
+            int y = (int) p.hitbox.y;
+            g.drawImage(PIPE_IMAGES, x, y, PIPE_WIDTH, PIPE_HEIGHT, null);
+//            l.drawHitbox(g, levelOffset);
+        }
     }
 
     private void drawLava(Graphics g, int levelOffset) {

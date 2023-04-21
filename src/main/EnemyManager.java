@@ -20,8 +20,8 @@ public class EnemyManager {
     // ====== Sharks =======
     private static final int ROWS 						= 5;
     private static final int IMAGES_IN_ROW 				= 7;
-    private final BufferedImage[][] sharkImages			 = new BufferedImage[ROWS][IMAGES_IN_ROW];
-    private static final BufferedImage SHARK_IMG 		= ImageLoader.loadImage("/images/sprites_shark.png");
+    private final BufferedImage[][] sharkImages			= new BufferedImage[ROWS][IMAGES_IN_ROW];
+    private static final BufferedImage SHARK_IMAGE 		= ImageLoader.loadImage("/images/sprites_shark.png");
     private static final int SHARK_X_OFFSET 			= (int) (12 * SCALE);
     private static final int SHARK_Y_OFFSET 			= (int) (10 * SCALE);
 	public static final int SHARK_WIDTH_DEFAULT        	= 34;
@@ -29,18 +29,30 @@ public class EnemyManager {
 	public static final int SHARK_WIDTH                	= (int) (SHARK_WIDTH_DEFAULT * 1.5 * SCALE);
 	public static final int SHARK_HEIGHT              	= (int) (SHARK_HEIGHT_DEFAULT * 1.5 * SCALE);
 
+	// Plants
+	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/images/sprites_plants.png");
+	private static final int PLANT_ROWS 				= 2;
+	private final BufferedImage[] plantImages			= new BufferedImage[PLANT_ROWS];
+	public static final int PLANT_WIDTH_DEFAULT			= 16;
+	public static final int PLANT_HEIGHT_DEFAULT		= 32;
+	public static final int PLANT_WIDTH					= (int) (PLANT_WIDTH_DEFAULT *2* SCALE);
+	public static final int PLANT_HEIGHT				= (int) (PLANT_HEIGHT_DEFAULT *2* SCALE);
+	public static final int PLANT_X_OFFSET				= PLANT_WIDTH / 2;
+
     // ====== Game values ======
 	private List<Shark> sharks = new ArrayList<>();
+	private List<Plant> plants = new ArrayList<>();
     private boolean anyEnemyAlive = true;
 
     // ====== Constructor ======
     public EnemyManager() {
-		initSharks();
+		initEnemies();
     }
 
     public void update(Level level, Player player) {
 		// Update enemy data
 		sharks = level.getSharks();
+		plants = level.getPlants();
 
 		// By default, no enemy is alive
 		anyEnemyAlive = false;
@@ -51,6 +63,14 @@ public class EnemyManager {
 				s.update(level, player);
 				anyEnemyAlive = true;
 			}
+
+		// Update every individual plant
+		for (Plant p : plants) {
+			if (p.isEnemyAlive()) {
+				p.update(level, player);
+				anyEnemyAlive = true;
+			}
+		}
     }
 
     public void dealDamageToEnemy(Player player) {
@@ -66,10 +86,23 @@ public class EnemyManager {
 			s.resetEnemy();
     }
 
-    // ====== Animations draw ======
+    // ====== Animations ======
+
+	private void initEnemies() {
+		// Init sharks
+		for (int y = 0; y < ROWS; y++)
+			for (int x = 0; x < IMAGES_IN_ROW; x++) {
+				sharkImages[y][x] = SHARK_IMAGE.getSubimage(SHARK_WIDTH_DEFAULT * x, SHARK_HEIGHT_DEFAULT * y, SHARK_WIDTH_DEFAULT, SHARK_HEIGHT_DEFAULT);
+			}
+
+		// Init plants
+		for (int i = 0; i < 2; i++)
+			plantImages[i] = PLANT_IMAGE.getSubimage(PLANT_WIDTH_DEFAULT*i, 0, PLANT_WIDTH_DEFAULT, PLANT_HEIGHT_DEFAULT);
+	}
 
     public void draw(Graphics g, int levelOffset) {
 		drawSharks(g, levelOffset);
+		drawPlants(g, levelOffset);
     }
 
     private void drawSharks(Graphics g, int levelOffset) {
@@ -78,15 +111,15 @@ public class EnemyManager {
 
 		for (Shark s : sharks)
 			if (s.isEnemyAlive()) {
-				int x = (int) s.getHitbox().x - levelOffset - SHARK_X_OFFSET + s.getImageFlipX();
-				int y = (int) (s.getHitbox().y - SHARK_Y_OFFSET + s.getPushDrawOffset());
-				int w = SHARK_WIDTH * s.getImageFlipWidth();
+				float x = s.getHitbox().x - levelOffset - SHARK_X_OFFSET + s.getImageFlipX();
+				float y = s.getHitbox().y - SHARK_Y_OFFSET + s.getPushDrawOffset();
+				float w = SHARK_WIDTH * s.getImageFlipWidth();
 
 				// Get the proper image representing the right action
 				final BufferedImage img = sharkImages[s.getEnemyAction().ordinal()][s.getAnimationIndex()];
 
 				// Draw the image of the shark
-				g.drawImage(img, x, y, w, SHARK_HEIGHT, null);
+				g.drawImage(img, (int) x, (int) y, (int) w, SHARK_HEIGHT, null);
 
 				// Draw hitboxes for debugging
 //				s.drawHitbox(g, levelOffset);
@@ -94,17 +127,24 @@ public class EnemyManager {
 			}
     }
 
-     // ====== Animations init ======
+	private void drawPlants(Graphics g, int levelOffset) {
+		if (plants == null)
+			return;
 
-    private void initSharks() {
-		// Loop through the 2D array of animation images
-		for (int y = 0; y < ROWS; y++)
-			for (int x = 0; x < IMAGES_IN_ROW; x++) {
-				int spriteX = SHARK_WIDTH_DEFAULT * x;
-				int spriteY = SHARK_HEIGHT_DEFAULT * y;
-				sharkImages[y][x] = SHARK_IMG.getSubimage(spriteX, spriteY, SHARK_WIDTH_DEFAULT, SHARK_HEIGHT_DEFAULT);
-			}
-    }
+		for (Plant p : plants) {
+			float x = p.getHitbox().x - levelOffset - PLANT_X_OFFSET;
+			float y = p.getHitbox().y;
+
+			// Get the proper image representing the right action
+			final BufferedImage img = plantImages[p.getAnimationIndex()];
+
+			// Draw the image of the shark
+			g.drawImage(img, (int) x, (int) y, PLANT_WIDTH, PLANT_HEIGHT, null);
+
+			// Draw hitboxes for debugging
+			p.drawAttackBox(g, levelOffset);
+		}
+	}
 
     // ====== Getters ======
 

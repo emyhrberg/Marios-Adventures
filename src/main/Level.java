@@ -1,9 +1,6 @@
 package main;
 
-import objects.Coin;
-import objects.Lava;
-import objects.Platform;
-import objects.Question;
+import objects.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,27 +22,32 @@ public class Level {
     // ====== Red Values ======
     public static final int DOWN_SLOPE = 6;
     public static final int UP_SLOPE = 7;
-    public static final int QUESTION_BLOCK = 91;
 
     // ====== Green Values ======
     private static final int SHARK = 0;
     private static final int PLAYER	= 1;
     private static final int FINAL_POINT = 2;
+    private static final int PLANT = 3;
 
     // ====== Blue Values ======
     private static final int COIN = 0;
     private static final int QUESTION = 1;
     private static final int PLATFORM = 2;
     private static final int LAVA = 3;
+    private static final int PIPE = 4;
 
     // ====== Objects ======
     private final List<Coin> coins = new ArrayList<>();
     private final List<Question> questions = new ArrayList<>();
     private final List<Platform> platforms = new ArrayList<>();
     private final List<Lava> lava = new ArrayList<>();
+    private final List<Pipe> pipes = new ArrayList<>();
 
-    // ====== Level data ======
+    // ====== Enemies ======
     private final List<Shark> sharks = new ArrayList<>();
+    private final List<Plant> plants = new ArrayList<>();
+
+    // ====== Other ======
     private int[][] levelData;
     private Point spawnPoint = new Point();
     private Point finalPoint = new Point();
@@ -78,18 +80,20 @@ public class Level {
                 if (red > 100)
                     red = 90;
 
-                // Set red data
+                // Add red data
                 levelData[y][x] = red;
 
-                // Set green data
+                // Add green data
                 if (green == PLAYER)
                     spawnPoint = new Point(x * TILES_SIZE, y * TILES_SIZE);
                 if (green == FINAL_POINT)
                     finalPoint = new Point(x * TILES_SIZE, y * TILES_SIZE);
                 if (green == SHARK)
                     sharks.add(new Shark(x * TILES_SIZE, y * TILES_SIZE));
+                if (green == PLANT)
+                    plants.add(new Plant(x * TILES_SIZE, y * TILES_SIZE));
 
-                // Set blue data
+                // Add blue data
                 if (blue == COIN)
                     coins.add(new Coin(x * TILES_SIZE, y * TILES_SIZE, COIN_TYPE));
                 if (blue == QUESTION)
@@ -98,6 +102,8 @@ public class Level {
                     platforms.add(new Platform(x * TILES_SIZE, y * TILES_SIZE, PLATFORM_TYPE));
                 if (blue == LAVA)
                     lava.add(new Lava(x * TILES_SIZE, y * TILES_SIZE, LAVA_TYPE));
+                if (blue == PIPE)
+                    pipes.add(new Pipe(x * TILES_SIZE, y * TILES_SIZE, PIPE_TYPE));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);
@@ -107,6 +113,14 @@ public class Level {
     }
 
     // ====== Getters ======
+
+    public List<Pipe> getPipes() {
+        return pipes;
+    }
+
+    public List<Plant> getPlants() {
+        return plants;
+    }
 
     public List<Lava> getLava() {
         return lava;

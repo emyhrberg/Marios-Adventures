@@ -283,7 +283,7 @@ public class Entity {
 
     protected void drawHitbox(Graphics g, int levelOffset) {
 		// draw hitbox
-		g.setColor(new Color(255,0,0,150));
+		g.setColor(new Color(255,0,0,80));
 		g.fillRect((int) (hitbox.x - levelOffset), (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
 
 		// draw stroke
@@ -294,8 +294,14 @@ public class Entity {
     }
 
     protected void drawAttackBox(Graphics g, int levelOffset) {
-		g.setColor(Color.RED);
-		g.drawRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+		g.setColor(new Color(255, 0, 255, 80));
+		g.fillRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+
+		// draw stroke
+		Graphics2D g2d = (Graphics2D) g.create();
+		g2d.setStroke(new BasicStroke(3)); // set stroke width
+		g2d.setColor(Color.BLACK); // set stroke color
+		g2d.drawRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height); // draw the rectangle outline
     }
 
 	protected void updateAttackBox() {
