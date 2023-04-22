@@ -22,10 +22,9 @@ public class Cannon extends GameObject {
     }
 
     public void update() {
-        canShoot = System.currentTimeMillis() >= lastCannonShot + CANNON_DELAY;
-        System.out.println(animationIndex);
+        shootAllowed = System.currentTimeMillis() >= lastCannonShot + CANNON_DELAY;
 
-        if (canShoot) {
+        if (shootAllowed) {
             updateCannonAnimation();
         } else if (animationIndex >= 4) {
             updateCannonAnimation();
@@ -35,8 +34,8 @@ public class Cannon extends GameObject {
         }
     }
 
-    long lastCannonShot;
-    boolean canShoot;
+    private long lastCannonShot;
+    private boolean shootAllowed;
 
     public void setLastCannonShot(long lastCannonShot) {
         this.lastCannonShot = lastCannonShot;
@@ -53,5 +52,12 @@ public class Cannon extends GameObject {
                 animationIndex = 1;
             }
         }
+    }
+
+    // getters and stuff
+
+
+    public boolean isShootAllowed() {
+        return shootAllowed;
     }
 }

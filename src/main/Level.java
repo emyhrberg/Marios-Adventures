@@ -36,6 +36,7 @@ public class Level {
     private static final int LAVA = 3;
     private static final int PIPE = 4;
     private static final int CANNON = 5;
+    private static final int BRICK = 6;
 
     // ====== Objects ======
     private final List<Coin> coins = new ArrayList<>();
@@ -44,6 +45,7 @@ public class Level {
     private final List<Lava> lava = new ArrayList<>();
     private final List<Pipe> pipes = new ArrayList<>();
     private final List<Cannon> cannons = new ArrayList<>();
+    private final List<Brick> bricks = new ArrayList<>();
 
     // ====== Enemies ======
     private final List<Shark> sharks = new ArrayList<>();
@@ -108,6 +110,8 @@ public class Level {
                     pipes.add(new Pipe(x * TILES_SIZE, y * TILES_SIZE, PIPE_TYPE));
                 if (blue == CANNON)
                     cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE));
+                if (blue == BRICK)
+                    bricks.add(new Brick(x * TILES_SIZE, y * TILES_SIZE, BRICK_TYPE));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);
@@ -117,6 +121,10 @@ public class Level {
     }
 
     // ====== Getters ======
+
+    public List<Brick> getBricks() {
+        return bricks;
+    }
 
     public List<Cannon> getCannons() {
         return cannons;

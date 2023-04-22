@@ -200,7 +200,7 @@ public class Player extends Entity {
 		updateAttackBox();
 
 		// Debug hitbox
-//		drawHitbox(g, levelOffset);
+		drawHitbox(g, levelOffset);
 //		drawAttackBox(g, levelOffset);
     }
 

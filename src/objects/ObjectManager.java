@@ -13,9 +13,12 @@ import java.util.List;
 
 import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
+import static main.Entity.GRAVITY;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static main.Level.transparentTiles;
+import static objects.Brick.BRICK_H;
+import static objects.Brick.BRICK_W;
 import static objects.Bullet.*;
 import static objects.Cannon.*;
 import static objects.Coin.*;
@@ -59,6 +62,10 @@ public class ObjectManager {
     // ====== Bullet ======
     private static final BufferedImage BULLET_IMAGE     = ImageLoader.loadImage("/images/sprites_bullet.png");
     private final BufferedImage[] bulletImages          = new BufferedImage[8];
+    private final ArrayList<Bullet> bullets = new ArrayList<>();
+
+    // ====== Bricks ======
+    private static final BufferedImage BRICK_IMAGE      = ImageLoader.loadImage("/images/sprites_brick.png");
 
     // ====== Game values ======
     private List<Coin> coins = new ArrayList<>();
@@ -67,7 +74,7 @@ public class ObjectManager {
     private List<Lava> lava = new ArrayList<>();
     private List<Pipe> pipes = new ArrayList<>();
     private List<Cannon> cannons = new ArrayList<>();
-    private final ArrayList<Bullet> bullets = new ArrayList<>();
+    private List<Brick> bricks = new ArrayList<>();
 
     public ObjectManager(Game game) {
         this.game = game;
@@ -112,6 +119,7 @@ public class ObjectManager {
         updateLava(level, player);
         updateCannons(level);
         updateBullets(level, player);
+        updateBricks(level, player);
         pipes = level.getPipes();
     }
 
@@ -127,6 +135,19 @@ public class ObjectManager {
                 player.setInLava(false);
                 player.setCanJump(true);
             }
+    }
+
+    private void updateBricks(Level level, Player player) {
+        bricks = level.getBricks();
+
+        for (Brick b: bricks) {
+            // check if player is colliding with the bottom of a brick and that they are going upwards
+            if (player.getHitboxTop().intersects(b.getBottom()) && player.getAirSpeed() < 0) {
+                System.out.println("from below");
+                player.setAirSpeed(GRAVITY * 8);
+                // todo check if player is touching the bottom corner by creating a temp hitbox there
+            }
+        }
     }
 
     private void updatePlatforms(Level level, Player player) {
@@ -193,7 +214,7 @@ public class ObjectManager {
         cannons = level.getCannons();
 
         for (Cannon c: cannons) {
-            if (c.animationIndex == 4 && c.animationTick == 0 && c.canShoot) {
+            if (c.animationIndex == 4 && c.animationTick == 0 && c.isShootAllowed()) {
                 // Add a bullet
                 bullets.add(new Bullet((int) c.hitbox.x - BULLET_X_OFFSET, (int) c.hitbox.y - BULLET_Y_OFFSET, BULLET_TYPE));
                 c.setLastCannonShot(System.currentTimeMillis());
@@ -235,6 +256,7 @@ public class ObjectManager {
         drawPipes(g, levelOffset);
         drawBullets(g, levelOffset);
         drawCannons(g, levelOffset);
+        drawBricks(g, levelOffset);
     }
 
     private void drawBullets(Graphics g, int levelOffset) {
@@ -243,8 +265,18 @@ public class ObjectManager {
                 float x = b.hitbox.x - levelOffset - 1 * SCALE;
                 float y = b.hitbox.y + BULLET_Y_OFFSET - 1;
                 g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
-                b.drawHitbox(g, levelOffset);
+//                b.drawHitbox(g, levelOffset);
             }
+        }
+    }
+
+    private void drawBricks(Graphics g, int levelOffset) {
+        for (Brick b : bricks)  {
+            int x = (int) b.hitbox.x - levelOffset;
+            int y = (int) b.hitbox.y;
+            g.drawImage(BRICK_IMAGE, x, y, BRICK_W, BRICK_H, null);
+            b.drawHitbox(g, levelOffset);
+            b.drawBottom(g, levelOffset);
         }
     }
 
@@ -253,7 +285,7 @@ public class ObjectManager {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
             g.drawImage(PIPE_IMAGES, x, y, PIPE_WIDTH, PIPE_HEIGHT, null);
-//            p.drawHitbox(g, levelOffset);
+            p.drawHitbox(g, levelOffset);
         }
     }
 

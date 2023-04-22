@@ -1,6 +1,7 @@
 package main;
 
 import constants.Direction;
+import objects.Brick;
 import objects.Platform;
 
 import java.awt.*;
@@ -19,7 +20,7 @@ import static main.Level.*;
 public class Entity {
 
     // ====== Falling on spawn =======
-    protected static final float GRAVITY = 0.05f * Game.SCALE;
+    public static final float GRAVITY = 0.05f * Game.SCALE;
     protected boolean inAir;
     protected float airSpeed;
 
@@ -53,8 +54,15 @@ public class Entity {
 		boolean isBottomLeftSolid = isSolid(x, y + height, level);
 		boolean isBottomRightSolid = isSolid(x + width, y + height, level);
 
-		// Returns true only if neither corner is solid
-		return !isTopLeftSolid && !isTopRightSolid && !isBottomLeftSolid && !isBottomRightSolid;
+		// Check brick
+		boolean isBrickSolid = isBrickSolid(getHitbox(), level);
+
+		// The entity can only move to a position if neither corner is touching something solid
+		if (!isTopLeftSolid && !isTopRightSolid && !isBottomLeftSolid && !isBottomRightSolid) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected boolean moveToPosition(float x, float y, float width, float height, Level level) {
@@ -63,6 +71,7 @@ public class Entity {
 			return moveDownSlope();
 		if (isUpSlope(level))
 			return moveUpSlope(x+width);
+
 
 		// Handle if entity can move to position
 		if (canMoveToPosition(x, y, width, height, level) && health > 0) {
@@ -85,7 +94,21 @@ public class Entity {
 		// Fall through outside level
 		if (isTileOutsideLevel(tileY)) { return false; }
 
-		return isTileSolid(tileX,tileY,level);
+		if (isTileSolid(tileX,tileY,level)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected boolean isBrickSolid(Rectangle2D playerHitbox, Level level) {
+		for (Brick b : level.getBricks()) {
+			if (b.isActive() && playerHitbox.intersects(b.getHitbox())) {
+//				System.out.println("Player touching a brick!");
+				return true;
+			}
+		}
+		return false;
 	}
 
 	protected boolean isTileSolid(int tileX, int tileY, Level level) {
