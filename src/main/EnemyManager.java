@@ -101,14 +101,13 @@ public class EnemyManager {
 	}
 
     public void draw(Graphics g, int levelOffset) {
-		drawSharks(g, levelOffset);
-		drawPlants(g, levelOffset);
+		if (sharks != null)
+			drawSharks(g, levelOffset);
+		if (plants != null)
+			drawPlants(g, levelOffset);
     }
 
     private void drawSharks(Graphics g, int levelOffset) {
-		if (sharks == null)
-			return;
-
 		for (Shark s : sharks)
 			if (s.isEnemyAlive()) {
 				float x = s.getHitbox().x - levelOffset - SHARK_X_OFFSET + s.getImageFlipX();
@@ -128,9 +127,6 @@ public class EnemyManager {
     }
 
 	private void drawPlants(Graphics g, int levelOffset) {
-		if (plants == null)
-			return;
-
 		for (Plant p : plants) {
 			float x = p.getHitbox().x - levelOffset - PLANT_X_OFFSET;
 			float y = p.getHitbox().y;
@@ -142,7 +138,7 @@ public class EnemyManager {
 			g.drawImage(img, (int) x, (int) y, PLANT_WIDTH, PLANT_HEIGHT, null);
 
 			// Draw hitboxes for debugging
-			p.drawAttackBox(g, levelOffset);
+//			p.drawAttackBox(g, levelOffset);
 		}
 	}
 

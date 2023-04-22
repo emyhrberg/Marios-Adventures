@@ -35,6 +35,7 @@ public class Level {
     private static final int PLATFORM = 2;
     private static final int LAVA = 3;
     private static final int PIPE = 4;
+    private static final int CANNON = 5;
 
     // ====== Objects ======
     private final List<Coin> coins = new ArrayList<>();
@@ -42,6 +43,7 @@ public class Level {
     private final List<Platform> platforms = new ArrayList<>();
     private final List<Lava> lava = new ArrayList<>();
     private final List<Pipe> pipes = new ArrayList<>();
+    private final List<Cannon> cannons = new ArrayList<>();
 
     // ====== Enemies ======
     private final List<Shark> sharks = new ArrayList<>();
@@ -104,6 +106,8 @@ public class Level {
                     lava.add(new Lava(x * TILES_SIZE, y * TILES_SIZE, LAVA_TYPE));
                 if (blue == PIPE)
                     pipes.add(new Pipe(x * TILES_SIZE, y * TILES_SIZE, PIPE_TYPE));
+                if (blue == CANNON)
+                    cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);
@@ -113,6 +117,10 @@ public class Level {
     }
 
     // ====== Getters ======
+
+    public List<Cannon> getCannons() {
+        return cannons;
+    }
 
     public List<Pipe> getPipes() {
         return pipes;

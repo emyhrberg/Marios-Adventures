@@ -1,5 +1,6 @@
 package objects;
 
+import constants.ObjectConstants;
 import helpers.ImageLoader;
 import helpers.SoundLoader;
 import main.Game;
@@ -12,8 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static constants.Direction.UP;
+import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
+import static main.Level.transparentTiles;
+import static objects.Bullet.*;
+import static objects.Cannon.*;
 import static objects.Coin.*;
 import static objects.Lava.*;
 import static objects.Pipe.PIPE_HEIGHT;
@@ -48,12 +53,21 @@ public class ObjectManager {
     // ====== Pipes =======
     private static final BufferedImage PIPE_IMAGES      = ImageLoader.loadImage("/images/sprites_pipe.png");
 
+    // ====== Cannons ======
+    private static final BufferedImage CANNON_IMAGES    = ImageLoader.loadImage("/images/sprites_cannon.png");
+    private final BufferedImage[] cannonImages          = new BufferedImage[7];
+
+    // ====== Bullet ======
+    private static final BufferedImage BULLET_IMAGE     = ImageLoader.loadImage("/images/sprites_bullet.png");
+
     // ====== Game values ======
     private List<Coin> coins = new ArrayList<>();
     private List<Question> questions = new ArrayList<>();
     private List<Platform> platforms = new ArrayList<>();
     private List<Lava> lava = new ArrayList<>();
     private List<Pipe> pipes = new ArrayList<>();
+    private List<Cannon> cannons = new ArrayList<>();
+    private final ArrayList<Bullet> bullets = new ArrayList<>();
 
     public ObjectManager(Game game) {
         this.game = game;
@@ -75,16 +89,25 @@ public class ObjectManager {
 
         // Init sparkles
         for (int i = 0; i < 7; i++) {
-            sparkleImages[i] = SPARKLE_IMAGES.getSubimage(SPARKLE_ACTUAL_W * i, 0, SPARKLE_ACTUAL_W, SPARKLE_ACTUAL_H);
+            sparkleImages[i] = SPARKLE_IMAGES.getSubimage(SPARKLE_W_DEF * i, 0, SPARKLE_W_DEF, SPARKLE_H_DEF);
+        }
+
+        // Init cannons
+        for (int i = 0; i < 7; i++) {
+            cannonImages[i] = CANNON_IMAGES.getSubimage(CANNON_W_DEF * i, 0, CANNON_W_DEF, CANNON_H_DEF);
         }
     }
+
+    // ====== Update ======
 
     public void update(Level level, Player player) {
         updateCoins(level, player);
         updateQuestions(level, player);
         updatePlatforms(level, player);
         updateLava(level, player);
-        updatePipes(level, player);
+        updateCannons(level, player);
+        updateBullets(level, player);
+        pipes = level.getPipes();
     }
 
     private void updateLava(Level level, Player player) {
@@ -99,10 +122,6 @@ public class ObjectManager {
                 player.setInLava(false);
                 player.setCanJump(true);
             }
-    }
-
-    private void updatePipes(Level level, Player player) {
-        pipes = level.getPipes();
     }
 
     private void updatePlatforms(Level level, Player player) {
@@ -165,20 +184,85 @@ public class ObjectManager {
             }
     }
 
+    private void updateCannons(Level level, Player player) {
+        cannons = level.getCannons();
+
+        for (Cannon c: cannons) {
+
+            if (c.animationIndex == 4) {
+                shootCannon(c);
+            }
+
+            c.update();
+        }
+    }
+
+    private void updateBullets(Level level, Player player) {
+        for (Bullet b : bullets) {
+            if (b.isActive()) {
+                b.updateBulletPos();
+
+                if (b.hitbox.intersects(player.getHitbox())) {
+                    player.setHealth(player.getHealth() - 20);
+                    b.setActive(false);
+                } else if (isBulletHittingLevel(b, level)) {
+                    b.setActive(false);
+                }
+            }
+        }
+    }
+
+    private boolean isBulletHittingLevel(Bullet b, Level level) {
+        int bulletX = (int) (b.hitbox.x / TILES_SIZE);
+        int bulletY = (int) (b.hitbox.y / TILES_SIZE);
+
+        return !transparentTiles.contains(level.getLevelData()[bulletY][bulletX]);
+    }
+
+    private void shootCannon(Cannon c) {
+        float bulletSpawnX = c.hitbox.x - BULLET_X_OFFSET;
+        float bulletSpawnY = c.hitbox.y - BULLET_Y_OFFSET;
+        bullets.add(new Bullet((int) bulletSpawnX, (int) bulletSpawnY, BULLET_TYPE));
+    }
+
+    // ====== Draw ======
+
     public void draw(Graphics g, int levelOffset) {
         drawCoins(g, levelOffset);
         drawQuestion(g, levelOffset);
         drawPlatforms(g, levelOffset);
         drawLava(g, levelOffset);
-        drawPipe(g, levelOffset);
+        drawPipes(g, levelOffset);
+        drawBullets(g, levelOffset);
+        drawCannons(g, levelOffset);
     }
 
-    private void drawPipe(Graphics g, int levelOffset) {
+    private void drawBullets(Graphics g, int levelOffset) {
+        for (Bullet b : bullets) {
+            if (b.isActive()) {
+                int x = (int) b.hitbox.x - levelOffset;
+                int y = (int) b.hitbox.y;
+                g.drawImage(BULLET_IMAGE, x, y, BULLET_W, BULLET_H, null);
+                b.drawHitbox(g, levelOffset);
+            }
+        }
+    }
+
+    private void drawPipes(Graphics g, int levelOffset) {
         for (Pipe p : pipes)  {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
             g.drawImage(PIPE_IMAGES, x, y, PIPE_WIDTH, PIPE_HEIGHT, null);
-//            l.drawHitbox(g, levelOffset);
+//            p.drawHitbox(g, levelOffset);
+        }
+    }
+
+    private void drawCannons(Graphics g, int levelOffset) {
+        for (Cannon c : cannons)  {
+            int x = (int) c.hitbox.x - CANNON_X_OFFSET - levelOffset;
+            int y = (int) c.hitbox.y;
+            g.drawImage(cannonImages[c.animationIndex], x, y, CANNON_WIDTH, CANNON_HEIGHT, null);
+//            c.drawHitbox(g, levelOffset);
         }
     }
 
@@ -196,7 +280,7 @@ public class ObjectManager {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
             g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
-            p.drawHitbox(g, levelOffset);
+//            p.drawHitbox(g, levelOffset);
         }
     }
 
@@ -210,10 +294,10 @@ public class ObjectManager {
                 if (q.isHit()) {
                     g.drawImage(questionImages[1][0],x,y, TILES_SIZE, TILES_SIZE,null);
                     if (q.isSparkle()) {
-                        g.drawImage(sparkleImages[q.getAnimationIndex()],x + 10,y-TILES_SIZE,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
+                        g.drawImage(sparkleImages[q.animationIndex],x + 10,y-TILES_SIZE,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
                     }
                 } else {
-                    g.drawImage(questionImages[0][q.getAnimationIndex()],x,y, TILES_SIZE, TILES_SIZE,null);
+                    g.drawImage(questionImages[0][q.animationIndex],x,y, TILES_SIZE, TILES_SIZE,null);
                 }
 
                 // debug
@@ -229,9 +313,9 @@ public class ObjectManager {
                 int y = (int) c.hitbox.y;
 
                 if (c.isSparkle()) {
-                    g.drawImage(sparkleImages[c.getAnimationIndex()],x,y,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
+                    g.drawImage(sparkleImages[c.animationIndex],x,y,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
                 } else {
-                    g.drawImage(coinImages[c.getAnimationIndex()],x,y,COIN_WIDTH,COIN_HEIGHT,null);
+                    g.drawImage(coinImages[c.animationIndex],x,y,COIN_WIDTH,COIN_HEIGHT,null);
                 }
 
 

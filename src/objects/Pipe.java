@@ -13,6 +13,6 @@ public class Pipe extends GameObject {
 
     public Pipe(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y, PIPE_WIDTH_DEFAULT, PIPE_HEIGHT_DEFAULT);
+        initHitbox(x, y, PIPE_WIDTH_DEFAULT*2, PIPE_HEIGHT_DEFAULT*2);
     }
 }

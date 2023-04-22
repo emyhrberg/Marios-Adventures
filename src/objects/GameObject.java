@@ -75,7 +75,4 @@ public class GameObject {
         this.active = active;
     }
 
-    public int getAnimationIndex() {
-        return animationIndex;
-    }
 }

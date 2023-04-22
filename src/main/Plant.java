@@ -11,6 +11,10 @@ import static main.Game.TILES_SIZE;
 
 public class Plant extends Enemy {
 
+    private static final float PLANT_SPEED = 0.2f * SCALE;
+    private static final float PLANT_MAX_DISTANCE = 1.2f;
+    private Direction plantDirection = UP;
+
     public Plant(float x, float y) {
         super(x, y, PLANT_WIDTH, PLANT_HEIGHT);
         initAttackBox(PLANT_WIDTH, PLANT_HEIGHT);
@@ -39,16 +43,10 @@ public class Plant extends Enemy {
         }
     }
 
-    private static final float PLANT_SPEED = 0.2f * SCALE;
-    private static final float PLANT_MAX_DISTANCE = 1.2f;
-    private Direction plantDirection = UP;
-
     private void updatePlantPos() {
         float origPos = y / TILES_SIZE;
         float currPos = hitbox.y / TILES_SIZE;
         float tileDistance = origPos - currPos;
-
-        System.out.println(tileDistance);
 
         // move up and down
         if (plantDirection == UP) {
@@ -64,7 +62,6 @@ public class Plant extends Enemy {
         } else if (plantDirection == DOWN) {
             if (tileDistance <= 0 && tileDistance >= -0.1) {
                 hitbox.y += 0.01;
-                canDealDamage = true;
             } else if (tileDistance <= -0.1) {
                 plantDirection = UP;
             } else {

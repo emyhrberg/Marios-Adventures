@@ -44,7 +44,7 @@ public class Playing extends State {
     private static final int CLOUDS_HEIGHT = 360/2;
 
     // Drawing health and level
-    private static final Font RETRO_FONT = FontLoader.loadFont("retro.ttf");
+    private static final Font RETRO_FONT = FontLoader.loadFont("fipps.otf");
     private static final BufferedImage HEART = ImageLoader.loadImage("/images/heart.png");
     private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("/images/health_bar.png");
     private static final int HEART_WIDTH = 90/2;
@@ -151,9 +151,9 @@ public class Playing extends State {
         drawSky(g);
         drawClouds(g);
         drawHills(g);
-        drawLevelNumber(g);
         drawHealth(g);
         drawHeart(g);
+//        drawLevelNumber(g);
 
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);

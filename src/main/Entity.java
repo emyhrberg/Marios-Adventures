@@ -98,10 +98,6 @@ public class Entity {
 
 	// ====== Platforms ======
 
-	public Rectangle2D.Float getHitboxTop() {
-		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
-	}
-
 	private Platform currentPlatform;
 	private boolean onPlatform = false;
 
@@ -119,6 +115,10 @@ public class Entity {
 	public void unbindPlatform() {
 		currentPlatform = null;
 		onPlatform = false;
+	}
+
+	public Rectangle2D.Float getHitboxTop() {
+		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
 	}
 
 	public boolean isOnPlatform() {
@@ -221,6 +221,7 @@ public class Entity {
 
 	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
 		// check platform
+		// todo change to onPlatform?
 		if (currentPlatform != null || inLava) {
 			return false;
 		}

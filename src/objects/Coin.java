@@ -18,8 +18,8 @@ public class Coin extends GameObject {
     private boolean isSparkle = false;
     public static final int SPARKLE_DRAW_W = 40;
     public static final int SPARKLE_DRAW_H = 40;
-    public static final int SPARKLE_ACTUAL_W = 100;
-    public static final int SPARKLE_ACTUAL_H = 100;
+    public static final int SPARKLE_W_DEF = 100;
+    public static final int SPARKLE_H_DEF = 100;
 
 
     public Coin(int x, int y, ObjectType objectType) {
