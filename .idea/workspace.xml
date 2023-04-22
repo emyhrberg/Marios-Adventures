@@ -4,12 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated bullets, working very well! No known bugs">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added cannon shooting cooldown, looks very good!">
+      <change afterPath="$PROJECT_DIR$/resources/fonts/a.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/mario-kart.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/super-mario.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/sprites_bullet.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/sprites_bullet_backup.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/sprites_cannon.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/sprites_cannon.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Bullet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Bullet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Cannon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Cannon.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/sprites_bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
     </list>
@@ -124,7 +138,7 @@
       <workItem from="1682082416543" duration="5799000" />
       <workItem from="1682089500652" duration="941000" />
       <workItem from="1682112589552" duration="9679000" />
-      <workItem from="1682171761436" duration="12063000" />
+      <workItem from="1682171761436" duration="18323000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -273,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682183618624</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added cannon shooting cooldown, looks very good!">
+      <created>1682185626100</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1682185626100</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +319,7 @@
     <MESSAGE value="Updated plant speed and waiting at the top" />
     <MESSAGE value="Added cannons and bullets, need to fix bug where it spawns too many bullets" />
     <MESSAGE value="Updated bullets, working very well! No known bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated bullets, working very well! No known bugs" />
+    <MESSAGE value="Added cannon shooting cooldown, looks very good!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added cannon shooting cooldown, looks very good!" />
   </component>
 </project>

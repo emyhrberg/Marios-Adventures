@@ -16,8 +16,9 @@ public class ObjectConstants {
     public static int getSpriteAmount(ObjectType objectType) {
         return switch (objectType) {
             case COIN_TYPE, QUESTION_TYPE -> 4;
-            case PLATFORM_TYPE, LAVA_TYPE, PIPE_TYPE, BULLET_TYPE -> 1;
+            case PLATFORM_TYPE, LAVA_TYPE, PIPE_TYPE -> 1;
             case SPARKLE_TYPE, CANNON_TYPE -> 7;
+            case BULLET_TYPE -> 8;
         };
     }
 }

@@ -44,7 +44,7 @@ public class Playing extends State {
     private static final int CLOUDS_HEIGHT = 360/2;
 
     // Drawing health and level
-    private static final Font RETRO_FONT = FontLoader.loadFont("fipps.otf");
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("a.ttf");
     private static final BufferedImage HEART = ImageLoader.loadImage("/images/heart.png");
     private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("/images/health_bar.png");
     private static final int HEART_WIDTH = 90/2;
@@ -198,15 +198,15 @@ public class Playing extends State {
         g.setColor(Color.RED);
         g.fillRect(HEALTH_RED_X, HEALTH_RED_Y, rectWHealth, HEALTH_RED_H);
 
-        // Draw 80/100 text
+        // Draw e.g 80/100 text
         final String health = player.getHealth() + "/" + player.getMaxHealth();
-        g.setFont(RETRO_FONT);
+        g.setFont(CUSTOM_FONT);
         FontMetrics fm = g.getFontMetrics();
         int textWidth = fm.stringWidth(health);
         int textHeight = fm.getHeight();
         int textX = HEALTH_RED_X + (HEALTH_RED_W - textWidth) / 2;
-        int textY = HEALTH_RED_Y - (textHeight / 2);
-        g.setColor(Color.WHITE);
+        int textY = HEALTH_RED_Y - (textHeight / 2) - 4;
+        g.setColor(new Color(15,15,15));
         g.drawString(health, textX, textY);
     }
 
@@ -217,7 +217,7 @@ public class Playing extends State {
         final String level = "Level: " + currLevel + "/" + amountOfLevels;
 
         // Draw the level text
-        g.setFont(RETRO_FONT);
+        g.setFont(CUSTOM_FONT);
         g.setColor(Color.WHITE);
         g.drawString(level, LEVEL_X, LEVEL_Y);
     }
@@ -325,10 +325,6 @@ public class Playing extends State {
     }
 
     // ====== Getters ======
-
-    public ObjectManager getObjectManager() {
-        return objectManager;
-    }
 
     public EnemyManager getEnemyManager() {
         return enemyManager;

@@ -58,6 +58,7 @@ public class ObjectManager {
 
     // ====== Bullet ======
     private static final BufferedImage BULLET_IMAGE     = ImageLoader.loadImage("/images/sprites_bullet.png");
+    private final BufferedImage[] bulletImages          = new BufferedImage[8];
 
     // ====== Game values ======
     private List<Coin> coins = new ArrayList<>();
@@ -94,6 +95,11 @@ public class ObjectManager {
         // Init cannons
         for (int i = 0; i < 7; i++) {
             cannonImages[i] = CANNON_IMAGES.getSubimage(CANNON_W_DEF * i, 0, CANNON_W_DEF, CANNON_H_DEF);
+        }
+
+        // Init bullets
+        for (int i = 0; i < 8; i++) {
+            bulletImages[i] = BULLET_IMAGE.getSubimage(BULLET_W_DEF * i, 0, BULLET_W_DEF, BULLET_H_DEF);
         }
     }
 
@@ -187,9 +193,10 @@ public class ObjectManager {
         cannons = level.getCannons();
 
         for (Cannon c: cannons) {
-            if (c.animationIndex == 4 && c.animationTick == 0) {
+            if (c.animationIndex == 4 && c.animationTick == 0 && c.canShoot) {
                 // Add a bullet
                 bullets.add(new Bullet((int) c.hitbox.x - BULLET_X_OFFSET, (int) c.hitbox.y - BULLET_Y_OFFSET, BULLET_TYPE));
+                c.setLastCannonShot(System.currentTimeMillis());
             }
 
             c.update();
@@ -199,7 +206,7 @@ public class ObjectManager {
     private void updateBullets(Level level, Player player) {
         for (Bullet b : bullets) {
             if (b.isActive()) {
-                b.updateBulletPos();
+                b.update();
 
                 if (b.hitbox.intersects(player.getHitbox())) {
                     player.hitByBullet(20, b);
@@ -233,9 +240,9 @@ public class ObjectManager {
     private void drawBullets(Graphics g, int levelOffset) {
         for (Bullet b : bullets) {
             if (b.isActive()) {
-                int x = (int) b.hitbox.x - levelOffset;
-                int y = (int) b.hitbox.y;
-                g.drawImage(BULLET_IMAGE, x, y, BULLET_W, BULLET_H, null);
+                float x = b.hitbox.x - levelOffset - 1 * SCALE;
+                float y = b.hitbox.y + BULLET_Y_OFFSET - 1;
+                g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
                 b.drawHitbox(g, levelOffset);
             }
         }

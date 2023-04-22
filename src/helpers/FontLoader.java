@@ -15,7 +15,7 @@ public class FontLoader {
                 return new Font("Arial", Font.PLAIN, 30);
 
             // Create and register the custom font
-            font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(26.0f);
+            font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(21f);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
