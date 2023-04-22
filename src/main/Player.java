@@ -2,6 +2,7 @@ package main;
 
 import helpers.ImageLoader;
 import helpers.SoundLoader;
+import objects.Bullet;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -143,7 +144,7 @@ public class Player extends Entity {
 		direction = STILL;
     }
 
-    private void pushBack() {
+    public void pushBack() {
 		// Update xDirection based on pushBackDirection
 		if (pushBackDirection == LEFT)
 			xDirection = -xSpeed;
@@ -161,6 +162,17 @@ public class Player extends Entity {
 		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
 		jump();
 		canJump = true;
+	}
+
+	public void hitByBullet(int value) {
+		health -= value;
+		hit = true;
+
+		SoundLoader.playAudio("player_taking_damage.wav");
+
+		pushBackDirection = LEFT;
+
+		pushBack();
 	}
 
     // ====== Draw and Animations ======
@@ -290,8 +302,6 @@ public class Player extends Entity {
 		return health;
 	}
 
-
-
 	public void setCanJump(boolean canJump) {
 		this.canJump = canJump;
 	}
@@ -307,5 +317,4 @@ public class Player extends Entity {
     public void setAttacking(final boolean attacking) {
 		this.attacking = attacking;
     }
-
 }

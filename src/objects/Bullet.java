@@ -14,12 +14,15 @@ public class Bullet extends GameObject {
     public static final int BULLET_X_OFFSET = (int) (20 * SCALE);
     public static final int BULLET_Y_OFFSET = (int) (-5 * SCALE);
 
+    // Properties
+    private static final int BULLET_SPEED = (int) (0.7 * SCALE);
+
     public Bullet(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         initHitbox(x,y,BULLET_W_DEF,BULLET_H_DEF);
     }
 
     public void updateBulletPos() {
-        hitbox.x -= 1;
+        hitbox.x -= BULLET_SPEED;
     }
 }

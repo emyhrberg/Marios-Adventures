@@ -1,6 +1,5 @@
 package objects;
 
-import constants.ObjectConstants;
 import helpers.ImageLoader;
 import helpers.SoundLoader;
 import main.Game;
@@ -105,7 +104,7 @@ public class ObjectManager {
         updateQuestions(level, player);
         updatePlatforms(level, player);
         updateLava(level, player);
-        updateCannons(level, player);
+        updateCannons(level);
         updateBullets(level, player);
         pipes = level.getPipes();
     }
@@ -184,13 +183,13 @@ public class ObjectManager {
             }
     }
 
-    private void updateCannons(Level level, Player player) {
+    private void updateCannons(Level level) {
         cannons = level.getCannons();
 
         for (Cannon c: cannons) {
-
-            if (c.animationIndex == 4) {
-                shootCannon(c);
+            if (c.animationIndex == 4 && c.animationTick == 0) {
+                // Add a bullet
+                bullets.add(new Bullet((int) c.hitbox.x - BULLET_X_OFFSET, (int) c.hitbox.y - BULLET_Y_OFFSET, BULLET_TYPE));
             }
 
             c.update();
@@ -203,7 +202,7 @@ public class ObjectManager {
                 b.updateBulletPos();
 
                 if (b.hitbox.intersects(player.getHitbox())) {
-                    player.setHealth(player.getHealth() - 20);
+                    player.hitByBullet(20);
                     b.setActive(false);
                 } else if (isBulletHittingLevel(b, level)) {
                     b.setActive(false);
@@ -217,12 +216,6 @@ public class ObjectManager {
         int bulletY = (int) (b.hitbox.y / TILES_SIZE);
 
         return !transparentTiles.contains(level.getLevelData()[bulletY][bulletX]);
-    }
-
-    private void shootCannon(Cannon c) {
-        float bulletSpawnX = c.hitbox.x - BULLET_X_OFFSET;
-        float bulletSpawnY = c.hitbox.y - BULLET_Y_OFFSET;
-        bullets.add(new Bullet((int) bulletSpawnX, (int) bulletSpawnY, BULLET_TYPE));
     }
 
     // ====== Draw ======
@@ -335,6 +328,8 @@ public class ObjectManager {
             c.resetObject();
             c.setSparkle(false);
         }
+
+        bullets.clear();
     }
 
 }

@@ -4,47 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated plant speed and waiting at the top">
-      <change afterPath="$PROJECT_DIR$/resources/fonts/fipps.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_bullet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_bullet_all.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_cannon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/sprites_cannon.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added cannons and bullets, need to fix bug where it spawns too many bullets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants$ObjectType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/ObjectConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/helpers/ImageLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/helpers/ImageLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/helpers/SoundLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/helpers/SoundLoader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tiles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/EnemyManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/EnemyManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Plant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Plant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Playing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Coin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Pipe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Pipe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/overlays/GameOverOverlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/overlays/GameOverOverlay.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/tiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tiles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Pipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Pipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +127,7 @@
       <workItem from="1682082416543" duration="5799000" />
       <workItem from="1682089500652" duration="941000" />
       <workItem from="1682112589552" duration="9679000" />
-      <workItem from="1682171761436" duration="8185000" />
+      <workItem from="1682171761436" duration="9952000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -292,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682122246290</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added cannons and bullets, need to fix bug where it spawns too many bullets">
+      <created>1682181826495</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1682181826495</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +292,7 @@
     <MESSAGE value="Added plant enemies, working ok!, still some minor collision detection bug with player" />
     <MESSAGE value="Fixed plant&amp;player collision bug" />
     <MESSAGE value="Updated plant speed and waiting at the top" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated plant speed and waiting at the top" />
+    <MESSAGE value="Added cannons and bullets, need to fix bug where it spawns too many bullets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added cannons and bullets, need to fix bug where it spawns too many bullets" />
   </component>
 </project>

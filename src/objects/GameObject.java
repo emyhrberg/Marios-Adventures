@@ -49,6 +49,10 @@ public class GameObject {
 
     // Hitboxes
 
+    public Rectangle2D.Float getHitbox() {
+        return hitbox;
+    }
+
     protected void initHitbox(float x, float y, float width, float height) {
         hitbox = new Rectangle2D.Float(x, y, width * SCALE, height * SCALE);
     }
