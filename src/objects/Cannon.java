@@ -3,6 +3,7 @@ package objects;
 import constants.ObjectConstants.ObjectType;
 
 import static main.Game.SCALE;
+import static main.Game.UPS;
 
 public class Cannon extends GameObject {
 
@@ -19,20 +20,40 @@ public class Cannon extends GameObject {
     }
 
     public void update() {
-        updateCannonAnimation();
+        updateCooldown();
+        if (doAnimation)
+            updateCannonAnimation();
     }
 
     private void updateCannonAnimation() {
         animationTick++;
 
-        // Reset animation tick and update animation index
-        if (animationTick >= ANIMATION_SPEED * 4) {
+        if (animationTick >= ANIMATION_SPEED * 2) {
             animationTick = 0;
             animationIndex++;
 
-            // Reset animation index when reached all images
-            if (animationIndex >= 7)
-                animationIndex = 0;
+            if (animationIndex >= 7) {
+                doAnimation = false;
+                animationIndex = 1;
+            }
         }
     }
+
+    protected int cooldownLimit = UPS*5; // 5 seconds
+    protected int cooldownTick;
+    private long previousTime = System.currentTimeMillis();
+
+    protected void updateCooldown() {
+        long currentTime = System.currentTimeMillis();
+        int elapsedUpdates = (int) ((currentTime - previousTime) / (1000.0f / UPS));
+        previousTime = currentTime;
+        cooldownTick += elapsedUpdates;
+        System.out.println(cooldownTick);
+        if (cooldownTick > cooldownLimit) {
+            doAnimation = true;
+            cooldownTick = 0;
+        }
+    }
+
+
 }

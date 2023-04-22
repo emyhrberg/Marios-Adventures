@@ -164,13 +164,16 @@ public class Player extends Entity {
 		canJump = true;
 	}
 
-	public void hitByBullet(int value) {
+	public void hitByBullet(int value, Bullet b) {
 		health -= value;
 		hit = true;
 
 		SoundLoader.playAudio("player_taking_damage.wav");
 
-		pushBackDirection = LEFT;
+		if (b.getHitbox().x < hitbox.x)
+			pushBackDirection = RIGHT;
+		else
+			pushBackDirection = LEFT;
 
 		pushBack();
 	}
