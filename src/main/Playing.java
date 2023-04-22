@@ -11,10 +11,10 @@ import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
-import static main.Player.PLAYER_HEIGHT;
-import static main.Player.PLAYER_WIDTH;
 import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
+import static main.Player.PLAYER_HEIGHT;
+import static main.Player.PLAYER_WIDTH;
 
 /**
  * Playing is where the player plays the game

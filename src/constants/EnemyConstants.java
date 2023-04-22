@@ -12,7 +12,6 @@ public class EnemyConstants {
 		ATTACKING,
 		HIT,
 		DEAD,
-		PLANT
 	}
 
     /**
@@ -23,7 +22,6 @@ public class EnemyConstants {
 			case RUNNING 	-> 6;
 			case ATTACKING 	-> 7;
 			case HIT, DEAD 	-> 5;
-			case PLANT		-> 2;
 		};
     }
 }

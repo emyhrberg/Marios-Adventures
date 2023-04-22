@@ -7,7 +7,6 @@ import static constants.Direction.*;
 import static constants.EnemyConstants.EnemyAction;
 import static constants.EnemyConstants.EnemyAction.*;
 import static constants.EnemyConstants.getSpriteAmount;
-import static main.Game.SCALE;
 import static main.Game.UPS;
 
 /**

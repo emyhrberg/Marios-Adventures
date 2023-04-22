@@ -1,12 +1,7 @@
 package main;
 
-import constants.Direction;
 import helpers.ImageLoader;
 import helpers.SoundLoader;
-import main.Enemy;
-import main.Entity;
-import main.Game;
-import main.Level;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

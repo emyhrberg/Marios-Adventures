@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added plant enemies, working ok!, still some minor collision detection bug with player" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed plant&amp;player collision bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/EnemyConstants$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/EnemyConstants$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/EnemyConstants$EnemyAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/EnemyConstants$EnemyAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/constants/EnemyConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/constants/EnemyConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Enemy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Enemy$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/EnemyManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/EnemyManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Plant$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Plant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Plant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Shark$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Shark$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Shark.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Shark.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/EnemyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/EnemyConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ImageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Plant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +139,7 @@
       <workItem from="1682007642323" duration="18282000" />
       <workItem from="1682082416543" duration="5799000" />
       <workItem from="1682089500652" duration="941000" />
-      <workItem from="1682112589552" duration="8063000" />
+      <workItem from="1682112589552" duration="9281000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -236,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682120178180</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed plant&amp;player collision bug">
+      <created>1682121016020</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682121016020</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +288,7 @@
     <MESSAGE value="Added sparkle to coins" />
     <MESSAGE value="Question work" />
     <MESSAGE value="Added plant enemies, working ok!, still some minor collision detection bug with player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added plant enemies, working ok!, still some minor collision detection bug with player" />
+    <MESSAGE value="Fixed plant&amp;player collision bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed plant&amp;player collision bug" />
   </component>
 </project>

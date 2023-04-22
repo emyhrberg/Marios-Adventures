@@ -1,13 +1,11 @@
 package main;
 
 import constants.Direction;
-import constants.EnemyConstants;
 
 import static constants.Direction.DOWN;
 import static constants.Direction.UP;
-import static constants.EnemyConstants.EnemyAction.RUNNING;
-import static constants.EnemyConstants.getSpriteAmount;
-import static main.EnemyManager.*;
+import static main.EnemyManager.PLANT_HEIGHT;
+import static main.EnemyManager.PLANT_WIDTH;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 
@@ -15,15 +13,12 @@ public class Plant extends Enemy {
 
     public Plant(float x, float y) {
         super(x, y, PLANT_WIDTH, PLANT_HEIGHT);
-
-        // Initialize shark boxes
         initAttackBox(PLANT_WIDTH, PLANT_HEIGHT);
-        enemyAction = EnemyConstants.EnemyAction.PLANT;
     }
 
-    public void update(Level level, Player player) {
-        updatePlantPos(level, player);
-        updatePlantAttackbox(player);
+    public void update(Player player) {
+        updatePlantPos();
+        updatePlantAttacking(player);
         updatePlantAnimationTick();
         updateCollisionCooldown();
     }
@@ -38,38 +33,37 @@ public class Plant extends Enemy {
             animationIndex++;
 
             // Reset animation index when reached all images
-            if (animationIndex >= getSpriteAmount(enemyAction)) {
+            if (animationIndex >= 2) {
                 animationIndex = 0;
-
-                // Now, we are on the first animation index.
-                // Here, we set new enemy actions to prevent from getting stuck in the previous action
-                switch (enemyAction) {
-                    case ATTACKING, HIT -> enemyAction = RUNNING;
-                    case DEAD 		-> enemyAlive = false;
-                }
             }
         }
     }
 
     private static final float PLANT_SPEED = 0.2f * SCALE;
-    private static final float PLANT_MAX_DISTANCE = 2;
+    private static final float PLANT_MAX_DISTANCE = 1.2f;
     private Direction plantDirection = UP;
 
-    private void updatePlantPos(Level level, Player player) {
+    private void updatePlantPos() {
         float origPos = y / TILES_SIZE;
         float currPos = hitbox.y / TILES_SIZE;
         float tileDistance = origPos - currPos;
 
+        System.out.println(tileDistance);
+
         // move up and down
         if (plantDirection == UP) {
-            hitbox.y -= PLANT_SPEED;
-
-            if (tileDistance + 0.5 >= PLANT_MAX_DISTANCE) {
+            final float increase = 0.0001f;
+            final float max = 0.0051f;
+            if (tileDistance >= PLANT_MAX_DISTANCE && tileDistance < PLANT_MAX_DISTANCE + max) {
+                hitbox.y -= increase;
+            } else if (tileDistance >= PLANT_MAX_DISTANCE + max) {
                 plantDirection = DOWN;
+            } else {
+                hitbox.y -= PLANT_SPEED;
             }
         } else if (plantDirection == DOWN) {
             if (tileDistance <= 0 && tileDistance >= -0.1) {
-                hitbox.y += PLANT_SPEED / 20;
+                hitbox.y += 0.01;
                 canDealDamage = true;
             } else if (tileDistance <= -0.1) {
                 plantDirection = UP;
@@ -79,7 +73,7 @@ public class Plant extends Enemy {
         }
     }
 
-    private void updatePlantAttackbox(Player player) {
+    private void updatePlantAttacking(Player player) {
         attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * SCALE;
         attackBox.y = hitbox.y;
 

@@ -3,7 +3,6 @@ package main;
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.*;
-import static constants.Direction.DOWN;
 import static constants.EnemyConstants.EnemyAction.ATTACKING;
 import static main.EnemyManager.SHARK_HEIGHT;
 import static main.EnemyManager.SHARK_WIDTH;
@@ -26,8 +25,6 @@ public class Shark extends Enemy {
 
     public Shark(float x, float y) {
         super(x, y, SHARK_WIDTH, SHARK_HEIGHT);
-
-        // Initialize shark boxes
         initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
         initAttackBox(ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
     }

@@ -67,7 +67,7 @@ public class EnemyManager {
 		// Update every individual plant
 		for (Plant p : plants) {
 			if (p.isEnemyAlive()) {
-				p.update(level, player);
+				p.update(player);
 				anyEnemyAlive = true;
 			}
 		}

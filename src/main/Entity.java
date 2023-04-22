@@ -1,9 +1,6 @@
 package main;
 
 import constants.Direction;
-import main.Game;
-import main.Level;
-import objects.Lava;
 import objects.Platform;
 
 import java.awt.*;
