@@ -141,12 +141,17 @@ public class ObjectManager {
         bricks = level.getBricks();
 
         for (Brick b: bricks) {
-            // check if player is colliding with the bottom of a brick and that they are going upwards
-            if (player.getHitboxTop().intersects(b.getBottom()) && player.getAirSpeed() < 0) {
-                System.out.println("from below");
-                player.setAirSpeed(GRAVITY * 8);
-                // todo check if player is touching the bottom corner by creating a temp hitbox there
+            if (b.isActive()) {
+
+                if (player.getHitboxTop().intersects(b.getBottom()) && player.getAirSpeed() < 0) {
+                    // player is colliding with the bottom of a brick and going upwards
+                    System.out.println("from below");
+                    player.setAirSpeed(GRAVITY * 8);
+                    b.setActive(false);
+                    // todo check if player is touching the bottom corner by creating a temp hitbox there
+                }
             }
+
         }
     }
 
@@ -272,11 +277,13 @@ public class ObjectManager {
 
     private void drawBricks(Graphics g, int levelOffset) {
         for (Brick b : bricks)  {
-            int x = (int) b.hitbox.x - levelOffset;
-            int y = (int) b.hitbox.y;
-            g.drawImage(BRICK_IMAGE, x, y, BRICK_W, BRICK_H, null);
-            b.drawHitbox(g, levelOffset);
-            b.drawBottom(g, levelOffset);
+            if (b.isActive()) {
+                int x = (int) b.hitbox.x - levelOffset;
+                int y = (int) b.hitbox.y;
+                g.drawImage(BRICK_IMAGE, x, y, BRICK_W, BRICK_H, null);
+                b.drawHitbox(g, levelOffset);
+                b.drawBottom(g, levelOffset);
+            }
         }
     }
 
