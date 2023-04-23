@@ -199,7 +199,6 @@ public class Shark extends Enemy {
                 attackAllowed = !attackAllowed;
             } else {
                 if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {
-                    System.out.println("huh");
                     player.reducePlayerHealth(this);
                     lastAttack = System.currentTimeMillis();
                     attackChecked = true;

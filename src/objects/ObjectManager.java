@@ -233,7 +233,7 @@ public class ObjectManager {
         for (Cannon c: cannons) {
             if (c.animationIndex == 4 && c.animationTick == 0 && c.isShootAllowed()) {
                 // Add a bullet
-                bullets.add(new Bullet((int) c.hitbox.x - BULLET_X_OFFSET, (int) c.hitbox.y - BULLET_Y_OFFSET, BULLET_TYPE));
+                bullets.add(new Bullet((int) c.hitbox.x, (int) c.hitbox.y, BULLET_TYPE));
                 c.setLastCannonShot(System.currentTimeMillis());
             }
 
@@ -249,7 +249,7 @@ public class ObjectManager {
                 if (b.hitbox.intersects(player.getHitbox())) {
                     player.hitByBullet(b);
                     b.setActive(false);
-                } else if (b.isBulletHittingLevel(b, level, bullets)) {
+                } else if (b.isBulletHittingLevel(b, level)) {
                     b.setActive(false);
                 }
             }
@@ -286,10 +286,10 @@ public class ObjectManager {
     private void drawBullets(Graphics g, int levelOffset) {
         for (Bullet b : bullets) {
             if (b.isActive()) {
-                float x = b.hitbox.x - levelOffset - 1 * SCALE;
-                float y = b.hitbox.y + BULLET_Y_OFFSET - 1;
+                float x = b.hitbox.x - levelOffset;
+                float y = b.hitbox.y - Y_DRAW_OFF;
                 g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
-//                b.drawHitbox(g, levelOffset);
+                b.drawHitbox(g, levelOffset);
             }
         }
     }
