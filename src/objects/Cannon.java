@@ -15,7 +15,7 @@ public class Cannon extends GameObject {
     private static final float Y_OFF = 6f * SCALE;
 
     // Properties
-    private static final int CANNON_DELAY = 1000;
+    private static final int CANNON_DELAY = 3000;
     private long lastCannonShot;
     private boolean shootAllowed;
 

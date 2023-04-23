@@ -43,7 +43,7 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.7f * SCALE;
-	private static final int MAX_HEALTH 				= 2000;
+	private static final int MAX_HEALTH 				= 100;
 
 	// ====== Game variables =======
 	private final Game game;
@@ -202,7 +202,7 @@ public class Player extends Entity {
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
 		// Debug hitbox
-		drawHitbox(g, levelOffset);
+//		drawHitbox(g, levelOffset);
 //		drawAttackBox(g, levelOffset);
 	}
 

@@ -23,7 +23,6 @@ public class GameObject {
     protected boolean isSparkle = false;
     protected boolean isHit = false;
 
-
     public GameObject(int x, int y, ObjectType objectType) {
         this.x = x;
         this.y = y;

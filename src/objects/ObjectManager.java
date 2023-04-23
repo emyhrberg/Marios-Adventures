@@ -14,8 +14,6 @@ import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
-import static objects.Brick.BRICK_H;
-import static objects.Brick.BRICK_W;
 import static objects.Bullet.*;
 import static objects.Cannon.*;
 import static objects.Coin.*;
@@ -295,8 +293,8 @@ public class ObjectManager {
 //                } else {
 //                    g.drawImage(BRICK_IMAGE, x, y, BRICK_W, BRICK_H, null);
 //                }
+//                b.drawHitbox(g, levelOffset);
                 b.drawHitbox(g, levelOffset);
-                b.drawBottom(g, levelOffset);
             }
         }
     }

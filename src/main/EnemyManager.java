@@ -115,7 +115,7 @@ public class EnemyManager {
 
 				// Draw hitboxes for debugging
 //				s.drawHitbox(g, levelOffset);
-				s.drawAttackBox(g, levelOffset);
+//				s.drawAttackBox(g, levelOffset);
 			}
 	}
 

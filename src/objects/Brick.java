@@ -15,23 +15,15 @@ public class Brick extends GameObject {
     public static final int BRICK_W = (int) (BRICK_W_D * SCALE);
     public static final int BRICK_H = (int) (BRICK_H_D * SCALE);
 
+    // backup hitbox
+    private Rectangle2D.Float backup;
+
     public Brick(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         float off = 2 * SCALE;
 
         initHitbox(x + off, y + BRICK_H - off, BRICK_W_D - off, 10);
-    }
-
-    public void drawBottom(Graphics g, int levelOffset) {
-        // draw hitbox
-        g.setColor(new Color(255, 51, 215,100));
-        g.fillRect((int) (hitbox.x - levelOffset), (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
-
-        // draw stroke
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setStroke(new BasicStroke(2)); // set stroke width
-        g2d.setColor(Color.BLACK); // set stroke color
-        g2d.drawRect((int) hitbox.x - levelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height); // draw the rectangle outline
+        backup = new Rectangle2D.Float(hitbox.x, hitbox.y, hitbox.width, hitbox.height - 5);
     }
 
     public void update(Brick b) {

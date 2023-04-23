@@ -115,18 +115,13 @@ public class Level {
                     bricks.add(new Brick(x * TILES_SIZE, y * TILES_SIZE, BRICK_TYPE));
 
                 // Print level data
-                System.out.printf("%02d ", levelData[y][x]);
+//                System.out.printf("%02d ", levelData[y][x]);
             }
-    	    System.out.println(" ");
+//    	    System.out.println(" ");
         }
     }
 
     // ====== Getters ======
-
-
-    public void setLevelData(int[][] levelData) {
-        this.levelData = levelData;
-    }
 
     public List<Brick> getBricks() {
         return bricks;

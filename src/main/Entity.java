@@ -123,23 +123,26 @@ public class Entity {
 //		System.out.println("X: " + playerX1 + " | Y: " + playerY1);
 
 		for (Brick b : level.getBricks()) {
-			if (b.isActive() && hitbox.intersects(b.getHitbox()) && airSpeed < 0) {
-				airSpeed = 0;
+			if (b.isActive()) {
+				if (hitbox.intersects(b.getHitbox()) && airSpeed < 0) {
+					// make player bounce down
+					airSpeed = 0;
 
-				// delete brick
-				int playerX = (int) (hitbox.x / TILES_SIZE);
-				int playerY = (int) (hitbox.y / TILES_SIZE);
-				double hitboxCenterX = hitbox.getCenterX();
-				double brickCenterX = b.getHitbox().getCenterX();
-				if (hitboxCenterX < brickCenterX) {
-					System.out.println("left");
-					level.getLevelData()[playerY - 1][playerX + 1] = 90;
-				} else {
-					System.out.println("right");
-					level.getLevelData()[playerY - 1][playerX] = 90;
+					// delete brick
+					int playerX = (int) (hitbox.x / TILES_SIZE);
+					int playerY = (int) (hitbox.y / TILES_SIZE);
+					double hitboxCenterX = hitbox.getCenterX();
+					double brickCenterX = b.getHitbox().getCenterX();
+					if (hitboxCenterX < brickCenterX) {
+						// Hitting Left part of the brick
+						level.getLevelData()[playerY - 1][playerX + 1] = 90;
+					} else {
+						// Hitting Right part of the brick
+						level.getLevelData()[playerY - 1][playerX] = 90;
+					}
+					b.setActive(false);
+					return true;
 				}
-				b.setActive(false);
-				return true;
 			}
 		}
 		return false;
