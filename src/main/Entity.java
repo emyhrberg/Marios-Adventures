@@ -89,20 +89,6 @@ public class Entity {
 		return false;
 	}
 
-	protected boolean isBrick(Level level) {
-		for (Brick b : level.getBricks()) {
-			if (b.isActive() && hitbox.intersects(b.getBottom()) && airSpeed > 0) {
-				// get the brick in question
-				int playerX = (int) (hitbox.x / TILES_SIZE);
-				int playerY = (int) (hitbox.y / TILES_SIZE);
-				level.getLevelData()[playerY - 1][playerX] = 85;
-				b.setActive(false);
-				return true;
-			}
-		}
-		return false;
-	}
-
 	protected boolean isSolid(float x, float y, Level level) {
 		// Set left and right edge of world to be solid when player walks into them
 		int w = level.getLevelData()[0].length * TILES_SIZE - 1;
@@ -127,6 +113,36 @@ public class Entity {
 
 	protected boolean isTileOutsideLevel(int tileY) {
 		return tileY < 0 || tileY >= Game.TILES_IN_HEIGHT;
+	}
+
+	// ====== Bricks ======
+
+	protected boolean isBrick(Level level) {
+		float playerX1 = hitbox.x / TILES_SIZE;
+		float playerY1 = hitbox.y / TILES_SIZE;
+//		System.out.println("X: " + playerX1 + " | Y: " + playerY1);
+
+		for (Brick b : level.getBricks()) {
+			if (b.isActive() && hitbox.intersects(b.getHitbox()) && airSpeed < 0) {
+				airSpeed = 0;
+
+				// delete brick
+				int playerX = (int) (hitbox.x / TILES_SIZE);
+				int playerY = (int) (hitbox.y / TILES_SIZE);
+				double hitboxCenterX = hitbox.getCenterX();
+				double brickCenterX = b.getHitbox().getCenterX();
+				if (hitboxCenterX < brickCenterX) {
+					System.out.println("left");
+					level.getLevelData()[playerY - 1][playerX + 1] = 90;
+				} else {
+					System.out.println("right");
+					level.getLevelData()[playerY - 1][playerX] = 90;
+				}
+				b.setActive(false);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// ====== Entity falling ======

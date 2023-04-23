@@ -22,6 +22,7 @@ public class Level {
     // ====== Red Values ======
     public static final int DOWN_SLOPE = 6;
     public static final int UP_SLOPE = 7;
+    public static final int BRICK = 26;
 
     // ====== Green Values ======
     private static final int SHARK = 0;
@@ -36,7 +37,7 @@ public class Level {
     private static final int LAVA = 3;
     private static final int PIPE = 4;
     private static final int CANNON = 5;
-    private static final int BRICK = 6;
+    private static final int BRICK_BLUE = 6;
 
     // ====== Objects ======
     private final List<Coin> coins = new ArrayList<>();
@@ -110,7 +111,7 @@ public class Level {
                     pipes.add(new Pipe(x * TILES_SIZE, y * TILES_SIZE, PIPE_TYPE));
                 if (blue == CANNON)
                     cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE));
-                if (blue == BRICK)
+                if (blue == BRICK_BLUE)
                     bricks.add(new Brick(x * TILES_SIZE, y * TILES_SIZE, BRICK_TYPE));
 
                 // Print level data

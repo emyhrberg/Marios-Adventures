@@ -12,7 +12,6 @@ import java.util.List;
 
 import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
-import static main.Entity.GRAVITY;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static objects.Brick.BRICK_H;
@@ -118,7 +117,7 @@ public class ObjectManager {
         updateLava(level, player);
         updateCannons(level);
         updateBullets(level, player);
-        updateBricks(level, player);
+        updateBricks(level);
         updateHealths(level, player);
         pipes = level.getPipes();
     }
@@ -159,7 +158,7 @@ public class ObjectManager {
             }
     }
 
-    private void updateBricks(Level level, Player player) {
+    private void updateBricks(Level level) {
         bricks = level.getBricks();
 
         for (Brick b: bricks) {
@@ -288,15 +287,14 @@ public class ObjectManager {
     private void drawBricks(Graphics g, int levelOffset) {
         for (Brick b : bricks)  {
             if (b.isActive()) {
-                int x = (int) b.hitbox.x - levelOffset;
-                int y = (int) b.hitbox.y;
-
-                if (b.isSparkle) {
-                    g.drawImage(sparkleImages[b.animationIndex],x+7,y+7,(SPARKLE_DRAW_W),SPARKLE_DRAW_H,null);
-                } else {
-                    g.drawImage(BRICK_IMAGE, x, y, BRICK_W, BRICK_H, null);
-                }
-
+//                int x = (int) b.hitbox.x - levelOffset;
+//                int y = (int) b.hitbox.y;
+//
+//                if (b.isSparkle) {
+//                    g.drawImage(sparkleImages[b.animationIndex],x+7,y+7,(SPARKLE_DRAW_W),SPARKLE_DRAW_H,null);
+//                } else {
+//                    g.drawImage(BRICK_IMAGE, x, y, BRICK_W, BRICK_H, null);
+//                }
                 b.drawHitbox(g, levelOffset);
                 b.drawBottom(g, levelOffset);
             }
