@@ -17,7 +17,7 @@ import static main.Game.TILES_SIZE;
 public class Level {
 
     // List of all the transparent tiles from the tileset
-    public static final ArrayList<Integer> transparentTiles = new ArrayList<>(Arrays.asList(6,7,76,85,85,86,90,92,93,94,95,96,97,98,99));
+    public static final ArrayList<Integer> transparentTiles = new ArrayList<>(Arrays.asList(6,7,59,69,76,79,85,85,86,89,90,92,93,94,95,96,97,98,99));
 
     // ====== Red Values ======
     public static final int DOWN_SLOPE = 6;

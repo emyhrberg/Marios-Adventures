@@ -40,5 +40,25 @@ public class Brick extends GameObject {
         g2d.drawRect((int) bottom.x - levelOffset, (int) bottom.y, (int) bottom.width, (int) bottom.height); // draw the rectangle outline
     }
 
+    public void update(Brick b) {
+        updateBrickAnimation(b);
+    }
+
+    private void updateBrickAnimation(Brick b) {
+        animationTick++;
+
+        // Sparkle anim
+        if (isSparkle) {
+            if (animationTick >= ANIMATION_SPEED / 2) {
+                animationTick = 0;
+                animationIndex++;
+            }
+            // at final sparkle image, disable the animation!
+            if (animationIndex == 7) {
+                b.setSparkle(false);
+                b.setActive(false);
+            }
+        }
+    }
 
 }

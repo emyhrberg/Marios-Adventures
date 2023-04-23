@@ -7,24 +7,18 @@ import static main.Game.SCALE;
 public class Coin extends GameObject {
 
     // Coin size
-    public static final int COIN_WIDTH_ACTUAL = 30;
-    public static final int COIN_HEIGHT_ACTUAL = 30;
-    public static final int COIN_WIDTH = (int) (COIN_WIDTH_ACTUAL * SCALE);
-    public static final int COIN_HEIGHT = (int) (COIN_HEIGHT_ACTUAL * SCALE);
-    public static final int COIN_X_OFFSET = (int) (6* SCALE);
-    public static final int COIN_Y_OFFSET = (int) (6* SCALE);
+    public static final int COIN_SIZE_DEF = 30;
+    public static final int COIN_SIZE = (int) (COIN_SIZE_DEF * SCALE);
 
     // Sparkle
-    private boolean isSparkle = false;
     public static final int SPARKLE_DRAW_W = 40;
     public static final int SPARKLE_DRAW_H = 40;
     public static final int SPARKLE_W_DEF = 100;
     public static final int SPARKLE_H_DEF = 100;
 
-
     public Coin(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x + COIN_X_OFFSET, y + COIN_Y_OFFSET, COIN_WIDTH_ACTUAL, SPARKLE_DRAW_W);
+        initHitbox(x, y, COIN_SIZE_DEF, COIN_SIZE_DEF);
         doAnimation = true;
     }
 
@@ -36,12 +30,13 @@ public class Coin extends GameObject {
         animationTick++;
 
         // Sparkle anim
-        if (isSparkle) {
+        if (c.isSparkle) {
+            System.out.println(c.animationIndex);
             if (animationTick >= ANIMATION_SPEED / 2) {
                 animationTick = 0;
                 animationIndex++;
             }
-            // at final sparkle image, disable the coin!
+            // at final sparkle image, remove the coin!
             if (animationIndex == 7) {
                 c.setActive(false);
             }
@@ -56,13 +51,5 @@ public class Coin extends GameObject {
                 }
             }
         }
-    }
-
-    public boolean isSparkle() {
-        return isSparkle;
-    }
-
-    public void setSparkle(boolean sparkle) {
-        this.isSparkle = sparkle;
     }
 }

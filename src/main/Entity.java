@@ -54,9 +54,6 @@ public class Entity {
 		boolean isBottomLeftSolid = isSolid(x, y + height, level);
 		boolean isBottomRightSolid = isSolid(x + width, y + height, level);
 
-		// Check brick
-		boolean isBrickSolid = isBrickSolid(getHitbox(), level);
-
 		// The entity can only move to a position if neither corner is touching something solid
 		if (!isTopLeftSolid && !isTopRightSolid && !isBottomLeftSolid && !isBottomRightSolid) {
 			return true;
@@ -71,6 +68,8 @@ public class Entity {
 			return moveDownSlope();
 		if (isUpSlope(level))
 			return moveUpSlope(x+width);
+//		if (isBrick(level))
+//			return false;
 
 
 		// Handle if entity can move to position
@@ -101,10 +100,9 @@ public class Entity {
 		return false;
 	}
 
-	protected boolean isBrickSolid(Rectangle2D playerHitbox, Level level) {
+	protected boolean isBrick(Level level) {
 		for (Brick b : level.getBricks()) {
-			if (b.isActive() && playerHitbox.intersects(b.getHitbox())) {
-//				System.out.println("Player touching a brick!");
+			if (b.isActive() && hitbox.intersects(b.getHitbox())) {
 				return true;
 			}
 		}
@@ -262,7 +260,7 @@ public class Entity {
 	}
 
 	// ====== Jumping ======
-	protected boolean canJump = true;
+	protected boolean jumpAllowed = true;
 	protected boolean jumping = false;
 	protected static final float MAX_JUMP_HEIGHT = 3.5f * SCALE;
 	protected float jumpHeight = MAX_JUMP_HEIGHT;
@@ -302,7 +300,7 @@ public class Entity {
 	attackBox = new Rectangle2D.Float(0,0, width, height);
     }
 
-    protected void drawHitbox(Graphics g, int levelOffset) {
+    public void drawHitbox(Graphics g, int levelOffset) {
 		// draw hitbox
 		g.setColor(new Color(255,0,0,80));
 		g.fillRect((int) (hitbox.x - levelOffset), (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);

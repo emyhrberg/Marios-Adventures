@@ -19,8 +19,6 @@ public class Question extends GameObject {
     private Direction pushBackOffsetDir;
     private static final float BLOCK_SPEED = 1.2f * SCALE;
     private static final float BLOCK_LIMIT = 20f * SCALE;
-    private boolean isHit = false;
-    private boolean isSparkle = false;
 
     public Question(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -35,31 +33,16 @@ public class Question extends GameObject {
 
     private void updateQuestionAnimation() {
         animationTick++;
-
-        // Sparkle anim
-        if (isSparkle) {
-            if (animationTick >= ANIMATION_SPEED / 2) {
-                animationTick = 0;
-                animationIndex++;
-            }
-            // at final sparkle image, disable the animation!
-            if (animationIndex == 7) {
-                setSparkle(false);
-            }
-
-            // Coin anim
-        } else {
-            if (animationTick >= ANIMATION_SPEED) {
-                animationTick = 0;
-                animationIndex++;
-                if (animationIndex >= getSpriteAmount(objectType)) {
-                    animationIndex = 0;
-                }
+        if (animationTick >= ANIMATION_SPEED) {
+            animationTick = 0;
+            animationIndex++;
+            if (animationIndex >= getSpriteAmount(objectType)) {
+                animationIndex = 0;
             }
         }
     }
 
-    public void updateQuestionCollision() {
+    private void updateQuestionCollision() {
         // Set pushBackOffsetDir to UP to start this animation
         if (pushBackOffsetDir == UP) {
             isHit = true;
@@ -74,22 +57,6 @@ public class Question extends GameObject {
     }
 
     // getters and setters
-
-    public boolean isHit() {
-        return isHit;
-    }
-
-    public void setHit(boolean hit) {
-        isHit = hit;
-    }
-
-    public boolean isSparkle() {
-        return isSparkle;
-    }
-
-    public void setSparkle(boolean sparkle) {
-        isSparkle = sparkle;
-    }
 
     public void setPushBackOffsetDir(Direction pushBackOffsetDir) {
         this.pushBackOffsetDir = pushBackOffsetDir;

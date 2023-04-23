@@ -1,8 +1,13 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
+import main.Level;
+
+import java.util.List;
 
 import static main.Game.SCALE;
+import static main.Game.TILES_SIZE;
+import static main.Level.transparentTiles;
 
 public class Bullet extends GameObject {
 
@@ -31,5 +36,20 @@ public class Bullet extends GameObject {
 
     private void updateBulletPos() {
         hitbox.x -= BULLET_SPEED;
+    }
+
+    public boolean isBulletHittingLevel(Bullet b, Level level, List<Bullet> bullets) {
+        int bulletX = (int) (b.hitbox.x / TILES_SIZE);
+        int bulletY = (int) (b.hitbox.y / TILES_SIZE);
+
+        // Handle bullet outside the leftmost part of level
+        if (bulletX <= 0) {
+            return false;
+        }
+
+        if (!transparentTiles.contains(level.getLevelData()[bulletY][bulletX])) {
+            return true;
+        }
+        return false;
     }
 }

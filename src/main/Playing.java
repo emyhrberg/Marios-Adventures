@@ -11,8 +11,7 @@ import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
-import static main.Game.GAME_WIDTH;
-import static main.Game.SCALE;
+import static main.Game.*;
 import static main.Player.PLAYER_HEIGHT;
 import static main.Player.PLAYER_WIDTH;
 
@@ -71,7 +70,7 @@ public class Playing extends State {
         player          = new Player(0,0,PLAYER_WIDTH * SCALE * 1.33f, PLAYER_HEIGHT * SCALE * 1.33f, game);
         player.setLevel(levelManager.getLevel());
         enemyManager    = new EnemyManager();
-        objectManager   = new ObjectManager(game);
+        objectManager   = new ObjectManager();
 
         // Set spawn point
         setCurrentLevelSpawnPoint();
@@ -127,17 +126,21 @@ public class Playing extends State {
 
     private void updateFinalPointState() {
         // Get the X and Y position for the player and "final point"
-        int finalX = levelManager.getLevel().getFinalPoint().x;
-        int finalY = levelManager.getLevel().getFinalPoint().y;
-        int playerX = (int) player.getHitbox().x;
-        int playerY = (int) player.getHitbox().y;
+        int finalX = levelManager.getLevel().getFinalPoint().x / TILES_SIZE;
+        int finalY = levelManager.getLevel().getFinalPoint().y / TILES_SIZE;
+        int playerX = (int) player.getHitbox().x / TILES_SIZE;
+        int playerY = (int) player.getHitbox().y / TILES_SIZE;
 
-        // Check if player is in the middle of final X and in the same Y
-        boolean isPlayerInsideFinalX = Math.abs(finalX - playerX) <= Game.TILES_SIZE / 2;
-        boolean isPlayerInsideFinalY = Math.abs(finalY - playerY) <= 1;
+//        System.out.println("X: " + playerX + " | Y: " + playerY);
 
-        if (isPlayerInsideFinalX && isPlayerInsideFinalY)
-            setLevelCompleted();
+        // Player is inside the final X position and at the exact Y position on the bottom or up to 4 tiles above it.
+        // Can also be below the flag, but that should never happen
+        if (playerX == finalX && playerY >= finalY - 4) {
+            if (playerY >= finalY - 4) {
+                setLevelCompleted();
+            }
+        }
+
     }
 
     private void updateAnyEnemiesAlive() {

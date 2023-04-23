@@ -9,16 +9,20 @@ import static constants.ObjectConstants.getSpriteAmount;
 import static main.Game.SCALE;
 
 public class GameObject {
+
     // Object position
     protected int x, y;
     protected ObjectType objectType;
     protected Rectangle2D.Float hitbox;
 
-    // Animation and drawing
+    // Object properties
     protected static final int ANIMATION_SPEED = 20;
     protected boolean doAnimation = true;
     protected boolean active = true;
     protected int animationTick, animationIndex;
+    protected boolean isSparkle = false;
+    protected boolean isHit = false;
+
 
     public GameObject(int x, int y, ObjectType objectType) {
         this.x = x;
@@ -45,6 +49,8 @@ public class GameObject {
         animationTick = 0;
         active = true;
         doAnimation = true;
+        isHit = false;
+        isSparkle = false;
     }
 
     // Hitboxes
@@ -70,6 +76,24 @@ public class GameObject {
     }
 
     // Getters nd setters
+
+    public boolean isHit() {
+        return isHit;
+    }
+
+    public void setHit(boolean hit) {
+        isHit = hit;
+    }
+
+    public boolean isSparkle() {
+        return isSparkle;
+    }
+
+    public void setSparkle(boolean sparkle) {
+        isSparkle = sparkle;
+        animationTick = 0;
+        animationIndex = 0;
+    }
 
     public boolean isActive() {
         return active;

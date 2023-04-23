@@ -82,19 +82,17 @@ public class Player extends Entity {
 		updateDirection();
 		moveToPosition(hitbox.x + xDirection, hitbox.y, hitbox.width, hitbox.height, level);
 
-		if (jumping) {
-			if (canJump) {
-				jump();
-			}
+		if (jumping && jumpAllowed) {
+			jump();
 		}
 	}
 
 	public void jump() {
-		if (inAir || !canJump)
+		if (inAir || !jumpAllowed)
 			return;
 		inAir = true;
 		airSpeed = -jumpHeight;
-		canJump = false;
+		jumpAllowed = false;
 		jumpHeight = MAX_JUMP_HEIGHT;
 		unbindPlatform();
 	}
@@ -161,7 +159,7 @@ public class Player extends Entity {
 	private void pushbackY() {
 		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
 		jump();
-		canJump = true;
+		jumpAllowed = true;
 	}
 
 	public void hitByBullet(int value, Bullet b) {
@@ -200,7 +198,7 @@ public class Player extends Entity {
 		updateAttackBox();
 
 		// Debug hitbox
-		drawHitbox(g, levelOffset);
+//		drawHitbox(g, levelOffset);
 //		drawAttackBox(g, levelOffset);
     }
 
@@ -306,7 +304,7 @@ public class Player extends Entity {
 	}
 
 	public void setCanJump(boolean canJump) {
-		this.canJump = canJump;
+		this.jumpAllowed = canJump;
 	}
 
 	public void setLevel(Level level) {
