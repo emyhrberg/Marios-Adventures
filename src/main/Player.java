@@ -27,7 +27,6 @@ public class Player extends Entity {
 	private static final int ROWS 						= 7;
 	private static final int IMAGES_IN_ROW 				= 8;
 	private final BufferedImage[][] playerImages 		= new BufferedImage[ROWS][IMAGES_IN_ROW];
-	private PlayerAction playerAction 					= IDLE;
 
 	// ====== Player Size ======
 	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/images/sprites_player.png");
@@ -42,6 +41,7 @@ public class Player extends Entity {
 	private int imageFlipX, imageFlipWidth = 1;
 
 	// ====== Player Settings ======
+	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.7f * SCALE;
 	private static final int MAX_HEALTH 				= 2000;
 
@@ -50,6 +50,7 @@ public class Player extends Entity {
 	private Level level;
 
 	// ====== Constructor =======
+
 	public Player(float width, float height, Game game) {
 		super(0,0, width, height);
 		this.game = game;
@@ -59,8 +60,20 @@ public class Player extends Entity {
 		initMaxHealth(MAX_HEALTH);
 		initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
 		initAttackBox(ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
-		initAnimations();
+		initImages();
 	}
+
+	private void initImages() {
+		// Loop through all images and populate the animations 2d array with each sub-image
+		for (int row = 0; row < ROWS; row++)
+			for (int rowIndex = 0; rowIndex < IMAGES_IN_ROW; rowIndex++) {
+				int x = rowIndex * PLAYER_WIDTH;
+				int y = row * PLAYER_HEIGHT;
+				playerImages[row][rowIndex] = PLAYER_SPRITES.getSubimage(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
+			}
+	}
+
+	// ====== Update =======
 
 	public void update() {
 		updatePos();
@@ -99,14 +112,15 @@ public class Player extends Entity {
 	}
 
 	private void updateAttacking() {
+
 		if (attacking) {
 			// Do not attack on the first animation index
 			if (animationIndex == 0)
 				attackChecked = false;
 
 			// Only deal damage on the last animation index
-			final int lastAttackAniIndex = 3;
-			if (animationIndex == lastAttackAniIndex && !attackChecked) {
+			final int attackIndex = 3;
+			if (animationIndex == attackIndex && !attackChecked) {
 				game.getPlaying().getEnemyManager().attackEnemyIfHit(this);
 				attackChecked = true;
 			}
@@ -205,17 +219,7 @@ public class Player extends Entity {
 		}
 	}
 
-	private void initAnimations() {
-		// Loop through all images and populate the animations 2d array with each subimage
-		for (int row = 0; row < ROWS; row++)
-			for (int rowIndex = 0; rowIndex < IMAGES_IN_ROW; rowIndex++) {
-				int x = rowIndex * PLAYER_WIDTH;
-				int y = row * PLAYER_HEIGHT;
-				playerImages[row][rowIndex] = PLAYER_SPRITES.getSubimage(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
-			}
-	}
-
-	public void updateAnimationTick() {
+	private void updateAnimationTick() {
 		// Update animation tick
 		animationTick++;
 

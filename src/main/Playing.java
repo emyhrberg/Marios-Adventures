@@ -272,10 +272,7 @@ public class Playing extends State {
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_SPACE  -> {
-                player.setJumping(true);
-            }
-
+            case KeyEvent.VK_SPACE  -> player.setJumping(true);
             case KeyEvent.VK_A -> {
                 movingLeft = true;
                 if (movingRight)
@@ -301,7 +298,7 @@ public class Playing extends State {
                 player.setJumping(false);
                 player.setCanJump(true);
             }
-
+            case KeyEvent.VK_K -> player.setCanAttack(true);
             // Key released; Stop moving by setting the variables to false
             case KeyEvent.VK_A -> movingLeft = false;
             case KeyEvent.VK_D -> movingRight = false;

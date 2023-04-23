@@ -29,14 +29,16 @@ public class Entity {
 	protected float xDirection, xSpeed;
 	protected Direction direction = STILL;
 
-	// ====== Health and attacking =======
+	// ====== Health =======
 	protected int maxHealth, health;
-	protected boolean attacking, attackChecked, hit;
+
+	// ====== Attacking =======
+	protected boolean attacking, attackChecked, hit, canAttack;
 
 	// ====== Pushback =======
 	protected Direction pushXDir;
 
-	// ====== Hitbox and attackbox ======
+	// ====== Hitboxes ======
 	protected Rectangle2D.Float hitbox, attackBox;
 
 	// ====== Constructor ======
@@ -352,6 +354,10 @@ public class Entity {
 	}
 
 	// ====== Getters & Setters ======
+
+	public void setCanAttack(boolean canAttack) {
+		this.canAttack = canAttack;
+	}
 
 	public void setDirection(final Direction direction) {
 		this.direction = direction;

@@ -20,7 +20,6 @@ public class Enemy extends Entity {
     protected boolean enemyAlive = true;
     protected SharkAction sharkAction = RUNNING;
 
-
     // ====== Constructor ======
     protected Enemy(float x, float y, float width, float height) {
         super(x, y, width, height);

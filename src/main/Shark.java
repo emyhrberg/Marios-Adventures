@@ -196,10 +196,14 @@ public class Shark extends Enemy {
             if (isTouchingEnemyHead && player.airSpeed > 0) {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
-            } else if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {
-                player.reducePlayerHealth(this);
-                lastAttack = System.currentTimeMillis();
-                attackChecked = true;
+                attackAllowed = !attackAllowed;
+            } else {
+                if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {
+                    System.out.println("huh");
+                    player.reducePlayerHealth(this);
+                    lastAttack = System.currentTimeMillis();
+                    attackChecked = true;
+                }
             }
         }
     }
