@@ -26,7 +26,7 @@ public class Shark extends Enemy {
     private static final int ATTACKBOX_HEIGHT       = HITBOX_HEIGHT;
 
     // ====== Enemy Settings ======
-    protected static final int MAX_HEALTH           = 3;
+    protected static final int MAX_HEALTH           = 1;
     protected static final float SPEED	            = 0.25f * Game.SCALE;
     protected static final float DETECT_DISTANCE    = Game.TILES_SIZE * 3;
     protected static final float ATTACK_DISTANCE    = (float) (Game.TILES_SIZE);

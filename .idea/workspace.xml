@@ -4,29 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Bricks working to 90%">
-      <change afterPath="$PROJECT_DIR$/resources/images/1_old1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/1_old2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/1_old3.png" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested! first level ok, only some bugs with bricks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/tiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/images/tiles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Brick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Brick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/ObjectManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/images/1_trash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/EnemyManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/EnemyManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/main/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MainModule/objects/Cannon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainModule/objects/Cannon.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/1_tester.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/1_trash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +127,7 @@
       <workItem from="1682112589552" duration="9679000" />
       <workItem from="1682171761436" duration="33283000" />
       <workItem from="1682250493848" duration="23239000" />
-      <workItem from="1682278636895" duration="5259000" />
+      <workItem from="1682278636895" duration="6414000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -374,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682282964428</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Game playtested! first level ok, only some bugs with bricks">
+      <created>1682284140883</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1682284140883</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +401,8 @@
     <MESSAGE value="Fixed bullet bug" />
     <MESSAGE value="Working on bricks..." />
     <MESSAGE value="Bricks working to 90%" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bricks working to 90%" />
+    <MESSAGE value="Game playtested! first level ok, only some bugs with bricks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game playtested! first level ok, only some bugs with bricks" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
