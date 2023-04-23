@@ -164,16 +164,6 @@ public class ObjectManager {
 
         for (Brick b: bricks) {
             b.update(b);
-
-            if (b.isActive()) {
-                if (player.getHitboxTop().intersects(b.getBottom()) && player.getAirSpeed() < 0) {
-                    // player is colliding with the bottom of a brick and going upwards
-                    System.out.println("from below");
-                    player.setAirSpeed(GRAVITY * 8);
-                    b.setSparkle(true);
-//                    b.setActive(false);
-                }
-            }
         }
     }
 
@@ -202,8 +192,9 @@ public class ObjectManager {
                 h.update(level);
 
                 if (h.getHitbox().intersects(player.getHitbox())) {
-                    player.setHealth(player.getHealth() + 20);
                     h.setActive(false);
+                    if (player.getHealth() < player.getMaxHealth())
+                        player.setHealth(player.getHealth() + 20);
                 }
             }
         }
@@ -278,7 +269,7 @@ public class ObjectManager {
                 g.drawImage(POWERUP_HEALTH, (int) x, (int) y, HEALTH_SIZE, HEALTH_SIZE, null);
 
                 // Debug hitbox
-                h.drawHitbox(g, levelOffset);
+//                h.drawHitbox(g, levelOffset);
             }
         }
     }
@@ -289,7 +280,7 @@ public class ObjectManager {
                 float x = b.hitbox.x - levelOffset;
                 float y = b.hitbox.y - Y_DRAW_OFF;
                 g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
-                b.drawHitbox(g, levelOffset);
+//                b.drawHitbox(g, levelOffset);
             }
         }
     }
@@ -299,7 +290,6 @@ public class ObjectManager {
             if (b.isActive()) {
                 int x = (int) b.hitbox.x - levelOffset;
                 int y = (int) b.hitbox.y;
-
 
                 if (b.isSparkle) {
                     g.drawImage(sparkleImages[b.animationIndex],x+7,y+7,(SPARKLE_DRAW_W),SPARKLE_DRAW_H,null);
@@ -396,6 +386,10 @@ public class ObjectManager {
 
         for (Coin c : coins) {
             c.resetObject();
+        }
+
+        for (Brick b : bricks) {
+            b.resetObject();
         }
 
         bullets.clear();

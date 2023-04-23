@@ -72,6 +72,9 @@ public class Entity {
 			return moveDownSlope();
 		if (isUpSlope(level))
 			return moveUpSlope(x+width);
+		if (isBrick(level)) {
+			return true;
+		}
 //		if (isBrick(level))
 //			return false;
 
@@ -82,6 +85,20 @@ public class Entity {
 			hitbox.x += x - hitbox.x;
 			hitbox.y += y - hitbox.y;
 			return true;
+		}
+		return false;
+	}
+
+	protected boolean isBrick(Level level) {
+		for (Brick b : level.getBricks()) {
+			if (b.isActive() && hitbox.intersects(b.getBottom()) && airSpeed > 0) {
+				// get the brick in question
+				int playerX = (int) (hitbox.x / TILES_SIZE);
+				int playerY = (int) (hitbox.y / TILES_SIZE);
+				level.getLevelData()[playerY - 1][playerX] = 85;
+				b.setActive(false);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -104,21 +121,65 @@ public class Entity {
 		return false;
 	}
 
-	protected boolean isBrick(Level level) {
-		for (Brick b : level.getBricks()) {
-			if (b.isActive() && hitbox.intersects(b.getHitbox())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	protected boolean isTileSolid(int tileX, int tileY, Level level) {
 		return !transparentTiles.contains(level.getLevelData()[tileY][tileX]);
 	}
 
 	protected boolean isTileOutsideLevel(int tileY) {
 		return tileY < 0 || tileY >= Game.TILES_IN_HEIGHT;
+	}
+
+	// ====== Entity falling ======
+
+	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
+		// check platform
+		// todo change to onPlatform?
+		if (currentPlatform != null || inLava) {
+			return false;
+		}
+
+		// check the bottom left and bottom right corner of the hitbox
+		boolean isBottomLeftSolid = isSolid(hitbox.x, hitbox.y + hitbox.height + 1, level);
+		boolean isBottomRightSolid = isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, level);
+
+		// slopes
+		boolean isBottomLeftSlopedDown = isDownSlope(level);
+		boolean isBottomRightSlopedUp = isUpSlope(level);
+
+		// returns false if either hitbox for bottom left and bottom right corner is colliding with a solid tile
+		return !isBottomLeftSolid && !isBottomRightSolid && !isBottomLeftSlopedDown && !isBottomRightSlopedUp;
+	}
+
+	// ====== Jumping ======
+
+	protected boolean jumpAllowed = true;
+	protected boolean jumping = false;
+	protected static final float MAX_JUMP_HEIGHT = 3.5f * SCALE;
+	protected float jumpHeight = MAX_JUMP_HEIGHT;
+
+	protected void startFalling(Level level) {
+		jumpHeight = MAX_JUMP_HEIGHT;
+		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
+			// Set ySpeed
+			airSpeed += GRAVITY;
+		} else {
+			// Cannot move to position -> Stop falling, reset jump height
+			if (airSpeed > 0) {
+				airSpeed = 0;
+				inAir = false;
+			} else {
+				airSpeed = GRAVITY * 8;
+			}
+		}
+	}
+
+	protected void updateDirection() {
+		if (direction == LEFT)
+			xDirection = -xSpeed;
+		else if (direction == RIGHT)
+			xDirection = xSpeed;
+		else
+			xDirection = 0;
 	}
 
 	// ====== Platforms ======
@@ -240,58 +301,6 @@ public class Entity {
 
 		int tileValue = level.getLevelData()[tileY][tileX];
 		return tileValue == UP_SLOPE;
-	}
-
-	// ====== Entity falling ======
-
-	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
-		// check platform
-		// todo change to onPlatform?
-		if (currentPlatform != null || inLava) {
-			return false;
-		}
-
-		// check the bottom left and bottom right corner of the hitbox
-		boolean isBottomLeftSolid = isSolid(hitbox.x, hitbox.y + hitbox.height + 1, level);
-		boolean isBottomRightSolid = isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, level);
-
-		// slopes
-		boolean isBottomLeftSlopedDown = isDownSlope(level);
-		boolean isBottomRightSlopedUp = isUpSlope(level);
-
-		// returns false if either hitbox for bottom left and bottom right corner is colliding with a solid tile
-		return !isBottomLeftSolid && !isBottomRightSolid && !isBottomLeftSlopedDown && !isBottomRightSlopedUp;
-	}
-
-	// ====== Jumping ======
-	protected boolean jumpAllowed = true;
-	protected boolean jumping = false;
-	protected static final float MAX_JUMP_HEIGHT = 3.5f * SCALE;
-	protected float jumpHeight = MAX_JUMP_HEIGHT;
-
-	protected void startFalling(Level level) {
-		jumpHeight = MAX_JUMP_HEIGHT;
-		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
-			// Set ySpeed
-			airSpeed += GRAVITY;
-		} else {
-			// Cannot move to position -> Stop falling, reset jump height
-			if (airSpeed > 0) {
-				airSpeed = 0;
-				inAir = false;
-			} else {
-				airSpeed = GRAVITY * 8;
-			}
-		}
-	}
-
-	protected void updateDirection() {
-		if (direction == LEFT)
-			xDirection = -xSpeed;
-		else if (direction == RIGHT)
-			xDirection = xSpeed;
-		else
-			xDirection = 0;
 	}
 
 	// ====== Hitbox and Attackbox ======

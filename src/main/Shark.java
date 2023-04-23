@@ -2,7 +2,8 @@ package main;
 
 import java.awt.geom.Rectangle2D;
 
-import static constants.Direction.*;
+import static constants.Direction.LEFT;
+import static constants.Direction.RIGHT;
 import static constants.EnemyConstants.SharkAction.ATTACKING;
 import static constants.EnemyConstants.SharkAction.RUNNING;
 import static constants.EnemyConstants.getSharkSpriteAmount;

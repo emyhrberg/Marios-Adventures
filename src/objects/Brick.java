@@ -21,11 +21,7 @@ public class Brick extends GameObject {
     public Brick(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         initHitbox(x, y, BRICK_W_D, BRICK_H_D);
-        bottom = new Rectangle2D.Float(hitbox.x, hitbox.y + BRICK_H, hitbox.width, 5);
-    }
-
-    public Rectangle2D.Float getBottom() {
-        return bottom;
+        bottom = new Rectangle2D.Float(hitbox.x + 2*SCALE, hitbox.y + BRICK_H-SCALE*2, hitbox.width - 2*SCALE, 10);
     }
 
     public void drawBottom(Graphics g, int levelOffset) {
@@ -56,9 +52,13 @@ public class Brick extends GameObject {
             // at final sparkle image, disable the animation!
             if (animationIndex == 7) {
                 b.setSparkle(false);
-                b.setActive(false);
             }
         }
     }
 
+    // getters
+
+    public Rectangle2D.Float getBottom() {
+        return bottom;
+    }
 }

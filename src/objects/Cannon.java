@@ -11,6 +11,8 @@ public class Cannon extends GameObject {
     public static final int CANNON_H_DEF = 80;
     public static final int CANNON_WIDTH = (int) (CANNON_W_DEF *1.3*SCALE);
     public static final int CANNON_HEIGHT = (int) (CANNON_H_DEF *1.3*SCALE);
+    private static final float X_OFF = 22f * SCALE;
+    private static final float Y_OFF = 6f * SCALE;
 
     // Properties
     private static final int CANNON_DELAY = 1000;
@@ -19,7 +21,7 @@ public class Cannon extends GameObject {
 
     public Cannon(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x-30, y-10, CANNON_W_DEF, CANNON_H_DEF);
+        initHitbox(x - X_OFF, y - Y_OFF, CANNON_W_DEF, CANNON_H_DEF);
     }
 
     public void update() {

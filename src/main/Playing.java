@@ -71,6 +71,7 @@ public class Playing extends State {
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
+        // Set level for player class
         // Set spawn point
         player.setLevel(levelManager.getLevel());
         setCurrentLevelSpawnPoint();

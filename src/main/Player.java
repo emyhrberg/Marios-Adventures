@@ -202,8 +202,8 @@ public class Player extends Entity {
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
 		// Debug hitbox
-//		drawHitbox(g, levelOffset);
-		drawAttackBox(g, levelOffset);
+		drawHitbox(g, levelOffset);
+//		drawAttackBox(g, levelOffset);
 	}
 
 	private void updateImageFlip() {

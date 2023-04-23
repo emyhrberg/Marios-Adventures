@@ -6,7 +6,6 @@ import static constants.Direction.LEFT;
 import static constants.Direction.RIGHT;
 import static constants.EnemyConstants.SharkAction;
 import static constants.EnemyConstants.SharkAction.*;
-import static constants.EnemyConstants.getSharkSpriteAmount;
 
 /**
  * This class handles all Enemy behavior, functionality, movement and extends the Entity class

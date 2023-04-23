@@ -52,7 +52,7 @@ public class LevelManager {
 		levels = new ArrayList<>();
 
 		// Load the levels!
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 1; i++) {
 			try (InputStream is = LevelManager.class.getResourceAsStream("/images/" + (i + 1) + ".png")) {
 				levels.add(new Level(ImageIO.read(is)));
 			} catch (IOException e) {
