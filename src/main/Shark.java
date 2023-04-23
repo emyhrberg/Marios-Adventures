@@ -3,7 +3,7 @@ package main;
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.*;
-import static constants.EnemyConstants.EnemyAction.ATTACKING;
+import static constants.EnemyConstants.SharkAction.ATTACKING;
 import static main.EnemyManager.SHARK_HEIGHT;
 import static main.EnemyManager.SHARK_WIDTH;
 import static main.Game.SCALE;
@@ -32,7 +32,7 @@ public class Shark extends Enemy {
     public void update(Level level, Player player) {
         updateSharkActions(level, player);
         updateEnemyAttackbox();
-        updatePlantAnimationTick();
+        updateSharkAnimationTick();
     }
 
     protected void updateSharkActions(Level level, Player player) {

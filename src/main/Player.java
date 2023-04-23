@@ -50,8 +50,8 @@ public class Player extends Entity {
 	private Level level;
 
 	// ====== Constructor =======
-	public Player(float x, float y, float width, float height, Game game) {
-		super(x, y, width, height);
+	public Player(float width, float height, Game game) {
+		super(0,0, width, height);
 		this.game = game;
 
 		setDirection(STILL);
@@ -121,8 +121,8 @@ public class Player extends Entity {
 		SoundLoader.playAudio("jump.wav", 0.8);
 	}
 
-	public void reducePlayerHealth(int value, Enemy enemy) {
-		health -= value;
+	public void reducePlayerHealth(Enemy enemy) {
+		health -= 20;
 		hit = true;
 
 		SoundLoader.playAudio("player_taking_damage.wav");

@@ -19,31 +19,31 @@ import static main.Level.*;
  */
 public class Entity {
 
-    // ====== Falling on spawn =======
-    public static final float GRAVITY = 0.05f * Game.SCALE;
-    protected boolean inAir;
-    protected float airSpeed;
+	// ====== Falling on spawn =======
+	public static final float GRAVITY = 0.05f * Game.SCALE;
+	protected boolean inAir;
+	protected float airSpeed;
 
-    // ====== Position =======
+	// ====== Position =======
 	protected float x, y, width, height;
-    protected float xDirection, xSpeed;
+	protected float xDirection, xSpeed;
 	protected Direction direction = STILL;
 
-    // ====== Health and attacking =======
-    protected int maxHealth, health;
-    protected boolean attacking, attackChecked, hit;
-    protected Direction pushBackDirection = null;
+	// ====== Health and attacking =======
+	protected int maxHealth, health;
+	protected boolean attacking, attackChecked, hit;
+	protected Direction pushBackDirection = null;
 
-    // ====== Hitbox and attackbox ======
-    protected Rectangle2D.Float hitbox = null, attackBox = null;
+	// ====== Hitbox and attackbox ======
+	protected Rectangle2D.Float hitbox = null, attackBox = null;
 
-    // ====== Constructor ======
-    protected Entity(float x, float y, float width, float height) {
+	// ====== Constructor ======
+	protected Entity(float x, float y, float width, float height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-    }
+	}
 
 	// ====== Tile collision ======
 
@@ -292,15 +292,15 @@ public class Entity {
 
 	// ====== Hitbox and Attackbox ======
 
-    protected void initHitbox(float x, float y, float width, float height) {
+	protected void initHitbox(float x, float y, float width, float height) {
 		hitbox = new Rectangle2D.Float(x, y, width, height);
-    }
+	}
 
-    protected void initAttackBox(float width, float height) {
-	attackBox = new Rectangle2D.Float(0,0, width, height);
-    }
+	protected void initAttackBox(float width, float height) {
+		attackBox = new Rectangle2D.Float(0,0, width, height);
+	}
 
-    public void drawHitbox(Graphics g, int levelOffset) {
+	public void drawHitbox(Graphics g, int levelOffset) {
 		// draw hitbox
 		g.setColor(new Color(255,0,0,80));
 		g.fillRect((int) (hitbox.x - levelOffset), (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
@@ -310,9 +310,9 @@ public class Entity {
 		g2d.setStroke(new BasicStroke(3)); // set stroke width
 		g2d.setColor(Color.BLACK); // set stroke color
 		g2d.drawRect((int) hitbox.x - levelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height); // draw the rectangle outline
-    }
+	}
 
-    protected void drawAttackBox(Graphics g, int levelOffset) {
+	protected void drawAttackBox(Graphics g, int levelOffset) {
 		g.setColor(new Color(255, 0, 255, 80));
 		g.fillRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
 
@@ -321,7 +321,7 @@ public class Entity {
 		g2d.setStroke(new BasicStroke(3)); // set stroke width
 		g2d.setColor(Color.BLACK); // set stroke color
 		g2d.drawRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height); // draw the rectangle outline
-    }
+	}
 
 	protected void updateAttackBox() {
 		// Attackbox Y
@@ -333,22 +333,22 @@ public class Entity {
 			attackBox.x = hitbox.x + hitbox.width - attackBox.width;
 	}
 
-    // ====== Initializers =======
+	// ====== Initializers =======
 
-    protected void initSpeed(final float value) {
+	protected void initSpeed(final float value) {
 		this.xSpeed = value * Game.SCALE;
-    }
+	}
 
-    protected void initMaxHealth(final int value) {
+	protected void initMaxHealth(final int value) {
 		this.maxHealth = value;
 		this.health = maxHealth;
-    }
+	}
 
-    // ====== Getters & Setters ======
+	// ====== Getters & Setters ======
 
 	public void setDirection(final Direction direction) {
 		this.direction = direction;
-    }
+	}
 
 	public void setHealth(int health) {
 		this.health = health;
@@ -376,6 +376,6 @@ public class Entity {
 
 	public Rectangle2D.Float getHitbox() {
 		return hitbox;
-    }
+	}
 
 }
