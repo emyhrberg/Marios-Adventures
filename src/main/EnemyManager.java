@@ -29,7 +29,7 @@ public class EnemyManager {
 	public static final int SHARK_WIDTH                	= (int) (SHARK_WIDTH_DEFAULT * 1.5 * SCALE);
 	public static final int SHARK_HEIGHT              	= (int) (SHARK_HEIGHT_DEFAULT * 1.5 * SCALE);
 
-	// Plants
+	// ====== Plants =======
 	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/images/sprites_plants.png");
 	private static final int PLANT_ROWS 				= 2;
 	private final BufferedImage[] plantImages			= new BufferedImage[PLANT_ROWS];
@@ -42,51 +42,12 @@ public class EnemyManager {
 	// ====== Game values ======
 	private List<Shark> sharks = new ArrayList<>();
 	private List<Plant> plants = new ArrayList<>();
-	private boolean anyEnemyAlive = true;
 
 	// ====== Constructor ======
+
 	public EnemyManager() {
 		initEnemies();
 	}
-
-	public void update(Level level, Player player) {
-		// Update enemy data
-		sharks = level.getSharks();
-		plants = level.getPlants();
-
-		// By default, no enemy is alive
-		anyEnemyAlive = false;
-
-		// Update every individual shark
-		for (Shark s : sharks)
-			if (s.isEnemyAlive()) {
-				s.update(level, player);
-				anyEnemyAlive = true;
-			}
-
-		// Update every individual plant
-		for (Plant p : plants) {
-			if (p.isEnemyAlive()) {
-				p.update(player);
-				anyEnemyAlive = true;
-			}
-		}
-	}
-
-	public void dealDamageToEnemy(Player player) {
-		for (Shark s : sharks)
-			if (player.attackBox.intersects(s.getHitbox()) && s.isEnemyAlive())
-				s.reduceEnemyHealth(player);
-	}
-
-	public void resetEnemies() {
-		if (sharks == null)
-			return;
-		for (Shark s : sharks)
-			s.resetEnemy();
-	}
-
-	// ====== Animations ======
 
 	private void initEnemies() {
 		// Init sharks
@@ -100,29 +61,61 @@ public class EnemyManager {
 			plantImages[i] = PLANT_IMAGE.getSubimage(PLANT_WIDTH_DEFAULT*i, 0, PLANT_WIDTH_DEFAULT, PLANT_HEIGHT_DEFAULT);
 	}
 
+	// ====== Update ======
+
+	public void update(Level level, Player player) {
+		// Update enemy data
+		sharks = level.getSharks();
+		plants = level.getPlants();
+
+		// Update every individual shark
+		for (Shark s : sharks)
+			if (s.isEnemyAlive()) {
+				s.update(level, player);
+			}
+
+		// Update every individual plant
+		for (Plant p : plants) {
+			p.update(player);
+		}
+	}
+
+	public void attackEnemyIfHit(Player player) {
+		for (Shark s : sharks) {
+			if (s.isEnemyAlive() && player.attackBox.intersects(s.hitbox)) {
+				s.reduceEnemyHealth(player);
+			}
+		}
+	}
+
+	public void resetEnemies() {
+		for (Shark s : sharks)
+			s.resetEnemy();
+	}
+
+	// ====== Animations ======
+
 	public void draw(Graphics g, int levelOffset) {
-		if (sharks != null)
-			drawSharks(g, levelOffset);
-		if (plants != null)
-			drawPlants(g, levelOffset);
+		drawSharks(g, levelOffset);
+		drawPlants(g, levelOffset);
 	}
 
 	private void drawSharks(Graphics g, int levelOffset) {
 		for (Shark s : sharks)
 			if (s.isEnemyAlive()) {
 				float x = s.getHitbox().x - levelOffset - SHARK_X_OFFSET + s.getImageFlipX();
-				float y = s.getHitbox().y - SHARK_Y_OFFSET + s.getPushDrawOffset();
+				float y = s.getHitbox().y - SHARK_Y_OFFSET;
 				float w = SHARK_WIDTH * s.getImageFlipWidth();
 
 				// Get the proper image representing the right action
-				final BufferedImage img = sharkImages[s.getEnemyAction().ordinal()][s.getAnimationIndex()];
+				final BufferedImage img = sharkImages[s.sharkAction.ordinal()][s.animationIndex];
 
 				// Draw the image of the shark
 				g.drawImage(img, (int) x, (int) y, (int) w, SHARK_HEIGHT, null);
 
 				// Draw hitboxes for debugging
 //				s.drawHitbox(g, levelOffset);
-//				s.drawAttackBox(g, levelOffset);
+				s.drawAttackBox(g, levelOffset);
 			}
 	}
 
@@ -132,7 +125,7 @@ public class EnemyManager {
 			float y = p.getHitbox().y;
 
 			// Get the proper image representing the right action
-			final BufferedImage img = plantImages[p.getAnimationIndex()];
+			final BufferedImage img = plantImages[p.animationIndex];
 
 			// Draw the image of the shark
 			g.drawImage(img, (int) x, (int) y, PLANT_WIDTH, PLANT_HEIGHT, null);
@@ -142,9 +135,4 @@ public class EnemyManager {
 		}
 	}
 
-	// ====== Getters ======
-
-	public boolean isAnyEnemyAlive() {
-		return anyEnemyAlive;
-	}
 }

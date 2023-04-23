@@ -247,7 +247,7 @@ public class ObjectManager {
                 b.update();
 
                 if (b.hitbox.intersects(player.getHitbox())) {
-                    player.hitByBullet(20, b);
+                    player.hitByBullet(b);
                     b.setActive(false);
                 } else if (b.isBulletHittingLevel(b, level, bullets)) {
                     b.setActive(false);

@@ -27,7 +27,7 @@ public class Plant extends Enemy {
 
     // Attacking
     private long lastAttack;
-    private static final int PLANT_DAMAGE_DELAY = 1000;
+    private static final int ATTACK_COOLDOWN = 1000;
 
     public Plant(float x, float y) {
         super(x, y, PLANT_WIDTH, PLANT_HEIGHT);
@@ -36,7 +36,6 @@ public class Plant extends Enemy {
     }
 
     public void update(Player player) {
-
         updatePlantPos();
         updatePlantAttacking(player);
         updatePlantAnimationTick();
@@ -87,7 +86,7 @@ public class Plant extends Enemy {
     }
 
     private void updatePlantAttacking(Player player) {
-        boolean canPlantDealDamage = System.currentTimeMillis() >= lastAttack + PLANT_DAMAGE_DELAY;
+        boolean canPlantDealDamage = System.currentTimeMillis() >= lastAttack + ATTACK_COOLDOWN;
 
         attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * SCALE;
         attackBox.y = hitbox.y;

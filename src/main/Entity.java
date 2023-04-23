@@ -32,10 +32,12 @@ public class Entity {
 	// ====== Health and attacking =======
 	protected int maxHealth, health;
 	protected boolean attacking, attackChecked, hit;
-	protected Direction pushBackDirection = null;
+
+	// ====== Pushback =======
+	protected Direction pushXDir;
 
 	// ====== Hitbox and attackbox ======
-	protected Rectangle2D.Float hitbox = null, attackBox = null;
+	protected Rectangle2D.Float hitbox, attackBox;
 
 	// ====== Constructor ======
 	protected Entity(float x, float y, float width, float height) {
@@ -323,7 +325,7 @@ public class Entity {
 		g2d.drawRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height); // draw the rectangle outline
 	}
 
-	protected void updateAttackBox() {
+	protected void updateAttackbox() {
 		// Attackbox Y
 		attackBox.y = hitbox.y;
 
@@ -331,6 +333,11 @@ public class Entity {
 			attackBox.x = hitbox.x;
 		if (direction == LEFT)
 			attackBox.x = hitbox.x + hitbox.width - attackBox.width;
+		if (hit)
+			if (pushXDir == LEFT)
+				attackBox.x = hitbox.x;
+			else
+				attackBox.x = hitbox.x + hitbox.width - attackBox.width;
 	}
 
 	// ====== Initializers =======

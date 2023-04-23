@@ -64,6 +64,7 @@ public class Player extends Entity {
 
 	public void update() {
 		updatePos();
+		updateAttackbox();
 		updateAttacking();
 		updateAnimationTick();
 		updateAnimation();
@@ -106,7 +107,7 @@ public class Player extends Entity {
 			// Only deal damage on the last animation index
 			final int lastAttackAniIndex = 3;
 			if (animationIndex == lastAttackAniIndex && !attackChecked) {
-				game.getPlaying().getEnemyManager().dealDamageToEnemy(this);
+				game.getPlaying().getEnemyManager().attackEnemyIfHit(this);
 				attackChecked = true;
 			}
 		}
@@ -128,13 +129,16 @@ public class Player extends Entity {
 		SoundLoader.playAudio("player_taking_damage.wav");
 
 		// Update push back direction
-		if (enemy.getHitbox().x < hitbox.x)
-			pushBackDirection = RIGHT;
-		else
-			pushBackDirection = LEFT;
+		if (enemy.getHitbox().x < hitbox.x) {
+			pushXDir = RIGHT;
+		}
+		else {
+			pushXDir = LEFT;
+		}
 	}
 
 	public void resetPlayer() {
+		jumping = false;
 		inAir = false;
 		attacking = false;
 		hit = false;
@@ -142,38 +146,27 @@ public class Player extends Entity {
 		direction = STILL;
 	}
 
-	public void pushBack() {
+	public void pushPlayer() {
 		// Update xDirection based on pushBackDirection
-		if (pushBackDirection == LEFT)
+		if (pushXDir == LEFT)
 			xDirection = -xSpeed;
-		if (pushBackDirection == RIGHT)
+		if (pushXDir == RIGHT)
 			xDirection = xSpeed;
 
 		// Move player X, direction with double direction
 		moveToPosition((float) (hitbox.x + xDirection * 0.8), hitbox.y, hitbox.width, hitbox.height, level);
-
-		// Move player Y, small jump
-		pushbackY();
 	}
 
-	private void pushbackY() {
-		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
-		jump();
-		jumpAllowed = true;
-	}
-
-	public void hitByBullet(int value, Bullet b) {
-		health -= value;
+	public void hitByBullet(Bullet b) {
+		health -= 20;
 		hit = true;
 
 		SoundLoader.playAudio("player_taking_damage.wav");
 
 		if (b.getHitbox().x < hitbox.x)
-			pushBackDirection = RIGHT;
+			pushXDir = RIGHT;
 		else
-			pushBackDirection = LEFT;
-
-		pushBack();
+			pushXDir = LEFT;
 	}
 
 	// ====== Draw and Animations ======
@@ -186,20 +179,17 @@ public class Player extends Entity {
 		final float x = hitbox.x - levelOffset - IMAGE_X_OFFSET + imageFlipX;
 		final float y = hitbox.y - IMAGE_Y_OFFSET;
 		final float w = width * imageFlipWidth;
-		final float h = height;
 
 		// Get the proper image representing the right action
 		final int action = playerAction.ordinal();
 		final BufferedImage img = playerImages[action][animationIndex];
 
 		// Draw the image according to the player action and loop through the animation index to show all the images
-		g.drawImage(img, (int) x, (int) y, (int) w, (int) h, null);
-
-		updateAttackBox();
+		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
 		// Debug hitbox
 //		drawHitbox(g, levelOffset);
-//		drawAttackBox(g, levelOffset);
+		drawAttackBox(g, levelOffset);
 	}
 
 	private void updateImageFlip() {
@@ -254,7 +244,7 @@ public class Player extends Entity {
 			playerDeathAndGameOver();
 		} else if (hit) {
 			playerAction = HIT;
-			pushBack();
+			pushPlayer();
 		} else if (attacking) {
 			playerAction = ATTACKING;
 		} else if (inAir && airSpeed < 0) {

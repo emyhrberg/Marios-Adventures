@@ -4,6 +4,8 @@ import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.*;
 import static constants.EnemyConstants.SharkAction.ATTACKING;
+import static constants.EnemyConstants.SharkAction.RUNNING;
+import static constants.EnemyConstants.getSharkSpriteAmount;
 import static main.EnemyManager.SHARK_HEIGHT;
 import static main.EnemyManager.SHARK_WIDTH;
 import static main.Game.SCALE;
@@ -15,36 +17,59 @@ import static main.Game.SCALE;
  * The update method updates everything related to the shark, including but not limited to its actions, movement, attackbox, animation.
  */
 public class Shark extends Enemy {
-    // ====== Hitbox =======
-    private static final int HITBOX_WIDTH 		= (int) (24 * SCALE);
-    private static final int HITBOX_HEIGHT 		= (int) (31 * SCALE);
 
-    // ====== Attackbox =======
-    private static final int ATTACKBOX_WIDTH = HITBOX_WIDTH * 3;
-    private static final int ATTACKBOX_HEIGHT = HITBOX_HEIGHT;
+    // ====== Hitboxes =======
+    private static final int HITBOX_WIDTH 		    = (int) (24 * SCALE);
+    private static final int HITBOX_HEIGHT 		    = (int) (31 * SCALE);
+    private static final int ATTACKBOX_WIDTH        = HITBOX_WIDTH * 3;
+    private static final int ATTACKBOX_HEIGHT       = HITBOX_HEIGHT;
+
+    // ====== Enemy Settings ======
+    protected static final int MAX_HEALTH           = 3;
+    protected static final float SPEED	            = 0.25f * Game.SCALE;
+    protected static final float DETECT_DISTANCE    = Game.TILES_SIZE * 3;
+    protected static final float ATTACK_DISTANCE    = (float) (Game.TILES_SIZE);
+
+    // Cooldown
+    private boolean attackAllowed;
+    private long lastAttack;
+    private static final int ATTACK_COOLDOWN = 1000;
 
     public Shark(float x, float y) {
         super(x, y, SHARK_WIDTH, SHARK_HEIGHT);
+
+        // Init hitboxes
         initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
         initAttackBox(ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
+
+        // Init enemy settings
+        initSpeed(SPEED);
+        initMaxHealth(MAX_HEALTH);
     }
 
     public void update(Level level, Player player) {
         updateSharkActions(level, player);
-        updateEnemyAttackbox();
+        updateAttackbox();
         updateSharkAnimationTick();
     }
 
     protected void updateSharkActions(Level level, Player player) {
-        switch (enemyAction) {
-            case RUNNING 	-> updateRunning(level, player);
-            case ATTACKING 	-> updateAttacking(player);
-            case HIT, DEAD	-> updatePushback(level);
+        attackAllowed = System.currentTimeMillis() >= lastAttack + ATTACK_COOLDOWN;
+
+        switch (sharkAction) {
+            case RUNNING 	-> {
+                checkCollisionWithPlayer(player);
+                updateRunning(level, player);
+            }
+            case ATTACKING 	-> {
+                checkCollisionWithPlayer(player);
+                updateAttacking(player);
+            }
+            case HIT, DEAD	-> pushEnemy(level);
         }
     }
 
     private void updateRunning(Level level, Player player) {
-        updateCollisionCooldown();
         checkCollisionWithPlayer(player);
 
         // ====== Start falling on spawn ======
@@ -59,7 +84,7 @@ public class Shark extends Enemy {
         updateEnemyDetection(level, player);
     }
 
-    // ====== Enemy Patrol ======
+    // ====== Shark Patrol ======
 
     private void updateEnemyPatrol(Level level) {
         // Update the enemy hitbox if not colliding with a solid block on the next X position
@@ -88,7 +113,7 @@ public class Shark extends Enemy {
             return isSolid(hitbox.x + xDirection, hitbox.y + hitbox.height + 1, level);
     }
 
-    // ====== Enemy Detection ======
+    // ====== Shark Detection ======
 
     private void updateEnemyDetection(Level level, Player player) {
         // Get Y position of the player and enemy
@@ -142,38 +167,39 @@ public class Shark extends Enemy {
         return true;
     }
 
-    // ====== Enemy Attacking ======
+    // ====== Shark Attacking ======
 
     private void updateAttacking(Player player) {
-        updateCollisionCooldown();
-        checkCollisionWithPlayer(player);
-
         // Do not attack on the first animation index
         if (animationIndex == 0)
             attackChecked = false;
 
         // Only deal damage on the last animation index
-        final int lastAttackAniIndex = 4;
-        if (animationIndex == lastAttackAniIndex && !attackChecked)
-            dealDamageToPlayer(this, player);
+        final int attackIndex = 4;
+        if (animationIndex == attackIndex && !attackChecked && attackAllowed) {
+            if (attackBox.intersects(player.hitbox)) {
+                player.reducePlayerHealth(this);
+            }
+            attackChecked = true;
+        }
     }
 
     private void checkCollisionWithPlayer(Player player) {
-        if (hitbox.intersects(player.getHitbox()) && canDealDamage) {
-
+        if (hitbox.intersects(player.getHitbox())) {
             float playerHitbox = player.hitbox.y + player.hitbox.height;
             float enemyHitbox = hitbox.y + hitbox.height;
             float distBetweenPlayerAndEnemy = Math.abs(playerHitbox - enemyHitbox);
             float enemyHead = hitbox.height - 10 * SCALE;
             boolean isTouchingEnemyHead = distBetweenPlayerAndEnemy > enemyHead;
 
-            // usually distance is slightly above 42 when landing on top of the enemy
-            if (isTouchingEnemyHead) {
+            // usually distance is slightly above 42 when landing on top of the enemy, also check that player is falling downwards
+            if (isTouchingEnemyHead && player.airSpeed > 0) {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
-            } else {
-                dealDamageToPlayer(this, player);
-                canDealDamage = false;
+            } else if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {
+                player.reducePlayerHealth(this);
+                lastAttack = System.currentTimeMillis();
+                attackChecked = true;
             }
         }
     }
@@ -193,41 +219,42 @@ public class Shark extends Enemy {
         return distance <= ATTACK_DISTANCE;
     }
 
-    private void updateEnemyAttackbox() {
-        // Attackbox X and Y when standing still
-        attackBox.y = hitbox.y;
-        attackBox.x = hitbox.x - hitbox.width / 2;
+    // ====== Shark Misc ======
 
-        // Attackbox moves when moving left or right
-        if (direction == LEFT)
-            attackBox.x = hitbox.x + hitbox.width - attackBox.width;
-        if (direction == RIGHT)
-            attackBox.x = hitbox.x;
-    }
-
-    // ====== Enemy pushback =======
-
-    private void updatePushback(Level level) {
+    private void pushEnemy(Level level) {
         // Set X Direction
-        if (pushBackDirection == LEFT)
+        if (pushXDir == LEFT)
             xDirection = -xSpeed;
-        if (pushBackDirection == RIGHT)
+        if (pushXDir == RIGHT)
             xDirection = xSpeed;
 
         // Push back X with double speed!
         moveToPosition(hitbox.x + xDirection * 2, hitbox.y, hitbox.width, hitbox.height, level);
 
-        // Set Y Direction
-        float speed = 0.95f;
-        float limit = -30f;
-        if (pushBackOffsetDir == UP) {
-            pushDrawOffset -= speed;
-            if (pushDrawOffset <= limit)
-                pushBackOffsetDir = DOWN;
-        } else {
-            pushDrawOffset += speed;
-            if (pushDrawOffset >= 0)
-                pushDrawOffset = 0;
+    }
+
+    // ====== Animations ======
+
+    private void updateSharkAnimationTick() {
+        // Update animation tick
+        animationTick++;
+
+        // Reset animation tick and update animation index
+        if (animationTick >= ANIMATION_SPEED) {
+            animationTick = 0;
+            animationIndex++;
+
+            // Reset animation index when reached all images
+            if (animationIndex >= getSharkSpriteAmount(sharkAction)) {
+                animationIndex = 0;
+
+                // Now, we are on the first animation index.
+                // Here, we set new enemy actions to prevent from getting stuck in the previous action
+                switch (sharkAction) {
+                    case ATTACKING, HIT -> sharkAction = RUNNING;
+                    case DEAD 		    -> enemyAlive = false;
+                }
+            }
         }
     }
 }

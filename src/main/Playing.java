@@ -68,11 +68,11 @@ public class Playing extends State {
         // Init classes
         levelManager    = new LevelManager();
         player          = new Player(PLAYER_WIDTH * SCALE * 1.33f, PLAYER_HEIGHT * SCALE * 1.33f, game);
-        player.setLevel(levelManager.getLevel());
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
         // Set spawn point
+        player.setLevel(levelManager.getLevel());
         setCurrentLevelSpawnPoint();
     }
 
