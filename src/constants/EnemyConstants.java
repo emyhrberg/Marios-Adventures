@@ -4,21 +4,34 @@ package constants;
  * Constants and enums for all enemies
  */
 public class EnemyConstants {
-    /**
-     * Determines the action of the enemy
-     */
-    public enum EnemyAction {
+
+    public enum SharkAction {
 		RUNNING,
 		ATTACKING,
 		HIT,
 		DEAD,
 	}
 
-    /**
-     * Returns the number of images to fit the player action
-     */
-    public static int getSpriteAmount(EnemyAction enemyAction) {
-		return switch (enemyAction) {
+	public enum PlantAction {
+		IDLE,
+		MOVING_DOWN,
+		MOVING_UP_FIRST,
+		MOVING_UP_ANIMATE,
+		TOP
+	}
+
+	public static int getPlantSpriteAmount(PlantAction plantAction) {
+		return switch (plantAction) {
+			case IDLE -> 1;
+			case MOVING_DOWN -> 1;
+			case MOVING_UP_FIRST -> 1;
+			case MOVING_UP_ANIMATE -> 2;
+			case TOP -> 2;
+		};
+	}
+
+    public static int getSharkSpriteAmount(SharkAction sharkAction) {
+		return switch (sharkAction) {
 			case RUNNING 	-> 6;
 			case ATTACKING 	-> 7;
 			case HIT, DEAD 	-> 5;

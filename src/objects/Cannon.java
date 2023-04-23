@@ -14,6 +14,8 @@ public class Cannon extends GameObject {
 
     // Properties
     private static final int CANNON_DELAY = 1000;
+    private long lastCannonShot;
+    private boolean shootAllowed;
 
     public Cannon(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -33,12 +35,6 @@ public class Cannon extends GameObject {
         }
     }
 
-    private long lastCannonShot;
-    private boolean shootAllowed;
-
-    public void setLastCannonShot(long lastCannonShot) {
-        this.lastCannonShot = lastCannonShot;
-    }
 
     private void updateCannonAnimation() {
         animationTick++;
@@ -53,10 +49,14 @@ public class Cannon extends GameObject {
         }
     }
 
-    // getters and stuff
-
+    // Getters & setters
 
     public boolean isShootAllowed() {
         return shootAllowed;
     }
+
+    public void setLastCannonShot(long lastCannonShot) {
+        this.lastCannonShot = lastCannonShot;
+    }
+
 }

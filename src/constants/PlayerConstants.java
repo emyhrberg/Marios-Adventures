@@ -23,7 +23,7 @@ public class PlayerConstants {
 			case JUMPING	-> 4;
 			case FALLING 	-> 2;
 			case ATTACKING 	-> 4;
-			case HIT 		-> 5;
+			case HIT 		-> 7;
 			case DYING		-> 5;
 		};
     }

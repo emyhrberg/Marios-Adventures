@@ -1,9 +1,11 @@
 package main;
 
-import constants.Direction;
+import constants.EnemyConstants;
+import constants.EnemyConstants.PlantAction;
 
-import static constants.Direction.DOWN;
-import static constants.Direction.UP;
+import java.util.Random;
+
+import static constants.EnemyConstants.PlantAction.*;
 import static main.EnemyManager.PLANT_HEIGHT;
 import static main.EnemyManager.PLANT_WIDTH;
 import static main.Game.SCALE;
@@ -11,72 +13,104 @@ import static main.Game.TILES_SIZE;
 
 public class Plant extends Enemy {
 
-    private static final float PLANT_SPEED = 0.2f * SCALE;
-    private static final float PLANT_MAX_DISTANCE = 1.2f;
-    private Direction plantDirection = UP;
+    // Position
+    protected PlantAction plantAction               = IDLE;
+    private static final float PLANT_SPEED          = 0.2f * SCALE;
+    private static final float PLANT_TOP_POS        = 1.1f * SCALE;
+    private static final int PLANT_TOP_WAIT         = 1000;
+    private static final int[] PLANT_BOTTOM_WAIT    = {3000,3200,3400,3600,3800,4000};
+    private static final Random RND                 = new Random();
+    private final float origPos                     = y / TILES_SIZE;
+    private long lastTopPosition;
+    private long lastBottomPosition;
+    private int bottomWaitIndexBetweenZeroAndFive;
+
+    // Attacking
+    private long lastAttack;
+    private static final int PLANT_DAMAGE_DELAY = 1000;
 
     public Plant(float x, float y) {
         super(x, y, PLANT_WIDTH, PLANT_HEIGHT);
+        initHitbox(x, y, PLANT_WIDTH, PLANT_HEIGHT);
         initAttackBox(PLANT_WIDTH, PLANT_HEIGHT);
     }
 
     public void update(Player player) {
+
         updatePlantPos();
         updatePlantAttacking(player);
         updatePlantAnimationTick();
-        updateCollisionCooldown();
-    }
-
-    protected void updatePlantAnimationTick() {
-        // Update animation tick
-        animationTick++;
-
-        // Reset animation tick and update animation index
-        if (animationTick >= ANIMATION_SPEED * 6) {
-            animationTick = 0;
-            animationIndex++;
-
-            // Reset animation index when reached all images
-            if (animationIndex >= 2) {
-                animationIndex = 0;
-            }
-        }
     }
 
     private void updatePlantPos() {
-        float origPos = y / TILES_SIZE;
         float currPos = hitbox.y / TILES_SIZE;
         float tileDistance = origPos - currPos;
 
-        // move up and down
-        if (plantDirection == UP) {
-            final float increase = 0.0001f;
-            final float max = 0.0051f;
-            if (tileDistance >= PLANT_MAX_DISTANCE && tileDistance < PLANT_MAX_DISTANCE + max) {
-                hitbox.y -= increase;
-            } else if (tileDistance >= PLANT_MAX_DISTANCE + max) {
-                plantDirection = DOWN;
-            } else {
-                hitbox.y -= PLANT_SPEED;
+        boolean canMoveDown = System.currentTimeMillis() >= lastTopPosition + PLANT_TOP_WAIT;
+        boolean canMoveUp = System.currentTimeMillis() >= lastBottomPosition + PLANT_BOTTOM_WAIT[bottomWaitIndexBetweenZeroAndFive];
+
+        // Movement
+        if (plantAction == MOVING_UP_FIRST || plantAction == MOVING_UP_ANIMATE) {
+            // Move plant upwards
+            hitbox.y -= PLANT_SPEED;
+
+            // Start animating plant when starting to appear
+            if (tileDistance > PLANT_TOP_POS / 2) {
+                plantAction = MOVING_UP_ANIMATE;
             }
-        } else if (plantDirection == DOWN) {
-            if (tileDistance <= 0 && tileDistance >= -0.1) {
-                hitbox.y += 0.01;
-            } else if (tileDistance <= -0.1) {
-                plantDirection = UP;
-            } else {
-                hitbox.y += PLANT_SPEED;
+
+            // Plant is at maximum up position, set to top
+            if (tileDistance > PLANT_TOP_POS) {
+                plantAction = TOP;
+                lastTopPosition = System.currentTimeMillis();
+            }
+        } else if (plantAction == TOP) {
+            // Idle for some seconds then start moving down
+            if (canMoveDown) {
+                plantAction = MOVING_DOWN;
+            }
+        } else if (plantAction == MOVING_DOWN) {
+            hitbox.y += PLANT_SPEED;
+            if (tileDistance <= 0) {
+                // Save last bottom position and generate a random number to determine seconds to stay at bottom
+                plantAction = IDLE;
+                lastBottomPosition = System.currentTimeMillis();
+                bottomWaitIndexBetweenZeroAndFive = RND.nextInt(5);
+            }
+        } else {
+            plantAction = IDLE;
+            // Idle for some seconds then start moving up again
+            if (canMoveUp) {
+                plantAction = MOVING_UP_FIRST;
             }
         }
     }
 
     private void updatePlantAttacking(Player player) {
+        boolean canPlantDealDamage = System.currentTimeMillis() >= lastAttack + PLANT_DAMAGE_DELAY;
+
         attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * SCALE;
         attackBox.y = hitbox.y;
 
-        if (attackBox.intersects(player.getHitbox()) && canDealDamage) {
-            player.reducePlayerHealth(20, this);
-            canDealDamage = false;
+        if (attackBox.intersects(player.getHitbox()) && canPlantDealDamage) {
+            player.reducePlayerHealth(this);
+            lastAttack = System.currentTimeMillis();
+        }
+    }
+
+    private void updatePlantAnimationTick() {
+        // Update animation tick
+        animationTick++;
+
+        // Reset animation tick and update animation index
+        if (animationTick >= ANIMATION_SPEED * 7) {
+            animationTick = 0;
+            animationIndex++;
+
+            // Reset animation index when reached all images
+            if (animationIndex >= EnemyConstants.getPlantSpriteAmount(plantAction)) {
+                animationIndex = 0;
+            }
         }
     }
 }

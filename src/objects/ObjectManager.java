@@ -2,7 +2,6 @@ package objects;
 
 import helpers.ImageLoader;
 import helpers.SoundLoader;
-import main.Game;
 import main.Level;
 import main.Player;
 
@@ -13,11 +12,9 @@ import java.util.List;
 
 import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
-import static constants.ObjectConstants.ObjectType.POWERUP_HEALTH_TYPE;
 import static main.Entity.GRAVITY;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
-import static main.Level.transparentTiles;
 import static objects.Brick.BRICK_H;
 import static objects.Brick.BRICK_W;
 import static objects.Bullet.*;
@@ -138,7 +135,7 @@ public class ObjectManager {
                 if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
 
                     // Bounce question up
-                    q.setPushBackOffsetDir(UP);
+                    q.setPushYDir(UP);
 
                     // Question collision first time!
                     if (!q.isHit()) {
@@ -356,7 +353,7 @@ public class ObjectManager {
         for (Question q : questions)  {
             if (q.isActive()) {
                 int x = (int) (q.hitbox.x - levelOffset);
-                int y = (int) (q.hitbox.y + q.getPushDrawOffset());
+                int y = (int) (q.hitbox.y + q.getPushYDraw());
 
                 // draw 1st or 2nd row in the sprite-sheet depending on the question hit state
                 if (q.isHit()) {

@@ -67,7 +67,7 @@ public class Playing extends State {
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(0,0,PLAYER_WIDTH * SCALE * 1.33f, PLAYER_HEIGHT * SCALE * 1.33f, game);
+        player          = new Player(PLAYER_WIDTH * SCALE * 1.33f, PLAYER_HEIGHT * SCALE * 1.33f, game);
         player.setLevel(levelManager.getLevel());
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
@@ -88,7 +88,6 @@ public class Playing extends State {
         updateLevelOffset();
         updatePlayerOutsideLevel();
         updateFinalPointState();
-        updateAnyEnemiesAlive();
         updateShake();
     }
 
@@ -141,11 +140,6 @@ public class Playing extends State {
             }
         }
 
-    }
-
-    private void updateAnyEnemiesAlive() {
-        if (!enemyManager.isAnyEnemyAlive())
-            setLevelCompleted();
     }
 
     // ====== Draw methods ======

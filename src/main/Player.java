@@ -21,36 +21,36 @@ import static main.Game.SCALE;
  */
 public class Player extends Entity {
 
-    // ====== Player Animation ======
-    private int animationTick, animationIndex;
-    private static final int ANIMATION_SPEED 			= 15;
-    private static final int ROWS 						= 7;
-    private static final int IMAGES_IN_ROW 				= 8;
-    private final BufferedImage[][] playerImages 		= new BufferedImage[ROWS][IMAGES_IN_ROW];
-    private PlayerAction playerAction 					= IDLE;
+	// ====== Player Animation ======
+	private int animationTick, animationIndex;
+	private static final int ANIMATION_SPEED 			= 15;
+	private static final int ROWS 						= 7;
+	private static final int IMAGES_IN_ROW 				= 8;
+	private final BufferedImage[][] playerImages 		= new BufferedImage[ROWS][IMAGES_IN_ROW];
+	private PlayerAction playerAction 					= IDLE;
 
-    // ====== Player Size ======
-    private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/images/sprites_player.png");
-    public static final int PLAYER_WIDTH 				= 50;
-    public static final int PLAYER_HEIGHT 				= 50;
-    private static final int IMAGE_X_OFFSET 			= (int) (14 * SCALE);
-    private static final int IMAGE_Y_OFFSET 			= (int) (18 * SCALE);
-    private static final int HITBOX_WIDTH 				= (int) (30 * SCALE);
-    private static final int HITBOX_HEIGHT 				= (int) (39 * SCALE);
-    private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
-    private static final int ATTACKBOX_HEIGHT 			= HITBOX_HEIGHT;
+	// ====== Player Size ======
+	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/images/sprites_player.png");
+	public static final int PLAYER_WIDTH 				= 50;
+	public static final int PLAYER_HEIGHT 				= 50;
+	private static final int IMAGE_X_OFFSET 			= (int) (14 * SCALE);
+	private static final int IMAGE_Y_OFFSET 			= (int) (18 * SCALE);
+	private static final int HITBOX_WIDTH 				= (int) (30 * SCALE);
+	private static final int HITBOX_HEIGHT 				= (int) (39 * SCALE);
+	private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
+	private static final int ATTACKBOX_HEIGHT 			= HITBOX_HEIGHT;
 	private int imageFlipX, imageFlipWidth = 1;
 
-    // ====== Player Settings ======
-    private static final float SPEED					= 0.7f * SCALE;
-    private static final int MAX_HEALTH 				= 2000;
+	// ====== Player Settings ======
+	private static final float SPEED					= 0.7f * SCALE;
+	private static final int MAX_HEALTH 				= 2000;
 
-    // ====== Game variables =======
-    private final Game game;
-    private Level level;
+	// ====== Game variables =======
+	private final Game game;
+	private Level level;
 
-    // ====== Constructor =======
-    public Player(float x, float y, float width, float height, Game game) {
+	// ====== Constructor =======
+	public Player(float x, float y, float width, float height, Game game) {
 		super(x, y, width, height);
 		this.game = game;
 
@@ -60,14 +60,14 @@ public class Player extends Entity {
 		initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
 		initAttackBox(ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 		initAnimations();
-    }
+	}
 
-    public void update() {
+	public void update() {
 		updatePos();
 		updateAttacking();
 		updateAnimationTick();
 		updateAnimation();
-    }
+	}
 
 	private void updatePos() {
 		// Check if player is in air and set inAir to true if he is
@@ -97,7 +97,7 @@ public class Player extends Entity {
 		unbindPlatform();
 	}
 
-    private void updateAttacking() {
+	private void updateAttacking() {
 		if (attacking) {
 			// Do not attack on the first animation index
 			if (animationIndex == 0)
@@ -110,9 +110,9 @@ public class Player extends Entity {
 				attackChecked = true;
 			}
 		}
-    }
+	}
 
-    // ====== Modify player variables ======
+	// ====== Modify player variables ======
 
 	public void jumpOnEnemy() {
 		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
@@ -121,7 +121,7 @@ public class Player extends Entity {
 		SoundLoader.playAudio("jump.wav", 0.8);
 	}
 
-    public void reducePlayerHealth(int value, Enemy enemy) {
+	public void reducePlayerHealth(int value, Enemy enemy) {
 		health -= value;
 		hit = true;
 
@@ -132,17 +132,17 @@ public class Player extends Entity {
 			pushBackDirection = RIGHT;
 		else
 			pushBackDirection = LEFT;
-    }
+	}
 
-    public void resetPlayer() {
+	public void resetPlayer() {
 		inAir = false;
 		attacking = false;
 		hit = false;
 		health = maxHealth;
 		direction = STILL;
-    }
+	}
 
-    public void pushBack() {
+	public void pushBack() {
 		// Update xDirection based on pushBackDirection
 		if (pushBackDirection == LEFT)
 			xDirection = -xSpeed;
@@ -154,7 +154,7 @@ public class Player extends Entity {
 
 		// Move player Y, small jump
 		pushbackY();
-    }
+	}
 
 	private void pushbackY() {
 		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
@@ -176,9 +176,9 @@ public class Player extends Entity {
 		pushBack();
 	}
 
-    // ====== Draw and Animations ======
+	// ====== Draw and Animations ======
 
-    public void draw(Graphics g, int levelOffset) {
+	public void draw(Graphics g, int levelOffset) {
 		// Update player X and width based on the direction to flip the image
 		updateImageFlip();
 
@@ -200,9 +200,9 @@ public class Player extends Entity {
 		// Debug hitbox
 //		drawHitbox(g, levelOffset);
 //		drawAttackBox(g, levelOffset);
-    }
+	}
 
-    private void updateImageFlip() {
+	private void updateImageFlip() {
 		// When facing right, draw default with X at 0 and width at 1
 		if (direction == RIGHT) {
 			imageFlipX = 0;
@@ -213,9 +213,9 @@ public class Player extends Entity {
 			imageFlipX = (int) ((int) (width) / 1.15);
 			imageFlipWidth = -1;
 		}
-    }
+	}
 
-    private void initAnimations() {
+	private void initAnimations() {
 		// Loop through all images and populate the animations 2d array with each subimage
 		for (int row = 0; row < ROWS; row++)
 			for (int rowIndex = 0; rowIndex < IMAGES_IN_ROW; rowIndex++) {
@@ -223,9 +223,9 @@ public class Player extends Entity {
 				int y = row * PLAYER_HEIGHT;
 				playerImages[row][rowIndex] = PLAYER_SPRITES.getSubimage(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 			}
-    }
+	}
 
-    public void updateAnimationTick() {
+	public void updateAnimationTick() {
 		// Update animation tick
 		animationTick++;
 
@@ -244,9 +244,9 @@ public class Player extends Entity {
 				hit = false;
 			}
 		}
-    }
+	}
 
-    private void updateAnimation() {
+	private void updateAnimation() {
 		final PlayerAction startAnimation = playerAction;
 
 		if (health <= 0) {
@@ -274,7 +274,7 @@ public class Player extends Entity {
 			animationTick = 0;
 			animationIndex = 0;
 		}
-    }
+	}
 
 	public void playerDeathAndGameOver() {
 		if (playerAction != DYING) {
@@ -289,7 +289,7 @@ public class Player extends Entity {
 		}
 	}
 
-    // ====== Getters & Setters ======
+	// ====== Getters & Setters ======
 
 	public boolean isHit() {
 		return hit;
@@ -313,9 +313,9 @@ public class Player extends Entity {
 
 	public void setJumping(final boolean jumping) {
 		this.jumping = jumping;
-    }
+	}
 
-    public void setAttacking(final boolean attacking) {
+	public void setAttacking(final boolean attacking) {
 		this.attacking = attacking;
-    }
+	}
 }

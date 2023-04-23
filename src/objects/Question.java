@@ -15,10 +15,10 @@ public class Question extends GameObject {
     private static final int QUESTION_HEIGHT = 45;
 
     // Pushback
-    private float pushDrawOffset;
-    private Direction pushBackOffsetDir;
+    private float pushYDraw;
+    private Direction pushYDir;
     private static final float BLOCK_SPEED = 1.2f * SCALE;
-    private static final float BLOCK_LIMIT = 20f * SCALE;
+    private static final float BLOCK_LIMIT = -20f * SCALE;
 
     public Question(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -44,25 +44,25 @@ public class Question extends GameObject {
 
     private void updateQuestionCollision() {
         // Set pushBackOffsetDir to UP to start this animation
-        if (pushBackOffsetDir == UP) {
+        if (pushYDir == UP) {
             isHit = true;
-            pushDrawOffset -= BLOCK_SPEED;
-            if (pushDrawOffset <= -BLOCK_LIMIT)
-                pushBackOffsetDir = DOWN;
+            pushYDraw -= BLOCK_SPEED;
+            if (pushYDraw <= BLOCK_LIMIT)
+                pushYDir = DOWN;
         } else {
-            pushDrawOffset += BLOCK_SPEED;
-            if (pushDrawOffset >= 0)
-                pushDrawOffset = 0;
+            pushYDraw += BLOCK_SPEED;
+            if (pushYDraw >= 0)
+                pushYDraw = 0;
         }
     }
 
     // getters and setters
 
-    public void setPushBackOffsetDir(Direction pushBackOffsetDir) {
-        this.pushBackOffsetDir = pushBackOffsetDir;
+    public void setPushYDir(Direction pushYDir) {
+        this.pushYDir = pushYDir;
     }
 
-    public float getPushDrawOffset() {
-        return pushDrawOffset;
+    public float getPushYDraw() {
+        return pushYDraw;
     }
 }

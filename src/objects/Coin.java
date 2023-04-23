@@ -31,7 +31,6 @@ public class Coin extends GameObject {
 
         // Sparkle anim
         if (c.isSparkle) {
-            System.out.println(c.animationIndex);
             if (animationTick >= ANIMATION_SPEED / 2) {
                 animationTick = 0;
                 animationIndex++;
