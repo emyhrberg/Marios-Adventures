@@ -5,7 +5,6 @@ import objects.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -40,14 +39,14 @@ public class Level {
     private static final int CANNON = 5;
     private static final int BRICK_BLUE = 6;
 
-    // ====== Objects ======
-    private final List<Coin> coins = new ArrayList<>();
-    private final List<Question> questions = new ArrayList<>();
-    private final List<Platform> platforms = new ArrayList<>();
-    private final List<Lava> lava = new ArrayList<>();
-    private final List<Pipe> pipes = new ArrayList<>();
-    private final List<Cannon> cannons = new ArrayList<>();
-    private final List<Brick> bricks = new ArrayList<>();
+    // ====== List of objects ======
+    private final List<Coin> coins            = new ArrayList<>();
+    private final List<Question> questions    = new ArrayList<>();
+    private final List<Platform> platforms    = new ArrayList<>();
+    private final List<Lava> lava             = new ArrayList<>();
+    private final List<Pipe> pipes            = new ArrayList<>();
+    private final List<Cannon> cannons        = new ArrayList<>();
+    private final List<Brick> bricks          = new ArrayList<>();
 
     // ====== Enemies ======
     private final List<Shark> sharks = new ArrayList<>();

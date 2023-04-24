@@ -2,6 +2,7 @@ package objects;
 
 import constants.ObjectConstants.ObjectType;
 import main.Level;
+import main.Player;
 
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
@@ -27,16 +28,31 @@ public class Bullet extends GameObject {
         initHitbox(x, y + Y_OFF, HB_W, HB_H);
     }
 
-    public void update() {
+    public void update(Level level, Player player, Bullet b) {
         updateAnimationTick();
+        updateBulletIntersect(level, player, b);
+        updateBulletPos();
+    }
+
+    private void updateBulletPos() {
         hitbox.x -= BULLET_SPEED;
     }
 
-    public boolean isBulletHittingLevel(Bullet b, Level level) {
+    private void updateBulletIntersect(Level level, Player player, Bullet b) {
+        if (b.hitbox.intersects(player.getHitbox())) {
+            player.hitByBullet(b);
+            b.setActive(false);
+        } else if (b.isBulletHittingLevel(b, level)) {
+            b.setActive(false);
+        }
+    }
+
+    private boolean isBulletHittingLevel(Bullet b, Level level) {
         int bulletX = (int) (b.hitbox.x / TILES_SIZE);
         int bulletY = (int) (b.hitbox.y / TILES_SIZE);
 
-        // Handle bullet was not stopped by a solid tile and must be removed if touching edge of leftmost level
+        // Handle situation where bullet was not stopped by a solid tile
+        // and must be removed when touching edge of leftmost level
         if (bulletX <= 0) {
             b.setActive(false);
             return false;

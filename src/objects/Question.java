@@ -1,12 +1,14 @@
 package objects;
 
 import constants.Direction;
+import main.Player;
 
 import static constants.Direction.DOWN;
 import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
 import static main.Game.SCALE;
+import static objects.ObjectManager.healths;
 
 public class Question extends GameObject {
 
@@ -26,9 +28,25 @@ public class Question extends GameObject {
         doAnimation = true;
     }
 
-    public void update() {
-        updateQuestionCollision();
+    public void update(Player player, Question q) {
+        updatePlayerQuestionCollision(player, q);
+        updateQuestionBounce();
         updateQuestionAnimation();
+    }
+
+    private void updatePlayerQuestionCollision(Player player, Question q) {
+        // handle player question collision
+        if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
+
+            // Set question bounce to up and player down
+            q.pushYDir = UP;
+            player.setAirSpeed(0);
+
+            // Question collision first time!
+            if (!q.isHit()) {
+                healths.add(new HealthPowerup((int) q.hitbox.x, (int) q.hitbox.y));
+            }
+        }
     }
 
     private void updateQuestionAnimation() {
@@ -42,7 +60,7 @@ public class Question extends GameObject {
         }
     }
 
-    private void updateQuestionCollision() {
+    private void updateQuestionBounce() {
         // Set pushBackOffsetDir to UP to start this animation
         if (pushYDir == UP) {
             isHit = true;
@@ -58,9 +76,6 @@ public class Question extends GameObject {
 
     // getters and setters
 
-    public void setPushYDir(Direction pushYDir) {
-        this.pushYDir = pushYDir;
-    }
 
     public float getPushYDraw() {
         return pushYDraw;

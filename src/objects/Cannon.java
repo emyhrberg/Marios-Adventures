@@ -2,7 +2,9 @@ package objects;
 
 import constants.ObjectConstants.ObjectType;
 
+import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
 import static main.Game.SCALE;
+import static objects.ObjectManager.bullets;
 
 public class Cannon extends GameObject {
 
@@ -24,7 +26,12 @@ public class Cannon extends GameObject {
         initHitbox(x - X_OFF, y - Y_OFF, CANNON_W_DEF, CANNON_H_DEF);
     }
 
-    public void update() {
+    public void update(Cannon c) {
+        updateShootCooldown();
+        updateShoot(c);
+    }
+
+    private void updateShootCooldown() {
         shootAllowed = System.currentTimeMillis() >= lastCannonShot + CANNON_DELAY;
 
         if (shootAllowed) {
@@ -34,6 +41,14 @@ public class Cannon extends GameObject {
             if (animationIndex >= 7) {
                 animationIndex = 1;
             }
+        }
+    }
+
+    private void updateShoot(Cannon c) {
+        if (c.animationIndex == 4 && c.animationTick == 0 && c.isShootAllowed()) {
+            // Add a bullet
+            bullets.add(new Bullet((int) c.hitbox.x, (int) c.hitbox.y, BULLET_TYPE));
+            c.setLastCannonShot(System.currentTimeMillis());
         }
     }
 

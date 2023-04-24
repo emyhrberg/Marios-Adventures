@@ -27,6 +27,9 @@ public class Platform extends GameObject {
     private final Rectangle2D.Float top;
 
     // Platform moving
+    private Direction platDirection = RIGHT;
+    private static final float SPEED = 1.5f;
+    private float platformSpeed;
 
     public Platform(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -41,10 +44,6 @@ public class Platform extends GameObject {
         updatePlatformBinding(player, p);
     }
 
-    private Direction direction = RIGHT;
-    private static final float SPEED = 1.5f;
-    private float platformSpeed;
-
     private void updatePlatformBinding(Player player, Platform p) {
         if (p.getBottom().intersects(player.getHitbox())) {
             // player is colliding with bottom of platform. make player fall down
@@ -58,16 +57,16 @@ public class Platform extends GameObject {
     }
 
     private void updatePlatformPosition(Player player, Level level) {
-        if (direction == RIGHT) {
+        if (platDirection == RIGHT) {
             platformSpeed = SPEED;
-        } else if (direction == LEFT) {
+        } else if (platDirection == LEFT) {
             platformSpeed = -SPEED;
         }
 
         if (hitSolidTileLeft(level)) {
-            direction = RIGHT;
+            platDirection = RIGHT;
         } else if (hitSolidTileRight(level)) {
-            direction = LEFT;
+            platDirection = LEFT;
         }
 
         // Move platform position

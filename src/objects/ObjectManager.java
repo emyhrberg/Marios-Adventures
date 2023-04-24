@@ -1,12 +1,10 @@
 package objects;
 
 import helpers.ImageLoader;
-import helpers.SoundLoader;
 import main.Level;
 import main.Player;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +13,10 @@ import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
+import static main.Game.TILES_SIZE_DEFAULT;
 import static objects.Bullet.*;
 import static objects.Cannon.*;
-import static objects.Coin.*;
+import static objects.Coin.COIN_SIZE;
 import static objects.HealthPowerup.HEALTH_SIZE;
 import static objects.Lava.*;
 import static objects.Pipe.PIPE_HEIGHT;
@@ -30,7 +29,6 @@ public class ObjectManager {
     private final BufferedImage[] coinImages            = new BufferedImage[4];
     private static final BufferedImage COIN_IMAGES      = ImageLoader.loadImage("/images/sprites_coin.png");
     public static final int PIXEL_SIZE                  = 16;
-    private int coinCount;
 
     // ====== Questions =======
     private final BufferedImage[][] questionImages      = new BufferedImage[2][4];
@@ -43,14 +41,12 @@ public class ObjectManager {
     private static final BufferedImage LAVA_IMAGES      = ImageLoader.loadImage("/images/sprites_lava.png");
 
     // ====== Sparkle =======
-    private static final int SPARKLE_DRAW_W = 40;
-    private static final int SPARKLE_DRAW_H = 40;
     private static final int SPARKLE_W_DEF = 100;
     private static final int SPARKLE_H_DEF = 100;
     private static final BufferedImage SPARKLE_IMAGES   = ImageLoader.loadImage("/images/sprites_sparkle.png");
     private final BufferedImage[] sparkleImages         = new BufferedImage[7];
 
-    // ====== Sparkle =======
+    // ====== Break brick =======
     private static final int BREAK_W_DEF = 40;
     private static final int BREAK_H_DEF = 40;
     private static final int BREAK_W = (int) (BREAK_W_DEF*SCALE);
@@ -65,26 +61,23 @@ public class ObjectManager {
     private static final BufferedImage CANNON_IMAGES    = ImageLoader.loadImage("/images/sprites_cannon.png");
     private final BufferedImage[] cannonImages          = new BufferedImage[7];
 
-    // ====== Bullet ======
+    // ====== Bullets ======
     private static final BufferedImage BULLET_IMAGE     = ImageLoader.loadImage("/images/sprites_bullet.png");
     private final BufferedImage[] bulletImages          = new BufferedImage[8];
-    private final List<Bullet> bullets = new ArrayList<>();
-
-    // ====== Bricks ======
-    private final List<Brick> hitBricks = new ArrayList<>();
+    public static final List<Bullet> bullets = new ArrayList<>();
 
     // ====== Power-ups ======
     private static final BufferedImage POWERUP_HEALTH   = ImageLoader.loadImage("/images/powerup_health.png");
-    private final ArrayList<HealthPowerup> healths = new ArrayList<>();
+    public static final ArrayList<HealthPowerup> healths = new ArrayList<>();
 
-    // ====== Game values ======
-    private List<Coin> coins = new ArrayList<>();
-    private List<Question> questions = new ArrayList<>();
-    private List<Platform> platforms = new ArrayList<>();
-    private List<Lava> lava = new ArrayList<>();
-    private List<Pipe> pipes = new ArrayList<>();
-    private List<Cannon> cannons = new ArrayList<>();
-    private List<Brick> bricks = new ArrayList<>();
+    // ====== List of objects ======
+    private List<Coin> coins            = new ArrayList<>();
+    private List<Question> questions    = new ArrayList<>();
+    private List<Platform> platforms    = new ArrayList<>();
+    private List<Lava> lava             = new ArrayList<>();
+    private List<Pipe> pipes            = new ArrayList<>();
+    private List<Cannon> cannons        = new ArrayList<>();
+    private List<Brick> bricks          = new ArrayList<>();
 
     public ObjectManager() {
         initObjects();
@@ -142,74 +135,21 @@ public class ObjectManager {
         questions = level.getQuestions();
 
         for (Question q : questions)
-            if (q.isActive()) {
-                // update question regularly
-                q.update();
-
-                // handle player question collision
-                if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
-
-                    // Bounce question up and player down
-                    q.setPushYDir(UP);
-                    player.setAirSpeed(0);
-
-                    // Question collision first time!
-                    if (!q.isHit()) {
-                        healths.add(new HealthPowerup((int) q.hitbox.x, (int) q.hitbox.y));
-                    }
-                }
-            }
+            q.update(player, q);
     }
 
     private void updateBricks(Level level, Player player) {
-        // variables
         bricks = level.getBricks();
 
-        // Add hit bricks to a list and reset player airspeed
-        for (Brick b : bricks) {
-            b.update(b);
-            if (b.isActive()) {
-                if (player.getHitbox().intersects(b.getHitbox()) && player.getAirSpeed() < 0) {
-                    hitBricks.add(b);
-                    player.setAirSpeed(0);
-                    b.setBreaking(true);
-                }
-            }
-        }
-        if (hitBricks.size() == 0)
-            return;
-
-        // Determine which brick to delete by comparing shared surface area.
-        Brick largestContact = null;
-        double areaTemp = 0;
-        for (Brick b: hitBricks) {
-            Rectangle2D intersection = b.getHitbox().createIntersection(player.getHitbox());
-            double area = (intersection.getWidth()*intersection.getHeight());
-            if (area > areaTemp) {
-                largestContact = b;
-            }
-        }
-        if (largestContact != null) {
-            largestContact.setActive(false);
-            float tileY = largestContact.getHitbox().y / TILES_SIZE;
-            float tileX = largestContact.getHitbox().x / TILES_SIZE;
-            level.getLevelData()[(int) (tileY)][(int) (tileX)] = 91;
-        }
-
+        for (Brick b : bricks)
+            b.update(level, player, b);
     }
 
     private void updateLava(Level level, Player player) {
         lava = level.getLava();
 
         for (Lava l: lava)
-            if (player.getHitbox().intersects(l.hitbox)) {
-                player.setInLava(true);
-                player.setJumpHeight(0.9f * SCALE);
-                player.jump();
-                player.setHealth(0);
-                player.setInLava(false);
-                player.setCanJump(true);
-            }
+            l.updateLavaCollision(player, l);
     }
 
     private void updatePlatforms(Level level, Player player) {
@@ -217,7 +157,6 @@ public class ObjectManager {
 
         for (Platform p : platforms)
             p.update(player, level, p);
-
     }
 
     private void updateHealths(Level level, Player player) {
@@ -237,30 +176,14 @@ public class ObjectManager {
     private void updateCannons(Level level) {
         cannons = level.getCannons();
 
-        for (Cannon c: cannons) {
-            if (c.animationIndex == 4 && c.animationTick == 0 && c.isShootAllowed()) {
-                // Add a bullet
-                bullets.add(new Bullet((int) c.hitbox.x, (int) c.hitbox.y, BULLET_TYPE));
-                c.setLastCannonShot(System.currentTimeMillis());
-            }
-
-            c.update();
-        }
+        for (Cannon c: cannons)
+            c.update(c);
     }
 
     private void updateBullets(Level level, Player player) {
-        for (Bullet b : bullets) {
-            if (b.isActive()) {
-                b.update();
-
-                if (b.hitbox.intersects(player.getHitbox())) {
-                    player.hitByBullet(b);
-                    b.setActive(false);
-                } else if (b.isBulletHittingLevel(b, level)) {
-                    b.setActive(false);
-                }
-            }
-        }
+        for (Bullet b : bullets)
+            if (b.isActive())
+                b.update(level, player, b);
     }
 
     // ====== Draw ======
@@ -361,7 +284,7 @@ public class ObjectManager {
                 if (q.isHit()) {
                     g.drawImage(questionImages[1][0],x,y, TILES_SIZE, TILES_SIZE,null);
                     if (q.isSparkle()) {
-                        g.drawImage(sparkleImages[q.animationIndex],x + 10,y-TILES_SIZE,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
+                        g.drawImage(sparkleImages[q.animationIndex],x + 10,y-TILES_SIZE,TILES_SIZE_DEFAULT,TILES_SIZE_DEFAULT,null);
                     }
                 } else {
                     g.drawImage(questionImages[0][q.animationIndex],x,y, TILES_SIZE, TILES_SIZE,null);
@@ -380,7 +303,7 @@ public class ObjectManager {
                 int y = (int) c.hitbox.y;
 
                 if (c.isSparkle()) {
-                    g.drawImage(sparkleImages[c.animationIndex],x,y,SPARKLE_DRAW_W,SPARKLE_DRAW_H,null);
+                    g.drawImage(sparkleImages[c.animationIndex],x,y,TILES_SIZE_DEFAULT,TILES_SIZE_DEFAULT,null);
                 } else {
                     g.drawImage(coinImages[c.animationIndex],x,y, COIN_SIZE,COIN_SIZE,null);
                 }

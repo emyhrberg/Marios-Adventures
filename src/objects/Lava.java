@@ -1,5 +1,7 @@
 package objects;
 
+import main.Player;
+
 import static constants.ObjectConstants.ObjectType;
 import static main.Game.SCALE;
 
@@ -15,5 +17,16 @@ public class Lava extends GameObject {
     public Lava(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         initHitbox(x, y, LAVA_WIDTH_DEF, LAVA_HEIGHT_DEF);
+    }
+
+    public void updateLavaCollision(Player player, Lava l) {
+        if (player.getHitbox().intersects(l.hitbox)) {
+            player.setInLava(true);
+            player.setJumpHeight(0.9f * SCALE);
+            player.jump();
+            player.setHealth(0);
+            player.setInLava(false);
+            player.setCanJump(true);
+        }
     }
 }
