@@ -30,7 +30,7 @@ public class Bullet extends GameObject {
 
     public void update(Level level, Player player, Bullet b) {
         updateAnimationTick();
-        updateBulletIntersect(level, player, b);
+        updateBulletCollision(level, player, b);
         updateBulletPos();
     }
 
@@ -38,9 +38,20 @@ public class Bullet extends GameObject {
         hitbox.x -= BULLET_SPEED;
     }
 
-    private void updateBulletIntersect(Level level, Player player, Bullet b) {
+    private void updateBulletCollision(Level level, Player player, Bullet b) {
         if (b.hitbox.intersects(player.getHitbox())) {
-            player.hitByBullet(b);
+            float playerBox = player.getHitbox().y + player.getHitbox().height;
+            float bulletBox = hitbox.y + hitbox.height;
+            float distBetweenBoxes = Math.abs(playerBox - bulletBox);
+            float enemyHead = hitbox.height - 10 * SCALE;
+            boolean isOnTopOfBullet = distBetweenBoxes > enemyHead;
+
+            // either jump on enemy if on top of the bullet, or take damage
+            if (isOnTopOfBullet && player.getAirSpeed() > 0) {
+                player.jumpOnEnemy();
+            } else {
+                player.hitByBullet(b);
+            }
             b.setActive(false);
         } else if (b.isBulletHittingLevel(b, level)) {
             b.setActive(false);

@@ -29,20 +29,16 @@ public class Brick extends GameObject {
     }
 
     public void update(Level level, Player player, Brick b) {
-        updateBrickAnimation(b);
-        breakBrick(level, player, b);
-        breakBrick(level, player);
+        updateBreakingAnimation(b);
+        removeBrickFromGame(level, player, b);
     }
 
-    private void breakBrick(Level level, Player player, Brick b) {
-        if (b.isActive()) {
+    private void removeBrickFromGame(Level level, Player player, Brick b) {
+        if (b.isActive())
             if (player.getHitbox().intersects(b.getHitbox()) && player.getAirSpeed() < 0) {
                 hitBricks.add(b);
                 player.setAirSpeed(0);
                 b.setBreaking(true);
-
-                if (hitBricks.size() == 0)
-                    return;
 
                 // Determine which brick to delete by comparing shared surface area.
                 Brick largestContact = null;
@@ -61,24 +57,17 @@ public class Brick extends GameObject {
                     level.getLevelData()[(int) (tileY)][(int) (tileX)] = 91;
                 }
             }
-        }
-    }
-
-    private void breakBrick(Level level, Player player) {
 
     }
 
-
-    private void updateBrickAnimation(Brick b) {
-        animationTick++;
-
-        // Sparkle anim
+    private void updateBreakingAnimation(Brick b) {
         if (isBreaking) {
-            if (animationTick >= ANIMATION_SPEED) {
+            animationTick++;
+            if (animationTick >= ANIMATION_SPEED / 2) {
                 animationTick = 0;
                 animationIndex++;
             }
-            // at final sparkle image, disable the animation!
+            // at final break image, disable the animation!
             if (animationIndex == 4) {
                 b.setBreaking(false);
             }

@@ -4,10 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Deleted platforms code, trying again to fix platforms">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Platforms working!">
+      <change afterPath="$PROJECT_DIR$/resources/images/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/3.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/sprites_break_brick.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/sprites_bullet.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/sprites_cannon.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/sprites_plants.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/sprites_sparkle (2).psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/tiles_all.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/old/tiles_backup.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_break_brick.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_bullet.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_cannon.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_plants.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_sparkle.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tiles.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tiles.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles_all.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles_backup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles_numbered.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tiles_numbered.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Plant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Lava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Lava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +156,7 @@
       <workItem from="1682171761436" duration="33283000" />
       <workItem from="1682250493848" duration="23239000" />
       <workItem from="1682278636895" duration="6414000" />
-      <workItem from="1682351742294" duration="6374000" />
+      <workItem from="1682351742294" duration="12386000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -410,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682359080313</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Platforms working!">
+      <created>1682361075747</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1682361075747</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +455,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed question reset" />
     <MESSAGE value="Fixed coin size" />
     <MESSAGE value="Added sparkle to coins" />
     <MESSAGE value="Question work" />
@@ -445,7 +479,8 @@
     <MESSAGE value="Fixed platforms! Refactoring ObjectManager code" />
     <MESSAGE value="Refactored ObjectManager to move functionality out to individual classes. Need to fix so player can fall off platform" />
     <MESSAGE value="Deleted platforms code, trying again to fix platforms" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted platforms code, trying again to fix platforms" />
+    <MESSAGE value="Platforms working!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Platforms working!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

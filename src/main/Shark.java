@@ -179,7 +179,7 @@ public class Shark extends Enemy {
         final int attackIndex = 4;
         if (animationIndex == attackIndex && !attackChecked && attackAllowed) {
             if (attackBox.intersects(player.hitbox)) {
-                player.reducePlayerHealth(this);
+                player.hitByEnemy(this);
             }
             attackChecked = true;
         }
@@ -200,7 +200,7 @@ public class Shark extends Enemy {
                 attackAllowed = !attackAllowed;
             } else {
                 if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {
-                    player.reducePlayerHealth(this);
+                    player.hitByEnemy(this);
                     lastAttack = System.currentTimeMillis();
                     attackChecked = true;
                 }

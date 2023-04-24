@@ -21,10 +21,15 @@ public class Lava extends GameObject {
 
     public void updateLavaCollision(Player player, Lava l) {
         if (player.getHitbox().intersects(l.hitbox)) {
-            player.setInLava(true);
-            player.setJumpHeight(0.9f * SCALE);
-            player.jump();
+            // set lava state and death
             player.setHealth(0);
+            player.setInLava(true);
+
+            // stop falling
+            player.setAirSpeed(0);
+            player.setInAir(false);
+
+            // reset lava state
             player.setInLava(false);
             player.setCanJump(true);
         }

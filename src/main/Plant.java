@@ -92,7 +92,7 @@ public class Plant extends Enemy {
         attackBox.y = hitbox.y;
 
         if (attackBox.intersects(player.getHitbox()) && canPlantDealDamage) {
-            player.reducePlayerHealth(this);
+            player.hitByEnemy(this);
             lastAttack = System.currentTimeMillis();
         }
     }

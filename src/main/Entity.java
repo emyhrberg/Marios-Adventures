@@ -66,21 +66,17 @@ public class Entity {
 	}
 
 	protected boolean moveToPosition(float x, float y, float width, float height, Level level) {
-		// handle platforms
-		if(currentPlatform != null) {
-			xOnPlatform += xDirection;
-			hitbox.x = xOnPlatform+currentPlatform.getTop().x;
-			if(hitbox.x > currentPlatform.getTop().x+currentPlatform.getTop().width || hitbox.x+width < currentPlatform.getTop().x) {
-				unbindPlatform();
-			}
-			return true;
-		}
+		// Handle platforms
+		handlePlatforms();
 
-		// Handle slopes first
-		if (isDownSlope(level))
-			return moveDownSlope();
-		if (isUpSlope(level))
-			return moveUpSlope(x+width);
+		// Handle slopes
+		if (isDownSlope(level)) {
+			moveDownSlope();
+			return false;
+		} if (isUpSlope(level)) {
+			moveUpSlope(x + width);
+			return false;
+		}
 
 		// Handle if entity can move to position
 		if (canMoveToPosition(x, y, width, height, level) && health > 0) {
@@ -137,15 +133,7 @@ public class Entity {
 		return !isBottomLeftSolid && !isBottomRightSolid && !isBottomLeftSlopedDown && !isBottomRightSlopedUp;
 	}
 
-	// ====== Jumping ======
-
-	protected boolean jumpAllowed = true;
-	protected boolean jumping = false;
-	protected static final float MAX_JUMP_HEIGHT = 3.5f * SCALE;
-	protected float jumpHeight = MAX_JUMP_HEIGHT;
-
 	protected void startFalling(Level level) {
-		jumpHeight = MAX_JUMP_HEIGHT;
 		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
 			// Set ySpeed
 			airSpeed += GRAVITY;
@@ -171,24 +159,30 @@ public class Entity {
 
 	// ====== Platforms ======
 
-	public Rectangle2D.Float getHitboxTop() {
-		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
-	}
-
 	private Platform currentPlatform;
 	private float xOnPlatform;
 	private boolean onPlatform;
+
+	private void handlePlatforms() {
+		if (currentPlatform != null) {
+			xOnPlatform += xDirection;
+			hitbox.x = xOnPlatform+currentPlatform.getTop().x;
+			if (hitbox.x > currentPlatform.getTop().x+currentPlatform.getTop().width || hitbox.x+width < currentPlatform.getTop().x) {
+				unbindPlatform();
+			}
+		}
+	}
+
 	public void bindPlatform(Platform p) {
 		if(currentPlatform != null || airSpeed <= 0) {
 			return;
 		}
-		System.out.println("bound");
 		onPlatform = true;
 		currentPlatform = p;
 		xOnPlatform = hitbox.x- currentPlatform.getTop().x;
-		this.setAirSpeed(0);
-		this.setInAir(false);
-		this.setJumping(false);
+
+		setAirSpeed(0);
+		setInAir(false);
 	}
 
 	public void unbindPlatform() {
@@ -200,27 +194,28 @@ public class Entity {
 		return onPlatform && currentPlatform == platform;
 	}
 
+	public Rectangle2D.Float getHitboxTop() {
+		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
+	}
+
 	// ====== Lava ======
 
 	private boolean inLava = false;
 
 	public void setInLava(boolean inLava) {
 		this.inLava = inLava;
-		this.setAirSpeed(0);
-		this.setInAir(false);
-		this.setJumping(false);
 	}
 
 	// ====== Slopes ======
 
-	protected boolean moveDownSlope() {
+	private void moveDownSlope() {
 		// Update x position
 		hitbox.x += xDirection;
 
 		// Do jump
 		if (airSpeed < 0) {
 			hitbox.y += airSpeed;
-			return false;
+			return;
 		}
 
 		// Get position within the tile
@@ -229,7 +224,7 @@ public class Entity {
 		// Push player over top of slope to avoid getting stuck
 		if (xInTile < 2) {
 			hitbox.y -= 1;
-			return false;
+			return;
 		}
 
 		// Move up the slope
@@ -239,17 +234,16 @@ public class Entity {
 		if (inAir) {
 			hitbox.y = (float) (Math.floor((hitbox.y + hitbox.height) / TILES_SIZE) - 1) * TILES_SIZE + xInTile;
 		}
-		return false;
 	}
 
-	protected boolean moveUpSlope(float x) {
+	private void moveUpSlope(float x) {
 		// Update x position
 		hitbox.x += xDirection;
 
 		// Do jump
 		if (airSpeed < 0) {
 			hitbox.y += airSpeed;
-			return false;
+			return;
 		}
 
 		// Get position within the tile
@@ -258,7 +252,7 @@ public class Entity {
 		// Push player over top of slope to avoid getting stuck
 		if (xInTile > TILES_SIZE - 2) {
 			hitbox.y -= 1;
-			return false;
+			return;
 		}
 
 		// Move up the slope
@@ -268,10 +262,9 @@ public class Entity {
 		if (inAir) {
 			hitbox.y = (float) (Math.floor((hitbox.y + hitbox.height) / TILES_SIZE) - 1) * TILES_SIZE + TILES_SIZE - xInTile;
 		}
-		return false;
 	}
 
-	protected boolean isDownSlope(Level level) {
+	private boolean isDownSlope(Level level) {
 		int tileX = (int) (hitbox.x / TILES_SIZE);
 		int tileY = (int) (hitbox.y + hitbox.height) / TILES_SIZE;
 
@@ -282,7 +275,7 @@ public class Entity {
 		return tileValue == DOWN_SLOPE;
 	}
 
-	protected boolean isUpSlope(Level level) {
+	private boolean isUpSlope(Level level) {
 		int tileX = (int) (hitbox.x + hitbox.width) / TILES_SIZE;
 		int tileY = (int) (hitbox.y + hitbox.height) / TILES_SIZE;
 
@@ -353,10 +346,6 @@ public class Entity {
 
 	// ====== Getters & Setters ======
 
-	public void setCanAttack(boolean canAttack) {
-		this.canAttack = canAttack;
-	}
-
 	public void setDirection(final Direction direction) {
 		this.direction = direction;
 	}
@@ -365,16 +354,8 @@ public class Entity {
 		this.health = health;
 	}
 
-	public void setJumpHeight(float jumpHeight) {
-		this.jumpHeight = jumpHeight;
-	}
-
 	public void setInAir(boolean inAir) {
 		this.inAir = inAir;
-	}
-
-	public void setJumping(boolean jumping) {
-		this.jumping = jumping;
 	}
 
 	public void setAirSpeed(float airSpeed) {

@@ -22,7 +22,7 @@ import static constants.GameState.*;
 public class Game implements Runnable {
 
     // ====== Updates Per Second ======
-    public static final int UPS = 200;
+    public static final int UPS = 250;
     public static final int FPS = 60;
 
     // ====== Game Variables ======

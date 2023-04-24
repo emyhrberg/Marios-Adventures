@@ -1,7 +1,6 @@
 package objects;
 
 import constants.Direction;
-import main.Entity;
 import main.Level;
 import main.Player;
 
@@ -29,8 +28,8 @@ public class Platform extends GameObject {
 
     // Platform moving
     private Direction platDir = LEFT;
-    private static final float MAX_SPEED = 0.5f;
-    private float platformSpeed;
+    private static final float MAX_SPEED = 0.5f * SCALE;
+    private float platSpeed;
 
     public Platform(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -46,21 +45,24 @@ public class Platform extends GameObject {
     }
 
     private void updatePlatformBinding(Player player, Platform p) {
+        // Player collision with bottom or sides of platform, set player in air
         if (p.getBottom().intersects(player.getHitbox())) {
-            player.setAirSpeed(1);
-            if(!p.getBottomLine().intersects(player.getHitboxTop())) {
+            player.setInAir(true);
+            if (!p.getBottomLine().intersects(player.getHitboxTop())) {
                 player.getHitbox().x = p.getXOfClosestHitbox(player);
             }
-        } else if(p.getTop().intersects(player.getHitbox())) {
+
+        // Player on top of the platform
+        } else if (p.getTop().intersects(player.getHitbox())) {
             player.bindPlatform(p);
         }
     }
 
     private void updatePlatformPos(Player player, Level level) {
         if (platDir == RIGHT)
-            platformSpeed = MAX_SPEED;
+            platSpeed = MAX_SPEED;
         if (platDir == LEFT)
-            platformSpeed = -MAX_SPEED;
+            platSpeed = -MAX_SPEED;
 
         if (hitSolidTileLeft(level))
             platDir = RIGHT;
@@ -69,20 +71,20 @@ public class Platform extends GameObject {
 
 
         // Move platform position
-        hitbox.x += platformSpeed;
-        bottom.x += platformSpeed;
-        top.x += platformSpeed;
+        hitbox.x += platSpeed;
+        bottom.x += platSpeed;
+        top.x += platSpeed;
 
         // move player with the platform's direction
         if (player.isOnPlatform(this)) {
-            player.getHitbox().x += platformSpeed;
+            player.getHitbox().x += platSpeed;
         }
     }
 
-    public float getXOfClosestHitbox(Entity entity) {
-        float left = Math.abs(entity.getHitbox().x-hitbox.x);
-        float right = Math.abs(entity.getHitbox().x+ entity.getHitbox().width - (hitbox.x+hitbox.width));
-        return left < right ? hitbox.x-entity.getHitbox().width: (hitbox.x+ hitbox.width);
+    public float getXOfClosestHitbox(Player player) {
+        float left = Math.abs(player.getHitbox().x-hitbox.x);
+        float right = Math.abs(player.getHitbox().x+ player.getHitbox().width - (hitbox.x+hitbox.width));
+        return left < right ? hitbox.x-player.getHitbox().width: (hitbox.x+ hitbox.width);
     }
 
     public Rectangle2D.Float getBottom() {

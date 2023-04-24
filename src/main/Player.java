@@ -45,6 +45,12 @@ public class Player extends Entity {
 	private static final float SPEED					= 0.8f * SCALE;
 	private static final int MAX_HEALTH 				= 100;
 
+	// ====== Jumping ======
+	protected boolean jumpAllowed = true;
+	protected boolean jumping = false;
+	protected static final float MAX_JUMP_HEIGHT = 3.5f * SCALE;
+	protected float jumpHeight = MAX_JUMP_HEIGHT;
+
 	// ====== Game variables =======
 	private final Game game;
 	private Level level;
@@ -104,15 +110,35 @@ public class Player extends Entity {
 	public void jump() {
 		if (inAir || !jumpAllowed)
 			return;
+
+		unbindPlatform();
+
+		// start jump
+		jumpHeight = MAX_JUMP_HEIGHT;
 		inAir = true;
 		airSpeed = -jumpHeight;
-		jumpAllowed = false;
+
+		// reset jump
 		jumpHeight = MAX_JUMP_HEIGHT;
-		unbindPlatform();
+		jumping = false;
+		jumpAllowed = false;
+
+		SoundLoader.playAudio("jump.wav", 0.8);
+	}
+
+	public void jumpOnEnemy() {
+		// set jump
+		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
+		inAir = true;
+		airSpeed = -jumpHeight;
+
+		// reset jump
+		jumpHeight = MAX_JUMP_HEIGHT;
+		jumping = false;
+		SoundLoader.playAudio("jump.wav", 0.8);
 	}
 
 	private void updateAttacking() {
-
 		if (attacking) {
 			// Do not attack on the first animation index
 			if (animationIndex == 0)
@@ -127,28 +153,39 @@ public class Player extends Entity {
 		}
 	}
 
-	// ====== Modify player variables ======
+	// ====== Public player methods ======
 
-	public void jumpOnEnemy() {
-		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
-		airSpeed = -jumpHeight;
-		inAir = true;
-		SoundLoader.playAudio("jump.wav", 0.8);
-	}
-
-	public void reducePlayerHealth(Enemy enemy) {
+	public void hitByEnemy(Enemy enemy) {
 		health -= 20;
 		hit = true;
 
+		// Update push direction
+		if (enemy.getHitbox().x < hitbox.x)
+			pushXDir = RIGHT;
+		else
+			pushXDir = LEFT;
+
+		// bounce back
+		jumpOnEnemy();
+
 		SoundLoader.playAudio("player_taking_damage.wav");
 
-		// Update push back direction
-		if (enemy.getHitbox().x < hitbox.x) {
+	}
+
+	public void hitByBullet(Bullet b) {
+		health -= 20;
+		hit = true;
+
+		// set push dir
+		if (b.getHitbox().x < hitbox.x)
 			pushXDir = RIGHT;
-		}
-		else {
+		else
 			pushXDir = LEFT;
-		}
+
+		// bounce back
+		jumpOnEnemy();
+
+		SoundLoader.playAudio("player_taking_damage.wav");
 	}
 
 	public void resetPlayer() {
@@ -158,29 +195,6 @@ public class Player extends Entity {
 		hit = false;
 		health = maxHealth;
 		direction = STILL;
-	}
-
-	public void pushPlayer() {
-		// Update xDirection based on pushBackDirection
-		if (pushXDir == LEFT)
-			xDirection = -xSpeed;
-		if (pushXDir == RIGHT)
-			xDirection = xSpeed;
-
-		// Move player X, direction with double direction
-		moveToPosition((float) (hitbox.x + xDirection * 0.8), hitbox.y, hitbox.width, hitbox.height, level);
-	}
-
-	public void hitByBullet(Bullet b) {
-		health -= 20;
-		hit = true;
-
-		SoundLoader.playAudio("player_taking_damage.wav");
-
-		if (b.getHitbox().x < hitbox.x)
-			pushXDir = RIGHT;
-		else
-			pushXDir = LEFT;
 	}
 
 	// ====== Draw and Animations ======
@@ -202,7 +216,7 @@ public class Player extends Entity {
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
 		// Debug hitbox
-//		drawHitbox(g, levelOffset);
+		drawHitbox(g, levelOffset);
 //		drawAttackBox(g, levelOffset);
 	}
 
@@ -270,7 +284,18 @@ public class Player extends Entity {
 		}
 	}
 
-	public void playerDeathAndGameOver() {
+	private void pushPlayer() {
+		// Update xDirection based on pushBackDirection
+		if (pushXDir == LEFT)
+			xDirection = -xSpeed;
+		if (pushXDir == RIGHT)
+			xDirection = xSpeed;
+
+		// Move player X, direction with double direction
+		moveToPosition((float) (hitbox.x + xDirection * 0.5), hitbox.y, hitbox.width, hitbox.height, level);
+	}
+
+	private void playerDeathAndGameOver() {
 		if (playerAction != DYING) {
 			playerAction = DYING;
 			animationIndex = 0;
@@ -312,4 +337,5 @@ public class Player extends Entity {
 	public void setAttacking(final boolean attacking) {
 		this.attacking = attacking;
 	}
+
 }

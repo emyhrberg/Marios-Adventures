@@ -207,8 +207,8 @@ public class ObjectManager {
             g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
 
             // Debug hitboxes
-            p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
-            p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
+//            p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
+//            p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
 //            p.drawSomeBox(p.getBottom(), Color.DARK_GRAY, g, levelOffset);
 //            p.drawSomeBox(p.getBottomLine(), Color.YELLOW, g, levelOffset);
         }
@@ -233,7 +233,7 @@ public class ObjectManager {
                 float x = b.hitbox.x - levelOffset;
                 float y = b.hitbox.y - Y_DRAW_OFF;
                 g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
-//                b.drawHitbox(g, levelOffset);
+                b.drawHitbox(g, levelOffset);
             }
         }
     }

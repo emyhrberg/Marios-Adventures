@@ -297,7 +297,7 @@ public class Playing extends State {
                 else
                     player.setDirection(RIGHT);
             }
-            case KeyEvent.VK_K      -> player.setAttacking(true);
+            case KeyEvent.VK_K -> player.setAttacking(true);
             case KeyEvent.VK_P, KeyEvent.VK_ESCAPE -> game.setGameState(PAUSED);
         }
     }
@@ -308,7 +308,6 @@ public class Playing extends State {
                 player.setJumping(false);
                 player.setCanJump(true);
             }
-            case KeyEvent.VK_K -> player.setCanAttack(true);
             // Key released; Stop moving by setting the variables to false
             case KeyEvent.VK_A -> movingLeft = false;
             case KeyEvent.VK_D -> movingRight = false;
