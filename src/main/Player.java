@@ -13,6 +13,7 @@ import static constants.PlayerConstants.PlayerAction;
 import static constants.PlayerConstants.PlayerAction.*;
 import static constants.PlayerConstants.getSpriteAmount;
 import static main.Game.SCALE;
+import static main.Game.UPS;
 
 /**
  * Handles player movement by updating its position
@@ -44,12 +45,6 @@ public class Player extends Entity {
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.8f * SCALE;
 	private static final int MAX_HEALTH 				= 100;
-
-	// ====== Jumping ======
-	protected boolean jumpAllowed = true;
-	protected boolean jumping = false;
-	protected static final float MAX_JUMP_HEIGHT = 3.5f * SCALE;
-	protected float jumpHeight = MAX_JUMP_HEIGHT;
 
 	// ====== Game variables =======
 	private final Game game;
@@ -102,10 +97,27 @@ public class Player extends Entity {
 		updateDirection();
 		moveToPosition(hitbox.x + xDirection, hitbox.y, hitbox.width, hitbox.height, level);
 
-		if (jumping && jumpAllowed) {
+		// Jump
+		// Boost jump
+		boolean maxJumpBoost = System.currentTimeMillis() <= jumpMaxBoostTime + jumpStart;
+		if (holdingSpace && airSpeed < 0 && maxJumpBoost) {
+			airSpeed -= GRAVITY;
+		}
+		if (jumpAllowed && jumping) {
 			jump();
 		}
 	}
+
+	// ====== Jumping ======
+	protected boolean jumpAllowed = true;
+	protected boolean jumping = false;
+	protected static final float MAX_JUMP_HEIGHT = 2.5f * SCALE;
+	protected float jumpHeight = MAX_JUMP_HEIGHT;
+
+	// Variable jumping
+	protected long jumpStart;
+	protected int jumpMaxBoostTime = UPS;
+	protected boolean holdingSpace;
 
 	public void jump() {
 		if (inAir || !jumpAllowed)
@@ -114,6 +126,7 @@ public class Player extends Entity {
 		unbindPlatform();
 
 		// start jump
+		jumpStart = System.currentTimeMillis();
 		jumpHeight = MAX_JUMP_HEIGHT;
 		inAir = true;
 		airSpeed = -jumpHeight;
@@ -309,6 +322,10 @@ public class Player extends Entity {
 	}
 
 	// ====== Getters & Setters ======
+
+	public void setHoldingSpace(boolean holdingSpace) {
+		this.holdingSpace = holdingSpace;
+	}
 
 	public boolean isHit() {
 		return hit;

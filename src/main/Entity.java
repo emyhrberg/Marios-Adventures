@@ -117,7 +117,7 @@ public class Entity {
 	// ====== Entity falling ======
 
 	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
-		if(currentPlatform != null || inLava) {
+		if (currentPlatform != null || inLava) {
 			return false;
 		}
 
