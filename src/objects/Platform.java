@@ -1,6 +1,7 @@
 package objects;
 
 import constants.Direction;
+import main.Entity;
 import main.Level;
 import main.Player;
 
@@ -40,20 +41,22 @@ public class Platform extends GameObject {
 
     public void update(Player player, Level level, Platform p) {
         updateAnimationTick();
-        updatePlatformPosition(player, level);
+        updatePlatformPos(player, level);
         updatePlatformBinding(player, p);
     }
 
     private void updatePlatformBinding(Player player, Platform p) {
-        if (p.getTop().intersects(player.getHitbox())) {
-            player.bindPlatform();
-        } else {
-            // todo if not on a platform, unbind
-//            player.unbindPlatform();
+        if (p.getBottom().intersects(player.getHitbox())) {
+            player.setAirSpeed(1);
+            if(!p.getBottomLine().intersects(player.getHitboxTop())) {
+                player.getHitbox().x = p.getXOfClosestHitbox(player);
+            }
+        } else if(p.getTop().intersects(player.getHitbox())) {
+            player.bindPlatform(p);
         }
     }
 
-    private void updatePlatformPosition(Player player, Level level) {
+    private void updatePlatformPos(Player player, Level level) {
         if (platDir == RIGHT)
             platformSpeed = MAX_SPEED;
         if (platDir == LEFT)
@@ -71,9 +74,27 @@ public class Platform extends GameObject {
         top.x += platformSpeed;
 
         // move player with the platform's direction
-        if (player.isOnPlatform()) {
+        if (player.isOnPlatform(this)) {
             player.getHitbox().x += platformSpeed;
         }
+    }
+
+    public float getXOfClosestHitbox(Entity entity) {
+        float left = Math.abs(entity.getHitbox().x-hitbox.x);
+        float right = Math.abs(entity.getHitbox().x+ entity.getHitbox().width - (hitbox.x+hitbox.width));
+        return left < right ? hitbox.x-entity.getHitbox().width: (hitbox.x+ hitbox.width);
+    }
+
+    public Rectangle2D.Float getBottom() {
+        return bottom;
+    }
+
+    public Rectangle2D.Float getTop() {
+        return top;
+    }
+
+    public Rectangle2D.Float getBottomLine() {
+        return new Rectangle.Float(bottom.x,bottom.y+bottom.height-1,bottom.width,3);
     }
 
     private boolean hitSolidTileLeft(Level level) {
@@ -92,26 +113,6 @@ public class Platform extends GameObject {
         int distanceToTile = 0;
 
         return !transparentTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
-    }
-
-    // getters
-
-    public Rectangle2D.Float getTop() {
-        return top;
-    }
-
-    // draw
-
-    protected void drawSomeBox(Rectangle2D.Float box, Color color, Graphics g, int levelOffset) {
-        // draw hitbox
-        g.setColor(color);
-        g.fillRect((int) (box.x - levelOffset), (int) box.y, (int) box.width, (int) box.height);
-
-        // draw stroke
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setStroke(new BasicStroke(2)); // set stroke width
-        g2d.setColor(Color.BLACK); // set stroke color
-        g2d.drawRect((int) box.x - levelOffset, (int) box.y, (int) box.width, (int) box.height); // draw the rectangle outline
     }
 
 }

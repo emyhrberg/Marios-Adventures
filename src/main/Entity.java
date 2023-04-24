@@ -66,6 +66,16 @@ public class Entity {
 	}
 
 	protected boolean moveToPosition(float x, float y, float width, float height, Level level) {
+		// handle platforms
+		if(currentPlatform != null) {
+			xOnPlatform += xDirection;
+			hitbox.x = xOnPlatform+currentPlatform.getTop().x;
+			if(hitbox.x > currentPlatform.getTop().x+currentPlatform.getTop().width || hitbox.x+width < currentPlatform.getTop().x) {
+				unbindPlatform();
+			}
+			return true;
+		}
+
 		// Handle slopes first
 		if (isDownSlope(level))
 			return moveDownSlope();
@@ -111,7 +121,7 @@ public class Entity {
 	// ====== Entity falling ======
 
 	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
-		if (onPlatform || inLava) {
+		if(currentPlatform != null || inLava) {
 			return false;
 		}
 
@@ -161,21 +171,33 @@ public class Entity {
 
 	// ====== Platforms ======
 
-	private boolean onPlatform = false;
+	public Rectangle2D.Float getHitboxTop() {
+		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
+	}
 
-	public void bindPlatform() {
+	private Platform currentPlatform;
+	private float xOnPlatform;
+	private boolean onPlatform;
+	public void bindPlatform(Platform p) {
+		if(currentPlatform != null || airSpeed <= 0) {
+			return;
+		}
+		System.out.println("bound");
 		onPlatform = true;
+		currentPlatform = p;
+		xOnPlatform = hitbox.x- currentPlatform.getTop().x;
 		this.setAirSpeed(0);
 		this.setInAir(false);
 		this.setJumping(false);
 	}
 
 	public void unbindPlatform() {
+		currentPlatform = null;
 		onPlatform = false;
 	}
 
-	public boolean isOnPlatform(){
-		return onPlatform;
+	public boolean isOnPlatform(Platform platform){
+		return onPlatform && currentPlatform == platform;
 	}
 
 	// ====== Lava ======

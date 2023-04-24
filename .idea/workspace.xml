@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Refactored ObjectManager to move functionality out to individual classes. Need to fix so player can fall off platform">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Deleted platforms code, trying again to fix platforms">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +128,7 @@
       <workItem from="1682171761436" duration="33283000" />
       <workItem from="1682250493848" duration="23239000" />
       <workItem from="1682278636895" duration="6414000" />
-      <workItem from="1682351742294" duration="5092000" />
+      <workItem from="1682351742294" duration="6374000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -404,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682357495934</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Deleted platforms code, trying again to fix platforms">
+      <created>1682359080313</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1682359080313</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,7 +420,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Platforms working between two solid points!" />
     <MESSAGE value="Fixed question reset" />
     <MESSAGE value="Fixed coin size" />
     <MESSAGE value="Added sparkle to coins" />
@@ -439,7 +444,8 @@
     <MESSAGE value="Working on platform bug, works on 2.png but not on 1.png" />
     <MESSAGE value="Fixed platforms! Refactoring ObjectManager code" />
     <MESSAGE value="Refactored ObjectManager to move functionality out to individual classes. Need to fix so player can fall off platform" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored ObjectManager to move functionality out to individual classes. Need to fix so player can fall off platform" />
+    <MESSAGE value="Deleted platforms code, trying again to fix platforms" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted platforms code, trying again to fix platforms" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

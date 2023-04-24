@@ -76,6 +76,18 @@ public class GameObject {
         g2d.drawRect((int) hitbox.x - levelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height); // draw the rectangle outline
     }
 
+    protected void drawSomeBox(Rectangle2D.Float box, Color color, Graphics g, int levelOffset) {
+        // draw hitbox
+        g.setColor(color);
+        g.fillRect((int) (box.x - levelOffset), (int) box.y, (int) box.width, (int) box.height);
+
+        // draw stroke
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setStroke(new BasicStroke(2)); // set stroke width
+        g2d.setColor(Color.BLACK); // set stroke color
+        g2d.drawRect((int) box.x - levelOffset, (int) box.y, (int) box.width, (int) box.height); // draw the rectangle outline
+    }
+
     // Getters nd setters
 
     public void setBreaking(boolean breaking) {
