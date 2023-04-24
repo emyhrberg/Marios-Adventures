@@ -1,5 +1,8 @@
 package objects;
 
+import helpers.SoundLoader;
+import main.Player;
+
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
 import static main.Game.SCALE;
@@ -16,8 +19,19 @@ public class Coin extends GameObject {
         doAnimation = true;
     }
 
-    public void update(Coin c) {
+    public void update(Player player, Coin c) {
         updateCoinAnimation(c);
+        coinPickup(player, c);
+    }
+
+    private void coinPickup(Player player,Coin c) {
+        if (c.hitbox.intersects(player.getHitbox())) {
+            if (!c.isHit()) {
+                c.setHit(true);
+                SoundLoader.playAudio("coin.wav", 0.5);
+                c.setSparkle(true);
+            }
+        }
     }
 
     private void updateCoinAnimation(Coin c) {

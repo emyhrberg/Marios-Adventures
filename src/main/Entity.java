@@ -73,9 +73,6 @@ public class Entity {
 			return moveDownSlope();
 		if (isUpSlope(level))
 			return moveUpSlope(x+width);
-//		if (isBrick(level)) {
-//			return true;
-//		}
 
 		// Handle if entity can move to position
 		if (canMoveToPosition(x, y, width, height, level) && health > 0) {
@@ -111,43 +108,6 @@ public class Entity {
 
 	protected boolean isTileOutsideLevel(int tileY) {
 		return tileY < 0 || tileY >= Game.TILES_IN_HEIGHT;
-	}
-
-	// ====== Bricks ======
-
-	protected boolean isBrick(Level level) {
-		java.util.List<Brick> hitBricks = new ArrayList<>();
-		for (Brick b : level.getBricks()) {
-			if (b.isActive()) {
-				if (hitbox.intersects(b.getHitbox()) && airSpeed < 0) {
-					hitBricks.add(b);
-					airSpeed = 0;
-				}
-			}
-		}
-		if (hitBricks.size() == 0) {
-			return false;
-		}
-
-
-		// Determine which brick to delete by comparing shared surface area.
-		Brick largestContact = null;
-		double areaTemp = 0;
-		for (Brick b: hitBricks) {
-			Rectangle2D intersection = b.getHitbox().createIntersection(this.getHitbox());
-			double area = (intersection.getWidth()*intersection.getHeight());
-			if (area > areaTemp) {
-				largestContact = b;
-			}
-		}
-		if (largestContact != null) {
-			largestContact.setActive(false);
-			float tileY = largestContact.getHitbox().y / TILES_SIZE;
-			float tileX = largestContact.getHitbox().x / TILES_SIZE;
-			level.getLevelData()[(int) (tileY)][(int) (tileX)] = 91;
-			return true;
-		}
-		return false;
 	}
 
 	// ====== Entity falling ======
@@ -228,8 +188,8 @@ public class Entity {
 		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
 	}
 
-	public boolean isOnPlatform() {
-		return onPlatform;
+	public boolean isOnPlatform(Platform platform){
+		return onPlatform && currentPlatform == platform;
 	}
 
 	// ====== Lava ======

@@ -35,14 +35,27 @@ public class Platform extends GameObject {
         top = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y, hitbox.width, 5));
     }
 
-    public void update(Player player, Level level) {
+    public void update(Player player, Level level, Platform p) {
         updateAnimationTick();
         updatePlatformPosition(player, level);
+        updatePlatformBinding(player, p);
     }
 
     private Direction direction = RIGHT;
     private static final float SPEED = 1.5f;
     private float platformSpeed;
+
+    private void updatePlatformBinding(Player player, Platform p) {
+        if (p.getBottom().intersects(player.getHitbox())) {
+            // player is colliding with bottom of platform. make player fall down
+            player.setAirSpeed(1 * SCALE);
+            if (!p.getBottomLine().intersects(player.getHitboxTop())) {
+                player.getHitbox().x = p.getXOfClosestHitbox(player);
+            }
+        } else if (p.getTop().intersects(player.getHitbox())) {
+            player.bindPlatform(p);
+        }
+    }
 
     private void updatePlatformPosition(Player player, Level level) {
         if (direction == RIGHT) {
@@ -63,7 +76,7 @@ public class Platform extends GameObject {
         top.x += platformSpeed;
 
         // move player with the platform's direction
-        if (player.isOnPlatform()) {
+        if (player.isOnPlatform(this)) {
             player.getHitbox().x += platformSpeed;
         }
     }

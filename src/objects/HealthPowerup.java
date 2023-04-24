@@ -2,6 +2,7 @@ package objects;
 
 import main.Entity;
 import main.Level;
+import main.Player;
 
 import static main.Game.SCALE;
 
@@ -20,8 +21,17 @@ public class HealthPowerup extends Entity {
         initHitbox(x + HEALTH_X_SPAWN_OFFSET, y - HEALTH_Y_SPAWN_OFFSET, HEALTH_SIZE, HEALTH_SIZE);
     }
 
-    public void update(Level level) {
+    public void update(Level level, Player player, HealthPowerup h) {
         updateHealthPos(level);
+        updateHealthPickup(player, h);
+    }
+
+    private void updateHealthPickup(Player player, HealthPowerup h) {
+        if (h.getHitbox().intersects(player.getHitbox())) {
+            h.setActive(false);
+            if (player.getHealth() < player.getMaxHealth())
+                player.setHealth(player.getHealth() + 20);
+        }
     }
 
     private void updateHealthPos(Level level) {

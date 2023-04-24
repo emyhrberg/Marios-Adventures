@@ -215,52 +215,23 @@ public class ObjectManager {
     private void updatePlatforms(Level level, Player player) {
         platforms = level.getPlatforms();
 
-        for (Platform p : platforms) {
-            if (p.getBottom().intersects(player.getHitbox())) {
-                // player is colliding with bottom of platform. make player fall down
-                player.setAirSpeed(1 * SCALE);
-                if (!p.getBottomLine().intersects(player.getHitboxTop())) {
-                    player.getHitbox().x = p.getXOfClosestHitbox(player);
-                }
-            } else if (p.getTop().intersects(player.getHitbox())) {
-                player.bindPlatform(p);
-            } else {
-                player.unbindPlatform();
-            }
-            p.update(player, level);
-        }
+        for (Platform p : platforms)
+            p.update(player, level, p);
+
     }
 
     private void updateHealths(Level level, Player player) {
-        for (HealthPowerup h : healths) {
-            if (h.isActive()) {
-                h.update(level);
-
-                if (h.getHitbox().intersects(player.getHitbox())) {
-                    h.setActive(false);
-                    if (player.getHealth() < player.getMaxHealth())
-                        player.setHealth(player.getHealth() + 20);
-                }
-            }
-        }
+        for (HealthPowerup h : healths)
+            if (h.isActive())
+                h.update(level, player, h);
     }
 
     private void updateCoins(Level level, Player player) {
         coins = level.getCoins();
 
         for (Coin c : coins)
-            if (c.isActive()) {
-
-                if (c.hitbox.intersects(player.getHitbox())) {
-                    if (!c.isHit()) {
-                        c.setHit(true);
-                        coinCount++;
-                        SoundLoader.playAudio("coin.wav", 0.5);
-                        c.setSparkle(true);
-                    }
-                }
-                c.update(c);
-            }
+            if (c.isActive())
+                c.update(player, c);
     }
 
     private void updateCannons(Level level) {
