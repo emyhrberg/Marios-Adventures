@@ -111,9 +111,7 @@ public class Entity {
 	// ====== Entity falling ======
 
 	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
-		// check platform
-		// todo change to onPlatform?
-		if (currentPlatform != null || inLava) {
+		if (onPlatform || inLava) {
 			return false;
 		}
 
@@ -163,31 +161,21 @@ public class Entity {
 
 	// ====== Platforms ======
 
-	private Platform currentPlatform;
 	private boolean onPlatform = false;
 
-	public void bindPlatform(Platform p) {
-		if(currentPlatform != null || airSpeed <= 0) {
-			return;
-		}
+	public void bindPlatform() {
 		onPlatform = true;
-		currentPlatform = p;
 		this.setAirSpeed(0);
 		this.setInAir(false);
 		this.setJumping(false);
 	}
 
 	public void unbindPlatform() {
-		currentPlatform = null;
 		onPlatform = false;
 	}
 
-	public Rectangle2D.Float getHitboxTop() {
-		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
-	}
-
-	public boolean isOnPlatform(Platform platform){
-		return onPlatform && currentPlatform == platform;
+	public boolean isOnPlatform(){
+		return onPlatform;
 	}
 
 	// ====== Lava ======

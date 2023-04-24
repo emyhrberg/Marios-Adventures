@@ -27,8 +27,8 @@ public class Platform extends GameObject {
     private final Rectangle2D.Float top;
 
     // Platform moving
-    private Direction platDirection = RIGHT;
-    private static final float SPEED = 1.5f;
+    private Direction platDir = LEFT;
+    private static final float MAX_SPEED = 0.5f;
     private float platformSpeed;
 
     public Platform(int x, int y, ObjectType objectType) {
@@ -45,29 +45,25 @@ public class Platform extends GameObject {
     }
 
     private void updatePlatformBinding(Player player, Platform p) {
-        if (p.getBottom().intersects(player.getHitbox())) {
-            // player is colliding with bottom of platform. make player fall down
-            player.setAirSpeed(1 * SCALE);
-            if (!p.getBottomLine().intersects(player.getHitboxTop())) {
-                player.getHitbox().x = p.getXOfClosestHitbox(player);
-            }
-        } else if (p.getTop().intersects(player.getHitbox())) {
-            player.bindPlatform(p);
+        if (p.getTop().intersects(player.getHitbox())) {
+            player.bindPlatform();
+        } else {
+            // todo if not on a platform, unbind
+//            player.unbindPlatform();
         }
     }
 
     private void updatePlatformPosition(Player player, Level level) {
-        if (platDirection == RIGHT) {
-            platformSpeed = SPEED;
-        } else if (platDirection == LEFT) {
-            platformSpeed = -SPEED;
-        }
+        if (platDir == RIGHT)
+            platformSpeed = MAX_SPEED;
+        if (platDir == LEFT)
+            platformSpeed = -MAX_SPEED;
 
-        if (hitSolidTileLeft(level)) {
-            platDirection = RIGHT;
-        } else if (hitSolidTileRight(level)) {
-            platDirection = LEFT;
-        }
+        if (hitSolidTileLeft(level))
+            platDir = RIGHT;
+        if (hitSolidTileRight(level))
+            platDir = LEFT;
+
 
         // Move platform position
         hitbox.x += platformSpeed;
@@ -75,7 +71,7 @@ public class Platform extends GameObject {
         top.x += platformSpeed;
 
         // move player with the platform's direction
-        if (player.isOnPlatform(this)) {
+        if (player.isOnPlatform()) {
             player.getHitbox().x += platformSpeed;
         }
     }
@@ -100,27 +96,22 @@ public class Platform extends GameObject {
 
     // getters
 
-    public float getXOfClosestHitbox(Player player) {
-        float distanceToLeft = Math.abs(hitbox.x - player.getHitbox().x + player.getHitbox().width);
-        float distanceToRight = Math.abs(hitbox.x + hitbox.width - player.getHitbox().x);
-
-        if (distanceToLeft < distanceToRight) {
-            return hitbox.x - player.getHitbox().width;
-        } else {
-            return hitbox.x + hitbox.width;
-        }
-    }
-
-    public Rectangle2D.Float getBottom() {
-        return bottom;
-    }
-
     public Rectangle2D.Float getTop() {
         return top;
     }
 
-    public Rectangle2D.Float getBottomLine() {
-        return new Rectangle.Float(bottom.x,bottom.y+bottom.height-1,bottom.width,3);
+    // draw
+
+    protected void drawSomeBox(Rectangle2D.Float box, Color color, Graphics g, int levelOffset) {
+        // draw hitbox
+        g.setColor(color);
+        g.fillRect((int) (box.x - levelOffset), (int) box.y, (int) box.width, (int) box.height);
+
+        // draw stroke
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setStroke(new BasicStroke(2)); // set stroke width
+        g2d.setColor(Color.BLACK); // set stroke color
+        g2d.drawRect((int) box.x - levelOffset, (int) box.y, (int) box.width, (int) box.height); // draw the rectangle outline
     }
 
 }

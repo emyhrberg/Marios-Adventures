@@ -200,6 +200,20 @@ public class ObjectManager {
         drawHealths(g, levelOffset);
     }
 
+    private void drawPlatforms(Graphics g, int levelOffset) {
+        for (Platform p : platforms)  {
+            int x = (int) p.hitbox.x - levelOffset;
+            int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
+            g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
+
+            // Debug hitboxes
+            p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
+            p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
+//            p.drawSomeBox(p.getBottom(), Color.DARK_GRAY, g, levelOffset);
+//            p.drawSomeBox(p.getBottomLine(), Color.YELLOW, g, levelOffset);
+        }
+    }
+
     private void drawHealths(Graphics g, int levelOffset) {
         for (HealthPowerup h : healths) {
             if (h.isActive()) {
@@ -262,15 +276,6 @@ public class ObjectManager {
             int y = (int) l.hitbox.y - LAVA_Y_OFFSET;
             g.drawImage(LAVA_IMAGES, x, y, LAVA_WIDTH, LAVA_HEIGHT, null);
 //            l.drawHitbox(g, levelOffset);
-        }
-    }
-
-    private void drawPlatforms(Graphics g, int levelOffset) {
-        for (Platform p : platforms)  {
-            int x = (int) p.hitbox.x - levelOffset;
-            int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
-            g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
-//            p.drawHitbox(g, levelOffset);
         }
     }
 
