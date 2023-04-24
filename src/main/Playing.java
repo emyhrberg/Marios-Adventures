@@ -234,17 +234,12 @@ public class Playing extends State {
         objectManager.resetAllObjects();
         setCurrentLevelSpawnPoint();
 
-        System.out.println("----------------------------------");
-
         // set new level data where we reset all the bricks (temp value 91, to its default value of 26)
-
         int[][] levelData = levelManager.getLevel().getLevelData();
         for (int i = 0; i < levelData.length; i++)
             for (int j = 0; j < levelData[i].length; j++)
                 if (levelData[i][j] == 91)
                     levelData[i][j] = 26;
-
-        levelManager.getLevel().printLevelData(levelData);
 
         levelManager.getLevel().setLevelData(levelManager.getLevel().getLevelData());
     }

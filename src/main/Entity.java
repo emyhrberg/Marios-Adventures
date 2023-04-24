@@ -73,12 +73,9 @@ public class Entity {
 			return moveDownSlope();
 		if (isUpSlope(level))
 			return moveUpSlope(x+width);
-		if (isBrick(level)) {
-			return true;
-		}
-//		if (isBrick(level))
-//			return false;
-
+//		if (isBrick(level)) {
+//			return true;
+//		}
 
 		// Handle if entity can move to position
 		if (canMoveToPosition(x, y, width, height, level) && health > 0) {

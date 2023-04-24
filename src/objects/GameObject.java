@@ -21,6 +21,7 @@ public class GameObject {
     protected boolean active = true;
     protected int animationTick, animationIndex;
     protected boolean isSparkle = false;
+    protected boolean isBreaking = false;
     protected boolean isHit = false;
 
     public GameObject(int x, int y, ObjectType objectType) {
@@ -50,6 +51,7 @@ public class GameObject {
         doAnimation = true;
         isHit = false;
         isSparkle = false;
+        isBreaking = false;
     }
 
     // Hitboxes
@@ -75,6 +77,12 @@ public class GameObject {
     }
 
     // Getters nd setters
+
+    public void setBreaking(boolean breaking) {
+        isBreaking = breaking;
+        animationTick = 0;
+        animationIndex = 0;
+    }
 
     public boolean isHit() {
         return isHit;
