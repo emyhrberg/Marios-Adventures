@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MainModule:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested, no noticeable bugs!">
-      <change afterPath="$PROJECT_DIR$/resources/fonts/mario1.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fonts/nico.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fonts/un.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/old/1_b.png" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested, no noticeable bugs, looks alright!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/tiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tiles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/tiles.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tiles.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,25 +40,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Github&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures/out",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\resources\images\old" />
@@ -139,7 +131,7 @@
       <workItem from="1682171761436" duration="33283000" />
       <workItem from="1682250493848" duration="23239000" />
       <workItem from="1682278636895" duration="6414000" />
-      <workItem from="1682351742294" duration="18898000" />
+      <workItem from="1682351742294" duration="19647000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit to GitHub">
       <created>1681669227950</created>
@@ -449,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682367526407</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Game playtested, no noticeable bugs, looks alright!">
+      <created>1682373926577</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1682373926577</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +458,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added sparkle to coins" />
     <MESSAGE value="Question work" />
     <MESSAGE value="Added plant enemies, working ok!, still some minor collision detection bug with player" />
     <MESSAGE value="Fixed plant&amp;player collision bug" />
@@ -484,7 +482,8 @@
     <MESSAGE value="Deleted platforms code, trying again to fix platforms" />
     <MESSAGE value="Platforms working!" />
     <MESSAGE value="Game playtested, no noticeable bugs!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game playtested, no noticeable bugs!" />
+    <MESSAGE value="Game playtested, no noticeable bugs, looks alright!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game playtested, no noticeable bugs, looks alright!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

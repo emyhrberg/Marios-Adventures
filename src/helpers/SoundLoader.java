@@ -3,12 +3,13 @@ package helpers;
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class SoundLoader {
 
 	public static Clip playAudio(String fileName, double... volumeArr) {
 		float volume = (float) (volumeArr.length > 0 ? volumeArr[0] : 1.0); // set default volume of 1.0 if volume argument is not provided
-		try (BufferedInputStream is = (BufferedInputStream) SoundLoader.class.getResourceAsStream("/audio/" + fileName)) {
+		try (InputStream is = new BufferedInputStream(SoundLoader.class.getResourceAsStream("/audio/" + fileName))) {
 
 			// handle sound file not existing
 			if (is == null) {
