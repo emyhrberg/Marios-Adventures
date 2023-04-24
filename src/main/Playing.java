@@ -7,6 +7,8 @@ import objects.ObjectManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
@@ -14,6 +16,7 @@ import static constants.GameState.*;
 import static main.Game.*;
 import static main.Player.PLAYER_HEIGHT;
 import static main.Player.PLAYER_WIDTH;
+import static objects.Coin.coinCount;
 
 /**
  * Playing is where the player plays the game
@@ -27,7 +30,6 @@ public class Playing extends State {
     private int levelOffset;
     private int shakeOffset;
     private boolean movingLeft, movingRight;
-    private boolean playerDying = false;
 
     private final EnemyManager enemyManager;
     private final LevelManager levelManager;
@@ -43,7 +45,7 @@ public class Playing extends State {
     private static final int CLOUDS_HEIGHT = 360/2;
 
     // Drawing health and level
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("a.ttf");
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("b.ttf");
     private static final BufferedImage HEART = ImageLoader.loadImage("/images/heart.png");
     private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("/images/health_bar.png");
     private static final int HEART_WIDTH = 90/2;
@@ -132,15 +134,16 @@ public class Playing extends State {
         int playerY = (int) player.getHitbox().y / TILES_SIZE;
 
 //        System.out.println("X: " + playerX + " | Y: " + playerY);
+//        System.out.println("X: " + finalX + " | Y: " + finalY);
 
-        // Player is inside the final X position and at the exact Y position on the bottom or up to 4 tiles above it.
-        // Can also be below the flag, but that should never happen
-        if (playerX == finalX && playerY >= finalY - 4) {
-            if (playerY >= finalY - 4) {
+        // Player is inside the final position
+        // Exact X position
+        // At the exact Y position on the bottom or up to 3 tiles above it.
+        if (playerX == finalX) {
+            if (playerY >= finalY - 3 && playerY <= finalY) {
                 setLevelCompleted();
             }
         }
-
     }
 
     // ====== Draw methods ======
@@ -149,8 +152,10 @@ public class Playing extends State {
         drawSky(g);
         drawClouds(g);
         drawHills(g);
-        drawHealth(g);
+        drawHealthBar(g);
         drawHeart(g);
+        drawHealthText(g);
+        drawCoinText(g);
 //        drawLevelNumber(g);
 
         levelManager.draw(g, levelOffset);
@@ -187,7 +192,7 @@ public class Playing extends State {
         g.drawImage(HEART,HEART_X,HEART_Y, HEART_WIDTH, HEART_HEIGHT,null);
     }
 
-    private void drawHealth(Graphics g) {
+    private void drawHealthBar(Graphics g) {
         // Draw black bar around health
         g.drawImage(HEALTH_BAR, HEALTH_BAR_X, HEALTH_BAR_Y, BAR_WIDTH, BAR_HEIGHT,null);
 
@@ -195,18 +200,68 @@ public class Playing extends State {
         int rectWHealth = (int) (HEALTH_RED_W * (player.getHealth() / (float) player.getMaxHealth()));
         g.setColor(Color.RED);
         g.fillRect(HEALTH_RED_X, HEALTH_RED_Y, rectWHealth, HEALTH_RED_H);
+    }
 
-        // Draw e.g 80/100 text
+    private void drawHealthText(Graphics g) {
+        // text shape
         final String health = player.getHealth() + "/" + player.getMaxHealth();
         g.setFont(CUSTOM_FONT);
+        Graphics2D g2d = (Graphics2D) g;
+        TextLayout tl = new TextLayout(health, CUSTOM_FONT, g2d.getFontRenderContext());
+        Shape shape = tl.getOutline(null);
+
+        // text position
         FontMetrics fm = g.getFontMetrics();
         int textWidth = fm.stringWidth(health);
         int textHeight = fm.getHeight();
-        int textX = HEALTH_RED_X + (HEALTH_RED_W - textWidth) / 2;
-        int textY = HEALTH_RED_Y - (textHeight / 2) - 4;
-        g.setColor(new Color(15,15,15));
-        g.drawString(health, textX, textY);
+        int x = HEALTH_RED_X + (HEALTH_RED_W - textWidth) / 2;
+        int y = HEALTH_RED_Y - (textHeight / 2) - 4;
+        AffineTransform transform = AffineTransform.getTranslateInstance(x, y);
+        g2d.transform(transform);
+
+        // draw black
+        g2d.setStroke(new BasicStroke(3f));
+        g2d.setColor(new Color(24,24,24));
+        g2d.draw(shape);
+
+        // draw white
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape);
+
+        // restore the original transform
+        g2d.setTransform(new AffineTransform());
     }
+
+    private void drawCoinText(Graphics g) {
+        // text shape
+        final String health = "Coins: " + coinCount;
+        g.setFont(CUSTOM_FONT);
+        Graphics2D g2d = (Graphics2D) g;
+        TextLayout tl = new TextLayout(health, CUSTOM_FONT, g2d.getFontRenderContext());
+        Shape shape = tl.getOutline(null);
+
+        // text position
+        FontMetrics fm = g.getFontMetrics();
+        int textWidth = fm.stringWidth(health);
+        int textHeight = fm.getHeight();
+        int x = (int) (GAME_WIDTH - textWidth * 1* SCALE);
+        int y = HEALTH_RED_Y - (textHeight / 2) - 4;
+        AffineTransform transform = AffineTransform.getTranslateInstance(x, y);
+        g2d.transform(transform);
+
+        // draw black
+        g2d.setStroke(new BasicStroke(3f));
+        g2d.setColor(new Color(24,24,24));
+        g2d.draw(shape);
+
+        // draw white
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape);
+
+        // restore the original transform
+        g2d.setTransform(new AffineTransform());
+    }
+
 
     private void drawLevelNumber(Graphics g) {
         // Create the level string
@@ -337,9 +392,4 @@ public class Playing extends State {
         return levelManager;
     }
 
-    // ====== Setters ======
-
-    public void setPlayerDying(boolean playerDying) {
-        this.playerDying = playerDying;
-    }
 }

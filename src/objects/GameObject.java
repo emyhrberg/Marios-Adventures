@@ -102,6 +102,8 @@ public class GameObject {
 
     public void setHit(boolean hit) {
         isHit = hit;
+        animationTick = 0;
+        animationIndex = 0;
     }
 
     public boolean isSparkle() {

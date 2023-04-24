@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static constants.Direction.UP;
-import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static main.Game.TILES_SIZE_DEFAULT;
@@ -160,9 +158,11 @@ public class ObjectManager {
     }
 
     private void updateHealths(Level level, Player player) {
-        for (HealthPowerup h : healths)
-            if (h.isActive())
-                h.update(level, player, h);
+        // no healths, just return
+        if (healths.size() != 0)
+            for (HealthPowerup h : healths)
+                if (h.isActive())
+                    h.update(level, player, h);
     }
 
     private void updateCoins(Level level, Player player) {
@@ -314,7 +314,7 @@ public class ObjectManager {
                 }
 
                 // debug
-//                c.drawHitbox(g, levelOffset);
+//                c.drawSomeBox(c.hitbox, new Color(100,255,50,100), g, levelOffset);
             }
         }
     }

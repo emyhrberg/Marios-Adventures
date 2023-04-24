@@ -4,7 +4,8 @@ import main.Entity;
 import main.Level;
 import main.Player;
 
-import static main.Game.SCALE;
+import static main.Game.*;
+import static objects.ObjectManager.healths;
 
 public class HealthPowerup extends Entity {
 
@@ -15,6 +16,8 @@ public class HealthPowerup extends Entity {
 
     // properties
     private boolean isActive = true;
+    private static final float X_SPEED = 0.4f * SCALE;
+    private static final float Y_SPEED = 0.3f * SCALE;
 
     public HealthPowerup(int x, int y) {
         super(x, y,0,0);
@@ -22,7 +25,7 @@ public class HealthPowerup extends Entity {
     }
 
     public void update(Level level, Player player, HealthPowerup h) {
-        updateHealthPos(level);
+        updateHealthPos(level, h);
         updateHealthPickup(player, h);
     }
 
@@ -34,22 +37,21 @@ public class HealthPowerup extends Entity {
         }
     }
 
-    private void updateHealthPos(Level level) {
+    private void updateHealthPos(Level level, HealthPowerup h) {
         // Check if player is in air and set inAir to true if he is
         if (isEntityInAir(hitbox, level))
             inAir = true;
 
         // Player is in air; fall to the ground
         if (inAir) {
-            hitbox.y += 1;
+            hitbox.y += Y_SPEED;
             startFalling(level);
         } else {
-            hitbox.x += 0.7f;
+            hitbox.x += X_SPEED;
         }
     }
 
     // getters
-
 
     public boolean isActive() {
         return isActive;

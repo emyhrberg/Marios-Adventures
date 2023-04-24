@@ -6,16 +6,21 @@ import main.Player;
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
 import static main.Game.SCALE;
+import static main.Game.TILES_SIZE_DEFAULT;
 
 public class Coin extends GameObject {
 
     // Coin size
-    public static final int COIN_SIZE_DEF = 30;
-    public static final int COIN_SIZE = (int) (COIN_SIZE_DEF * SCALE);
+    public static final int COIN_SIZE_DEFAULT = (int) (TILES_SIZE_DEFAULT * 0.75);
+    public static final int COIN_SIZE = (int) (COIN_SIZE_DEFAULT * SCALE);
+    private static final int X = (int) ((TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2 * SCALE);
+    private static final int Y = (int) ((TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2 * SCALE);
+
+    public static int coinCount;
 
     public Coin(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y, COIN_SIZE_DEF, COIN_SIZE_DEF);
+        initHitbox(x+X, y+Y, COIN_SIZE_DEFAULT, COIN_SIZE_DEFAULT);
         doAnimation = true;
     }
 
@@ -26,10 +31,10 @@ public class Coin extends GameObject {
 
     private void coinPickup(Player player,Coin c) {
         if (c.hitbox.intersects(player.getHitbox())) {
-            if (!c.isHit()) {
-                c.setHit(true);
-                SoundLoader.playAudio("coin.wav", 0.5);
+            if (!c.isSparkle()) {
                 c.setSparkle(true);
+                SoundLoader.playAudio("coin.wav", 0.5);
+                coinCount++;
             }
         }
     }

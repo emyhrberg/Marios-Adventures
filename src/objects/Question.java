@@ -44,6 +44,7 @@ public class Question extends GameObject {
 
             // Question collision first time!
             if (!q.isHit()) {
+                q.setHit(true);
                 healths.add(new HealthPowerup((int) q.hitbox.x, (int) q.hitbox.y));
             }
         }
@@ -63,7 +64,6 @@ public class Question extends GameObject {
     private void updateQuestionBounce() {
         // Set pushBackOffsetDir to UP to start this animation
         if (pushYDir == UP) {
-            isHit = true;
             pushYDraw -= BLOCK_SPEED;
             if (pushYDraw <= BLOCK_LIMIT)
                 pushYDir = DOWN;
@@ -75,7 +75,6 @@ public class Question extends GameObject {
     }
 
     // getters and setters
-
 
     public float getPushYDraw() {
         return pushYDraw;
