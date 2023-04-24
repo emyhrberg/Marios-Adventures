@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static constants.ObjectConstants.ObjectType.*;
 import static main.Game.TILES_SIZE;
@@ -16,13 +18,12 @@ import static main.Game.TILES_SIZE;
  */
 public class Level {
 
-    // List of all the transparent tiles from the tileset
-    public static final ArrayList<Integer> transparentTiles = new ArrayList<>(Arrays.asList(6,7,59,69,76,79,85,85,86,88,89,90,92,93,94,95,96,97,98,99));
+    // Tiles between 50 and 100 are transparent
+    public static final ArrayList<Integer> transparentTiles = IntStream.rangeClosed(50, 100).boxed().collect(Collectors.toCollection(ArrayList::new));
 
     // ====== Red Values ======
-    public static final int DOWN_SLOPE = 6;
-    public static final int UP_SLOPE = 7;
-    public static final int BRICK = 26;
+    public static final int DOWN_SLOPE = 87;
+    public static final int UP_SLOPE = 88;
 
     // ====== Green Values ======
     private static final int SHARK = 0;
@@ -115,13 +116,26 @@ public class Level {
                     bricks.add(new Brick(x * TILES_SIZE, y * TILES_SIZE, BRICK_TYPE));
 
                 // Print level data
-//                System.out.printf("%02d ", levelData[y][x]);
+                System.out.printf("%02d ", levelData[y][x]);
             }
-//    	    System.out.println(" ");
+    	    System.out.println(" ");
         }
     }
 
     // ====== Getters ======
+
+    public void setLevelData(int[][] levelData) {
+        this.levelData = levelData;
+    }
+
+    public void printLevelData(int[][] levelData) {
+        for (int[] row : levelData) {
+            for (int element : row) {
+                System.out.printf("%02d ", element);
+            }
+            System.out.println(); // Move to next line after each row
+        }
+    }
 
     public List<Brick> getBricks() {
         return bricks;

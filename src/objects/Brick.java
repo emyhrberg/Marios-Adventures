@@ -15,15 +15,11 @@ public class Brick extends GameObject {
     public static final int BRICK_W = (int) (BRICK_W_D * SCALE);
     public static final int BRICK_H = (int) (BRICK_H_D * SCALE);
 
-    // backup hitbox
-    private Rectangle2D.Float backup;
-
     public Brick(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         float off = 2 * SCALE;
 
         initHitbox(x + off, y + BRICK_H - off, BRICK_W_D - off, 10);
-        backup = new Rectangle2D.Float(hitbox.x, hitbox.y, hitbox.width, hitbox.height - 5);
     }
 
     public void update(Brick b) {

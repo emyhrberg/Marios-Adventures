@@ -6,6 +6,7 @@ import objects.Platform;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 import static constants.Direction.*;
 import static main.Game.SCALE;
@@ -118,32 +119,36 @@ public class Entity {
 	// ====== Bricks ======
 
 	protected boolean isBrick(Level level) {
-		float playerX1 = hitbox.x / TILES_SIZE;
-		float playerY1 = hitbox.y / TILES_SIZE;
-//		System.out.println("X: " + playerX1 + " | Y: " + playerY1);
-
+		java.util.List<Brick> hitBricks = new ArrayList<>();
 		for (Brick b : level.getBricks()) {
 			if (b.isActive()) {
 				if (hitbox.intersects(b.getHitbox()) && airSpeed < 0) {
-					// make player bounce down
+					hitBricks.add(b);
 					airSpeed = 0;
-
-					// delete brick
-					int playerX = (int) (hitbox.x / TILES_SIZE);
-					int playerY = (int) (hitbox.y / TILES_SIZE);
-					double hitboxCenterX = hitbox.getCenterX();
-					double brickCenterX = b.getHitbox().getCenterX();
-					if (hitboxCenterX < brickCenterX) {
-						// Hitting Left part of the brick
-						level.getLevelData()[playerY - 1][playerX + 1] = 90;
-					} else {
-						// Hitting Right part of the brick
-						level.getLevelData()[playerY - 1][playerX] = 90;
-					}
-					b.setActive(false);
-					return true;
 				}
 			}
+		}
+		if (hitBricks.size() == 0) {
+			return false;
+		}
+
+
+		// Determine which brick to delete by comparing shared surface area.
+		Brick largestContact = null;
+		double areaTemp = 0;
+		for (Brick b: hitBricks) {
+			Rectangle2D intersection = b.getHitbox().createIntersection(this.getHitbox());
+			double area = (intersection.getWidth()*intersection.getHeight());
+			if (area > areaTemp) {
+				largestContact = b;
+			}
+		}
+		if (largestContact != null) {
+			largestContact.setActive(false);
+			float tileY = largestContact.getHitbox().y / TILES_SIZE;
+			float tileX = largestContact.getHitbox().x / TILES_SIZE;
+			level.getLevelData()[(int) (tileY)][(int) (tileX)] = 91;
+			return true;
 		}
 		return false;
 	}

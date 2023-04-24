@@ -34,19 +34,6 @@ public class LevelManager {
 		initLevels();
     }
 
-    private void initSpriteAtlas() {
-		// Loop through all the pixels of the level image
-		for (int y = 0; y < ROWS; y++)
-			for (int x = 0; x < IMAGES_IN_ROW; x++) {
-
-				// Get current sub-image from the sprite-atlas
-				int xIndex = y * IMAGES_IN_ROW + x;
-
-				// Populate the sprite atlas!
-				tilesImages[xIndex] = TILES.getSubimage(x * PIXELS_SIZE, y * PIXELS_SIZE, PIXELS_SIZE, PIXELS_SIZE);
-			}
-    }
-
     private void initLevels() {
 		// Create an empty array to store all levels in
 		levels = new ArrayList<>();
@@ -60,6 +47,19 @@ public class LevelManager {
 			}
 		}
     }
+
+	private void initSpriteAtlas() {
+		// Loop through all the pixels of the level image
+		for (int y = 0; y < ROWS; y++)
+			for (int x = 0; x < IMAGES_IN_ROW; x++) {
+
+				// Get current sub-image from the sprite-atlas
+				int xIndex = y * IMAGES_IN_ROW + x;
+
+				// Populate the sprite atlas!
+				tilesImages[xIndex] = TILES.getSubimage(x * PIXELS_SIZE, y * PIXELS_SIZE, PIXELS_SIZE, PIXELS_SIZE);
+			}
+	}
 
     // ====== Draw ======
 

@@ -131,8 +131,9 @@ public class ObjectManager {
                 // handle player question collision
                 if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
 
-                    // Bounce question up
+                    // Bounce question up and player down
                     q.setPushYDir(UP);
+                    player.setAirSpeed(0);
 
                     // Question collision first time!
                     if (!q.isHit()) {
