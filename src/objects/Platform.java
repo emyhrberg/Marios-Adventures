@@ -33,7 +33,7 @@ public class Platform extends GameObject {
 
     public Platform(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y, PLATFORM_WIDTH_HITBOX, PLATFORM_HEIGHT_DEF);
+        initHitbox(x, y+PLATFORM_Y_OFFSET, PLATFORM_WIDTH_HITBOX, PLATFORM_HEIGHT_DEF);
         bottom = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y+5, hitbox.width, hitbox.height));
         top = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y, hitbox.width, 5));
     }

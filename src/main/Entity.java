@@ -167,7 +167,7 @@ public class Entity {
 		if (currentPlatform != null) {
 			xOnPlatform += xDirection;
 			hitbox.x = xOnPlatform+currentPlatform.getTop().x;
-			if (hitbox.x > currentPlatform.getTop().x+currentPlatform.getTop().width || hitbox.x+width < currentPlatform.getTop().x) {
+			if (hitbox.x > currentPlatform.getTop().x+currentPlatform.getTop().width || hitbox.x+hitbox.width < currentPlatform.getTop().x) {
 				unbindPlatform();
 			}
 		}
@@ -180,14 +180,17 @@ public class Entity {
 		onPlatform = true;
 		currentPlatform = p;
 		xOnPlatform = hitbox.x- currentPlatform.getTop().x;
+		hitbox.y = currentPlatform.getHitbox().y - hitbox.height;
 
-		setAirSpeed(0);
+		// set player to not in air
 		setInAir(false);
+		setAirSpeed(0);
 	}
 
 	public void unbindPlatform() {
 		currentPlatform = null;
 		onPlatform = false;
+		hitbox.y -= Platform.PLATFORM_Y_OFFSET+1;
 	}
 
 	public boolean isOnPlatform(Platform platform){

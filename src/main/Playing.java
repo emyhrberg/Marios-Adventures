@@ -45,7 +45,7 @@ public class Playing extends State {
     private static final int CLOUDS_HEIGHT = 360/2;
 
     // Drawing health and level
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("b.ttf");
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("m.ttf");
     private static final BufferedImage HEART = ImageLoader.loadImage("/images/heart.png");
     private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("/images/health_bar.png");
     private static final int HEART_WIDTH = 90/2;
@@ -204,7 +204,7 @@ public class Playing extends State {
 
     private void drawHealthText(Graphics g) {
         // text shape
-        final String health = player.getHealth() + "/" + player.getMaxHealth();
+        final String health = String.valueOf(player.health);
         g.setFont(CUSTOM_FONT);
         Graphics2D g2d = (Graphics2D) g;
         TextLayout tl = new TextLayout(health, CUSTOM_FONT, g2d.getFontRenderContext());
@@ -234,7 +234,7 @@ public class Playing extends State {
 
     private void drawCoinText(Graphics g) {
         // text shape
-        final String health = "Coins: " + coinCount;
+        final String health = "Coins  " + coinCount;
         g.setFont(CUSTOM_FONT);
         Graphics2D g2d = (Graphics2D) g;
         TextLayout tl = new TextLayout(health, CUSTOM_FONT, g2d.getFontRenderContext());
@@ -261,7 +261,6 @@ public class Playing extends State {
         // restore the original transform
         g2d.setTransform(new AffineTransform());
     }
-
 
     private void drawLevelNumber(Graphics g) {
         // Create the level string

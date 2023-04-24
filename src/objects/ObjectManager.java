@@ -203,7 +203,7 @@ public class ObjectManager {
     private void drawPlatforms(Graphics g, int levelOffset) {
         for (Platform p : platforms)  {
             int x = (int) p.hitbox.x - levelOffset;
-            int y = (int) p.hitbox.y + PLATFORM_Y_OFFSET;
+            int y = (int) p.hitbox.y;
             g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
 
             // Debug hitboxes
