@@ -38,14 +38,21 @@ public class LevelManager {
 		// Create an empty array to store all levels in
 		levels = new ArrayList<>();
 
-		// Load the levels!
-		for (int i = 0; i < 1; i++) {
-			try (InputStream is = LevelManager.class.getResourceAsStream("/images/" + (i + 1) + ".png")) {
-				levels.add(new Level(ImageIO.read(is)));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		// Load a single level!
+		try (InputStream is = LevelManager.class.getResourceAsStream("/images/1.png")) {
+			levels.add(new Level(ImageIO.read(is)));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
+		// Load multiple levels!
+//		for (int i = 0; i < 1; i++) {
+//			try (InputStream is = LevelManager.class.getResourceAsStream("/images/" + (i + 1) + ".png")) {
+//				levels.add(new Level(ImageIO.read(is)));
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
     }
 
 	private void initSpriteAtlas() {
