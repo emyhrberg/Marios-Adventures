@@ -316,8 +316,8 @@ public class Playing extends State {
         final int last = game.getPlaying().getLevelManager().getAmountOfLevels() - 1;
         if (currentLevel == last)
             game.setGameState(GAME_COMPLETED);
-//        else
-//            game.setGameState(LEVEL_COMPLETED);
+        else
+            game.setGameState(LEVEL_COMPLETED);
     }
 
     // ====== Key and Mouse events ======

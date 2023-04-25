@@ -12,7 +12,7 @@ import static constants.Direction.RIGHT;
 import static constants.ObjectConstants.ObjectType;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
-import static main.Level.transparentTiles;
+import static main.Level.solidTiles;
 
 public class Platform extends GameObject {
 
@@ -105,7 +105,7 @@ public class Platform extends GameObject {
 
         int distanceToTile = 0;
 
-        return !transparentTiles.contains(level.getLevelData()[tileY][tileX - distanceToTile]);
+        return solidTiles.contains(level.getLevelData()[tileY][tileX - distanceToTile]);
     }
 
     private boolean hitSolidTileRight(Level level) {
@@ -114,7 +114,7 @@ public class Platform extends GameObject {
 
         int distanceToTile = 0;
 
-        return !transparentTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
+        return solidTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
     }
 
 }

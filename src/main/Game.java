@@ -53,7 +53,11 @@ public class Game implements Runnable {
     // ====== Disable key presses ======
     private boolean allowPress = false;
     private long lastCheck;
-    private static final int DELAY = 3000;
+    private static final int DISALLOW_KEY_TIME = 3000;
+
+    // ====== Wait some time ======
+    private static final int WAIT_TIME = 500;
+    private boolean allowDraw = false;
 
     // ====== Constructor ======
     public Game() {
@@ -80,14 +84,20 @@ public class Game implements Runnable {
     }
 
     public void update() {
-        boolean hasTimePassed = System.currentTimeMillis() - lastCheck >= DELAY;
-        if (hasTimePassed) {
-            allowPress = true;
-        }
+
 
         switch (gameState) {
             case MENU       -> menu.update();
             case PLAYING    -> playing.update();
+            case LEVEL_COMPLETED, GAME_COMPLETED, GAME_OVER -> {
+                final long timeSinceLastCheck = System.currentTimeMillis() - lastCheck;
+                if (timeSinceLastCheck >= DISALLOW_KEY_TIME) {
+                    allowPress = true;
+                }
+                if (timeSinceLastCheck >= WAIT_TIME) {
+                    allowDraw = true;
+                }
+            }
         }
     }
 
@@ -174,7 +184,7 @@ public class Game implements Runnable {
         this.gameState = gameState;
 
         playSounds();
-        disableKeyPress();
+        handleWaitStates();
     }
 
     // ====== Game methods ======
@@ -220,8 +230,9 @@ public class Game implements Runnable {
         }
     }
 
-    private void disableKeyPress() {
+    private void handleWaitStates() {
         if (gameState == GAME_COMPLETED || gameState == GAME_OVER || gameState == LEVEL_COMPLETED) {
+            allowDraw = false;
             allowPress = false;
             lastCheck = System.currentTimeMillis();
         }
@@ -265,7 +276,11 @@ public class Game implements Runnable {
         return gameOverOverlay;
     }
 
-    public boolean isAllowPress() {
+    public boolean isPressAllowed() {
         return allowPress;
+    }
+
+    public boolean isDrawAllowed() {
+        return allowDraw;
     }
 }

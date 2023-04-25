@@ -2,6 +2,8 @@ package objects;
 
 import constants.ObjectConstants.ObjectType;
 
+import java.util.Random;
+
 import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
 import static main.Game.SCALE;
 import static objects.ObjectManager.bullets;
@@ -18,8 +20,11 @@ public class Cannon extends GameObject {
 
     // Properties
     private static final int CANNON_DELAY = 3000;
+    private static final int[] CANNON_DELAYS = {2800,3000,3200};
+    private static final Random RND                 = new Random();
+    private int bottomWaitIndexBetweenZeroAndFive;
     private long lastCannonShot;
-    private boolean shootAllowed;
+    private boolean canShoot;
 
     public Cannon(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -32,9 +37,9 @@ public class Cannon extends GameObject {
     }
 
     private void updateShootCooldown() {
-        shootAllowed = System.currentTimeMillis() >= lastCannonShot + CANNON_DELAY;
+        canShoot = System.currentTimeMillis() >= lastCannonShot + CANNON_DELAY;
 
-        if (shootAllowed) {
+        if (canShoot) {
             updateCannonAnimation();
         } else if (animationIndex >= 4) {
             updateCannonAnimation();
@@ -45,10 +50,10 @@ public class Cannon extends GameObject {
     }
 
     private void updateShoot(Cannon c) {
-        if (c.animationIndex == 4 && c.animationTick == 0 && c.isShootAllowed()) {
+        if (animationIndex == 4 && animationTick == 0 && canShoot) {
             // Add a bullet
             bullets.add(new Bullet((int) c.hitbox.x, (int) c.hitbox.y, BULLET_TYPE));
-            c.setLastCannonShot(System.currentTimeMillis());
+            lastCannonShot = System.currentTimeMillis();
         }
     }
 
@@ -64,16 +69,6 @@ public class Cannon extends GameObject {
                 animationIndex = 1;
             }
         }
-    }
-
-    // Getters & setters
-
-    public boolean isShootAllowed() {
-        return shootAllowed;
-    }
-
-    public void setLastCannonShot(long lastCannonShot) {
-        this.lastCannonShot = lastCannonShot;
     }
 
 }

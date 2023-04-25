@@ -233,7 +233,7 @@ public class ObjectManager {
                 float x = b.hitbox.x - levelOffset;
                 float y = b.hitbox.y - Y_DRAW_OFF;
                 g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
-//                b.drawHitbox(g, levelOffset);
+                b.drawHitbox(g, levelOffset);
             }
         }
     }

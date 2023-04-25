@@ -18,7 +18,6 @@ public class State {
     protected Game game;
 
     // ====== Alpha ======
-    private static boolean isFirstTime = true;
     private int alpha = 0;
 
     // ====== Constructor ======
@@ -30,12 +29,6 @@ public class State {
      * This method draws a given image in the center of the screen
      */
     protected void drawImage(Graphics g, BufferedImage img) {
-        // Reset the alpha value to zero if this is the first time entering this state
-        if (isFirstTime) {
-            alpha = 0;
-            isFirstTime = false;
-        }
-
         // Values for alpha
         alpha += 5;
         if (alpha > 240)
@@ -53,9 +46,5 @@ public class State {
 
         // Draw the image
         g.drawImage(img, imageX, imageY, imageW, imageH, null);
-    }
-
-    public static void setFirstTime(final boolean firstTime) {
-        isFirstTime = firstTime;
     }
 }

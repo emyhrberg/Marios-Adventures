@@ -44,12 +44,7 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.8f * SCALE;
-	private static final int MAX_HEALTH 				= 100;
-
-	// ====== Attacking ======
-//	private long lastAttack;
-//	private boolean canDealDamage;
-//	private static final int DAMAGE_DELAY = 2000;
+	private static final int MAX_HEALTH 				= 10000;
 
 	// ====== Jumping ======
 	protected boolean jumpAllowed = true;
@@ -155,7 +150,6 @@ public class Player extends Entity {
 	}
 
 	private void updateAttacking() {
-//		canDealDamage = System.currentTimeMillis() > lastAttack + DAMAGE_DELAY;
 		if (attacking) {
 			// Do not attack on the first animation index
 			if (animationIndex == 0)
@@ -164,7 +158,6 @@ public class Player extends Entity {
 			// Only deal damage on the last animation index
 			final int attackIndex = 3;
 			if (animationIndex == attackIndex && !attackChecked) {
-//				lastAttack = System.currentTimeMillis();
 				game.getPlaying().getEnemyManager().attackEnemyIfHit(this);
 				attackChecked = true;
 			}
@@ -283,10 +276,8 @@ public class Player extends Entity {
 		} else if (attacking) {
 			playerAction = ATTACKING;
 		} else if (inAir && airSpeed < 0) {
-			// todo add better jumping anim
 			playerAction = JUMPING;
 		} else if (inAir && airSpeed > 0) {
-			// todo add falling
 			playerAction = FALLING;
 		} else if (direction == LEFT || direction == RIGHT) {
 			playerAction = RUNNING;
@@ -358,10 +349,5 @@ public class Player extends Entity {
 	public void setAttacking(final boolean attacking) {
 		this.attacking = attacking;
 	}
-
-	//	public boolean canDealDamage() {
-//		return canDealDamage;
-//	}
-
 
 }

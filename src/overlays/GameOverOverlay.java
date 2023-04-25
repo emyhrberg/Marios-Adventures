@@ -25,9 +25,6 @@ public class GameOverOverlay extends State {
     }
 
     public void keyPressed(KeyEvent e) {
-//        if (game.isNotAllowedPress())
-//            return; // ignore key press
-
         switch (e.getKeyCode()) {
             case KeyEvent.VK_ESCAPE -> game.getPlaying().resetGameGoToMenu();
             case KeyEvent.VK_ENTER -> game.getPlaying().resetGameGoToPlaying();

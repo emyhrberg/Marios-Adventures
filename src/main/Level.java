@@ -18,7 +18,7 @@ import static main.Game.TILES_SIZE;
 public class Level {
 
     // Tiles between 50 and 100 are transparent
-    public static final ArrayList<Integer> transparentTiles = IntStream.rangeClosed(50, 100).boxed().collect(Collectors.toCollection(ArrayList::new));
+    public static final ArrayList<Integer> solidTiles = IntStream.rangeClosed(0, 50).boxed().collect(Collectors.toCollection(ArrayList::new));
 
     // ====== Red Values ======
     public static final int DOWN_SLOPE = 87;

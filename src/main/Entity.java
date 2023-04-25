@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.*;
-import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static main.Level.*;
 
@@ -107,7 +106,7 @@ public class Entity {
 	}
 
 	protected boolean isTileSolid(int tileX, int tileY, Level level) {
-		return !transparentTiles.contains(level.getLevelData()[tileY][tileX]);
+		return solidTiles.contains(level.getLevelData()[tileY][tileX]);
 	}
 
 	protected boolean isTileOutsideLevel(int tileY) {

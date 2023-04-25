@@ -21,6 +21,9 @@ public class GameCompletedOverlay extends State {
     }
 
     public void drawGameCompleted(Graphics g) {
+		if (!game.isDrawAllowed()) {
+			return;
+		}
 		// Draw the gif at the center of the screen
 		GifLoader gifImage = GifLoader.loadGif("overlay_stars.gif");
 		Graphics2D g2d = (Graphics2D) g.create();
@@ -38,8 +41,8 @@ public class GameCompletedOverlay extends State {
 	}
 
 	public void keyPressed() {
-		if (!game.isAllowPress()) {
-//			return;
+		if (!game.isPressAllowed()) {
+			return;
 		}
 
 		// Reset game nd go to 1st level
