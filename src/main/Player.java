@@ -327,10 +327,6 @@ public class Player extends Entity {
 
 	// ====== Getters & Setters ======
 
-//	public boolean canDealDamage() {
-//		return canDealDamage;
-//	}
-
 	public void setHoldingSpace(boolean holdingSpace) {
 		this.holdingSpace = holdingSpace;
 	}
@@ -362,5 +358,10 @@ public class Player extends Entity {
 	public void setAttacking(final boolean attacking) {
 		this.attacking = attacking;
 	}
+
+	//	public boolean canDealDamage() {
+//		return canDealDamage;
+//	}
+
 
 }

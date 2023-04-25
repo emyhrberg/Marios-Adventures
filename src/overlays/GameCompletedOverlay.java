@@ -38,8 +38,9 @@ public class GameCompletedOverlay extends State {
 	}
 
 	public void keyPressed() {
-		if (game.isNotAllowedPress())
-			return; // ignore key press
+		if (!game.isAllowPress()) {
+//			return;
+		}
 
 		// Reset game nd go to 1st level
 		game.getPlaying().getLevelManager().setLevelIndex(0);

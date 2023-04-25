@@ -9,7 +9,6 @@ import overlays.LevelCompletedOverlay;
 import overlays.PauseOverlay;
 
 import javax.sound.sampled.Clip;
-import javax.swing.*;
 import java.awt.*;
 
 import static constants.GameState.*;
@@ -47,10 +46,14 @@ public class Game implements Runnable {
     private final GameCompletedOverlay gameCompletedOverlay   = new GameCompletedOverlay(this);
     private final GameOverOverlay gameOverOverlay             = new GameOverOverlay(this);
 
-    // ====== Sounds and extras for game states ======
+    // ====== Sounds ======
     private Clip menuClip, levelClip;
     private int levelClipFramePosition;
-    private boolean allowPress = true;
+
+    // ====== Disable key presses ======
+    private boolean allowPress = false;
+    private long lastCheck;
+    private static final int DELAY = 3000;
 
     // ====== Constructor ======
     public Game() {
@@ -77,6 +80,11 @@ public class Game implements Runnable {
     }
 
     public void update() {
+        boolean hasTimePassed = System.currentTimeMillis() - lastCheck >= DELAY;
+        if (hasTimePassed) {
+            allowPress = true;
+        }
+
         switch (gameState) {
             case MENU       -> menu.update();
             case PLAYING    -> playing.update();
@@ -205,7 +213,7 @@ public class Game implements Runnable {
             if (gameState == GAME_OVER) {
                 SoundLoader.playAudio("/audio/gameover.wav");
             } else if (gameState == LEVEL_COMPLETED) {
-//                SoundLoader.playAudio("/audio/gameover.wav", 0.5);
+                SoundLoader.playAudio("/audio/success.wav");
             } else if (gameState == GAME_COMPLETED) {
                 SoundLoader.playAudio("/audio/success.wav");
             }
@@ -214,14 +222,8 @@ public class Game implements Runnable {
 
     private void disableKeyPress() {
         if (gameState == GAME_COMPLETED || gameState == GAME_OVER || gameState == LEVEL_COMPLETED) {
-            State.setFirstTime(true);
             allowPress = false;
-            Timer timer = new Timer(1500, e -> {
-                allowPress = true;
-                ((Timer) e.getSource()).stop();
-            });
-            timer.setRepeats(false);
-            timer.start();
+            lastCheck = System.currentTimeMillis();
         }
     }
 
@@ -263,7 +265,7 @@ public class Game implements Runnable {
         return gameOverOverlay;
     }
 
-    public boolean isNotAllowedPress() {
-        return !allowPress;
+    public boolean isAllowPress() {
+        return allowPress;
     }
 }

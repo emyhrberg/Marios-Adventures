@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
+import static constants.PlayerConstants.PlayerAction.IDLE;
 import static main.Game.*;
 import static main.Player.PLAYER_HEIGHT;
 import static main.Player.PLAYER_WIDTH;
@@ -156,7 +157,6 @@ public class Playing extends State {
         drawHeart(g);
         drawHealthText(g);
         drawCoinText(g);
-//        drawLevelNumber(g);
 
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);
@@ -262,18 +262,6 @@ public class Playing extends State {
         g2d.setTransform(new AffineTransform());
     }
 
-    private void drawLevelNumber(Graphics g) {
-        // Create the level string
-        final int currLevel = game.getPlaying().getLevelManager().getLevelIndex() + 1;
-        final int amountOfLevels = game.getPlaying().getLevelManager().getAmountOfLevels();
-        final String level = "Level: " + currLevel + "/" + amountOfLevels;
-
-        // Draw the level text
-        g.setFont(CUSTOM_FONT);
-        g.setColor(Color.WHITE);
-        g.drawString(level, LEVEL_X, LEVEL_Y);
-    }
-
     // ====== Reset methods ======
 
     private void setCurrentLevelSpawnPoint() {
@@ -328,8 +316,8 @@ public class Playing extends State {
         final int last = game.getPlaying().getLevelManager().getAmountOfLevels() - 1;
         if (currentLevel == last)
             game.setGameState(GAME_COMPLETED);
-        else
-            game.setGameState(LEVEL_COMPLETED);
+//        else
+//            game.setGameState(LEVEL_COMPLETED);
     }
 
     // ====== Key and Mouse events ======
