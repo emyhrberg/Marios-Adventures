@@ -44,7 +44,7 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.8f * SCALE;
-	private static final int MAX_HEALTH 				= 10000;
+	private static final int START_HEALTH 				= 5;
 
 	// ====== Jumping ======
 	protected boolean jumpAllowed = true;
@@ -67,7 +67,7 @@ public class Player extends Entity {
 
 		setDirection(STILL);
 		initSpeed(SPEED);
-		initMaxHealth(MAX_HEALTH);
+		initMaxHealth(START_HEALTH);
 		initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
 		initAttackBox(ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 		initImages();
@@ -167,7 +167,7 @@ public class Player extends Entity {
 	// ====== Public player methods ======
 
 	public void hitByEnemy(Enemy enemy) {
-		health -= 20;
+		health -= 1;
 		hit = true;
 
 		// Update push direction
@@ -183,7 +183,7 @@ public class Player extends Entity {
 	}
 
 	public void hitByBullet(Bullet b) {
-		health -= 20;
+		health -= 1;
 		hit = true;
 
 		// set push dir

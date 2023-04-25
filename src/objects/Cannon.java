@@ -20,9 +20,6 @@ public class Cannon extends GameObject {
 
     // Properties
     private static final int CANNON_DELAY = 3000;
-    private static final int[] CANNON_DELAYS = {2800,3000,3200};
-    private static final Random RND                 = new Random();
-    private int bottomWaitIndexBetweenZeroAndFive;
     private long lastCannonShot;
     private boolean canShoot;
 
@@ -33,7 +30,7 @@ public class Cannon extends GameObject {
 
     public void update(Cannon c) {
         updateShootCooldown();
-        updateShoot(c);
+        shoot(c);
     }
 
     private void updateShootCooldown() {
@@ -49,8 +46,8 @@ public class Cannon extends GameObject {
         }
     }
 
-    private void updateShoot(Cannon c) {
-        if (animationIndex == 4 && animationTick == 0 && canShoot) {
+    private void shoot(Cannon c) {
+        if (canShoot && animationIndex == 4) {
             // Add a bullet
             bullets.add(new Bullet((int) c.hitbox.x, (int) c.hitbox.y, BULLET_TYPE));
             lastCannonShot = System.currentTimeMillis();

@@ -35,10 +35,8 @@ public class HealthPowerup extends Entity {
             h.setActive(false);
 
             // increase health if applicable
-            if (player.getHealth() < player.getMaxHealth()) {
-                player.setHealth(player.getHealth() + 20);
-                SoundLoader.playAudio("/audio/powerup.wav", 0.7);
-            }
+            player.setHealth(player.getHealth() + 1);
+            SoundLoader.playAudio("/audio/powerup.wav", 0.7);
         }
     }
 

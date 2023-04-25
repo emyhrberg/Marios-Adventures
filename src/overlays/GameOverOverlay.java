@@ -21,7 +21,11 @@ public class GameOverOverlay extends State {
     }
 
     public void drawGameOver(Graphics g) {
-	    drawImage(g, GAME_OVER_IMAGE);
+        if (!game.isDrawAllowed()) {
+            return;
+        }
+
+//	    drawImage(g, GAME_OVER_IMAGE);
     }
 
     public void keyPressed(KeyEvent e) {

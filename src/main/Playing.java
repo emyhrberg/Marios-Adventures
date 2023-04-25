@@ -8,12 +8,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextLayout;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
-import static constants.PlayerConstants.PlayerAction.IDLE;
 import static main.Game.*;
 import static main.Player.PLAYER_HEIGHT;
 import static main.Player.PLAYER_WIDTH;
@@ -45,8 +43,15 @@ public class Playing extends State {
     private static final int CLOUDS_WIDTH = 640/2;
     private static final int CLOUDS_HEIGHT = 360/2;
 
-    // Drawing health and level
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("m.ttf");
+    // Drawing mario
+    private static final BufferedImage MARIO = ImageLoader.loadImage("/images/icon.png");
+    private static final int MARIO_W = (int) (19*SCALE*2);
+    private static final int MARIO_H = (int) (19*SCALE*2);
+    private static final int MARIO_X = (int) (MARIO_W + 10 * SCALE);
+    private static final int MARIO_Y = (int) (MARIO_H / 1.5);
+
+    // Drawing health
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("o.ttf");
     private static final BufferedImage HEART = ImageLoader.loadImage("/images/heart.png");
     private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("/images/health_bar.png");
     private static final int HEART_WIDTH = 90/2;
@@ -61,8 +66,6 @@ public class Playing extends State {
     private static final int HEALTH_RED_H = BAR_HEIGHT - 10;
     private static final int HEART_X = (int) (80 * SCALE) - HEART_WIDTH / 2;
     private static final int HEART_Y = (int) (50 * SCALE) + (BAR_HEIGHT / 2 - HEART_HEIGHT / 2);
-    private static final int LEVEL_X = (int) (GAME_WIDTH - 150 * SCALE);
-    private static final int LEVEL_Y = (int) (50 * SCALE);
 
     // ====== Constructor ======
     public Playing(Game game) {
@@ -153,10 +156,12 @@ public class Playing extends State {
         drawSky(g);
         drawClouds(g);
         drawHills(g);
-        drawHealthBar(g);
-        drawHeart(g);
+//        drawHealthBar(g);
+//        drawHeart(g);
+        drawMario(g);
         drawHealthText(g);
         drawCoinText(g);
+        drawTimeText(g);
 
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);
@@ -188,10 +193,6 @@ public class Playing extends State {
             g.drawImage(CLOUDS, i * CLOUDS_WIDTH - levelOffsetMult, y, CLOUDS_WIDTH, CLOUDS_HEIGHT, null);
     }
 
-    private void drawHeart(Graphics g) {
-        g.drawImage(HEART,HEART_X,HEART_Y, HEART_WIDTH, HEART_HEIGHT,null);
-    }
-
     private void drawHealthBar(Graphics g) {
         // Draw black bar around health
         g.drawImage(HEALTH_BAR, HEALTH_BAR_X, HEALTH_BAR_Y, BAR_WIDTH, BAR_HEIGHT,null);
@@ -202,65 +203,83 @@ public class Playing extends State {
         g.fillRect(HEALTH_RED_X, HEALTH_RED_Y, rectWHealth, HEALTH_RED_H);
     }
 
+    private void drawMario(Graphics g) {
+        g.drawImage(MARIO, MARIO_X, MARIO_Y,MARIO_W, MARIO_H,null);
+    }
+
     private void drawHealthText(Graphics g) {
-        // text shape
-        final String health = player.getHealth() + "/" + player.getMaxHealth();
+        // text
+        final String health;
+        if (player.getHealth() < 10) {
+            health = "0" + player.getHealth();
+        } else {
+            health = String.valueOf(player.getHealth());
+        }
+
+        // draw x
         g.setFont(CUSTOM_FONT);
-        Graphics2D g2d = (Graphics2D) g;
-        TextLayout tl = new TextLayout(health, CUSTOM_FONT, g2d.getFontRenderContext());
-        Shape shape = tl.getOutline(null);
-
-        // text position
+        g.setFont(g.getFont().deriveFont(18f));
         FontMetrics fm = g.getFontMetrics();
-        int textWidth = fm.stringWidth(health);
-        int textHeight = fm.getHeight();
-        int x = HEALTH_RED_X + (HEALTH_RED_W - textWidth) / 2;
-        int y = HEALTH_RED_Y - (textHeight / 2) - 4;
-        AffineTransform transform = AffineTransform.getTranslateInstance(x, y);
-        g2d.transform(transform);
+        int w = fm.stringWidth(health);
+        int h = fm.getHeight();
+        int x = MARIO_X + w + 24;
+        int y = MARIO_Y + h*2 - 4;
+        g.setColor(new Color(224, 224, 224));
+        g.drawString("x", x, y);
 
-        // draw black
-        g2d.setStroke(new BasicStroke(4f));
-        g2d.setColor(new Color(21, 21, 21));
-        g2d.draw(shape);
-
-        // draw white
-        g2d.setColor(new Color(224, 224, 224));
-        g2d.fill(shape);
-
-        // restore the original transform
-        g2d.setTransform(new AffineTransform());
+        // draw health
+        g.setFont(g.getFont().deriveFont(32f));
+        g.setColor(new Color(224, 224, 224));
+        g.drawString(health, x + 24, y);
     }
 
     private void drawCoinText(Graphics g) {
         // text shape
-        final String health = "Coins  " + coinCount;
+        String coins;
+        if (coinCount < 10) {
+            coins = "Coins: 0" + coinCount;
+        } else {
+            coins = "Coins: " + coinCount;
+        }
+
+        // size
         g.setFont(CUSTOM_FONT);
-        Graphics2D g2d = (Graphics2D) g;
-        TextLayout tl = new TextLayout(health, CUSTOM_FONT, g2d.getFontRenderContext());
-        Shape shape = tl.getOutline(null);
+        g.setFont(g.getFont().deriveFont(32f));
+        FontMetrics fm = g.getFontMetrics();
+        int w = fm.stringWidth(coins);
+        int h = fm.getHeight();
+        int x = GAME_WIDTH / 2 - w / 2;
+        int y = MARIO_Y + h;
+
+        // draw health
+        g.setColor(new Color(224, 224, 224));
+        g.drawString(coins, x, y);
+    }
+
+    private void drawTimeText(Graphics g) {
+        int t = game.getTime();
+        String time;
+        if (t < 100 && t >= 10) {
+            time = "0" + t;
+        } else if (t < 10) {
+            time = "00" + t;
+        } else {
+            time = String.valueOf(t);
+        }
+        g.setFont(CUSTOM_FONT);
 
         // text position
         FontMetrics fm = g.getFontMetrics();
-        int textWidth = fm.stringWidth(health);
-        int textHeight = fm.getHeight();
-        int x = (int) (GAME_WIDTH - textWidth * 1* SCALE);
-        int y = HEALTH_RED_Y - (textHeight / 2) - 4;
-        AffineTransform transform = AffineTransform.getTranslateInstance(x, y);
-        g2d.transform(transform);
-
-        // draw black
-        g2d.setStroke(new BasicStroke(4f));
-        g2d.setColor(new Color(35, 35, 35));
-        g2d.draw(shape);
+        int w = fm.stringWidth(time);
+        int h = fm.getHeight();
+        int x = GAME_WIDTH - MARIO_X - w - 24;
+        int y = MARIO_Y + h;
 
         // draw white
-        g2d.setColor(new Color(224, 224, 224));
-        g2d.fill(shape);
-
-        // restore the original transform
-        g2d.setTransform(new AffineTransform());
+        g.setColor(new Color(224, 224, 224));
+        g.drawString(time, x, y);
     }
+
 
     // ====== Reset methods ======
 

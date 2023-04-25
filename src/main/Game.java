@@ -20,9 +20,15 @@ import static constants.GameState.*;
  */
 public class Game implements Runnable {
 
-    // ====== Updates Per Second ======
-    public static final int UPS = 200;
-    public static final int FPS = 60;
+    // ====== Game loop ======
+    public static final int UPS         = 200;
+    public static final int FPS         = 60;
+    private long lastCheck;
+    private double timePerFrame         = 1000000000.0 / FPS;
+    private double timePerUpdate        = 1000000000.0 / UPS;
+    private long previousTime           = System.nanoTime();
+    private double deltaU               = 0;
+    private double deltaF               = 0;
 
     // ====== Game Variables ======
     public static float SCALE                   = 1.35f;
@@ -52,11 +58,11 @@ public class Game implements Runnable {
 
     // ====== Disable key presses ======
     private boolean allowPress = false;
-    private long lastCheck;
-    private static final int DISALLOW_KEY_TIME = 3000;
+    private long lastKeyCheck;
+    private static final int DISALLOW_KEY_TIME = 4000;
 
     // ====== Wait some time ======
-    private static final int WAIT_TIME = 500;
+    private static final int WAIT_TIME = 2300;
     private boolean allowDraw = false;
 
     // ====== Constructor ======
@@ -84,13 +90,13 @@ public class Game implements Runnable {
     }
 
     public void update() {
-
-
         switch (gameState) {
             case MENU       -> menu.update();
-            case PLAYING    -> playing.update();
+            case PLAYING    -> {
+                playing.update();
+            }
             case LEVEL_COMPLETED, GAME_COMPLETED, GAME_OVER -> {
-                final long timeSinceLastCheck = System.currentTimeMillis() - lastCheck;
+                long timeSinceLastCheck = System.currentTimeMillis() - lastKeyCheck;
                 if (timeSinceLastCheck >= DISALLOW_KEY_TIME) {
                     allowPress = true;
                 }
@@ -137,16 +143,6 @@ public class Game implements Runnable {
      */
     @Override
     public void run() {
-        // Set the timer per frame and time per update
-        double timePerFrame     = 1000000000.0 / FPS;
-        double timePerUpdate    = 1000000000.0 / UPS;
-
-        // Initialize some variables to calculate time
-        long previousTime   = System.nanoTime();
-        double deltaU       = 0;
-        double deltaF       = 0;
-        long lastCheck      = System.currentTimeMillis();
-
         // Main loop
         while (true) {
             long currentTime = System.nanoTime();
@@ -169,14 +165,16 @@ public class Game implements Runnable {
             }
 
             // Set last check and reset frames and updates
-            final int oneSecond = 1000;
-            if (System.currentTimeMillis() - lastCheck >= oneSecond) {
+            if (System.currentTimeMillis() - lastCheck >= 1000) {
+                t = t-1;
                 lastCheck = System.currentTimeMillis();
             }
         }
     }
 
-    // ====== Setters ======
+    private int t = 300;
+
+    // ====== Game methods ======
 
     public void setGameState(GameState gameState) {
         // Set the game state, and also save previous game state
@@ -186,8 +184,6 @@ public class Game implements Runnable {
         playSounds();
         handleWaitStates();
     }
-
-    // ====== Game methods ======
 
     private void playSounds() {
         // Close menu sound or open it
@@ -234,11 +230,15 @@ public class Game implements Runnable {
         if (gameState == GAME_COMPLETED || gameState == GAME_OVER || gameState == LEVEL_COMPLETED) {
             allowDraw = false;
             allowPress = false;
-            lastCheck = System.currentTimeMillis();
+            lastKeyCheck = System.currentTimeMillis();
         }
     }
 
     // ====== Getters ======
+
+    public int getTime() {
+        return t;
+    }
 
     public static float getSCALE() {
         return SCALE;
