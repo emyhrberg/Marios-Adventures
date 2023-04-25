@@ -205,10 +205,9 @@ public class Game implements Runnable {
             if (gameState == GAME_OVER) {
                 SoundLoader.playAudio("/audio/gameover.wav");
             } else if (gameState == LEVEL_COMPLETED) {
-//                SoundLoader.playAudio("/audio/levelcompleted.wav", 0.5);
+//                SoundLoader.playAudio("/audio/gameover.wav", 0.5);
             } else if (gameState == GAME_COMPLETED) {
-
-//                SoundLoader.playAudio("/audio/gamecompleted.wav");
+                SoundLoader.playAudio("/audio/success.wav");
             }
         }
     }
