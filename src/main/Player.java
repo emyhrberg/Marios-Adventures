@@ -33,8 +33,8 @@ public class Player extends Entity {
 	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/images/sprites_player.png");
 	public static final int PLAYER_WIDTH 				= 50;
 	public static final int PLAYER_HEIGHT 				= 50;
-	private static final int IMAGE_X_OFFSET 			= (int) (14 * SCALE);
-	private static final int IMAGE_Y_OFFSET 			= (int) (18 * SCALE);
+	private static final int PLAYER_X_OFF 				= (int) (14 * SCALE);
+	private static final int PLAYER_Y_OFF 				= (int) (18 * SCALE);
 	private static final int HITBOX_WIDTH 				= (int) (30 * SCALE);
 	private static final int HITBOX_HEIGHT 				= (int) (39 * SCALE);
 	private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
@@ -44,14 +44,14 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.8f * SCALE;
-	private static final int START_HEALTH 				= 5;
+	private static final int START_HEALTH 				= 3;
 
 	// ====== Jumping ======
 	protected boolean jumpAllowed = true;
 	protected boolean jumping = false;
 	protected static final float MAX_JUMP_HEIGHT = 2.5f * SCALE;
 	protected float jumpHeight = MAX_JUMP_HEIGHT;
-	protected long jumpStart;
+	protected long lastJumpTime;
 	protected int jumpMaxBoostTime = UPS;
 	protected boolean holdingSpace;
 
@@ -106,9 +106,8 @@ public class Player extends Entity {
 		updateDirection();
 		moveToPosition(hitbox.x + xDirection, hitbox.y, hitbox.width, hitbox.height, level);
 
-		// Jump
-		// Boost jump
-		boolean maxJumpBoost = System.currentTimeMillis() <= jumpMaxBoostTime + jumpStart;
+		// Jump and boost
+		boolean maxJumpBoost = System.currentTimeMillis() <= jumpMaxBoostTime + lastJumpTime;
 		if (holdingSpace && airSpeed < 0 && maxJumpBoost) {
 			airSpeed -= GRAVITY;
 		}
@@ -124,7 +123,7 @@ public class Player extends Entity {
 		unbindPlatform();
 
 		// start jump
-		jumpStart = System.currentTimeMillis();
+		lastJumpTime = System.currentTimeMillis();
 		jumpHeight = MAX_JUMP_HEIGHT;
 		inAir = true;
 		airSpeed = -jumpHeight;
@@ -214,8 +213,8 @@ public class Player extends Entity {
 		updateImageFlip();
 
 		// Get x, y, width and height in order to draw the animations
-		final float x = hitbox.x - levelOffset - IMAGE_X_OFFSET + imageFlipX;
-		final float y = hitbox.y - IMAGE_Y_OFFSET;
+		final float x = hitbox.x - levelOffset - PLAYER_X_OFF + imageFlipX;
+		final float y = hitbox.y - PLAYER_Y_OFF;
 		final float w = width * imageFlipWidth;
 
 		// Get the proper image representing the right action
@@ -238,7 +237,7 @@ public class Player extends Entity {
 		}
 		// When facing left, draw from left to right by drawing an extra width and flipping the image width with -1
 		if (direction == LEFT) {
-			imageFlipX = (int) ((int) (width) / 1.15);
+			imageFlipX = (int) (width / 1.15);
 			imageFlipWidth = -1;
 		}
 	}

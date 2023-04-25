@@ -15,19 +15,23 @@ import static constants.GameState.*;
 
 /**
  * This class implements a runnable Game
- * Handles game loop, gamecomponent, gamewindow
+ * Handles game loop, game component, game window
  * Updates and renders game related objects
+ * Main game loop: Overrides the run method
+ * Implements a game loop with a fixed frame rate (FPS) and update rate (UPS)
+ * Calculates the time between each frame and update and waits for a specific amount of time before rendering/updating the game again.
+ * Allows the game to run smoothly and efficiently by avoiding excessive CPU usage
  */
 public class Game implements Runnable {
 
     // ====== Game loop ======
     public static final int UPS         = 200;
     public static final int FPS         = 60;
-    private double timePerFrame         = 1000000000.0 / FPS;
-    private double timePerUpdate        = 1000000000.0 / UPS;
     private long previousTime           = System.nanoTime();
     private double deltaU               = 0;
     private double deltaF               = 0;
+    private static final double TIME_PER_FRAME = 1000000000.0 / FPS;
+    private static final double TIMER_PER_UPDATE = 1000000000.0 / UPS;
     private long lastCheck;
 
     // ====== Game Variables ======
@@ -56,18 +60,12 @@ public class Game implements Runnable {
     private Clip menuClip, levelClip;
     private int levelClipFramePosition;
 
-    // ====== Timer ======
-    private int t = 300;
-
-    private boolean isFirstTime = false;
-
-    // ====== Disable key presses ======
+    // ====== Overlay settings =====
     private boolean allowPress;
     private long lastStateCheck;
     private static final int DISALLOW_KEY_TIME = 2300;
-
-    // ====== Wait some time ======
-    private static final int WAIT_TIME = 2300;
+    private boolean isFirstTime = false;
+    private static final int WAIT_TIME = 2700;
     private static final int GO_PLAYING_TIME = 7500;
     private boolean allowDraw;
 
@@ -98,9 +96,7 @@ public class Game implements Runnable {
     public void update() {
         switch (gameState) {
             case MENU       -> menu.update();
-            case PLAYING    -> {
-                playing.update();
-            }
+            case PLAYING    -> playing.update();
             case LEVEL_COMPLETED, GAME_COMPLETED, GAME_OVER -> {
                 long timeSinceLastCheck = System.currentTimeMillis() - lastStateCheck;
                 if (timeSinceLastCheck >= DISALLOW_KEY_TIME) {
@@ -144,12 +140,6 @@ public class Game implements Runnable {
         gameThread.start();
     }
 
-    /**
-     * Overrides the run method
-     * Implements a game loop with a fixed frame rate (FPS) and update rate (UPS)
-     * Calculates the time between each frame and update and waits for a specific amount of time before rendering/updating the game again.
-     * Allows the game to run smoothly and efficiently by avoiding excessive CPU usage
-     */
     @Override
     public void run() {
         // Main loop
@@ -157,8 +147,8 @@ public class Game implements Runnable {
             long currentTime = System.nanoTime();
 
             // Calculate delta time
-            deltaU += (currentTime - previousTime) / timePerUpdate;
-            deltaF += (currentTime - previousTime) / timePerFrame;
+            deltaU += (currentTime - previousTime) / TIMER_PER_UPDATE;
+            deltaF += (currentTime - previousTime) / TIME_PER_FRAME;
             previousTime = currentTime;
 
             // Update the game state
@@ -175,7 +165,6 @@ public class Game implements Runnable {
 
             // Set last check and reset frames and updates
             if (System.currentTimeMillis() - lastCheck >= 1000) {
-                t = t-1;
                 lastCheck = System.currentTimeMillis();
             }
         }
@@ -205,7 +194,7 @@ public class Game implements Runnable {
 
         if (gameState == PLAYING && levelClip == null) {
             // Start level track if not already playing
-            levelClip = SoundLoader.playAudio("/audio/musiclevel.wav");
+            levelClip = SoundLoader.playAudio("/audio/musiclevel3.wav");
 
             // Resume level track if coming from paused
             if (prevState == PAUSED) {
@@ -243,14 +232,6 @@ public class Game implements Runnable {
     }
 
     // ====== Getters ======
-
-    public int getTime() {
-        return t;
-    }
-
-    public static float getSCALE() {
-        return SCALE;
-    }
 
     public GameComponent getGameComponent() {
         return gameComponent;

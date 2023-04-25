@@ -7,7 +7,6 @@ import objects.ObjectManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextLayout;
 import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
@@ -28,6 +27,9 @@ public class Playing extends State {
     private final Player player;
     private int levelOffset;
     private int shakeOffset;
+    private long lastSec;
+    private static final int START_T = 300;
+    private int t = START_T;
     private boolean movingLeft, movingRight;
 
     private final EnemyManager enemyManager;
@@ -44,28 +46,12 @@ public class Playing extends State {
     private static final int CLOUDS_HEIGHT = 360/2;
 
     // Drawing mario
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("o.ttf");
     private static final BufferedImage MARIO = ImageLoader.loadImage("/images/icon.png");
     private static final int MARIO_W = (int) (19*SCALE*2);
     private static final int MARIO_H = (int) (19*SCALE*2);
     private static final int MARIO_X = (int) (MARIO_W + 10 * SCALE);
     private static final int MARIO_Y = (int) (MARIO_H / 1.5);
-
-    // Drawing health
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("o.ttf");
-    private static final BufferedImage HEART = ImageLoader.loadImage("/images/heart.png");
-    private static final BufferedImage HEALTH_BAR = ImageLoader.loadImage("/images/health_bar.png");
-    private static final int HEART_WIDTH = 90/2;
-    private static final int HEART_HEIGHT = 90/2;
-    private static final int BAR_WIDTH = 510/2;
-    private static final int BAR_HEIGHT = 50/2;
-    private static final int HEALTH_BAR_X = (int) (80 * SCALE);
-    private static final int HEALTH_BAR_Y = (int) (50 * SCALE);
-    private static final int HEALTH_RED_X = HEALTH_BAR_X + 5;
-    private static final int HEALTH_RED_Y = HEALTH_BAR_Y + 5;
-    private static final int HEALTH_RED_W = BAR_WIDTH - 10;
-    private static final int HEALTH_RED_H = BAR_HEIGHT - 10;
-    private static final int HEART_X = (int) (80 * SCALE) - HEART_WIDTH / 2;
-    private static final int HEART_Y = (int) (50 * SCALE) + (BAR_HEIGHT / 2 - HEART_HEIGHT / 2);
 
     // ====== Constructor ======
     public Playing(Game game) {
@@ -78,9 +64,8 @@ public class Playing extends State {
         objectManager   = new ObjectManager();
 
         // Set level for player class
-        // Set spawn point
         player.setLevel(levelManager.getLevel());
-        setCurrentLevelSpawnPoint();
+        resetSpawnPoint();
     }
 
     // ====== Update methods ======
@@ -91,16 +76,17 @@ public class Playing extends State {
         enemyManager.update(levelManager.getLevel(), player);
         objectManager.update(levelManager.getLevel(), player);
 
-        // Update game
+        // Update playing stuff
         updateLevelOffset();
         updatePlayerOutsideLevel();
         updateFinalPointState();
         updateShake();
+        updateCountdownTimer();
     }
 
     private void updateLevelOffset() {
         // Get player X position
-        int playerX = (int) player.getHitbox().x;
+        int playerX = (int) player.hitbox.x;
 
         // Update level offset with player and half the game width to center the player
         levelOffset = playerX - GAME_WIDTH / 2;
@@ -150,6 +136,14 @@ public class Playing extends State {
         }
     }
 
+    private void updateCountdownTimer() {
+        long sec = System.currentTimeMillis() / 1000;
+        if (sec != lastSec) {
+            t--;
+            lastSec = sec;
+        }
+    }
+
     // ====== Draw methods ======
 
     public void draw(Graphics g) {
@@ -159,12 +153,10 @@ public class Playing extends State {
         drawHills(g);
 
         // Draw UI
-        if (game.getGameState() == PLAYING) {
-            drawMario(g);
-            drawHealthText(g);
-            drawCoinText(g);
-            drawTimeText(g);
-        }
+        drawMarioIcon(g);
+        drawHealthText(g);
+        drawCoinText(g);
+        drawCountdownTimer(g);
 
         // Draw game
         levelManager.draw(g, levelOffset);
@@ -197,7 +189,7 @@ public class Playing extends State {
             g.drawImage(CLOUDS, i * CLOUDS_WIDTH - levelOffsetMult, y, CLOUDS_WIDTH, CLOUDS_HEIGHT, null);
     }
 
-    private void drawMario(Graphics g) {
+    private void drawMarioIcon(Graphics g) {
         g.drawImage(MARIO, MARIO_X, MARIO_Y,MARIO_W, MARIO_H,null);
     }
 
@@ -250,8 +242,7 @@ public class Playing extends State {
         g.drawString(coins, x, y);
     }
 
-    private void drawTimeText(Graphics g) {
-        int t = game.getTime();
+    private void drawCountdownTimer(Graphics g) {
         String time;
         if (t < 100 && t >= 10) {
             time = "0" + t;
@@ -276,26 +267,29 @@ public class Playing extends State {
 
     // ====== Reset methods ======
 
-    private void setCurrentLevelSpawnPoint() {
+    private void resetSpawnPoint() {
         final Point spawnPoint = levelManager.getLevel().getSpawnPoint();
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;
     }
 
-    public void resetGame() {
-        player.resetPlayer();
-        enemyManager.resetEnemies();
-        objectManager.resetAllObjects();
-        setCurrentLevelSpawnPoint();
-
+    private void resetLevelData() {
         // set new level data where we reset all the bricks (temp value 91, to its default value of 26)
         int[][] levelData = levelManager.getLevel().getLevelData();
         for (int i = 0; i < levelData.length; i++)
             for (int j = 0; j < levelData[i].length; j++)
                 if (levelData[i][j] == 91)
                     levelData[i][j] = 26;
+    }
 
-        levelManager.getLevel().setLevelData(levelManager.getLevel().getLevelData());
+    public void resetGame() {
+        player.resetPlayer();
+        enemyManager.resetEnemies();
+        objectManager.resetAllObjects();
+        resetSpawnPoint();
+        resetLevelData();
+        coinCount = 0;
+        t = START_T;
     }
 
     public void resetGameGoToMenu() {
@@ -313,23 +307,22 @@ public class Playing extends State {
         final int nextLevel = levelManager.getLevelIndex() + 1;
         levelManager.setLevelIndex(nextLevel);
 
-        player.setLevel(levelManager.getLevel());
+        player.setLevel(levelManager.getLevel()); // todo not necc prob
 
         resetGame();
 
         // Start playing
         game.setGameState(PLAYING);
-
     }
 
     public void setLevelCompleted() {
         // calculate grade by factors speed and coins
         // A below 80 seconds and 30 coins
-        if (coinCount >= 30 && game.getTime() >= 220) {
+        if (coinCount >= 30 && t >= 220) {
             System.out.println("Grade: A");
-        } else if (coinCount >= 20 && game.getTime() >= 200) {
+        } else if (coinCount >= 20 && t >= 200) {
             System.out.println("Grade: B");
-        } else if (coinCount >= 10 && game.getTime() >= 150) {
+        } else if (coinCount >= 10 && t >= 150) {
             System.out.println("Grade: C");
         } else {
             System.out.println("Grade: D");
