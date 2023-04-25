@@ -9,15 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added gameover fade">
-      <change afterPath="$PROJECT_DIR$/resources/images/overlay_game.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/overlay_over.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" afterDir="false" />
-    </list>
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,14 +130,7 @@
       <workItem from="1682278636895" duration="6414000" />
       <workItem from="1682351742294" duration="19860000" />
       <workItem from="1682375737965" duration="10367000" />
-      <workItem from="1682428785321" duration="17169000" />
-    </task>
-    <task id="LOCAL-00006" summary="Moving platforms working!">
-      <created>1681923820693</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1681923820693</updated>
+      <workItem from="1682428785321" duration="17496000" />
     </task>
     <task id="LOCAL-00007" summary="Questions working, just need to add animation">
       <created>1681926944089</created>
@@ -483,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682447290349</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation">
+      <created>1682453614686</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1682453614686</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +485,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Working on bricks breaking" />
     <MESSAGE value="Fixed final flag, working on bullet bugs" />
     <MESSAGE value="Improving plant, lots of small bad changes, need to fix misc stuff now" />
     <MESSAGE value="Game working ok now" />
@@ -518,7 +509,8 @@
     <MESSAGE value="Improved bullet bills to go down when hit" />
     <MESSAGE value="Game playtested, looks good :)" />
     <MESSAGE value="Added gameover fade" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added gameover fade" />
+    <MESSAGE value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
