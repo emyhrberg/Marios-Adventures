@@ -153,16 +153,20 @@ public class Playing extends State {
     // ====== Draw methods ======
 
     public void draw(Graphics g) {
+        // Draw background
         drawSky(g);
         drawClouds(g);
         drawHills(g);
-//        drawHealthBar(g);
-//        drawHeart(g);
-        drawMario(g);
-        drawHealthText(g);
-        drawCoinText(g);
-        drawTimeText(g);
 
+        // Draw UI
+        if (game.getGameState() == PLAYING) {
+            drawMario(g);
+            drawHealthText(g);
+            drawCoinText(g);
+            drawTimeText(g);
+        }
+
+        // Draw game
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);
         objectManager.draw(g, levelOffset);
@@ -191,16 +195,6 @@ public class Playing extends State {
         // Draw 10 seamless clouds
         for (int i = 0; i < 10; i++)
             g.drawImage(CLOUDS, i * CLOUDS_WIDTH - levelOffsetMult, y, CLOUDS_WIDTH, CLOUDS_HEIGHT, null);
-    }
-
-    private void drawHealthBar(Graphics g) {
-        // Draw black bar around health
-        g.drawImage(HEALTH_BAR, HEALTH_BAR_X, HEALTH_BAR_Y, BAR_WIDTH, BAR_HEIGHT,null);
-
-        // Draw red health bar inside image
-        int rectWHealth = (int) (HEALTH_RED_W * (player.getHealth() / (float) player.getMaxHealth()));
-        g.setColor(Color.RED);
-        g.fillRect(HEALTH_RED_X, HEALTH_RED_Y, rectWHealth, HEALTH_RED_H);
     }
 
     private void drawMario(Graphics g) {
@@ -280,7 +274,6 @@ public class Playing extends State {
         g.drawString(time, x, y);
     }
 
-
     // ====== Reset methods ======
 
     private void setCurrentLevelSpawnPoint() {
@@ -330,6 +323,18 @@ public class Playing extends State {
     }
 
     public void setLevelCompleted() {
+        // calculate grade by factors speed and coins
+        // A below 80 seconds and 30 coins
+        if (coinCount >= 30 && game.getTime() >= 220) {
+            System.out.println("Grade: A");
+        } else if (coinCount >= 20 && game.getTime() >= 200) {
+            System.out.println("Grade: B");
+        } else if (coinCount >= 10 && game.getTime() >= 150) {
+            System.out.println("Grade: C");
+        } else {
+            System.out.println("Grade: D");
+        }
+
         // Set level complete or game complete, if at the last level
         final int currentLevel = game.getPlaying().getLevelManager().getLevelIndex();
         final int last = game.getPlaying().getLevelManager().getAmountOfLevels() - 1;

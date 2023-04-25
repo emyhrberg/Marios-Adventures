@@ -64,13 +64,12 @@ public class Game implements Runnable {
     // ====== Disable key presses ======
     private boolean allowPress;
     private long lastStateCheck;
-    private static final int DISALLOW_KEY_TIME = 4000;
+    private static final int DISALLOW_KEY_TIME = 2300;
 
     // ====== Wait some time ======
     private static final int WAIT_TIME = 2300;
-    private static final int GO_PLAYING_TIME = 8000;
+    private static final int GO_PLAYING_TIME = 7500;
     private boolean allowDraw;
-    private boolean allowPlaying;
 
     // ====== Constructor ======
     public Game() {
@@ -239,7 +238,6 @@ public class Game implements Runnable {
         if (gameState == GAME_COMPLETED || gameState == GAME_OVER || gameState == LEVEL_COMPLETED) {
             allowDraw = false;
             allowPress = false;
-            allowPlaying = false;
             lastStateCheck = System.currentTimeMillis();
         }
     }
