@@ -204,7 +204,7 @@ public class Playing extends State {
 
     private void drawHealthText(Graphics g) {
         // text shape
-        final String health = String.valueOf(player.health);
+        final String health = player.getHealth() + "/" + player.getMaxHealth();
         g.setFont(CUSTOM_FONT);
         Graphics2D g2d = (Graphics2D) g;
         TextLayout tl = new TextLayout(health, CUSTOM_FONT, g2d.getFontRenderContext());
@@ -220,8 +220,8 @@ public class Playing extends State {
         g2d.transform(transform);
 
         // draw black
-        g2d.setStroke(new BasicStroke(3f));
-        g2d.setColor(new Color(24,24,24));
+        g2d.setStroke(new BasicStroke(4f));
+        g2d.setColor(new Color(21, 21, 21));
         g2d.draw(shape);
 
         // draw white
@@ -250,8 +250,8 @@ public class Playing extends State {
         g2d.transform(transform);
 
         // draw black
-        g2d.setStroke(new BasicStroke(3f));
-        g2d.setColor(new Color(24,24,24));
+        g2d.setStroke(new BasicStroke(4f));
+        g2d.setColor(new Color(35, 35, 35));
         g2d.draw(shape);
 
         // draw white

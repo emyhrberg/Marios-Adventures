@@ -1,6 +1,7 @@
 package objects;
 
 import constants.Direction;
+import helpers.SoundLoader;
 import main.Player;
 
 import static constants.Direction.DOWN;
@@ -47,6 +48,7 @@ public class Question extends GameObject {
                 q.setHit(true);
                 healths.add(new HealthPowerup((int) q.hitbox.x, (int) q.hitbox.y));
             }
+            SoundLoader.playAudio("/audio/question.wav");
         }
     }
 

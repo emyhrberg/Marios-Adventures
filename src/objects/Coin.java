@@ -33,7 +33,7 @@ public class Coin extends GameObject {
         if (c.hitbox.intersects(player.getHitbox())) {
             if (!c.isSparkle()) {
                 c.setSparkle(true);
-                SoundLoader.playAudio("coin.wav", 0.5);
+                SoundLoader.playAudio("/audio/coin.wav", 0.5);
                 coinCount++;
             }
         }

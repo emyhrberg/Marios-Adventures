@@ -1,6 +1,7 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
+import helpers.SoundLoader;
 import main.Level;
 import main.Player;
 
@@ -49,6 +50,7 @@ public class Bullet extends GameObject {
             // either jump on enemy if on top of the bullet, or take damage
             if (isOnTopOfBullet && player.getAirSpeed() > 0) {
                 player.jumpOnEnemy();
+                SoundLoader.playAudio("/audio/stomp.wav", 0.8);
             } else {
                 player.hitByBullet(b);
             }

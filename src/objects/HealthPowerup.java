@@ -1,5 +1,6 @@
 package objects;
 
+import helpers.SoundLoader;
 import main.Entity;
 import main.Level;
 import main.Player;
@@ -32,8 +33,12 @@ public class HealthPowerup extends Entity {
     private void updateHealthPickup(Player player, HealthPowerup h) {
         if (h.getHitbox().intersects(player.getHitbox())) {
             h.setActive(false);
-            if (player.getHealth() < player.getMaxHealth())
+
+            // increase health if applicable
+            if (player.getHealth() < player.getMaxHealth()) {
                 player.setHealth(player.getHealth() + 20);
+                SoundLoader.playAudio("/audio/powerup.wav", 0.7);
+            }
         }
     }
 

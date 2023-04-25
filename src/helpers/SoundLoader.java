@@ -9,13 +9,7 @@ public class SoundLoader {
 
 	public static Clip playAudio(String fileName, double... volumeArr) {
 		float volume = (float) (volumeArr.length > 0 ? volumeArr[0] : 1.0); // set default volume of 1.0 if volume argument is not provided
-		try (InputStream is = new BufferedInputStream(SoundLoader.class.getResourceAsStream("/audio/" + fileName))) {
-
-			// handle sound file not existing
-			if (is == null) {
-				System.err.println("Error: Sound file not found\n" + fileName);
-				return null;
-			}
+		try (InputStream is = new BufferedInputStream(SoundLoader.class.getResourceAsStream(fileName))) {
 
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(is));

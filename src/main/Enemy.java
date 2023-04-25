@@ -40,8 +40,6 @@ public class Enemy extends Entity {
             setAction(DEAD);
         else
             setAction(HIT);
-
-        SoundLoader.playAudio("enemy_taking_damage.wav", 0.2);
     }
 
     public void resetEnemy() {

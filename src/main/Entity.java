@@ -32,7 +32,7 @@ public class Entity {
 	protected int maxHealth, health;
 
 	// ====== Attacking =======
-	protected boolean attacking, attackChecked, hit, canAttack;
+	protected boolean attacking, attackChecked, hit;
 
 	// ====== Pushback =======
 	protected Direction pushXDir;

@@ -1,5 +1,7 @@
 package main;
 
+import helpers.SoundLoader;
+
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.LEFT;
@@ -194,10 +196,11 @@ public class Shark extends Enemy {
             boolean isTouchingEnemyHead = distBetweenPlayerAndEnemy > enemyHead;
 
             // usually distance is slightly above 42 when landing on top of the enemy, also check that player is falling downwards
-            if (isTouchingEnemyHead && player.airSpeed > 0) {
+            if (isTouchingEnemyHead && player.airSpeed > 0 && attackAllowed) {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
-                attackAllowed = !attackAllowed;
+                SoundLoader.playAudio("/audio/stomp.wav", 0.8);
+                attackAllowed = false;
             } else {
                 if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {
                     player.hitByEnemy(this);

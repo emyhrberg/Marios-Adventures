@@ -71,7 +71,7 @@ public class Game implements Runnable {
         }
 
         // Play main menu sound
-//        menuClip = SoundLoader.playAudio("menu.wav");
+//        menuClip = SoundLoader.playAudio("/audio/musicmenu.wav");
 
         startGameLoop();
     }
@@ -174,7 +174,7 @@ public class Game implements Runnable {
     private void playSounds() {
         // Close menu sound or open it
         if (gameState == MENU) {
-            menuClip = SoundLoader.playAudio("menu.wav");
+            menuClip = SoundLoader.playAudio("/audio/musicmenu.wav");
         } else {
             if (menuClip != null) {
                 menuClip.close();
@@ -183,7 +183,7 @@ public class Game implements Runnable {
 
         if (gameState == PLAYING && levelClip == null) {
             // Start level track if not already playing
-            levelClip = SoundLoader.playAudio("playing.wav");
+            levelClip = SoundLoader.playAudio("/audio/musiclevel.wav");
 
             // Resume level track if coming from paused
             if (prevState == PAUSED) {
@@ -203,11 +203,12 @@ public class Game implements Runnable {
 
             // Play appropriate sound for current state
             if (gameState == GAME_OVER) {
-                SoundLoader.playAudio("game_over.wav");
+                SoundLoader.playAudio("/audio/gameover.wav");
             } else if (gameState == LEVEL_COMPLETED) {
-                SoundLoader.playAudio("level_completed.wav", 0.5);
+//                SoundLoader.playAudio("/audio/levelcompleted.wav", 0.5);
             } else if (gameState == GAME_COMPLETED) {
-                SoundLoader.playAudio("game_completed.wav");
+
+//                SoundLoader.playAudio("/audio/gamecompleted.wav");
             }
         }
     }

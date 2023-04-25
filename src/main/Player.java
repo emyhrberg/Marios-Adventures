@@ -46,6 +46,20 @@ public class Player extends Entity {
 	private static final float SPEED					= 0.8f * SCALE;
 	private static final int MAX_HEALTH 				= 100;
 
+	// ====== Attacking ======
+//	private long lastAttack;
+//	private boolean canDealDamage;
+//	private static final int DAMAGE_DELAY = 2000;
+
+	// ====== Jumping ======
+	protected boolean jumpAllowed = true;
+	protected boolean jumping = false;
+	protected static final float MAX_JUMP_HEIGHT = 2.5f * SCALE;
+	protected float jumpHeight = MAX_JUMP_HEIGHT;
+	protected long jumpStart;
+	protected int jumpMaxBoostTime = UPS;
+	protected boolean holdingSpace;
+
 	// ====== Game variables =======
 	private final Game game;
 	private Level level;
@@ -108,17 +122,6 @@ public class Player extends Entity {
 		}
 	}
 
-	// ====== Jumping ======
-	protected boolean jumpAllowed = true;
-	protected boolean jumping = false;
-	protected static final float MAX_JUMP_HEIGHT = 2.5f * SCALE;
-	protected float jumpHeight = MAX_JUMP_HEIGHT;
-
-	// Variable jumping
-	protected long jumpStart;
-	protected int jumpMaxBoostTime = UPS;
-	protected boolean holdingSpace;
-
 	public void jump() {
 		if (inAir || !jumpAllowed)
 			return;
@@ -136,10 +139,11 @@ public class Player extends Entity {
 		jumping = false;
 		jumpAllowed = false;
 
-		SoundLoader.playAudio("jump.wav", 0.8);
+		SoundLoader.playAudio("/audio/jump.wav", 0.5);
 	}
 
 	public void jumpOnEnemy() {
+
 		// set jump
 		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
 		inAir = true;
@@ -148,10 +152,10 @@ public class Player extends Entity {
 		// reset jump
 		jumpHeight = MAX_JUMP_HEIGHT;
 		jumping = false;
-		SoundLoader.playAudio("jump.wav", 0.8);
 	}
 
 	private void updateAttacking() {
+//		canDealDamage = System.currentTimeMillis() > lastAttack + DAMAGE_DELAY;
 		if (attacking) {
 			// Do not attack on the first animation index
 			if (animationIndex == 0)
@@ -160,6 +164,7 @@ public class Player extends Entity {
 			// Only deal damage on the last animation index
 			final int attackIndex = 3;
 			if (animationIndex == attackIndex && !attackChecked) {
+//				lastAttack = System.currentTimeMillis();
 				game.getPlaying().getEnemyManager().attackEnemyIfHit(this);
 				attackChecked = true;
 			}
@@ -181,8 +186,7 @@ public class Player extends Entity {
 		// bounce back
 		jumpOnEnemy();
 
-		SoundLoader.playAudio("player_taking_damage.wav");
-
+		SoundLoader.playAudio("/audio/ouchplayer.wav");
 	}
 
 	public void hitByBullet(Bullet b) {
@@ -198,7 +202,7 @@ public class Player extends Entity {
 		// bounce back
 		jumpOnEnemy();
 
-		SoundLoader.playAudio("player_taking_damage.wav");
+		SoundLoader.playAudio("/audio/ouchplayer.wav");
 	}
 
 	public void resetPlayer() {
@@ -283,7 +287,7 @@ public class Player extends Entity {
 			playerAction = JUMPING;
 		} else if (inAir && airSpeed > 0) {
 			// todo add falling
-			playerAction = JUMPING;
+			playerAction = FALLING;
 		} else if (direction == LEFT || direction == RIGHT) {
 			playerAction = RUNNING;
 		} else {
@@ -322,6 +326,10 @@ public class Player extends Entity {
 	}
 
 	// ====== Getters & Setters ======
+
+//	public boolean canDealDamage() {
+//		return canDealDamage;
+//	}
 
 	public void setHoldingSpace(boolean holdingSpace) {
 		this.holdingSpace = holdingSpace;

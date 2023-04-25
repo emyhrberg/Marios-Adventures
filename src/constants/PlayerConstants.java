@@ -20,7 +20,7 @@ public class PlayerConstants {
 		return switch (playerAction) {
 			case IDLE 		-> 6;
 			case RUNNING 	-> 8;
-			case JUMPING	-> 4;
+			case JUMPING	-> 3;
 			case FALLING 	-> 2;
 			case ATTACKING 	-> 4;
 			case HIT 		-> 7;

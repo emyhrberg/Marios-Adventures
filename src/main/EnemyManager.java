@@ -1,6 +1,7 @@
 package main;
 
 import helpers.ImageLoader;
+import helpers.SoundLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -84,6 +85,7 @@ public class EnemyManager {
 		for (Shark s : sharks) {
 			if (s.isEnemyAlive() && player.attackBox.intersects(s.hitbox)) {
 				s.reduceEnemyHealth(player);
+				SoundLoader.playAudio("/audio/ouchenemy.wav", 0.7);
 			}
 		}
 	}
