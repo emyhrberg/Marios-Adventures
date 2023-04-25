@@ -22,7 +22,7 @@ public class GameCompletedOverlay extends State {
 
     public void drawGameCompleted(Graphics g) {
 		if (!game.isDrawAllowed()) {
-			return;
+//			return;
 		}
 		// Draw the gif at the center of the screen
 		GifLoader gifImage = GifLoader.loadGif("overlay_stars.gif");

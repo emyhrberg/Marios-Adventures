@@ -9,18 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Improved bullet bills to go down when hit">
-      <change afterPath="$PROJECT_DIR$/resources/audio/old/gameover.wav" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested, looks good :)">
+      <change afterPath="$PROJECT_DIR$/resources/audio/old/gameover_new.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/o.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/gameover.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/gameover.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/bg_sky.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/bg_sky.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/overlays/GameCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameCompletedOverlay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,14 +139,7 @@
       <workItem from="1682278636895" duration="6414000" />
       <workItem from="1682351742294" duration="19860000" />
       <workItem from="1682375737965" duration="10367000" />
-      <workItem from="1682428785321" duration="11008000" />
-    </task>
-    <task id="LOCAL-00004" summary="Updated question tiles to only accept collision from below and not when falling">
-      <created>1681759454896</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1681759454896</updated>
+      <workItem from="1682428785321" duration="12629000" />
     </task>
     <task id="LOCAL-00005" summary="Moving platforms working!">
       <created>1681923808810</created>
@@ -488,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682431311131</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Game playtested, looks good :)">
+      <created>1682445690012</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1682445690012</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +494,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added cannon shooting cooldown, looks very good!" />
     <MESSAGE value="Improved cannon shooting cooldown!" />
     <MESSAGE value="Working on bricks breaking" />
     <MESSAGE value="Fixed final flag, working on bullet bugs" />
@@ -523,7 +518,8 @@
     <MESSAGE value="Improved lots of sound effects! And damage cooldown" />
     <MESSAGE value="Improved lots of sound effects!" />
     <MESSAGE value="Improved bullet bills to go down when hit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved bullet bills to go down when hit" />
+    <MESSAGE value="Game playtested, looks good :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game playtested, looks good :)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

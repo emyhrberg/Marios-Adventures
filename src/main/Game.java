@@ -23,12 +23,12 @@ public class Game implements Runnable {
     // ====== Game loop ======
     public static final int UPS         = 200;
     public static final int FPS         = 60;
-    private long lastCheck;
     private double timePerFrame         = 1000000000.0 / FPS;
     private double timePerUpdate        = 1000000000.0 / UPS;
     private long previousTime           = System.nanoTime();
     private double deltaU               = 0;
     private double deltaF               = 0;
+    private long lastCheck;
 
     // ====== Game Variables ======
     public static float SCALE                   = 1.35f;
@@ -56,14 +56,21 @@ public class Game implements Runnable {
     private Clip menuClip, levelClip;
     private int levelClipFramePosition;
 
+    // ====== Timer ======
+    private int t = 300;
+
+    private boolean isFirstTime = false;
+
     // ====== Disable key presses ======
-    private boolean allowPress = false;
-    private long lastKeyCheck;
+    private boolean allowPress;
+    private long lastStateCheck;
     private static final int DISALLOW_KEY_TIME = 4000;
 
     // ====== Wait some time ======
     private static final int WAIT_TIME = 2300;
-    private boolean allowDraw = false;
+    private static final int GO_PLAYING_TIME = 8000;
+    private boolean allowDraw;
+    private boolean allowPlaying;
 
     // ====== Constructor ======
     public Game() {
@@ -96,12 +103,15 @@ public class Game implements Runnable {
                 playing.update();
             }
             case LEVEL_COMPLETED, GAME_COMPLETED, GAME_OVER -> {
-                long timeSinceLastCheck = System.currentTimeMillis() - lastKeyCheck;
+                long timeSinceLastCheck = System.currentTimeMillis() - lastStateCheck;
                 if (timeSinceLastCheck >= DISALLOW_KEY_TIME) {
                     allowPress = true;
                 }
                 if (timeSinceLastCheck >= WAIT_TIME) {
                     allowDraw = true;
+                }
+                if (timeSinceLastCheck >= GO_PLAYING_TIME) {
+                    playing.resetGameGoToPlaying();
                 }
             }
         }
@@ -172,14 +182,13 @@ public class Game implements Runnable {
         }
     }
 
-    private int t = 300;
-
     // ====== Game methods ======
 
     public void setGameState(GameState gameState) {
         // Set the game state, and also save previous game state
         prevState = this.gameState;
         this.gameState = gameState;
+        isFirstTime = true;
 
         playSounds();
         handleWaitStates();
@@ -230,7 +239,8 @@ public class Game implements Runnable {
         if (gameState == GAME_COMPLETED || gameState == GAME_OVER || gameState == LEVEL_COMPLETED) {
             allowDraw = false;
             allowPress = false;
-            lastKeyCheck = System.currentTimeMillis();
+            allowPlaying = false;
+            lastStateCheck = System.currentTimeMillis();
         }
     }
 
@@ -282,5 +292,13 @@ public class Game implements Runnable {
 
     public boolean isDrawAllowed() {
         return allowDraw;
+    }
+
+    public boolean isFirstTime() {
+        return isFirstTime;
+    }
+
+    public void setFirstTime(boolean firstTime) {
+        isFirstTime = firstTime;
     }
 }

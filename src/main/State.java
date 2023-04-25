@@ -24,15 +24,20 @@ public class State {
     protected State(Game game) {
 	this.game = game;
     }
-
     /**
      * This method draws a given image in the center of the screen
      */
     protected void drawImage(Graphics g, BufferedImage img) {
         // Values for alpha
+        if (game.isFirstTime()) {
+            alpha = 0;
+            game.setFirstTime(false);
+        }
+
+        // fade to black
         alpha += 5;
-        if (alpha > 240)
-            alpha = 240;
+        if (alpha > 255)
+            alpha = 255;
 
         // Draw a rectangle with opacity
         g.setColor(new Color(0, 0, 0, alpha));
