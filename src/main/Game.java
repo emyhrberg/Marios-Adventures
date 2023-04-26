@@ -35,7 +35,7 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE                   = 1.35f;
+    public static float SCALE                   = 1.75f;
     public static final int TILES_SIZE_DEFAULT  = 40;
     public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * SCALE);
     public static final int TILES_IN_WIDTH      = 26;

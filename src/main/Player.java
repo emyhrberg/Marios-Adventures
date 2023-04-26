@@ -44,10 +44,10 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.8f * SCALE;
-	private static final int START_HEALTH 				= 1;
+	private static final int START_HEALTH 				= 3;
 
 	// ====== Jumping ======
-	protected boolean jumpAllowed = true;
+	protected boolean canJump = true;
 	protected boolean jumping = false;
 	protected static final float MAX_JUMP_HEIGHT = 2.5f * SCALE;
 	protected float jumpHeight = MAX_JUMP_HEIGHT;
@@ -111,13 +111,13 @@ public class Player extends Entity {
 		if (holdingSpace && airSpeed < 0 && maxJumpBoost) {
 			airSpeed -= GRAVITY;
 		}
-		if (jumpAllowed && jumping) {
+		if (canJump && jumping) {
 			jump();
 		}
 	}
 
 	public void jump() {
-		if (inAir || !jumpAllowed)
+		if (inAir || !canJump)
 			return;
 
 		unbindPlatform();
@@ -131,7 +131,7 @@ public class Player extends Entity {
 		// reset jump
 		jumpHeight = MAX_JUMP_HEIGHT;
 		jumping = false;
-		jumpAllowed = false;
+		canJump = false;
 
 		SoundLoader.playAudio("/audio/jump.wav", 0.5);
 	}
@@ -345,7 +345,7 @@ public class Player extends Entity {
 	}
 
 	public void setCanJump(boolean canJump) {
-		this.jumpAllowed = canJump;
+		this.canJump = canJump;
 	}
 
 	public void setLevel(Level level) {

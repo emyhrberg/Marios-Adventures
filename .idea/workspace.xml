@@ -9,14 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Misc improvements, playtesting looks good!">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Small image fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Lava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Lava.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,21 +139,7 @@
       <workItem from="1682278636895" duration="6414000" />
       <workItem from="1682351742294" duration="19860000" />
       <workItem from="1682375737965" duration="10367000" />
-      <workItem from="1682428785321" duration="27753000" />
-    </task>
-    <task id="LOCAL-00011" summary="Fixed coin size">
-      <created>1682033866099</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1682033866099</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Added sparkle to coins">
-      <created>1682037297827</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1682037297827</updated>
+      <workItem from="1682428785321" duration="28357000" />
     </task>
     <task id="LOCAL-00013" summary="Added sparkle to coins">
       <created>1682037694910</created>
@@ -487,7 +470,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682469341352</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Code cleanup for objects, looks good, plays well!">
+      <created>1682471504383</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1682471504383</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Small image fix">
+      <created>1682471599698</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1682471599698</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,8 +494,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed bullet bug" />
-    <MESSAGE value="Working on bricks..." />
     <MESSAGE value="Bricks working to 90%" />
     <MESSAGE value="Game playtested! first level ok, only some bugs with bricks" />
     <MESSAGE value="Playtesting, working on platform bug fix" />
@@ -522,7 +517,9 @@
     <MESSAGE value="Added jar" />
     <MESSAGE value="Fixed reset timer and coin count" />
     <MESSAGE value="Misc improvements, playtesting looks good!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Misc improvements, playtesting looks good!" />
+    <MESSAGE value="Code cleanup for objects, looks good, plays well!" />
+    <MESSAGE value="Small image fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small image fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
