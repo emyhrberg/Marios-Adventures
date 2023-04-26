@@ -21,7 +21,6 @@ public class Coin extends GameObject {
     public Coin(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         initHitbox(x+X, y+Y, COIN_SIZE_DEFAULT, COIN_SIZE_DEFAULT);
-        doAnimation = true;
     }
 
     public void update(Player player, Coin c) {

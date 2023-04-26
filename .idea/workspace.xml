@@ -9,19 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed reset timer and coin count">
-      <change afterPath="$PROJECT_DIR$/resources/images/old/overlay_game.psd" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Misc improvements, playtesting looks good!">
+      <change afterPath="$PROJECT_DIR$/resources/images/old/overlay_over.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/sprites_flag.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/sprites_flag.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/objects/Flag.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/overlay_game.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/overlay_game.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/overlay_over.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/overlay_over.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/tiles.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/GameCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameCompletedOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,14 +148,7 @@
       <workItem from="1682278636895" duration="6414000" />
       <workItem from="1682351742294" duration="19860000" />
       <workItem from="1682375737965" duration="10367000" />
-      <workItem from="1682428785321" duration="24112000" />
-    </task>
-    <task id="LOCAL-00009" summary="Fixed question reset">
-      <created>1682032849387</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1682032849387</updated>
+      <workItem from="1682428785321" duration="25623000" />
     </task>
     <task id="LOCAL-00010" summary="Fixed question reset">
       <created>1682032854697</created>
@@ -492,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682464813732</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Misc improvements, playtesting looks good!">
+      <created>1682467626741</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1682467626742</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +503,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Game working ok now" />
     <MESSAGE value="Fixed bullet bug" />
     <MESSAGE value="Working on bricks..." />
     <MESSAGE value="Bricks working to 90%" />
@@ -527,7 +527,8 @@
     <MESSAGE value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
     <MESSAGE value="Added jar" />
     <MESSAGE value="Fixed reset timer and coin count" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed reset timer and coin count" />
+    <MESSAGE value="Misc improvements, playtesting looks good!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Misc improvements, playtesting looks good!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

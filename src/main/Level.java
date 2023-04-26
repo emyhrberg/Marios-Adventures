@@ -37,7 +37,8 @@ public class Level {
     private static final int LAVA = 3;
     private static final int PIPE = 4;
     private static final int CANNON = 5;
-    private static final int BRICK_BLUE = 6;
+    private static final int BRICK = 6;
+    private static final int FLAG = 7;
 
     // ====== List of objects ======
     private final List<Coin> coins            = new ArrayList<>();
@@ -47,6 +48,7 @@ public class Level {
     private final List<Pipe> pipes            = new ArrayList<>();
     private final List<Cannon> cannons        = new ArrayList<>();
     private final List<Brick> bricks          = new ArrayList<>();
+    private final List<Flag> flags            = new ArrayList<>();
 
     // ====== Enemies ======
     private final List<Shark> sharks = new ArrayList<>();
@@ -82,7 +84,7 @@ public class Level {
                 int blue = color.getBlue();
 
                 // Change red data to transparent tile if drawing with a red value beyond the tileset
-                if (red > 100)
+                if (red >= 100)
                     red = 90;
 
                 // Add red data
@@ -111,8 +113,10 @@ public class Level {
                     pipes.add(new Pipe(x * TILES_SIZE, y * TILES_SIZE, PIPE_TYPE));
                 if (blue == CANNON)
                     cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE));
-                if (blue == BRICK_BLUE)
+                if (blue == BRICK)
                     bricks.add(new Brick(x * TILES_SIZE, y * TILES_SIZE, BRICK_TYPE));
+                if (blue == FLAG)
+                    flags.add(new Flag(x*TILES_SIZE, y*TILES_SIZE, FLAG_TYPE));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);
@@ -123,13 +127,8 @@ public class Level {
 
     // ====== Getters ======
 
-    public void printLevelData(int[][] levelData) {
-        for (int[] row : levelData) {
-            for (int tile : row) {
-                System.out.printf("%02d ", tile);
-            }
-            System.out.println(); // Move to next line after each row
-        }
+    public List<Flag> getFlags() {
+        return flags;
     }
 
     public List<Brick> getBricks() {
@@ -182,5 +181,14 @@ public class Level {
 
     public Point getSpawnPoint() {
 	    return spawnPoint;
+    }
+
+    public void printLevelData(int[][] levelData) {
+        for (int[] row : levelData) {
+            for (int tile : row) {
+                System.out.printf("%02d ", tile);
+            }
+            System.out.println(); // Move to next line after each row
+        }
     }
 }

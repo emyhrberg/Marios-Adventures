@@ -17,7 +17,6 @@ public class GameObject {
 
     // Object properties
     protected static final int ANIMATION_SPEED = 20;
-    protected boolean doAnimation = true;
     protected boolean active = true;
     protected int animationTick, animationIndex;
     protected boolean isSparkle = false;
@@ -48,7 +47,6 @@ public class GameObject {
         animationIndex = 0;
         animationTick = 0;
         active = true;
-        doAnimation = true;
         isHit = false;
         isSparkle = false;
         isBreaking = false;

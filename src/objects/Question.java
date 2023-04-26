@@ -26,7 +26,6 @@ public class Question extends GameObject {
     public Question(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         initHitbox(x, y, QUESTION_WIDTH, QUESTION_HEIGHT);
-        doAnimation = true;
     }
 
     public void update(Player player, Question q) {

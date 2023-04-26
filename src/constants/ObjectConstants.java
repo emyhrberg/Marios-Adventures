@@ -12,7 +12,8 @@ public class ObjectConstants {
         CANNON_TYPE,
         BULLET_TYPE,
         BRICK_TYPE,
-        POWERUP_HEALTH_TYPE
+        POWERUP_HEALTH_TYPE,
+        FLAG_TYPE
     }
 
     public static int getSpriteAmount(ObjectType objectType) {
@@ -21,6 +22,7 @@ public class ObjectConstants {
             case COIN_TYPE, QUESTION_TYPE -> 4;
             case CANNON_TYPE -> 7;
             case BULLET_TYPE, SPARKLE_TYPE -> 8;
+            case FLAG_TYPE -> 3;
         };
     }
 }

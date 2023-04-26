@@ -45,10 +45,6 @@ public class ObjectManager {
     private final BufferedImage[] sparkleImages         = new BufferedImage[7];
 
     // ====== Break brick =======
-    private static final int BREAK_W_DEF = 40;
-    private static final int BREAK_H_DEF = 40;
-    private static final int BREAK_W = (int) (BREAK_W_DEF*SCALE);
-    private static final int BREAK_H = (int) (BREAK_H_DEF*SCALE);
     private static final BufferedImage BREAK_BRICK_IMAGES = ImageLoader.loadImage("/images/sprites_break_brick.png");
     private final BufferedImage[] breakImages = new BufferedImage[4];
 
@@ -68,6 +64,10 @@ public class ObjectManager {
     private static final BufferedImage POWERUP_HEALTH   = ImageLoader.loadImage("/images/powerup_health.png");
     public static final ArrayList<HealthPowerup> healths = new ArrayList<>();
 
+    // ====== Flags ======
+    private static final BufferedImage FLAG_IMAGES      = ImageLoader.loadImage("/images/sprites_flag.png");
+    private final BufferedImage[] flagImages            = new BufferedImage[3];
+
     // ====== List of objects ======
     private List<Coin> coins            = new ArrayList<>();
     private List<Question> questions    = new ArrayList<>();
@@ -76,6 +76,8 @@ public class ObjectManager {
     private List<Pipe> pipes            = new ArrayList<>();
     private List<Cannon> cannons        = new ArrayList<>();
     private List<Brick> bricks          = new ArrayList<>();
+    private List<Flag> flags           = new ArrayList<>();
+
 
     public ObjectManager() {
         initObjects();
@@ -101,7 +103,7 @@ public class ObjectManager {
 
         // Init breaks
         for (int i = 0; i < 4; i++) {
-            breakImages[i] = BREAK_BRICK_IMAGES.getSubimage(BREAK_W_DEF * i, 0, BREAK_W_DEF, BREAK_H_DEF);
+            breakImages[i] = BREAK_BRICK_IMAGES.getSubimage(TILES_SIZE_DEFAULT * i, 0, TILES_SIZE_DEFAULT, TILES_SIZE_DEFAULT);
         }
 
         // Init cannons
@@ -112,6 +114,11 @@ public class ObjectManager {
         // Init bullets
         for (int i = 0; i < 8; i++) {
             bulletImages[i] = BULLET_IMAGE.getSubimage(BULLET_W_DEF * i, 0, BULLET_W_DEF, BULLET_H_DEF);
+        }
+
+        // Init flags
+        for (int i = 0; i < 3; i++) {
+            flagImages[i] = FLAG_IMAGES.getSubimage(16 * i, 0, 16, 16);
         }
     }
 
@@ -126,7 +133,17 @@ public class ObjectManager {
         updateBullets(level, player);
         updateBricks(level, player);
         updateHealths(level, player);
+        updateFlags(level);
         pipes = level.getPipes();
+    }
+
+    private void updateFlags(Level level) {
+        flags = level.getFlags();
+
+        for (Flag f : flags) {
+            System.out.println(f.animationIndex);
+            f.update();
+        }
     }
 
     private void updateQuestions(Level level, Player player) {
@@ -198,6 +215,7 @@ public class ObjectManager {
         drawCannons(g, levelOffset);
         drawBricks(g, levelOffset);
         drawHealths(g, levelOffset);
+        drawFlags(g, levelOffset);
     }
 
     private void drawPlatforms(Graphics g, int levelOffset) {
@@ -243,7 +261,7 @@ public class ObjectManager {
             if (b.isBreaking) {
                 int x = (int) b.getBreakBox().x - levelOffset;
                 int y = (int) b.getBreakBox().y;
-                g.drawImage(breakImages[b.animationIndex],x,y, BREAK_W,BREAK_H,null);
+                g.drawImage(breakImages[b.animationIndex],x,y, TILES_SIZE,TILES_SIZE,null);
             }
 
             // Debug
@@ -316,6 +334,17 @@ public class ObjectManager {
                 // debug
 //                c.drawSomeBox(c.hitbox, new Color(100,255,50,100), g, levelOffset);
             }
+        }
+    }
+
+    private void drawFlags(Graphics g, int levelOffset) {
+        for (Flag f : flags)  {
+            int x = (int) f.hitbox.x - levelOffset;
+            int y = (int) f.hitbox.y;
+            g.drawImage(flagImages[f.animationIndex],x,y,TILES_SIZE,TILES_SIZE,null);
+
+            // debug
+//            f.drawSomeBox(f.hitbox, new Color(100,255,50,100), g, levelOffset);
         }
     }
 
