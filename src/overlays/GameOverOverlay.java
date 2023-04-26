@@ -25,9 +25,12 @@ public class GameOverOverlay extends State {
     private int gameX = GAME_X_INIT;
     private int overX = OVER_X_INIT;
     private static final float SPEED = (int) (10 * SCALE);
-    private static final int DIST = (int) (480 * SCALE);
+    private static final int DIST = (int) (595 * SCALE);
     private static final int GAME_MAX_DIST = GAME_X_INIT + DIST;
     private static final int OVER_MAX_DIST = OVER_X_INIT - DIST;
+
+    // Wait
+    private long firstCheckTime;
 
     // ====== Constructor ======
     public GameOverOverlay(Game game) {
@@ -35,15 +38,29 @@ public class GameOverOverlay extends State {
     }
 
     public void drawGameOver(Graphics g) {
-        if (!game.isDrawAllowed())
+        if (game.isKeyNotAllowed()) {
+//            return;
+        }
+        if (game.isDrawNotAllowed())
             return;
+
+        // set initial settings for game over screen
         if (game.isFirstTime()) {
             gameX = GAME_X_INIT;
             overX = OVER_X_INIT;
-            System.out.println("game start: " + gameX);
-            System.out.println("over start: " + overX);
             game.setFirstTime(false);
+            setAlpha(0);
+            firstCheckTime = System.currentTimeMillis();
         }
+
+        fadeToBlack(g);
+
+        // wait for one second
+        if (System.currentTimeMillis() - firstCheckTime <= 1000) {
+            return;
+        }
+
+
 
         // game text
         gameX += SPEED;

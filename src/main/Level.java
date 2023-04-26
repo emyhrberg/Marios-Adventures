@@ -123,14 +123,10 @@ public class Level {
 
     // ====== Getters ======
 
-    public void setLevelData(int[][] levelData) {
-        this.levelData = levelData;
-    }
-
     public void printLevelData(int[][] levelData) {
         for (int[] row : levelData) {
-            for (int element : row) {
-                System.out.printf("%02d ", element);
+            for (int tile : row) {
+                System.out.printf("%02d ", tile);
             }
             System.out.println(); // Move to next line after each row
         }

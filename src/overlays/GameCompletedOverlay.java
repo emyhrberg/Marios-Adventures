@@ -21,7 +21,7 @@ public class GameCompletedOverlay extends State {
     }
 
     public void drawGameCompleted(Graphics g) {
-		if (!game.isDrawAllowed()) {
+		if (game.isDrawNotAllowed()) {
 //			return;
 		}
 		// Draw the gif at the center of the screen
@@ -41,8 +41,8 @@ public class GameCompletedOverlay extends State {
 	}
 
 	public void keyPressed() {
-		if (!game.isPressAllowed()) {
-			return;
+		if (game.isKeyNotAllowed()) {
+//			return;
 		}
 
 		// Reset game nd go to 1st level

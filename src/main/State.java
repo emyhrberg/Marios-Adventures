@@ -28,20 +28,7 @@ public class State {
      * This method draws a given image in the center of the screen
      */
     protected void drawImage(Graphics g, BufferedImage img) {
-        // Values for alpha
-        if (game.isFirstTime()) {
-            alpha = 0;
-            game.setFirstTime(false);
-        }
-
-        // fade to black
-        alpha += 5;
-        if (alpha > 255)
-            alpha = 255;
-
-        // Draw a rectangle with opacity
-        g.setColor(new Color(0, 0, 0, alpha));
-        g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        fadeToBlack(g);
 
         // Set image size and position
         final int imageW = (int) (500 * SCALE);
@@ -51,5 +38,19 @@ public class State {
 
         // Draw the image
         g.drawImage(img, imageX, imageY, imageW, imageH, null);
+    }
+
+    protected void fadeToBlack(Graphics g) {
+        alpha += 5;
+        if (alpha > 255)
+            alpha = 255;
+
+        // Draw a rectangle with opacity
+        g.setColor(new Color(0, 0, 0, alpha));
+        g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    }
+
+    public void setAlpha(int alpha) {
+        this.alpha = alpha;
     }
 }

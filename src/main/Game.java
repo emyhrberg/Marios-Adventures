@@ -62,12 +62,12 @@ public class Game implements Runnable {
 
     // ====== Overlay settings =====
     private boolean allowPress;
-    private long lastStateCheck;
-    private static final int DISALLOW_KEY_TIME = 2300;
-    private boolean isFirstTime = false;
-    private static final int WAIT_TIME = 2700;
-    private static final int GO_PLAYING_TIME = 7500;
     private boolean allowDraw;
+    private long lastStateCheck;
+    private boolean isFirstTime = false;
+    private static final int DISALLOW_KEY_WAIT  = 2500;
+    private static final int DRAW_WAIT          = 2500;
+    private static final int GO_PLAYING_WAIT    = 7500;
 
     // ====== Constructor ======
     public Game() {
@@ -99,13 +99,13 @@ public class Game implements Runnable {
             case PLAYING    -> playing.update();
             case LEVEL_COMPLETED, GAME_COMPLETED, GAME_OVER -> {
                 long timeSinceLastCheck = System.currentTimeMillis() - lastStateCheck;
-                if (timeSinceLastCheck >= DISALLOW_KEY_TIME) {
+                if (timeSinceLastCheck >= DISALLOW_KEY_WAIT) {
                     allowPress = true;
                 }
-                if (timeSinceLastCheck >= WAIT_TIME) {
+                if (timeSinceLastCheck >= DRAW_WAIT) {
                     allowDraw = true;
                 }
-                if (timeSinceLastCheck >= GO_PLAYING_TIME) {
+                if (timeSinceLastCheck >= GO_PLAYING_WAIT) {
                     playing.resetGameGoToPlaying();
                 }
             }
@@ -194,7 +194,7 @@ public class Game implements Runnable {
 
         if (gameState == PLAYING && levelClip == null) {
             // Start level track if not already playing
-            levelClip = SoundLoader.playAudio("/audio/musiclevel3.wav");
+            levelClip = SoundLoader.playAudioLoop("/audio/musiclevel2.wav");
 
             // Resume level track if coming from paused
             if (prevState == PAUSED) {
@@ -265,12 +265,12 @@ public class Game implements Runnable {
         return gameOverOverlay;
     }
 
-    public boolean isPressAllowed() {
-        return allowPress;
+    public boolean isKeyNotAllowed() {
+        return !allowPress;
     }
 
-    public boolean isDrawAllowed() {
-        return allowDraw;
+    public boolean isDrawNotAllowed() {
+        return !allowDraw;
     }
 
     public boolean isFirstTime() {
