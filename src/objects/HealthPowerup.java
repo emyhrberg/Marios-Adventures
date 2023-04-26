@@ -26,8 +26,10 @@ public class HealthPowerup extends Entity {
     }
 
     public void update(Level level, Player player, HealthPowerup h) {
-        updateHealthPos(level, h);
-        updateHealthPickup(player, h);
+        if (h.isActive) {
+            updateHealthPos(level, h);
+            updateHealthPickup(player, h);
+        }
     }
 
     private void updateHealthPickup(Player player, HealthPowerup h) {

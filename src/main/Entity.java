@@ -204,6 +204,10 @@ public class Entity {
 
 	private boolean inLava = false;
 
+	public boolean isInLava() {
+		return inLava;
+	}
+
 	public void setInLava(boolean inLava) {
 		this.inLava = inLava;
 	}

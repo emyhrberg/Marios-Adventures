@@ -37,9 +37,11 @@ public class Bullet extends GameObject {
     }
 
     public void update(Level level, Player player, Bullet b) {
-        updateAnimationTick();
-        updateBulletCollision(level, player, b);
-        updateBulletPos();
+        if (b.isActive()) {
+            updateAnimationTick();
+            updateBulletCollision(level, player, b);
+            updateBulletPos();
+        }
     }
 
     private void updateBulletPos() {

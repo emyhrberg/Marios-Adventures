@@ -24,8 +24,10 @@ public class Coin extends GameObject {
     }
 
     public void update(Player player, Coin c) {
-        updateCoinAnimation(c);
-        coinPickup(player, c);
+        if (c.isActive()) {
+            updateCoinAnimation(c);
+            coinPickup(player, c);
+        }
     }
 
     private void coinPickup(Player player,Coin c) {

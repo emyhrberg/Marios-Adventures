@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static main.Game.TILES_SIZE_DEFAULT;
 import static objects.Bullet.*;
@@ -125,82 +124,24 @@ public class ObjectManager {
     // ====== Update ======
 
     public void update(Level level, Player player) {
-        updateCoins(level, player);
-        updateQuestions(level, player);
-        updatePlatforms(level, player);
-        updateLava(level, player);
-        updateCannons(level);
-        updateBullets(level, player);
-        updateBricks(level, player);
-        updateHealths(level, player);
-        updateFlags(level);
-        pipes = level.getPipes();
-    }
+        flags       = level.getFlags();
+        questions   = level.getQuestions();
+        bricks      = level.getBricks();
+        lava        = level.getLava();
+        platforms   = level.getPlatforms();
+        coins       = level.getCoins();
+        cannons     = level.getCannons();
+        pipes       = level.getPipes();
 
-    private void updateFlags(Level level) {
-        flags = level.getFlags();
-
-        for (Flag f : flags) {
-            System.out.println(f.animationIndex);
-            f.update();
-        }
-    }
-
-    private void updateQuestions(Level level, Player player) {
-        questions = level.getQuestions();
-
-        for (Question q : questions)
-            q.update(player, q);
-    }
-
-    private void updateBricks(Level level, Player player) {
-        bricks = level.getBricks();
-
-        for (Brick b : bricks)
-            b.update(level, player, b);
-    }
-
-    private void updateLava(Level level, Player player) {
-        lava = level.getLava();
-
-        for (Lava l: lava)
-            l.updateLavaCollision(player, l);
-    }
-
-    private void updatePlatforms(Level level, Player player) {
-        platforms = level.getPlatforms();
-
-        for (Platform p : platforms)
-            p.update(player, level, p);
-    }
-
-    private void updateHealths(Level level, Player player) {
-        // no healths, just return
-        if (healths.size() != 0)
-            for (HealthPowerup h : healths)
-                if (h.isActive())
-                    h.update(level, player, h);
-    }
-
-    private void updateCoins(Level level, Player player) {
-        coins = level.getCoins();
-
-        for (Coin c : coins)
-            if (c.isActive())
-                c.update(player, c);
-    }
-
-    private void updateCannons(Level level) {
-        cannons = level.getCannons();
-
-        for (Cannon c: cannons)
-            c.update(c);
-    }
-
-    private void updateBullets(Level level, Player player) {
-        for (Bullet b : bullets)
-            if (b.isActive())
-                b.update(level, player, b);
+        for (Flag f : flags) f.update();
+        for (Question q : questions) q.update(player, q);
+        for (Brick b : bricks) b.update(level, player, b);
+        for (Lava l: lava) l.update(player, l);
+        for (Platform p : platforms) p.update(player, level, p);
+        for (Coin c : coins) c.update(player, c);
+        for (Cannon c: cannons) c.update(c);
+        for (HealthPowerup h : healths) h.update(level, player, h);
+        for (Bullet b : bullets) b.update(level, player, b);
     }
 
     // ====== Draw ======

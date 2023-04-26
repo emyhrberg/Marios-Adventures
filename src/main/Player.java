@@ -44,7 +44,7 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.8f * SCALE;
-	private static final int START_HEALTH 				= 3;
+	private static final int START_HEALTH 				= 1;
 
 	// ====== Jumping ======
 	protected boolean jumpAllowed = true;
@@ -204,6 +204,7 @@ public class Player extends Entity {
 		hit = false;
 		health = maxHealth;
 		direction = STILL;
+		setInLava(false);
 	}
 
 	// ====== Draw and Animations ======
@@ -243,6 +244,10 @@ public class Player extends Entity {
 	}
 
 	private void updateAnimationTick() {
+		if (playerAction == DYING) {
+			return;
+		}
+
 		// Update animation tick
 		animationTick++;
 
@@ -267,7 +272,6 @@ public class Player extends Entity {
 		final PlayerAction startAnimation = playerAction;
 
 		if (health <= 0) {
-			health = 0;
 			playerDeathAndGameOver();
 		} else if (hit) {
 			playerAction = HIT;
@@ -303,15 +307,26 @@ public class Player extends Entity {
 	}
 
 	private void playerDeathAndGameOver() {
+		System.out.println(isInLava());
+		if (isEntityInAir(hitbox, level) && !isInLava()) {
+			hitbox.y += 1;
+		}
+
+		// death animation
+		health = 0;
 		if (playerAction != DYING) {
 			playerAction = DYING;
 			animationIndex = 0;
 			animationTick = 0;
 		}
-
-		if (animationIndex == getSpriteAmount(DYING) - 1) {
-			// here we reached final death animation shown, now set game over!
-			game.setGameState(GAME_OVER);
+		animationTick++;
+		if (animationTick >= ANIMATION_SPEED) {
+			animationTick = 0;
+			animationIndex++;
+			if (animationIndex >= 4) {
+				animationIndex = 4;
+				game.setGameState(GAME_OVER);
+			}
 		}
 	}
 
@@ -323,10 +338,6 @@ public class Player extends Entity {
 
 	public boolean isHit() {
 		return hit;
-	}
-
-	public int getMaxHealth() {
-		return maxHealth;
 	}
 
 	public int getHealth() {
