@@ -14,25 +14,25 @@ import java.awt.event.MouseEvent;
 public class MouseInput extends MouseAdapter {
 
     // ====== Variables ======
-    private Game game;
+    private final Game game;
 
     // ====== Constructor ======
     public MouseInput(Game game) {
         this.game = game;
     }
 
-    @Override public void mousePressed(final MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
         switch (game.getGameState()) {
             case MENU       -> game.getMenu().updateMousePress(e);
             case PLAYING    -> game.getPlaying().mousePressed(e);
         }
     }
 
-    @Override public void mouseReleased(final MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
         game.getMenu().updateMouseReleased(e);
     }
 
-    @Override public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(MouseEvent e) {
         game.getMenu().setMouseOverButton(e);
     }
 }

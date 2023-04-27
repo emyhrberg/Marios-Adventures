@@ -15,16 +15,16 @@ import static main.Game.GAME_WIDTH;
  */
 public class GameFrame extends JFrame {
 
-    // ====== Constructor ======
+	private static final BufferedImage icon = ImageLoader.loadImage("/ui/mario-icon.png");
+
     public GameFrame(GameComponent gameComponent) {
 		// title and icon
 		setTitle("Mario's Adventures!");
-		BufferedImage image = ImageLoader.loadImage("/images/icon.png");
-		setIconImage(image);
+		setIconImage(icon);
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(true);
+		setResizable(false);
 //		setUndecorated(true);
 		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
 

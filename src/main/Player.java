@@ -30,7 +30,7 @@ public class Player extends Entity {
 	private final BufferedImage[][] playerImages 		= new BufferedImage[ROWS][IMAGES_IN_ROW];
 
 	// ====== Player Size ======
-	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/images/sprites_player.png");
+	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/entities/player.png");
 	public static final int PLAYER_WIDTH 				= 50;
 	public static final int PLAYER_HEIGHT 				= 50;
 	private static final int PLAYER_X_OFF 				= (int) (14 * SCALE);

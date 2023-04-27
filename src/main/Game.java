@@ -2,11 +2,11 @@ package main;
 
 import constants.GameState;
 import helpers.SoundLoader;
-import misc.Menu;
-import overlays.GameCompletedOverlay;
-import overlays.GameOverOverlay;
-import overlays.LevelCompletedOverlay;
-import overlays.PauseOverlay;
+import ui.Menu;
+import ui.GameCompletedOverlay;
+import ui.GameOverOverlay;
+import ui.LevelCompletedOverlay;
+import ui.PauseOverlay;
 
 import javax.sound.sampled.Clip;
 import java.awt.*;

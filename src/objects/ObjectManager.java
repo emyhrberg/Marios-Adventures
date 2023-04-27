@@ -25,47 +25,47 @@ public class ObjectManager {
 
     // ====== Coins =======
     private final BufferedImage[] coinImages            = new BufferedImage[4];
-    private static final BufferedImage COIN_IMAGES      = ImageLoader.loadImage("/images/sprites_coin.png");
+    private static final BufferedImage COIN_IMAGES      = ImageLoader.loadImage("/sprites/coin.png");
     public static final int PIXEL_SIZE                  = 16;
 
     // ====== Questions =======
     private final BufferedImage[][] questionImages      = new BufferedImage[2][4];
-    private static final BufferedImage QUESTION_IMAGES  = ImageLoader.loadImage("/images/sprites_question.png");
+    private static final BufferedImage QUESTION_IMAGES  = ImageLoader.loadImage("/sprites/question.png");
 
     // ====== Platforms =======
-    private static final BufferedImage PLATFORM_IMAGES  = ImageLoader.loadImage("/images/sprites_platform.png");
+    private static final BufferedImage PLATFORM_IMAGES  = ImageLoader.loadImage("/sprites/platform.png");
 
     // ====== Lava =======
-    private static final BufferedImage LAVA_IMAGES      = ImageLoader.loadImage("/images/sprites_lava.png");
+    private static final BufferedImage LAVA_IMAGES      = ImageLoader.loadImage("/sprites/lava.png");
 
     // ====== Sparkle =======
     private static final int SPARKLE_W_DEF = 100;
     private static final int SPARKLE_H_DEF = 100;
-    private static final BufferedImage SPARKLE_IMAGES   = ImageLoader.loadImage("/images/sprites_sparkle.png");
+    private static final BufferedImage SPARKLE_IMAGES   = ImageLoader.loadImage("/sprites/sparkle.png");
     private final BufferedImage[] sparkleImages         = new BufferedImage[7];
 
     // ====== Break brick =======
-    private static final BufferedImage BREAK_BRICK_IMAGES = ImageLoader.loadImage("/images/sprites_break_brick.png");
+    private static final BufferedImage BREAK_BRICK_IMAGES = ImageLoader.loadImage("/sprites/brick-explosion.png");
     private final BufferedImage[] breakImages = new BufferedImage[4];
 
     // ====== Pipes =======
-    private static final BufferedImage PIPE_IMAGES      = ImageLoader.loadImage("/images/sprites_pipe.png");
+    private static final BufferedImage PIPE_IMAGES      = ImageLoader.loadImage("/sprites/pipe.png");
 
     // ====== Cannons ======
-    private static final BufferedImage CANNON_IMAGES    = ImageLoader.loadImage("/images/sprites_cannon.png");
+    private static final BufferedImage CANNON_IMAGES    = ImageLoader.loadImage("/sprites/cannon.png");
     private final BufferedImage[] cannonImages          = new BufferedImage[7];
 
     // ====== Bullets ======
-    private static final BufferedImage BULLET_IMAGE     = ImageLoader.loadImage("/images/sprites_bullet.png");
+    private static final BufferedImage BULLET_IMAGE     = ImageLoader.loadImage("/sprites/bullet.png");
     private final BufferedImage[] bulletImages          = new BufferedImage[8];
     public static final List<Bullet> bullets = new ArrayList<>();
 
     // ====== Power-ups ======
-    private static final BufferedImage POWERUP_HEALTH   = ImageLoader.loadImage("/images/powerup_health.png");
+    private static final BufferedImage POWERUP_HEALTH   = ImageLoader.loadImage("/sprites/health-powerup.png");
     public static final ArrayList<HealthPowerup> healths = new ArrayList<>();
 
     // ====== Flags ======
-    private static final BufferedImage FLAG_IMAGES      = ImageLoader.loadImage("/images/sprites_flag.png");
+    private static final BufferedImage FLAG_IMAGES      = ImageLoader.loadImage("/sprites/flag.png");
     private final BufferedImage[] flagImages            = new BufferedImage[3];
 
     // ====== List of objects ======

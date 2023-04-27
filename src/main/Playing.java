@@ -26,6 +26,7 @@ import static objects.Coin.coinCount;
 public class Playing extends State {
 
     // ====== Variables ======
+    private static final float PLAYER_SCALE = 1.33f;
     private final Player player;
     private int levelOffset;
     private int shakeOffset;
@@ -33,21 +34,21 @@ public class Playing extends State {
     private boolean movingLeft, movingRight;
     private static final int START_T = 300;
     private int t = START_T;
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/inside-out.ttf");
 
     private final EnemyManager enemyManager;
     private final LevelManager levelManager;
     private final ObjectManager objectManager;
 
     // Drawing background
-    private static final BufferedImage SKY = ImageLoader.loadImage("/images/bg_sky.png");
-    private static final BufferedImage BIG_CLOUDS = ImageLoader.loadImage("/images/bg_clouds_big.png");
-    private static final BufferedImage SMALL_CLOUDS = ImageLoader.loadImage("/images/bg_clouds_small.png");
-    private static final BufferedImage FOREST = ImageLoader.loadImage("/images/bg_forest.png");
+    private static final BufferedImage SKY = ImageLoader.loadImage("/ui/sky.png");
+    private static final BufferedImage BIG_CLOUDS = ImageLoader.loadImage("/ui/big-clouds.png");
+    private static final BufferedImage SMALL_CLOUDS = ImageLoader.loadImage("/ui/small-clouds.png");
+    private static final BufferedImage FOREST = ImageLoader.loadImage("/ui/forest.png");
 
     // Drawing UI
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/u.ttf");
-    private static final BufferedImage MARIO = ImageLoader.loadImage("/images/icon.png");
-    private static final BufferedImage COIN = ImageLoader.loadImage("/images/coin_icon.png");
+    private static final BufferedImage MARIO = ImageLoader.loadImage("/ui/mario-icon.png");
+    private static final BufferedImage COIN = ImageLoader.loadImage("/ui/coin-icon.png");
     private static final int MARIO_W = (int) (19*SCALE*2);
     private static final int MARIO_H = (int) (19*SCALE*2);
     private static final int MARIO_X = (int) (MARIO_W + 10 * SCALE);
@@ -62,7 +63,7 @@ public class Playing extends State {
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(PLAYER_WIDTH * SCALE * 1.33f, PLAYER_HEIGHT * SCALE * 1.33f, game);
+        player          = new Player(PLAYER_WIDTH * SCALE * PLAYER_SCALE, PLAYER_HEIGHT * SCALE * PLAYER_SCALE, game);
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 

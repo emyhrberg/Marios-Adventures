@@ -10,7 +10,211 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested and looks good!">
+      <change afterPath="$PROJECT_DIR$/resources/entities/plant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/entities/player.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/entities/shark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/brick-explosion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/brick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/bullet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/cannon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/coin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/flag.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/health-powerup.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/lava.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/pipe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/platform.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/question.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/sparkle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/tiles-num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/tiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/tiles.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/big-clouds.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/coin-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/forest.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/game.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/level-completed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/mario-icon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/mario-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/menu-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/menu-buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/menu-title.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/over.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/pause.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/sky.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/small-clouds.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/stars.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/sun.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/you-win.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MainModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/a.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/b.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/bad/j.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/c.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/d.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/e.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/f.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/g.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/h.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/i.TTF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/k.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/l.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/m.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/n.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/o.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/p.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/q.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/r.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/s.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/t.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/u.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/1.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_clouds.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_clouds_big.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_clouds_small.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_forest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_forest2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_forest3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_forest44.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_sky.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/bg_sun.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/coin_icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/icon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/menu_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/menu_button_atlas.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/menu_title.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1 (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1 (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/111.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1_almostdone.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1_b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1_inprogress.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1_nicelevel_backup.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/1_nicelevel_backupp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/2 (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/2___.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/3 (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/3.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/3333.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/3_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/3_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/bg2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/bg3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/bg4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/bg5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/bg_clouds.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/bg_old.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/boing.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/controls.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/flag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/health_bar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/heart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/hills.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/menu_button_atlas.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/menu_button_atlas2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/menu_button_atlas3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/menu_mortys_adventures_text.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/menu_title.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/menu_title2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/overlay_game.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/overlay_over.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/overlay_paused_notsure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/overlay_paused_test.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/player_sprites_all.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/powerup_health.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_break_brick.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_bullet.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_cannon.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_coin.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_plants.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_platform_backup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_platform_old.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_player_backup (2).psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_player_backup.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_player_backup2.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_question_old.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_sparkle (2).psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/sprites_sparkle.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/tiles_all.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/tiles_backup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/tileset1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/tileset2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/tileset_backup.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old/tileset_numbered_old.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old_bg/bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old_bg/bg_hills.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old_bg/cloud1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old_bg/cloud2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old_bg/cloud3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old_bg/cloud4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/old_bg/cloud5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/overlay_game.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/overlay_game_over.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/overlay_level_completed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/overlay_over.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/overlay_paused.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/overlay_stars.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/overlay_you_win.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/powerup_health.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_break_brick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_brick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_bullet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_bullet_all.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_bullet_backup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_cannon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_coin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_flag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_flag.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_lava.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_pipe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_plants.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_player.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_player_all.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_question.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_shark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/sprites_sparkle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles_all.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/tiles_numbered.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/misc/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/misc/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/misc/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/MouseInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/overlays/GameCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompletedOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/overlays/GameOverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOverOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/overlays/LevelCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompletedOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/overlays/PauseOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/PauseOverlay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,25 +243,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Downloads/PlatformerTutorial-ep28_finale&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src" />
@@ -66,6 +270,9 @@
       <recent name="C:\Users\Erik\Github\Marios-Adventures" />
       <recent name="C:\Users\Erik\Github\Marios-Adventures\resources\images\old" />
       <recent name="C:\Users\Erik\Github\Marios-Adventures\resources\images\unused" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ui" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="objects" />
@@ -147,6 +354,7 @@
       <workItem from="1682603647661" duration="8273000" />
       <workItem from="1682619938820" duration="4386000" />
       <workItem from="1682629669851" duration="1759000" />
+      <workItem from="1682632891215" duration="3047000" />
     </task>
     <task id="LOCAL-00021" summary="Updated bullets, working very well! No known bugs">
       <created>1682183618624</created>

@@ -18,7 +18,7 @@ import java.util.List;
 public class LevelManager {
 
     // ====== Tileset ======
-    private static final BufferedImage TILES 	= ImageLoader.loadImage("/images/tiles.png");
+    private static final BufferedImage TILES 	= ImageLoader.loadImage("/sprites/tiles.png");
     private static final int PIXELS_SIZE 		= 16;
     private static final int ROWS				= 10;
     private static final int IMAGES_IN_ROW 		= 10;
@@ -39,7 +39,7 @@ public class LevelManager {
 		levels = new ArrayList<>();
 
 		// Load a single level!
-		try (InputStream is = LevelManager.class.getResourceAsStream("/images/1.png")) {
+		try (InputStream is = LevelManager.class.getResourceAsStream("/levels/1.png")) {
 			levels.add(new Level(ImageIO.read(is)));
 		} catch (IOException e) {
 			e.printStackTrace();

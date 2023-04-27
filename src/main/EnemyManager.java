@@ -22,7 +22,7 @@ public class EnemyManager {
 	private static final int ROWS 						= 5;
 	private static final int IMAGES_IN_ROW 				= 7;
 	private final BufferedImage[][] sharkImages			= new BufferedImage[ROWS][IMAGES_IN_ROW];
-	private static final BufferedImage SHARK_IMAGE 		= ImageLoader.loadImage("/images/sprites_shark.png");
+	private static final BufferedImage SHARK_IMAGE 		= ImageLoader.loadImage("/entities/shark.png");
 	private static final int SHARK_X_OFFSET 			= (int) (12 * SCALE);
 	private static final int SHARK_Y_OFFSET 			= (int) (10 * SCALE);
 	public static final int SHARK_WIDTH_DEFAULT        	= 34;
@@ -31,7 +31,7 @@ public class EnemyManager {
 	public static final int SHARK_HEIGHT              	= (int) (SHARK_HEIGHT_DEFAULT * 1.5 * SCALE);
 
 	// ====== Plants =======
-	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/images/sprites_plants.png");
+	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/entities/plant.png");
 	private static final int PLANT_ROWS 				= 2;
 	private final BufferedImage[] plantImages			= new BufferedImage[PLANT_ROWS];
 	public static final int PLANT_WIDTH_DEFAULT			= 16;
