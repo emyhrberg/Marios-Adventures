@@ -17,7 +17,7 @@ import static main.Game.TILES_SIZE;
  */
 public class Level {
 
-    // Tiles between 50 and 100 are transparent
+    // Tiles between 0 and 50 are solid, 51 to 99 is transparent
     public static final ArrayList<Integer> solidTiles = IntStream.rangeClosed(0, 50).boxed().collect(Collectors.toCollection(ArrayList::new));
 
     // ====== Red Values ======

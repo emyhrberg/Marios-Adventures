@@ -21,7 +21,7 @@ public class KeyboardInput extends KeyAdapter {
         this.game = game;
     }
 
-    @Override public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         switch (game.getGameState()) {
             case PLAYING            -> game.getPlaying().keyPressed(e);
             case MENU               -> game.getMenu().keyPressed(e);
@@ -32,7 +32,7 @@ public class KeyboardInput extends KeyAdapter {
         }
     }
 
-    @Override public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
         game.getPlaying().keyReleased(e);
     }
 

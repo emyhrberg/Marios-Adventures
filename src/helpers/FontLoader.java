@@ -8,7 +8,7 @@ public class FontLoader {
 
     public static Font loadFont(String fontName) {
         Font font = null;
-        try (InputStream is = FontLoader.class.getResourceAsStream("/fonts/" + fontName)) {
+        try (InputStream is = FontLoader.class.getResourceAsStream(fontName)) {
 
             // No font resource found, return standard
             if (is == null)

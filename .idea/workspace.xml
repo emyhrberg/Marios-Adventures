@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Small image fix">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested and looks good!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,25 +39,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Downloads/PlatformerTutorial-ep28_finale",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Downloads/PlatformerTutorial-ep28_finale&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src" />
@@ -139,63 +136,17 @@
       <workItem from="1682278636895" duration="6414000" />
       <workItem from="1682351742294" duration="19860000" />
       <workItem from="1682375737965" duration="10367000" />
-      <workItem from="1682428785321" duration="28357000" />
-    </task>
-    <task id="LOCAL-00013" summary="Added sparkle to coins">
-      <created>1682037694910</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1682037694910</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Question work">
-      <created>1682085254007</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1682085254007</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Question work">
-      <created>1682085271235</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1682085271235</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added plant enemies, working ok!, still some minor collision detection bug with player">
-      <created>1682120145641</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1682120145641</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Added plant enemies, working ok!, still some minor collision detection bug with player">
-      <created>1682120178180</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1682120178180</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Fixed plant&amp;player collision bug">
-      <created>1682121016020</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1682121016020</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Updated plant speed and waiting at the top">
-      <created>1682122246289</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1682122246290</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Added cannons and bullets, need to fix bug where it spawns too many bullets">
-      <created>1682181826495</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1682181826495</updated>
+      <workItem from="1682428785321" duration="28623000" />
+      <workItem from="1682519385820" duration="522000" />
+      <workItem from="1682521544558" duration="836000" />
+      <workItem from="1682522461512" duration="461000" />
+      <workItem from="1682541463440" duration="3208000" />
+      <workItem from="1682547391920" duration="3000" />
+      <workItem from="1682547406060" duration="6861000" />
+      <workItem from="1682561455153" duration="789000" />
+      <workItem from="1682603647661" duration="8273000" />
+      <workItem from="1682619938820" duration="4386000" />
+      <workItem from="1682629669851" duration="1759000" />
     </task>
     <task id="LOCAL-00021" summary="Updated bullets, working very well! No known bugs">
       <created>1682183618624</created>
@@ -484,23 +435,83 @@
       <option name="project" value="LOCAL" />
       <updated>1682471599698</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Small stuff">
+      <created>1682472071422</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1682472071422</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Improved top bar UI!">
+      <created>1682556875585</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1682556875585</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Started working on improving background">
+      <created>1682558570748</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1682558570748</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Fixed bug causing health powerup to keep moving through solid tiles to the right">
+      <created>1682604385847</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1682604385848</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Added clouds">
+      <created>1682609643936</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1682609643936</updated>
+    </task>
+    <task id="LOCAL-00067" summary="New background added and working well!">
+      <created>1682610876765</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1682610876765</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Game playtested and looks good!">
+      <created>1682611254008</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1682611254008</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Game playtested and looks good!">
+      <created>1682628657119</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1682628657119</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Bricks working to 90%" />
-    <MESSAGE value="Game playtested! first level ok, only some bugs with bricks" />
-    <MESSAGE value="Playtesting, working on platform bug fix" />
-    <MESSAGE value="Added brick break explosion (not great)" />
-    <MESSAGE value="Working on platform bug, works on 2.png but not on 1.png" />
-    <MESSAGE value="Fixed platforms! Refactoring ObjectManager code" />
-    <MESSAGE value="Refactored ObjectManager to move functionality out to individual classes. Need to fix so player can fall off platform" />
     <MESSAGE value="Deleted platforms code, trying again to fix platforms" />
     <MESSAGE value="Platforms working!" />
     <MESSAGE value="Game playtested, no noticeable bugs!" />
@@ -519,7 +530,14 @@
     <MESSAGE value="Misc improvements, playtesting looks good!" />
     <MESSAGE value="Code cleanup for objects, looks good, plays well!" />
     <MESSAGE value="Small image fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small image fix" />
+    <MESSAGE value="Small stuff" />
+    <MESSAGE value="Improved top bar UI!" />
+    <MESSAGE value="Started working on improving background" />
+    <MESSAGE value="Fixed bug causing health powerup to keep moving through solid tiles to the right" />
+    <MESSAGE value="Added clouds" />
+    <MESSAGE value="New background added and working well!" />
+    <MESSAGE value="Game playtested and looks good!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game playtested and looks good!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

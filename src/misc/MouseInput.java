@@ -24,7 +24,7 @@ public class MouseInput extends MouseAdapter {
     @Override public void mousePressed(final MouseEvent e) {
         switch (game.getGameState()) {
             case MENU       -> game.getMenu().updateMousePress(e);
-            case PLAYING    -> game.getPlaying().pressedMouse(e);
+            case PLAYING    -> game.getPlaying().mousePressed(e);
         }
     }
 

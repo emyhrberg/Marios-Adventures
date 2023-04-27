@@ -6,6 +6,7 @@ import main.Level;
 import main.Player;
 
 import static main.Game.*;
+import static main.Level.solidTiles;
 import static objects.ObjectManager.healths;
 
 public class HealthPowerup extends Entity {
@@ -25,7 +26,7 @@ public class HealthPowerup extends Entity {
         initHitbox(x + HEALTH_X_SPAWN_OFFSET, y - HEALTH_Y_SPAWN_OFFSET, HEALTH_SIZE, HEALTH_SIZE);
     }
 
-    public void update(Level level, Player player, HealthPowerup h) {
+    public void update(Player player, Level level, HealthPowerup h) {
         if (h.isActive) {
             updateHealthPos(level, h);
             updateHealthPickup(player, h);
@@ -43,17 +44,33 @@ public class HealthPowerup extends Entity {
     }
 
     private void updateHealthPos(Level level, HealthPowerup h) {
+        // Stop moving if hit a tile to the right
+        if (hitSolidTileRight(level))
+            return;
+
+
         // Check if player is in air and set inAir to true if he is
         if (isEntityInAir(hitbox, level))
             inAir = true;
 
         // Player is in air; fall to the ground
         if (inAir) {
-            hitbox.y += Y_SPEED;
+            h.getHitbox().y += Y_SPEED;
             startFalling(level);
         } else {
-            hitbox.x += X_SPEED;
+            h.getHitbox().x += X_SPEED;
         }
+    }
+
+    private boolean hitSolidTileRight(Level level) {
+        int tileX = (int) ((hitbox.x - hitbox.width / 2) / TILES_SIZE);
+        int tileY = (int) (hitbox.y / TILES_SIZE);
+
+        int distanceToTile = 0;
+
+        if (isTileOutsideLevel(tileY)) return false;
+
+        return solidTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
     }
 
     // getters

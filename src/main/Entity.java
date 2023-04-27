@@ -98,11 +98,7 @@ public class Entity {
 		// Fall through outside level
 		if (isTileOutsideLevel(tileY)) { return false; }
 
-		if (isTileSolid(tileX,tileY,level)) {
-			return true;
-		}
-
-		return false;
+		return isTileSolid(tileX, tileY, level);
 	}
 
 	protected boolean isTileSolid(int tileX, int tileY, Level level) {
@@ -116,9 +112,8 @@ public class Entity {
 	// ====== Entity falling ======
 
 	protected boolean isEntityInAir(Rectangle2D.Float hitbox, Level level) {
-		if (currentPlatform != null || inLava) {
+		if (currentPlatform != null || inLava)
 			return false;
-		}
 
 		// check the bottom left and bottom right corner of the hitbox
 		boolean isBottomLeftSolid = isSolid(hitbox.x, hitbox.y + hitbox.height + 1, level);

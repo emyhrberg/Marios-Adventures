@@ -1,6 +1,7 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
+import main.Player;
 
 import java.util.Random;
 
@@ -28,7 +29,7 @@ public class Cannon extends GameObject {
         initHitbox(x - X_OFF, y - Y_OFF, CANNON_W_DEF, CANNON_H_DEF);
     }
 
-    public void update(Cannon c) {
+    public void update(Player player, Cannon c) {
         updateShootCooldown();
         shoot(c);
     }

@@ -28,7 +28,7 @@ public class Platform extends GameObject {
 
     // Platform moving
     private Direction platDir = LEFT;
-    private static final float MAX_SPEED = 0.5f * SCALE;
+    private static final float MAX_SPEED = 0.9f * SCALE;
     private float platSpeed;
 
     public Platform(int x, int y, ObjectType objectType) {
@@ -116,5 +116,6 @@ public class Platform extends GameObject {
 
         return solidTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
     }
+
 
 }

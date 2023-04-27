@@ -29,12 +29,12 @@ public class Brick extends GameObject {
         breakBox = new Rectangle2D.Float(x, y, TILES_SIZE, TILES_SIZE);
     }
 
-    public void update(Level level, Player player, Brick b) {
+    public void update(Player player, Level level, Brick b) {
         updateBreakingAnimation(b);
-        removeBrickFromGame(level, player, b);
+        removeBrickFromGame(player, level, b);
     }
 
-    private void removeBrickFromGame(Level level, Player player, Brick b) {
+    private void removeBrickFromGame(Player player, Level level, Brick b) {
         if (b.isActive())
             if (player.getHitbox().intersects(b.getHitbox()) && player.getAirSpeed() < 0) {
                 hitBricks.add(b);

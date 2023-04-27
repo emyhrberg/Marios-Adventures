@@ -7,6 +7,7 @@ import main.Player;
 
 import static main.Game.*;
 import static main.Level.solidTiles;
+import static objects.ObjectManager.bullets;
 
 public class Bullet extends GameObject {
 
@@ -36,7 +37,7 @@ public class Bullet extends GameObject {
         initHitbox(x, y + Y_OFF, HB_W, HB_H);
     }
 
-    public void update(Level level, Player player, Bullet b) {
+    public void update(Player player, Level level, Bullet b) {
         if (b.isActive()) {
             updateAnimationTick();
             updateBulletCollision(level, player, b);
@@ -75,7 +76,7 @@ public class Bullet extends GameObject {
                     lastCheck = System.currentTimeMillis();
                 }
             }
-        } else if (b.isBulletHittingLevel(b, level)) {
+        } else if (isBulletHittingLevel(b, level)) {
             b.setActive(false);
         }
     }
@@ -91,9 +92,6 @@ public class Bullet extends GameObject {
             return false;
         }
 
-        if (solidTiles.contains(level.getLevelData()[bulletY][bulletX])) {
-            return true;
-        }
-        return false;
+        return solidTiles.contains(level.getLevelData()[bulletY][bulletX]);
     }
 }

@@ -12,10 +12,7 @@ public class PlayerConstants {
 		HIT,
 		DYING
     }
-
-    /**
-     * Returns the number of images to fit the player action
-     */
+	
     public static int getSpriteAmount(PlayerAction playerAction) {
 		return switch (playerAction) {
 			case IDLE 		-> 6;

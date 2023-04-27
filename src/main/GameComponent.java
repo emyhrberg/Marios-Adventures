@@ -29,8 +29,7 @@ public class GameComponent extends JPanel {
 		addMouseMotionListener(new MouseInput(game));
     }
 
-
-    @Override protected void paintComponent(final Graphics g) {
+    protected void paintComponent(final Graphics g) {
 		super.paintComponent(g);
 
         // DEBUG

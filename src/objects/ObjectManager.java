@@ -7,6 +7,7 @@ import main.Player;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static main.Game.TILES_SIZE;
@@ -133,15 +134,14 @@ public class ObjectManager {
         cannons     = level.getCannons();
         pipes       = level.getPipes();
 
-        for (Flag f : flags) f.update();
-        for (Question q : questions) q.update(player, q);
-        for (Brick b : bricks) b.update(level, player, b);
-        for (Lava l: lava) l.update(player, l);
-        for (Platform p : platforms) p.update(player, level, p);
-        for (Coin c : coins) c.update(player, c);
-        for (Cannon c: cannons) c.update(c);
-        for (HealthPowerup h : healths) h.update(level, player, h);
-        for (Bullet b : bullets) b.update(level, player, b);
+        for (Question q : questions)    q.update(player, q);
+        for (Brick b : bricks)          b.update(player, level, b);
+        for (Lava l: lava)              l.update(player, l);
+        for (Platform p : platforms)    p.update(player, level, p);
+        for (Coin c : coins)            c.update(player, c);
+        for (Cannon c: cannons)         c.update(player, c);
+        for (HealthPowerup h : healths) h.update(player, level, h);
+        for (Bullet b : bullets)        b.update(player, level, b);
     }
 
     // ====== Draw ======
@@ -290,17 +290,9 @@ public class ObjectManager {
     }
 
     public void resetAllObjects() {
-        for (Question q : questions) {
-            q.resetObject();
-        }
-
-        for (Coin c : coins) {
-            c.resetObject();
-        }
-
-        for (Brick b : bricks) {
-            b.resetObject();
-        }
+        for (Question q : questions) q.resetObject();
+        for (Coin c : coins) c.resetObject();
+        for (Brick b : bricks) b.resetObject();
 
         bullets.clear();
         healths.clear();

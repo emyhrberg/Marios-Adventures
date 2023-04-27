@@ -307,7 +307,6 @@ public class Player extends Entity {
 	}
 
 	private void playerDeathAndGameOver() {
-		System.out.println(isInLava());
 		if (isEntityInAir(hitbox, level) && !isInLava()) {
 			hitbox.y += 1;
 		}

@@ -7,6 +7,8 @@ import objects.ObjectManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
@@ -28,30 +30,31 @@ public class Playing extends State {
     private int levelOffset;
     private int shakeOffset;
     private long lastSec;
+    private boolean movingLeft, movingRight;
     private static final int START_T = 300;
     private int t = START_T;
-    private boolean movingLeft, movingRight;
 
     private final EnemyManager enemyManager;
     private final LevelManager levelManager;
     private final ObjectManager objectManager;
 
-    // Drawing background sky, hills, clouds
+    // Drawing background
     private static final BufferedImage SKY = ImageLoader.loadImage("/images/bg_sky.png");
-    private static final BufferedImage HILLS = ImageLoader.loadImage("/images/hills.png");
-    private static final BufferedImage CLOUDS = ImageLoader.loadImage("/images/bg_clouds.png");
-    private static final int HILLS_WIDTH = 320*3;
-    private static final int HILLS_HEIGHT = 192*3;
-    private static final int CLOUDS_WIDTH = 640/2;
-    private static final int CLOUDS_HEIGHT = 360/2;
+    private static final BufferedImage BIG_CLOUDS = ImageLoader.loadImage("/images/bg_clouds_big.png");
+    private static final BufferedImage SMALL_CLOUDS = ImageLoader.loadImage("/images/bg_clouds_small.png");
+    private static final BufferedImage FOREST = ImageLoader.loadImage("/images/bg_forest.png");
 
-    // Drawing mario
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("o.ttf");
+    // Drawing UI
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/u.ttf");
     private static final BufferedImage MARIO = ImageLoader.loadImage("/images/icon.png");
+    private static final BufferedImage COIN = ImageLoader.loadImage("/images/coin_icon.png");
     private static final int MARIO_W = (int) (19*SCALE*2);
     private static final int MARIO_H = (int) (19*SCALE*2);
     private static final int MARIO_X = (int) (MARIO_W + 10 * SCALE);
     private static final int MARIO_Y = (int) (MARIO_H / 1.5);
+    private static final int COIN_Y = (int) (MARIO_H / 1.5 + MARIO_H + 10 * SCALE);
+    private static final int TOP_Y = (int) (MARIO_Y + MARIO_H - 4 * SCALE);
+    private static final int X_NEXT_TO_ICON = (int) (MARIO_X + MARIO_W + 4 * SCALE);
 
     // ====== Constructor ======
     public Playing(Game game) {
@@ -144,19 +147,21 @@ public class Playing extends State {
         }
     }
 
-    // ====== Draw methods ======
+    // ====== Draw ======
 
     public void draw(Graphics g) {
         // Draw background
         drawSky(g);
-        drawClouds(g);
-        drawHills(g);
+        drawForest(g);
+        drawSmallClouds(g);
+        drawBigClouds(g);
 
         // Draw UI
         drawMarioIcon(g);
+        drawCoinIcon(g);
         drawHealthText(g);
-        drawCoinText(g);
-        drawCountdownTimer(g);
+        drawCoinCount(g);
+//        drawCountdownTimer(g);
 
         // Draw game
         levelManager.draw(g, levelOffset);
@@ -166,103 +171,169 @@ public class Playing extends State {
     }
 
     private void drawSky(Graphics g) {
-        g.drawImage(SKY,0,0, GAME_WIDTH, Game.GAME_HEIGHT,null);
+        g.drawImage(SKY,0,0, GAME_WIDTH, GAME_HEIGHT,null);
     }
 
-    private void drawHills(Graphics g) {
-        // Hill moving speed
-        int levelOffsetMult = (int) (levelOffset * 0.2);
-        int y = Game.GAME_HEIGHT - HILLS_HEIGHT;
+    // ====== Background ======
 
-        // Draw 10 seamless hills
-        for (int i = 0; i < 10; i++)
-            g.drawImage(HILLS, i * HILLS_WIDTH - levelOffsetMult, y, HILLS_WIDTH, HILLS_HEIGHT, null);
+    private void drawForest(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f)); // Set opacity to 0.5
+        int x = (int) (-levelOffset * 0.17);
+        int y = (int) (130 * SCALE);
+        int w = (int) (1024 / 2 * SCALE);
+        int h = (int) (600 / 2 * SCALE);
+        for (int i = 0; i < 4; i++) {
+            g.drawImage(FOREST, x + i * w, y, w, h, null);
+        }
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 
-    private void drawClouds(Graphics g) {
-        // Cloud moving speed
-        int levelOffsetMult = (int) (levelOffset * 0.2);
-        int y = Game.GAME_HEIGHT - HILLS_HEIGHT + HILLS_HEIGHT / 3;
+    float bigX;
+    float smallX;
+    float incr;
+    private static final int CLOUDS_W = 1500;
 
-        // Draw 10 seamless clouds
-        for (int i = 0; i < 10; i++)
-            g.drawImage(CLOUDS, i * CLOUDS_WIDTH - levelOffsetMult, y, CLOUDS_WIDTH, CLOUDS_HEIGHT, null);
+    private void drawSmallClouds(Graphics g) {
+        // set opacity
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+
+        if (levelOffset == 0 || levelOffset == levelManager.getLevel().getMaxLevelOffset() || player.direction == STILL) {
+//            smallX -= 0.08f;
+//            incr += 0.08f;
+        } else {
+//            smallX = -levelOffset * 0.08f - incr;
+        }
+
+        smallX = -levelOffset * 0.08f;
+
+        for (int i = 0; i < 4; i++) {
+            g.drawImage(SMALL_CLOUDS, (int) smallX + i * CLOUDS_W, 80, null);
+        }
+
+        // reset opacity
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
+
+    private void drawBigClouds(Graphics g) {
+
+        // cloud direction
+        if (levelOffset == 0 || levelOffset == levelManager.getLevel().getMaxLevelOffset() || player.direction == STILL) {
+//            bigX -= 0.5f;
+//            incr += 0.5f;
+        } else {
+//            bigX = -levelOffset * 0.25f - incr;
+        }
+
+        bigX = -levelOffset * 0.25f;
+
+        // draw 4 clouds
+        for (int i = 0; i < 4; i++) {
+            g.drawImage(BIG_CLOUDS, (int) bigX + i * CLOUDS_W, 80, null);
+        }
+    }
+
+    // ====== UI ======
 
     private void drawMarioIcon(Graphics g) {
         g.drawImage(MARIO, MARIO_X, MARIO_Y,MARIO_W, MARIO_H,null);
     }
 
     private void drawHealthText(Graphics g) {
-        // text
-        final String health;
-        if (player.getHealth() < 10) {
-            health = "0" + player.getHealth();
-        } else {
-            health = String.valueOf(player.getHealth());
-        }
-
-        // draw x
+        // X
+        Graphics2D g2d = (Graphics2D) g;
         g.setFont(CUSTOM_FONT);
-        g.setFont(g.getFont().deriveFont(18f));
-        FontMetrics fm = g.getFontMetrics();
-        int w = fm.stringWidth(health);
-        int h = fm.getHeight();
-        int x = MARIO_X + w + 24;
-        int y = MARIO_Y + h*2 - 4;
-        g.setColor(new Color(224, 224, 224));
-        g.drawString("x", x, y);
+        g.setFont(g.getFont().deriveFont(28f));
+        int w = g.getFontMetrics().stringWidth("x");
+        TextLayout tl = new TextLayout("x", g.getFont(), g2d.getFontRenderContext());
+        Shape shape = tl.getOutline(null);
+        AffineTransform transform = AffineTransform.getTranslateInstance(X_NEXT_TO_ICON, TOP_Y);
+        g2d.transform(transform);
 
-        // draw health
-        g.setFont(g.getFont().deriveFont(32f));
-        g.setColor(new Color(224, 224, 224));
-        g.drawString(health, x + 24, y);
+        // draw black X
+        g2d.setStroke(new BasicStroke(5f));
+        g2d.setColor(new Color(5, 5, 5));
+        g2d.draw(shape);
+
+        // draw white X
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape);
+        g2d.setTransform(new AffineTransform());
+
+        // HEALTH
+        final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
+        g.setFont(g.getFont().deriveFont(48f));
+        int x2 = (int) (X_NEXT_TO_ICON + w + 2 * SCALE);
+        TextLayout tl2 = new TextLayout(health, g.getFont(), g2d.getFontRenderContext());
+        Shape shape2 = tl2.getOutline(null);
+        AffineTransform transform2 = AffineTransform.getTranslateInstance(x2, TOP_Y);
+        g2d.transform(transform2);
+
+        // draw black
+        g2d.setStroke(new BasicStroke(5f));
+        g2d.setColor(new Color(5, 5, 5));
+        g2d.draw(shape2);
+
+        // draw white
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape2);
+
+        // restore the original transform
+        g2d.setTransform(new AffineTransform());
     }
 
-    private void drawCoinText(Graphics g) {
-        // text shape
-        String coins;
-        if (coinCount < 10) {
-            coins = "Coins: 0" + coinCount;
-        } else {
-            coins = "Coins: " + coinCount;
-        }
+    private void drawCoinIcon(Graphics g) {
+        g.drawImage(COIN, MARIO_X, COIN_Y,MARIO_W, MARIO_H,null);
+    }
 
-        // size
-        g.setFont(CUSTOM_FONT);
-        g.setFont(g.getFont().deriveFont(32f));
-        FontMetrics fm = g.getFontMetrics();
-        int w = fm.stringWidth(coins);
-        int h = fm.getHeight();
-        int x = GAME_WIDTH / 2 - w / 2;
-        int y = MARIO_Y + h;
+    private void drawCoinCount(Graphics g) {
+        String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
 
-        // draw health
-        g.setColor(new Color(224, 224, 224));
-        g.drawString(coins, x, y);
+        Graphics2D g2d = (Graphics2D) g;
+        g.setFont(g.getFont().deriveFont(48f));
+        TextLayout tl = new TextLayout(coins, g.getFont(), g2d.getFontRenderContext());
+        Shape shape2 = tl.getOutline(null);
+        int y = (int) (COIN_Y + MARIO_H - 4 * SCALE);
+        AffineTransform transform = AffineTransform.getTranslateInstance(X_NEXT_TO_ICON, y);
+        g2d.transform(transform);
+
+        // draw black
+        g2d.setStroke(new BasicStroke(5f));
+        g2d.setColor(new Color(5, 5, 5));
+        g2d.draw(shape2);
+
+        // draw white
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape2);
+
+        // restore the original transform
+        g2d.setTransform(new AffineTransform());
     }
 
     private void drawCountdownTimer(Graphics g) {
-        String time;
-        if (t < 100 && t >= 10) {
-            time = "0" + t;
-        } else if (t < 10) {
-            time = "00" + t;
-        } else {
-            time = String.valueOf(t);
-        }
-        g.setFont(CUSTOM_FONT);
+        String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
+        Graphics2D g2d = (Graphics2D) g;
+        g.setFont(g.getFont().deriveFont(48f));
+        TextLayout tl = new TextLayout(countdown, g.getFont(), g2d.getFontRenderContext());
+        Shape shape = tl.getOutline(null);
+        int w = g.getFontMetrics().stringWidth(countdown);
+        int x = GAME_WIDTH - MARIO_X - w;
+        AffineTransform transform = AffineTransform.getTranslateInstance(x, TOP_Y);
+        g2d.transform(transform);
 
-        // text position
-        FontMetrics fm = g.getFontMetrics();
-        int w = fm.stringWidth(time);
-        int h = fm.getHeight();
-        int x = GAME_WIDTH - MARIO_X - w - 24;
-        int y = MARIO_Y + h;
+        // draw black
+        g2d.setStroke(new BasicStroke(5f));
+        g2d.setColor(new Color(5, 5, 5));
+        g2d.draw(shape);
 
         // draw white
-        g.setColor(new Color(224, 224, 224));
-        g.drawString(time, x, y);
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape);
+
+        // restore the original transform
+        g2d.setTransform(new AffineTransform());
+
     }
 
     // ====== Reset methods ======
@@ -385,7 +456,7 @@ public class Playing extends State {
             player.setDirection(STILL);
     }
 
-    public void pressedMouse(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1)
             player.setAttacking(true);
     }
