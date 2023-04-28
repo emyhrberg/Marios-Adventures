@@ -438,6 +438,7 @@ public class Playing extends GameState {
     }
 
     public void resetGameGoToPlaying() {
+        spawnPoint = null;
         resetGame();
         game.setGameState(PLAYING);
     }

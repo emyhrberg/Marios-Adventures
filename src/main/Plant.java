@@ -17,12 +17,12 @@ public class Plant extends Enemy {
     private static final float PLANT_SPEED          = 0.2f * Game.SCALE;
     private static final float PLANT_TOP_POS        = 1.1f * Game.SCALE;
     private static final int PLANT_TOP_WAIT         = 1000;
-    private static final int[] PLANT_BOTTOM_WAIT    = {3000,3200,3400,3600,3800,4000};
+    private static final int[] PLANT_BOTTOM_WAIT    = {4000,5000,6000};
     private static final Random RND                 = new Random();
     private final float origPos                     = y / TILES_SIZE;
     private long lastTopPosition;
     private long lastBottomPosition;
-    private int bottomWaitIndexBetweenZeroAndFive;
+    private int bottomWaitIndexBetweenZeroAndTwo;
 
     // Attacking
     private long lastAttack;
@@ -45,7 +45,7 @@ public class Plant extends Enemy {
         float tileDistance = origPos - currPos;
 
         boolean canMoveDown = System.currentTimeMillis() >= lastTopPosition + PLANT_TOP_WAIT;
-        boolean canMoveUp = System.currentTimeMillis() >= lastBottomPosition + PLANT_BOTTOM_WAIT[bottomWaitIndexBetweenZeroAndFive];
+        boolean canMoveUp = System.currentTimeMillis() >= lastBottomPosition + PLANT_BOTTOM_WAIT[bottomWaitIndexBetweenZeroAndTwo];
 
         // Movement
         if (plantAction == MOVING_UP_FIRST || plantAction == MOVING_UP_ANIMATE) {
@@ -73,7 +73,7 @@ public class Plant extends Enemy {
                 // Save last bottom position and generate a random number to determine seconds to stay at bottom
                 plantAction = IDLE;
                 lastBottomPosition = System.currentTimeMillis();
-                bottomWaitIndexBetweenZeroAndFive = RND.nextInt(5);
+                bottomWaitIndexBetweenZeroAndTwo = RND.nextInt(2);
             }
         } else {
             plantAction = IDLE;

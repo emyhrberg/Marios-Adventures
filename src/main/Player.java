@@ -108,8 +108,9 @@ public class Player extends Entity {
 		// Jump and boost
 		boolean maxJumpBoost = System.currentTimeMillis() <= JUMP_MAX_BOOST_TIME + lastJumpTime;
 		if (holdingSpace && airSpeed < 0 && maxJumpBoost) {
-			airSpeed -= GRAVITY;
+			airSpeed -= GRAVITY*1.2;
 		}
+
 		if (canJump && jumping) {
 			jump();
 		}

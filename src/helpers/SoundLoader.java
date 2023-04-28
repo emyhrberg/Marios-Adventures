@@ -37,7 +37,7 @@ public class SoundLoader {
 		return null;
 	}
 
-	public static Clip playAudioLoop(String fileName, double... volumeArr) {
+	public static Clip playSoundLoop(String fileName, double... volumeArr) {
 		float volume = (float) (volumeArr.length > 0 ? volumeArr[0] : 1.0); // set default volume of 1.0 if volume argument is not provided
 
 		try (InputStream is = SoundLoader.class.getResourceAsStream(fileName)) {

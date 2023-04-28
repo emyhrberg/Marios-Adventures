@@ -60,7 +60,7 @@ public class Game implements Runnable {
     private Clip playingClip;
     private Clip gameOverClip;
     private Clip gameCompletedClip;
-    private int levelClipFramePosition;
+    private int playingClipFrame;
 
     // ====== Overlay settings =====
     private boolean allowPress;
@@ -78,7 +78,7 @@ public class Game implements Runnable {
         new GameFrame(gameComponent);
 
         // Set game state on launch
-        gameState = MENU;
+        gameState = PLAYING;
 
         // Get the available screen size (excluding the taskbar)
 //        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
@@ -90,7 +90,7 @@ public class Game implements Runnable {
         }
 
         // Play main menu sound
-        menuClip = SoundLoader.playSound("/sounds/menu.wav");
+//        menuClip = SoundLoader.playSound("/sounds/menu.wav");
 
         startGameLoop();
     }
@@ -187,19 +187,21 @@ public class Game implements Runnable {
     private void playGameStateSounds() {
         if (gameState == PLAYING) {
             stopSounds();
-            playingClip = SoundLoader.playSound("/sounds/level2.wav");
+            playingClip = SoundLoader.playSoundLoop("/sounds/level2.wav");
             if (prevState == PAUSED && playingClip != null) {
-                playingClip.setFramePosition(levelClipFramePosition);
+                playingClip.setFramePosition(playingClipFrame);
             }
         }
 
         else if (gameState == MENU) {
             stopSounds();
-            menuClip = SoundLoader.playSound("/sounds/menu.wav");
+            menuClip = SoundLoader.playSoundLoop("/sounds/menu.wav");
         }
 
         else if (gameState == PAUSED) {
-            levelClipFramePosition = playingClip.getFramePosition();
+            if (playingClip != null) {
+                playingClipFrame = playingClip.getFramePosition();
+            }
             stopSounds();
         }
 
