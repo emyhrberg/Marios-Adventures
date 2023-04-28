@@ -15,7 +15,6 @@ import java.awt.image.Kernel;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
-import static main.Game.*;
 import static main.Player.PLAYER_HEIGHT;
 import static main.Player.PLAYER_WIDTH;
 import static objects.Coin.coinCount;
@@ -28,7 +27,7 @@ import static objects.Coin.coinCount;
 public class Playing extends GameState {
 
     // ====== Variables ======
-    private static final float PLAYER_SCALE = 1.33f;
+    private static final float PLAYER_SCALE = 1.33f * Game.SCALE;
     private final Player player;
     private int levelOffset;
     private int shakeOffset;
@@ -65,7 +64,7 @@ public class Playing extends GameState {
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(PLAYER_WIDTH * Game.SCALE * PLAYER_SCALE, PLAYER_HEIGHT * Game.SCALE * PLAYER_SCALE, game);
+        player          = new Player(PLAYER_WIDTH * PLAYER_SCALE, PLAYER_HEIGHT * PLAYER_SCALE, game);
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
@@ -95,7 +94,7 @@ public class Playing extends GameState {
         int playerX = (int) player.hitbox.x;
 
         // Update level offset with player and half the game width to center the player
-        levelOffset = playerX - GAME_WIDTH / 2;
+        levelOffset = playerX - Game.GAME_WIDTH / 2;
 
         // Reset level offset if at the leftmost of the map
         if (levelOffset < 0)
@@ -124,10 +123,10 @@ public class Playing extends GameState {
 
     private void updateFinalPointState() {
         // Get the X and Y position for the player and "final point"
-        int finalX = levelManager.getLevel().getFinalPoint().x / TILES_SIZE;
-        int finalY = levelManager.getLevel().getFinalPoint().y / TILES_SIZE;
-        int playerX = (int) player.getHitbox().x / TILES_SIZE;
-        int playerY = (int) player.getHitbox().y / TILES_SIZE;
+        int finalX = levelManager.getLevel().getFinalPoint().x / Game.TILES_SIZE;
+        int finalY = levelManager.getLevel().getFinalPoint().y / Game.TILES_SIZE;
+        int playerX = (int) player.getHitbox().x / Game.TILES_SIZE;
+        int playerY = (int) player.getHitbox().y / Game.TILES_SIZE;
 
 //        System.out.println("X: " + playerX + " | Y: " + playerY);
 //        System.out.println("X: " + finalX + " | Y: " + finalY);
@@ -156,8 +155,8 @@ public class Playing extends GameState {
 
     public void drawBlur(Graphics g) {
         // Create off-screen image with the same dimensions as the game screen
-        if (offScreenImage == null || offScreenImage.getWidth() != GAME_WIDTH || offScreenImage.getHeight() != GAME_HEIGHT) {
-            offScreenImage = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        if (offScreenImage == null || offScreenImage.getWidth() != Game.GAME_WIDTH || offScreenImage.getHeight() != Game.GAME_HEIGHT) {
+            offScreenImage = new BufferedImage(Game.GAME_WIDTH, Game.GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         }
 
         // Get graphics object of the off-screen image
@@ -174,7 +173,7 @@ public class Playing extends GameState {
 
         // Add black opacity
         g.setColor(new Color(0,0,0,150));
-        g.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+        g.fillRect(0,0,Game.GAME_WIDTH,Game.GAME_HEIGHT);
 
         // Dispose of the off-screen graphics object to release system resources
         g2d.dispose();
@@ -224,7 +223,7 @@ public class Playing extends GameState {
     }
 
     private void drawSky(Graphics g) {
-        g.drawImage(SKY,0,0, GAME_WIDTH, GAME_HEIGHT,null);
+        g.drawImage(SKY,0,0, Game.GAME_WIDTH, Game.GAME_HEIGHT,null);
     }
 
     // ====== Background ======
@@ -371,7 +370,7 @@ public class Playing extends GameState {
         TextLayout tl = new TextLayout(countdown, g.getFont(), g2d.getFontRenderContext());
         Shape shape = tl.getOutline(null);
         int w = g.getFontMetrics().stringWidth(countdown);
-        int x = GAME_WIDTH - MARIO_X - w;
+        int x = Game.GAME_WIDTH - MARIO_X - w;
         AffineTransform transform = AffineTransform.getTranslateInstance(x, TOP_Y);
         g2d.transform(transform);
 
@@ -391,8 +390,18 @@ public class Playing extends GameState {
 
     // ====== Reset methods ======
 
+    private Point spawnPoint;
+
     private void resetSpawnPoint() {
-        final Point spawnPoint = levelManager.getLevel().getSpawnPoint();
+        // Set saved spawn
+        if (spawnPoint != null)
+            spawnPoint = new Point((int) player.hitbox.x, (int) player.hitbox.y);
+
+        // Otherwise, get spawn point from map
+        else
+            spawnPoint = levelManager.getLevel().getSpawnPoint();
+
+        // Put player hitbox at the point
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;
     }
@@ -417,6 +426,13 @@ public class Playing extends GameState {
     }
 
     public void resetGameGoToMenu() {
+        spawnPoint = null;
+        resetGame();
+        game.setGameState(MENU);
+    }
+
+    public void resetGameSavePoint() {
+        spawnPoint = new Point((int) player.getHitbox().x, (int) player.getHitbox().y);
         resetGame();
         game.setGameState(MENU);
     }

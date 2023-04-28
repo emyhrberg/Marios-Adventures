@@ -22,8 +22,8 @@ public class Pause extends GameState {
 	private static final int X = Game.GAME_WIDTH / 2 - W / 2;
 	private static final int Y = Game.GAME_HEIGHT / 2 - H / 2;
 
-	private static final String cont = "p to resume";
-	private static final String quit = "esc to quit";
+	private static final String cont = "continue";
+	private static final String quit = "save & quit";
 
     public Pause(Game game) {
 		super(game);
@@ -95,7 +95,7 @@ public class Pause extends GameState {
 
     public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
-			case KeyEvent.VK_ESCAPE -> game.getPlaying().resetGameGoToMenu();
+			case KeyEvent.VK_ESCAPE -> game.getPlaying().resetGameSavePoint();
 			case KeyEvent.VK_P, KeyEvent.VK_ENTER -> game.setGameState(PLAYING);
 		}
     }

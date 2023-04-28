@@ -46,13 +46,13 @@ public class Player extends Entity {
 	private static final int START_HEALTH 				= 3;
 
 	// ====== Jumping ======
-	protected boolean canJump = true;
-	protected boolean jumping = false;
-	protected static final float MAX_JUMP_HEIGHT = 2.5f * Game.SCALE;
-	protected float jumpHeight = MAX_JUMP_HEIGHT;
-	protected long lastJumpTime;
-	protected static final int JUMP_MAX_BOOST_TIME = UPS;
-	protected boolean holdingSpace;
+	private boolean canJump = true;
+	private boolean jumping = false;
+	private static final float MAX_JUMP_HEIGHT = 2.5f * Game.SCALE;
+	private float jumpHeight = MAX_JUMP_HEIGHT;
+	private long lastJumpTime;
+	private static final int JUMP_MAX_BOOST_TIME = UPS;
+	private boolean holdingSpace;
 
 	// ====== Game variables =======
 	private final Game game;

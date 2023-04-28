@@ -255,19 +255,19 @@ public class Game implements Runnable {
         return playing;
     }
 
-    public Pause getPauseOverlay() {
+    public Pause getPauseState() {
         return pause;
     }
 
-    public LevelCompleted getLevelCompletedOverlay() {
+    public LevelCompleted getLevelCompletedState() {
         return levelCompleted;
     }
 
-    public GameCompleted getGameCompletedOverlay() {
+    public GameCompleted getGameCompletedState() {
         return gameCompleted;
     }
 
-    public GameOver getGameOverOverlay() {
+    public GameOver getGameOverState() {
         return gameOver;
     }
 

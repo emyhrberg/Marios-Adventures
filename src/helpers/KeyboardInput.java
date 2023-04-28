@@ -25,10 +25,10 @@ public class KeyboardInput extends KeyAdapter {
         switch (game.getGameState()) {
             case PLAYING            -> game.getPlaying().keyPressed(e);
             case MENU               -> game.getMenu().keyPressed(e);
-            case PAUSED             -> game.getPauseOverlay().keyPressed(e);
-            case LEVEL_COMPLETED    -> game.getLevelCompletedOverlay().keyPressed(e);
-            case GAME_COMPLETED     -> game.getGameCompletedOverlay().keyPressed();
-            case GAME_OVER          -> game.getGameOverOverlay().keyPressed(e);
+            case PAUSED             -> game.getPauseState().keyPressed(e);
+            case LEVEL_COMPLETED    -> game.getLevelCompletedState().keyPressed(e);
+            case GAME_COMPLETED     -> game.getGameCompletedState().keyPressed(e);
+            case GAME_OVER          -> game.getGameOverState().keyPressed(e);
         }
     }
 

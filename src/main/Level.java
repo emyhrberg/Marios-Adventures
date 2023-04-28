@@ -26,7 +26,7 @@ public class Level {
 
     // ====== Green Values ======
     private static final int SHARK = 0;
-    private static final int PLAYER	= 1;
+    private static final int PLAYER_SPAWN = 1;
     private static final int FINAL_POINT = 2;
     private static final int PLANT = 3;
 
@@ -91,7 +91,7 @@ public class Level {
                 levelData[y][x] = red;
 
                 // Add green data
-                if (green == PLAYER)
+                if (green == PLAYER_SPAWN)
                     spawnPoint = new Point(x * TILES_SIZE, y * TILES_SIZE);
                 if (green == FINAL_POINT)
                     finalPoint = new Point(x * TILES_SIZE, y * TILES_SIZE);

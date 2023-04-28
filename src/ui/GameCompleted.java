@@ -6,6 +6,7 @@ import main.Game;
 import main.GameState;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 /**
@@ -47,12 +48,13 @@ public class GameCompleted extends GameState {
 		g.drawImage(YOU_WIN_IMAGE, imageX, imageY, imageW, imageH, null);
 	}
 
-	public void keyPressed() {
+	public void keyPressed(KeyEvent e) {
 		if (game.isKeyNotAllowed()) {
+			System.out.println(e.getKeyCode());
 //			return;
 		}
 
-		// Reset game nd go to 1st level
+		// Reset game and go to 1st level
 		game.getPlaying().getLevelManager().setLevelIndex(0);
 		game.getPlaying().resetGameGoToMenu();
 	}
