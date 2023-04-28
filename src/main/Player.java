@@ -207,6 +207,10 @@ public class Player extends Entity {
 		setInLava(false);
 	}
 
+	public void resetPlayerMoving() {
+		direction = STILL;
+	}
+
 	// ====== Draw and Animations ======
 
 	public void draw(Graphics g, int levelOffset) {

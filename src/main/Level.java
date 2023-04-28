@@ -55,7 +55,7 @@ public class Level {
     private final List<Plant> plants = new ArrayList<>();
 
     // ====== Other ======
-    private int[][] levelData;
+    public static int[][] levelData;
     private Point spawnPoint = new Point();
     private Point finalPoint = new Point();
     private final int maxLevelOffset;

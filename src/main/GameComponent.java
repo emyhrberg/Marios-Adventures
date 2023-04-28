@@ -41,4 +41,8 @@ public class GameComponent extends JPanel {
         long passed  = drawEnd - drawStart;
 //        System.out.println(passed);
     }
+
+    public Game getGame() {
+        return game;
+    }
 }

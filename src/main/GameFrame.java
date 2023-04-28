@@ -1,9 +1,12 @@
 package main;
 
+import constants.GameState;
 import helpers.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
 
 import static main.Game.GAME_HEIGHT;
@@ -35,6 +38,14 @@ public class GameFrame extends JFrame {
 		// center and show
 		setLocationRelativeTo(null);
 		setVisible(true);
-    }
 
+		addWindowFocusListener(new WindowFocusListener() {
+			@Override public void windowLostFocus(WindowEvent e) {
+				// Lost focus, pause
+				gameComponent.getGame().setGameState(GameState.PAUSED);
+			}
+			@Override public void windowGainedFocus(WindowEvent e) {
+			}
+		});
+    }
 }

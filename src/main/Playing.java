@@ -29,6 +29,7 @@ public class Playing extends GameState {
     // ====== Variables ======
     private static final float PLAYER_SCALE = 1.33f * Game.SCALE;
     private final Player player;
+    private Point spawnPoint;
     private int levelOffset;
     private int shakeOffset;
     private long lastSec;
@@ -57,6 +58,8 @@ public class Playing extends GameState {
     private static final int COIN_Y = (int) (MARIO_H / 1.5 + MARIO_H + 10 * Game.SCALE);
     private static final int TOP_Y = (int) (MARIO_Y + MARIO_H - 4 * Game.SCALE);
     private static final int X_NEXT_TO_ICON = (int) (MARIO_X + MARIO_W + 4 * Game.SCALE);
+    private static final float sizeX = 21 * Game.SCALE;
+    private static final float size00 = 35 * Game.SCALE;
 
     // ====== Constructor ======
     public Playing(Game game) {
@@ -295,8 +298,7 @@ public class Playing extends GameState {
     private void drawHealthText(Graphics g) {
         // X
         Graphics2D g2d = (Graphics2D) g;
-        g.setFont(CUSTOM_FONT);
-        g.setFont(g.getFont().deriveFont(28f));
+        g.setFont(CUSTOM_FONT.deriveFont(sizeX));
         int w = g.getFontMetrics().stringWidth("x");
         TextLayout tl = new TextLayout("x", g.getFont(), g2d.getFontRenderContext());
         Shape shape = tl.getOutline(null);
@@ -315,7 +317,7 @@ public class Playing extends GameState {
 
         // HEALTH
         final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
-        g.setFont(g.getFont().deriveFont(48f));
+        g.setFont(g.getFont().deriveFont(size00));
         int x2 = (int) (X_NEXT_TO_ICON + w + 2 * Game.SCALE);
         TextLayout tl2 = new TextLayout(health, g.getFont(), g2d.getFontRenderContext());
         Shape shape2 = tl2.getOutline(null);
@@ -343,7 +345,7 @@ public class Playing extends GameState {
         String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
 
         Graphics2D g2d = (Graphics2D) g;
-        g.setFont(g.getFont().deriveFont(48f));
+        g.setFont(g.getFont().deriveFont(size00));
         TextLayout tl = new TextLayout(coins, g.getFont(), g2d.getFontRenderContext());
         Shape shape2 = tl.getOutline(null);
         int y = (int) (COIN_Y + MARIO_H - 4 * Game.SCALE);
@@ -389,8 +391,6 @@ public class Playing extends GameState {
     }
 
     // ====== Reset methods ======
-
-    private Point spawnPoint;
 
     private void resetSpawnPoint() {
         // Set saved spawn

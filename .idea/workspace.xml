@@ -47,16 +47,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Downloads/PlatformerTutorial-ep28_finale",
+    "last_opened_file_path": "C:/Users/Erik/Github/PlatformerTutorial-ep28_finale",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.import",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -156,6 +156,7 @@
       <workItem from="1682629669851" duration="1759000" />
       <workItem from="1682632891215" duration="15502000" />
       <workItem from="1682686343586" duration="15679000" />
+      <workItem from="1682722274292" duration="1487000" />
     </task>
     <task id="LOCAL-00029" summary="Game working ok now">
       <created>1682268373667</created>
