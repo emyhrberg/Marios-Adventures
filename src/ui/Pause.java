@@ -16,7 +16,7 @@ import static constants.GameState.PLAYING;
  */
 public class Pause extends GameState {
 
-	// title
+	// Title
 	private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/inside-out.ttf");
 	private static final float FONT_SIZE_BIG = 92f;
 	private static final String title = "pause menu";

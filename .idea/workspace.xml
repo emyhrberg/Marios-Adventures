@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated pause screen">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
     </list>
@@ -156,14 +156,7 @@
       <workItem from="1682629669851" duration="1759000" />
       <workItem from="1682632891215" duration="15502000" />
       <workItem from="1682686343586" duration="15679000" />
-      <workItem from="1682722274292" duration="1487000" />
-    </task>
-    <task id="LOCAL-00029" summary="Game working ok now">
-      <created>1682268373667</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1682268373667</updated>
+      <workItem from="1682722274292" duration="1624000" />
     </task>
     <task id="LOCAL-00030" summary="Game working ok now">
       <created>1682269075049</created>
@@ -501,7 +494,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682700789248</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Test">
+      <created>1682723907958</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1682723907958</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +522,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Improved font, improved platforms!" />
     <MESSAGE value="Improved lots of sound effects! And damage cooldown" />
     <MESSAGE value="Improved lots of sound effects!" />
     <MESSAGE value="Improved bullet bills to go down when hit" />
@@ -547,7 +546,8 @@
     <MESSAGE value="Added save &amp; quit" />
     <MESSAGE value="Small fixes" />
     <MESSAGE value="Updated pause screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated pause screen" />
+    <MESSAGE value="Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
