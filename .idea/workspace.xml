@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Small fixes">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated pause screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/cursor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,14 +155,7 @@
       <workItem from="1682619938820" duration="4386000" />
       <workItem from="1682629669851" duration="1759000" />
       <workItem from="1682632891215" duration="15502000" />
-      <workItem from="1682686343586" duration="13751000" />
-    </task>
-    <task id="LOCAL-00028" summary="Game working ok now">
-      <created>1682265443316</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1682265443316</updated>
+      <workItem from="1682686343586" duration="15679000" />
     </task>
     <task id="LOCAL-00029" summary="Game working ok now">
       <created>1682268373667</created>
@@ -503,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682698112140</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Updated pause screen">
+      <created>1682700789248</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1682700789248</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,12 +541,12 @@
     <MESSAGE value="New background added and working well!" />
     <MESSAGE value="Game playtested and looks good!" />
     <MESSAGE value="Refactoring resources" />
-    <MESSAGE value="Updated pause screen" />
     <MESSAGE value="v1.2 release!" />
     <MESSAGE value="Improved code for sound and debugging" />
     <MESSAGE value="Added save &amp; quit" />
     <MESSAGE value="Small fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small fixes" />
+    <MESSAGE value="Updated pause screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated pause screen" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
