@@ -178,7 +178,7 @@ public class Entity {
 
 		// set player to not in air
 		setInAir(false);
-		setAirSpeed(0);
+		resetAirSpeed();
 	}
 
 	public void unbindPlatform() {
@@ -359,8 +359,8 @@ public class Entity {
 		this.inAir = inAir;
 	}
 
-	public void setAirSpeed(float airSpeed) {
-		this.airSpeed = airSpeed;
+	public void resetAirSpeed() {
+		this.airSpeed = 0;
 	}
 
 	public float getAirSpeed() {

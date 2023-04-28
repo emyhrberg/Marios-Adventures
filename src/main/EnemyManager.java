@@ -115,7 +115,6 @@ public class EnemyManager {
 				// Draw the image of the shark
 				g.drawImage(img, (int) x, (int) y, (int) w, SHARK_HEIGHT, null);
 
-				// Draw hitboxes for debugging
 //				s.drawHitbox(g, levelOffset);
 //				s.drawAttackBox(g, levelOffset);
 			}

@@ -1,13 +1,13 @@
 package objects;
 
 import helpers.ImageLoader;
+import main.Game;
 import main.Level;
 import main.Player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static main.Game.TILES_SIZE;
@@ -154,7 +154,7 @@ public class ObjectManager {
         drawPipes(g, levelOffset);
         drawBullets(g, levelOffset);
         drawCannons(g, levelOffset);
-        drawBricks(g, levelOffset);
+        drawBreakingBrick(g, levelOffset);
         drawHealths(g, levelOffset);
         drawFlags(g, levelOffset);
     }
@@ -197,7 +197,7 @@ public class ObjectManager {
         }
     }
 
-    private void drawBricks(Graphics g, int levelOffset) {
+    private void drawBreakingBrick(Graphics g, int levelOffset) {
         for (Brick b : bricks)  {
             if (b.isBreaking) {
                 int x = (int) b.getBreakBox().x - levelOffset;
@@ -205,9 +205,10 @@ public class ObjectManager {
                 g.drawImage(breakImages[b.animationIndex],x,y, TILES_SIZE,TILES_SIZE,null);
             }
 
-            // Debug
-//            b.drawBreakBox(g, levelOffset);
-//            b.drawHitbox(g, levelOffset);
+            if (Game.DEBUG) {
+                b.drawBreakBox(g, levelOffset);
+                b.drawHitbox(g, levelOffset);
+            }
         }
     }
 

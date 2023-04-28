@@ -225,8 +225,9 @@ public class Player extends Entity {
 		// Draw the image according to the player action and loop through the animation index to show all the images
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
-		// Debug hitbox
-//		drawHitbox(g, levelOffset);
+		if (Game.DEBUG) {
+			drawHitbox(g, levelOffset);
+		}
 //		drawAttackBox(g, levelOffset);
 	}
 

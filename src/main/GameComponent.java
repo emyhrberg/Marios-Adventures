@@ -32,13 +32,11 @@ public class GameComponent extends JPanel {
     protected void paintComponent(final Graphics g) {
 		super.paintComponent(g);
 
-        // DEBUG
         long drawStart;
         drawStart = System.nanoTime();
 
 		game.draw(g);
 
-        // DEBUG
         long drawEnd = System.nanoTime();
         long passed  = drawEnd - drawStart;
 //        System.out.println(passed);

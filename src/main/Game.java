@@ -10,6 +10,7 @@ import ui.Pause;
 
 import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.util.Random;
 
 import static constants.GameState.*;
 
@@ -23,6 +24,8 @@ import static constants.GameState.*;
  * Allows the game to run smoothly and efficiently by avoiding excessive CPU usage
  */
 public class Game implements Runnable {
+
+    public static final boolean DEBUG = false;
 
     // ====== Game loop ======
     public static final int UPS         = 200;
@@ -88,7 +91,7 @@ public class Game implements Runnable {
         }
 
         // Play main menu sound
-//        menuClip = SoundLoader.playAudio("/audio/musicmenu.wav");
+//        menuClip = SoundLoader.playAudio("/audio/menu.wav");
 
         startGameLoop();
     }
@@ -185,7 +188,7 @@ public class Game implements Runnable {
     private void playSounds() {
         // Close menu sound or open it
         if (gameState == MENU) {
-            menuClip = SoundLoader.playAudio("/audio/musicmenu.wav");
+            menuClip = SoundLoader.playAudio("/audio/menu.wav");
         } else {
             if (menuClip != null) {
                 menuClip.close();
@@ -193,8 +196,11 @@ public class Game implements Runnable {
         }
 
         if (gameState == PLAYING && levelClip == null) {
+            int n = new Random().nextInt(3) + 1; // random num between 1 and 3
+            System.out.println(n);
             // Start level track if not already playing
-            levelClip = SoundLoader.playAudioLoop("/audio/musiclevel2.wav");
+//            levelClip = SoundLoader.playAudioLoop("/audio/level" + n + ".wav");
+            levelClip = SoundLoader.playAudioLoop("/audio/level3.wav");
 
             // Resume level track if coming from paused
             if (prevState == PAUSED) {

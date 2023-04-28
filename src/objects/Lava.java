@@ -26,7 +26,7 @@ public class Lava extends GameObject {
             player.setInLava(true);
 
             // stop falling
-            player.setAirSpeed(0);
+            player.resetAirSpeed();
             player.setInAir(false);
             player.setCanJump(true);
         }

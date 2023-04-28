@@ -9,31 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Refactoring resources">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/game.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/cursor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/ImageBlurrer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated pause screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/module.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/unused/q.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fonts/q.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/unused/t.otf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fonts/t.otf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/pause.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/pause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/GifLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GifLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/musiclevel.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/level1.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/musiclevel2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/level2.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/musiclevel3.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/level3.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/musicmenu.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/menu.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/misc/GameRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GameRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/misc/KeyboardInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/misc/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameOverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/LevelCompletedOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompleted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/PauseOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Lava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Lava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,14 +178,7 @@
       <workItem from="1682603647661" duration="8273000" />
       <workItem from="1682619938820" duration="4386000" />
       <workItem from="1682629669851" duration="1759000" />
-      <workItem from="1682632891215" duration="8890000" />
-    </task>
-    <task id="LOCAL-00023" summary="Improved cannon shooting cooldown!">
-      <created>1682192080969</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1682192080969</updated>
+      <workItem from="1682632891215" duration="9847000" />
     </task>
     <task id="LOCAL-00024" summary="Working on bricks breaking">
       <created>1682194926820</created>
@@ -533,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682636015179</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Updated pause screen">
+      <created>1682642377581</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1682642377581</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +544,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Platforms working!" />
     <MESSAGE value="Game playtested, no noticeable bugs!" />
     <MESSAGE value="Game playtested, no noticeable bugs, looks alright!" />
     <MESSAGE value="Game playtested and works as a JAR" />
@@ -579,7 +568,8 @@
     <MESSAGE value="New background added and working well!" />
     <MESSAGE value="Game playtested and looks good!" />
     <MESSAGE value="Refactoring resources" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring resources" />
+    <MESSAGE value="Updated pause screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated pause screen" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

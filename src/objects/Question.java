@@ -20,8 +20,8 @@ public class Question extends GameObject {
     // Pushback
     private float pushYDraw;
     private Direction pushYDir;
-    private static final float BLOCK_SPEED = 1.2f * SCALE;
-    private static final float BLOCK_LIMIT = -20f * SCALE;
+    private static final float BLOCK_SPEED = 1.5f * SCALE;
+    private static final float BLOCK_LIMIT = -30f * SCALE;
 
     public Question(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -40,7 +40,7 @@ public class Question extends GameObject {
 
             // Set question bounce to up and player down
             q.pushYDir = UP;
-            player.setAirSpeed(0);
+            player.resetAirSpeed();
 
             // Question collision first time!
             if (!q.isHit()) {

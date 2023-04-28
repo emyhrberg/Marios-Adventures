@@ -34,32 +34,33 @@ public class Brick extends GameObject {
         removeBrickFromGame(player, level, b);
     }
 
+    Rectangle2D intersection;
+
     private void removeBrickFromGame(Player player, Level level, Brick b) {
         if (b.isActive())
             if (player.getHitbox().intersects(b.getHitbox()) && player.getAirSpeed() < 0) {
+                player.resetAirSpeed();
                 hitBricks.add(b);
-                player.setAirSpeed(0);
                 b.setBreaking(true);
 
                 // Determine which brick to delete by comparing shared surface area.
                 Brick largestContact = null;
                 double areaTemp = 0;
-                for (Brick b2: hitBricks) {
-                    Rectangle2D intersection = b2.getHitbox().createIntersection(player.getHitbox());
+                for (Brick hb: hitBricks) {
+                    intersection = hb.getHitbox().createIntersection(player.getHitbox());
                     double area = (intersection.getWidth()*intersection.getHeight());
                     if (area > areaTemp) {
-                        largestContact = b2;
+                        largestContact = hb;
                     }
                 }
                 if (largestContact != null) {
+                    int tileY = (int) (largestContact.getHitbox().y / TILES_SIZE);
+                    int tileX = (int) (largestContact.getHitbox().x / TILES_SIZE);
+                    level.getLevelData()[tileY][tileX] = 91;
                     largestContact.setActive(false);
-                    float tileY = largestContact.getHitbox().y / TILES_SIZE;
-                    float tileX = largestContact.getHitbox().x / TILES_SIZE;
-                    level.getLevelData()[(int) (tileY)][(int) (tileX)] = 91;
                 }
                 SoundLoader.playAudio("/audio/brick.wav", 0.8);
             }
-
     }
 
     private void updateBreakingAnimation(Brick b) {
