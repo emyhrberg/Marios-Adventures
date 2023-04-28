@@ -12,13 +12,14 @@ import java.util.List;
 
 /**
  * This class manages all the levels for the game
- * Imports the neccessary sprites for the levels
+ * Imports the necessary sprites for the levels
  * Draws all the tiles from the image of a level
  */
 public class LevelManager {
 
     // ====== Tileset ======
     private static final BufferedImage TILES 	= ImageLoader.loadImage("/sprites/tiles.png");
+    private static final BufferedImage TILES_NUM = ImageLoader.loadImage("/sprites/tiles-num.png");
     private static final int PIXELS_SIZE 		= 16;
     private static final int ROWS				= 10;
     private static final int IMAGES_IN_ROW 		= 10;
@@ -39,7 +40,7 @@ public class LevelManager {
 		levels = new ArrayList<>();
 
 		// Load a single level!
-		try (InputStream is = LevelManager.class.getResourceAsStream("/levels/1.png")) {
+		try (InputStream is = LevelManager.class.getResourceAsStream("/levels/2.png")) {
 			levels.add(new Level(ImageIO.read(is)));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -64,7 +65,11 @@ public class LevelManager {
 				int xIndex = y * IMAGES_IN_ROW + x;
 
 				// Populate the sprite atlas!
-				tilesImages[xIndex] = TILES.getSubimage(x * PIXELS_SIZE, y * PIXELS_SIZE, PIXELS_SIZE, PIXELS_SIZE);
+				if (Game.DEBUG) {
+					tilesImages[xIndex] = TILES_NUM.getSubimage(x * PIXELS_SIZE, y * PIXELS_SIZE, PIXELS_SIZE, PIXELS_SIZE);
+				} else {
+					tilesImages[xIndex] = TILES.getSubimage(x * PIXELS_SIZE, y * PIXELS_SIZE, PIXELS_SIZE, PIXELS_SIZE);
+				}
 			}
 	}
 

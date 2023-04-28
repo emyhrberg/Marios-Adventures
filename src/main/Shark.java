@@ -11,7 +11,6 @@ import static constants.EnemyConstants.SharkAction.RUNNING;
 import static constants.EnemyConstants.getSharkSpriteAmount;
 import static main.EnemyManager.SHARK_HEIGHT;
 import static main.EnemyManager.SHARK_WIDTH;
-import static main.Game.SCALE;
 
 /**
  * The shark class represents a type of Enemy
@@ -22,8 +21,8 @@ import static main.Game.SCALE;
 public class Shark extends Enemy {
 
     // ====== Hitboxes =======
-    private static final int HITBOX_WIDTH 		    = (int) (24 * SCALE);
-    private static final int HITBOX_HEIGHT 		    = (int) (31 * SCALE);
+    private static final int HITBOX_WIDTH 		    = (int) (24 * Game.SCALE);
+    private static final int HITBOX_HEIGHT 		    = (int) (31 * Game.SCALE);
     private static final int ATTACKBOX_WIDTH        = HITBOX_WIDTH * 3;
     private static final int ATTACKBOX_HEIGHT       = HITBOX_HEIGHT;
 
@@ -43,7 +42,7 @@ public class Shark extends Enemy {
 
         // Init hitboxes
         initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
-        initAttackBox(ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
+        initAttackBox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 
         // Init enemy settings
         initSpeed(SPEED);
@@ -192,14 +191,14 @@ public class Shark extends Enemy {
             float playerHitbox = player.hitbox.y + player.hitbox.height;
             float enemyHitbox = hitbox.y + hitbox.height;
             float distBetweenPlayerAndEnemy = Math.abs(playerHitbox - enemyHitbox);
-            float enemyHead = hitbox.height - 10 * SCALE;
+            float enemyHead = hitbox.height - 10 * Game.SCALE;
             boolean isTouchingEnemyHead = distBetweenPlayerAndEnemy > enemyHead;
 
             // usually distance is slightly above 42 when landing on top of the enemy, also check that player is falling downwards
             if (isTouchingEnemyHead && player.airSpeed > 0 && attackAllowed) {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
-                SoundLoader.playAudio("/audio/stomp.wav", 0.8);
+                SoundLoader.playSound("/sounds/stomp.wav", 0.8);
                 attackAllowed = false;
             } else {
                 if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {

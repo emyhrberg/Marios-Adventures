@@ -1,13 +1,13 @@
 package objects;
 
-import constants.ObjectConstants.*;
+import constants.ObjectConstants.ObjectType;
+import main.Game;
 
 import static constants.ObjectConstants.getSpriteAmount;
-import static main.Game.SCALE;
 
 public class Flag extends GameObject {
 
-    private static final float X_OFF = 5 * SCALE*2 + 5;
+    private static final float X_OFF = 5 * Game.SCALE*2 + 5;
 
     public Flag(int x, int y, ObjectType objectType) {
         super(x, y, objectType);

@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static main.Game.GAME_WIDTH;
-import static main.Game.SCALE;
 
 /**
  * Initializes GUI for buttons on the menu
@@ -21,8 +20,8 @@ public class MenuButton {
     private static final int NUMBER_OF_IMAGES = 3;
     private static final int BUTTON_WIDTH_PIXELS = 125;
     private static final int BUTTON_HEIGHT_PIXELS = 40;
-    private static final int BUTTON_WIDTH 		= (int) (1.5 * BUTTON_WIDTH_PIXELS * SCALE);
-    private static final int BUTTON_HEIGHT 		= (int) (1.5 * BUTTON_HEIGHT_PIXELS * SCALE);
+    private static final int BUTTON_WIDTH 		= (int) (1.5 * BUTTON_WIDTH_PIXELS * Game.SCALE);
+    private static final int BUTTON_HEIGHT 		= (int) (1.5 * BUTTON_HEIGHT_PIXELS * Game.SCALE);
     private static final int BUTTON_CENTER 		= BUTTON_WIDTH / 2;
     private static final int GAME_CENTER 		= GAME_WIDTH / 2;
 

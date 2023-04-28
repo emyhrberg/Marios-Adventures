@@ -1,11 +1,8 @@
 package main;
 
-import helpers.SoundLoader;
-
 import static constants.Direction.LEFT;
 import static constants.Direction.RIGHT;
 import static constants.EnemyConstants.SharkAction;
-import static constants.EnemyConstants.SharkAction.*;
 
 /**
  * This class handles all Enemy behavior, functionality, movement and extends the Entity class
@@ -17,7 +14,7 @@ public class Enemy extends Entity {
     protected static final int ANIMATION_SPEED = 15;
 
     protected boolean enemyAlive = true;
-    protected SharkAction sharkAction = RUNNING;
+    protected SharkAction sharkAction = SharkAction.RUNNING;
 
     // ====== Constructor ======
     protected Enemy(float x, float y, float width, float height) {
@@ -37,13 +34,13 @@ public class Enemy extends Entity {
 
         // Set enemy action
         if (health <= 0)
-            setAction(DEAD);
+            setAction(SharkAction.DEAD);
         else
-            setAction(HIT);
+            setAction(SharkAction.HIT);
     }
 
     public void resetEnemy() {
-        setAction(RUNNING);
+        setAction(SharkAction.RUNNING);
         hitbox.x = x;
         hitbox.y = y;
         health = maxHealth;

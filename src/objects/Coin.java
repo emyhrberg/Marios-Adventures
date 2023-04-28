@@ -1,20 +1,20 @@
 package objects;
 
 import helpers.SoundLoader;
+import main.Game;
 import main.Player;
 
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
-import static main.Game.SCALE;
 import static main.Game.TILES_SIZE_DEFAULT;
 
 public class Coin extends GameObject {
 
     // Coin size
     public static final int COIN_SIZE_DEFAULT = (int) (TILES_SIZE_DEFAULT * 0.75);
-    public static final int COIN_SIZE = (int) (COIN_SIZE_DEFAULT * SCALE);
-    private static final int X = (int) ((TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2 * SCALE);
-    private static final int Y = (int) ((TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2 * SCALE);
+    public static final int COIN_SIZE = (int) (COIN_SIZE_DEFAULT * Game.SCALE);
+    private static final int X = (int) ((TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2 * Game.SCALE);
+    private static final int Y = (int) ((TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2 * Game.SCALE);
 
     public static int coinCount;
 
@@ -34,7 +34,7 @@ public class Coin extends GameObject {
         if (c.hitbox.intersects(player.getHitbox())) {
             if (!c.isSparkle()) {
                 c.setSparkle(true);
-                SoundLoader.playAudio("/audio/coin.wav", 0.5);
+                SoundLoader.playSound("/sounds/coin.wav", 0.5);
                 coinCount++;
             }
         }

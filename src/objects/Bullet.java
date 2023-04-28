@@ -2,28 +2,29 @@ package objects;
 
 import constants.ObjectConstants.ObjectType;
 import helpers.SoundLoader;
+import main.Game;
 import main.Level;
 import main.Player;
 
-import static main.Game.*;
+import static main.Game.TILES_IN_HEIGHT;
+import static main.Game.TILES_SIZE;
 import static main.Level.solidTiles;
-import static objects.ObjectManager.bullets;
 
 public class Bullet extends GameObject {
 
     // Size
     public static final int BULLET_W_DEF = 50;
     public static final int BULLET_H_DEF = 38;
-    public static final int BULLET_W = (int) (BULLET_W_DEF * 0.8 * SCALE);
-    public static final int BULLET_H = (int) (BULLET_H_DEF * 0.8 * SCALE);
+    public static final int BULLET_W = (int) (BULLET_W_DEF * 0.8 * Game.SCALE);
+    public static final int BULLET_H = (int) (BULLET_H_DEF * 0.8 * Game.SCALE);
     private static final int HB_W = 30;
     private static final int HB_H = 18;
-    private static final float Y_OFF = 8 * SCALE;
-    public static final float Y_DRAW_OFF = 3 * SCALE;
+    private static final float Y_OFF = 8 * Game.SCALE;
+    public static final float Y_DRAW_OFF = 3 * Game.SCALE;
 
     // Properties
-    private static final float BULLET_SPEED = (int) (0.7 * SCALE);
-    private static final float BULLET_DEATH_SPEED = (int) (1.1 * SCALE);
+    private static final float BULLET_SPEED = (int) (0.7 * Game.SCALE);
+    private static final float BULLET_DEATH_SPEED = (int) (1.1 * Game.SCALE);
 
 
     // cooldowns
@@ -60,7 +61,7 @@ public class Bullet extends GameObject {
             float playerBox = player.getHitbox().y + player.getHitbox().height;
             float bulletBox = hitbox.y + hitbox.height;
             float distBetweenBoxes = Math.abs(playerBox - bulletBox);
-            float enemyHead = hitbox.height - 10 * SCALE;
+            float enemyHead = hitbox.height - 10 * Game.SCALE;
             boolean isOnTopOfBullet = distBetweenBoxes > enemyHead;
 
             if (canCollide && !b.isHit) {
@@ -69,7 +70,7 @@ public class Bullet extends GameObject {
                     player.jumpOnEnemy();
                     b.setHit(true);
                     lastCheck = System.currentTimeMillis();
-                    SoundLoader.playAudio("/audio/stomp.wav", 0.8);
+                    SoundLoader.playSound("/sounds/stomp.wav", 0.8);
                 } else {
                     // TAKE DAMAGE FROM BULLET
                     player.hitByBullet(b);

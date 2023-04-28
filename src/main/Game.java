@@ -3,14 +3,10 @@ package main;
 import constants.GameState;
 import helpers.SoundLoader;
 import ui.Menu;
-import ui.GameCompleted;
-import ui.GameOver;
-import ui.LevelCompleted;
-import ui.Pause;
+import ui.*;
 
 import javax.sound.sampled.Clip;
 import java.awt.*;
-import java.util.Random;
 
 import static constants.GameState.*;
 
@@ -40,7 +36,7 @@ public class Game implements Runnable {
     // ====== Game Variables ======
     public static float SCALE                   = 1.35f;
     public static final int TILES_SIZE_DEFAULT  = 40;
-    public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * SCALE);
+    public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
     public static final int TILES_IN_WIDTH      = 26;
     public static final int TILES_IN_HEIGHT     = 14;
     public static final int GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
@@ -52,15 +48,18 @@ public class Game implements Runnable {
     private GameState prevState;
 
     // ====== Game States ======
-    private final Menu menu                                   = new Menu(this);
-    private final Playing playing                             = new Playing(this);
-    private final Pause pause = new Pause(this);
+    private final Menu menu                     = new Menu(this);
+    private final Playing playing               = new Playing(this);
+    private final Pause pause                   = new Pause(this);
     private final LevelCompleted levelCompleted = new LevelCompleted(this);
-    private final GameCompleted gameCompleted = new GameCompleted(this);
-    private final GameOver gameOver = new GameOver(this);
+    private final GameCompleted gameCompleted   = new GameCompleted(this);
+    private final GameOver gameOver             = new GameOver(this);
 
     // ====== Sounds ======
-    private Clip menuClip, levelClip;
+    private Clip menuClip;
+    private Clip playingClip;
+    private Clip gameOverClip;
+    private Clip gameCompletedClip;
     private int levelClipFramePosition;
 
     // ====== Overlay settings =====
@@ -68,9 +67,9 @@ public class Game implements Runnable {
     private boolean allowDraw;
     private long lastStateCheck;
     private boolean isFirstTime = false;
-    private static final int DISALLOW_KEY_WAIT  = 2500;
-    private static final int DRAW_WAIT          = 2500;
-    private static final int GO_PLAYING_WAIT    = 7500;
+    private static final int DISALLOW_DRAW_WAIT = 2300;
+    private static final int DISALLOW_KEY_WAIT  = 2300;
+    private static final int GO_PLAYING_WAIT    = 8500;
 
     // ====== Constructor ======
     public Game() {
@@ -79,7 +78,7 @@ public class Game implements Runnable {
         new GameFrame(gameComponent);
 
         // Set game state on launch
-        gameState = PLAYING;
+        gameState = MENU;
 
         // Get the available screen size (excluding the taskbar)
 //        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
@@ -91,7 +90,7 @@ public class Game implements Runnable {
         }
 
         // Play main menu sound
-//        menuClip = SoundLoader.playAudio("/audio/menu.wav");
+        menuClip = SoundLoader.playSound("/sounds/menu.wav");
 
         startGameLoop();
     }
@@ -105,7 +104,7 @@ public class Game implements Runnable {
                 if (timeSinceLastCheck >= DISALLOW_KEY_WAIT) {
                     allowPress = true;
                 }
-                if (timeSinceLastCheck >= DRAW_WAIT) {
+                if (timeSinceLastCheck >= DISALLOW_DRAW_WAIT) {
                     allowDraw = true;
                 }
                 if (timeSinceLastCheck >= GO_PLAYING_WAIT) {
@@ -181,52 +180,53 @@ public class Game implements Runnable {
         this.gameState = gameState;
         isFirstTime = true;
 
-        playSounds();
+        playGameStateSounds();
         handleWaitStates();
     }
 
-    private void playSounds() {
-        // Close menu sound or open it
-        if (gameState == MENU) {
-            menuClip = SoundLoader.playAudio("/audio/menu.wav");
-        } else {
-            if (menuClip != null) {
-                menuClip.close();
+    private void playGameStateSounds() {
+        if (gameState == PLAYING) {
+            stopSounds();
+            playingClip = SoundLoader.playSound("/sounds/level2.wav");
+            if (prevState == PAUSED && playingClip != null) {
+                playingClip.setFramePosition(levelClipFramePosition);
             }
         }
 
-        if (gameState == PLAYING && levelClip == null) {
-            int n = new Random().nextInt(3) + 1; // random num between 1 and 3
-            System.out.println(n);
-            // Start level track if not already playing
-//            levelClip = SoundLoader.playAudioLoop("/audio/level" + n + ".wav");
-            levelClip = SoundLoader.playAudioLoop("/audio/level3.wav");
-
-            // Resume level track if coming from paused
-            if (prevState == PAUSED) {
-                assert levelClip != null;
-                levelClip.setFramePosition(levelClipFramePosition);
-            }
-        } else if (gameState == PAUSED && levelClip != null) {
-            levelClipFramePosition = levelClip.getFramePosition();
-            levelClip.stop();
-            levelClip = null;
-        } else {
-            // Stop level track if playing
-            if (levelClip != null) {
-                levelClip.stop();
-                levelClip = null;
-            }
-
-            // Play appropriate sound for current state
-            if (gameState == GAME_OVER) {
-                SoundLoader.playAudio("/audio/gameover.wav");
-            } else if (gameState == LEVEL_COMPLETED) {
-                SoundLoader.playAudio("/audio/success.wav");
-            } else if (gameState == GAME_COMPLETED) {
-                SoundLoader.playAudio("/audio/success.wav");
-            }
+        else if (gameState == MENU) {
+            stopSounds();
+            menuClip = SoundLoader.playSound("/sounds/menu.wav");
         }
+
+        else if (gameState == PAUSED) {
+            levelClipFramePosition = playingClip.getFramePosition();
+            stopSounds();
+        }
+
+        else if (gameState == GAME_OVER) {
+            stopSounds();
+            gameOverClip = SoundLoader.playSound("/sounds/gameover.wav");
+        }
+
+        else if (gameState == GAME_COMPLETED) {
+            stopSounds();
+            gameCompletedClip = SoundLoader.playSound("/sounds/gamecompleted.wav");
+        }
+    }
+
+    private void stopSounds() {
+        if (playingClip != null)
+            playingClip.close();
+
+        if (menuClip != null)
+            menuClip.close();
+
+        if (gameCompletedClip != null)
+            gameCompletedClip.close();
+
+        if (gameOverClip != null)
+            gameOverClip.close();
+
     }
 
     private void handleWaitStates() {

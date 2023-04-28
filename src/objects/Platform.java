@@ -1,6 +1,7 @@
 package objects;
 
 import constants.Direction;
+import main.Game;
 import main.Level;
 import main.Player;
 
@@ -10,7 +11,6 @@ import java.awt.geom.Rectangle2D;
 import static constants.Direction.LEFT;
 import static constants.Direction.RIGHT;
 import static constants.ObjectConstants.ObjectType;
-import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static main.Level.solidTiles;
 
@@ -20,15 +20,15 @@ public class Platform extends GameObject {
     public static final int PLATFORM_WIDTH_HITBOX = 20 * 2;
     public static final int PLATFORM_WIDTH_DEF = 32 * 2;
     public static final int PLATFORM_HEIGHT_DEF = 8 * 2;
-    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * SCALE);
-    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * SCALE);
+    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * Game.SCALE);
+    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * Game.SCALE);
     public static final int PLATFORM_Y_OFFSET = 5;
     private final Rectangle2D.Float bottom;
     private final Rectangle2D.Float top;
 
     // Platform moving
     private Direction platDir = LEFT;
-    private static final float MAX_SPEED = 0.9f * SCALE;
+    private static final float MAX_SPEED = 0.9f * Game.SCALE;
     private float platSpeed;
 
     public Platform(int x, int y, ObjectType objectType) {

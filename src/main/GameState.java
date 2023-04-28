@@ -1,10 +1,5 @@
 package main;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-import static main.Game.*;
-
 /**
  * Superclass for all game-states
  * Constructs a state with a game
@@ -15,7 +10,7 @@ import static main.Game.*;
 public class GameState {
 
     // ====== Variables ======
-    protected Game game;
+    protected final Game game;
 
     // ====== Constructor ======
     protected GameState(Game game) {

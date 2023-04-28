@@ -28,7 +28,7 @@ public class GifLoader {
 		// Load URL
 		URL url = ImageLoader.class.getResource(fileName);
 		if (url == null) {
-			System.err.println("Error: Gif not found\n" + fileName);
+			System.err.println("Error: Gif not found\n" + fileName + "\n");
 			return null;
 		}
 

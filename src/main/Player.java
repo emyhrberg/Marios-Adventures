@@ -12,7 +12,6 @@ import static constants.GameState.GAME_OVER;
 import static constants.PlayerConstants.PlayerAction;
 import static constants.PlayerConstants.PlayerAction.*;
 import static constants.PlayerConstants.getSpriteAmount;
-import static main.Game.SCALE;
 import static main.Game.UPS;
 
 /**
@@ -33,26 +32,26 @@ public class Player extends Entity {
 	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/entities/player.png");
 	public static final int PLAYER_WIDTH 				= 50;
 	public static final int PLAYER_HEIGHT 				= 50;
-	private static final int PLAYER_X_OFF 				= (int) (14 * SCALE);
-	private static final int PLAYER_Y_OFF 				= (int) (18 * SCALE);
-	private static final int HITBOX_WIDTH 				= (int) (30 * SCALE);
-	private static final int HITBOX_HEIGHT 				= (int) (39 * SCALE);
+	private static final int PLAYER_X_OFF 				= (int) (14 * Game.SCALE);
+	private static final int PLAYER_Y_OFF 				= (int) (18 * Game.SCALE);
+	private static final int HITBOX_WIDTH 				= (int) (30 * Game.SCALE);
+	private static final int HITBOX_HEIGHT 				= (int) (39 * Game.SCALE);
 	private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
 	private static final int ATTACKBOX_HEIGHT 			= HITBOX_HEIGHT;
 	private int imageFlipX, imageFlipWidth = 1;
 
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
-	private static final float SPEED					= 0.8f * SCALE;
+	private static final float SPEED					= 0.8f * Game.SCALE;
 	private static final int START_HEALTH 				= 3;
 
 	// ====== Jumping ======
 	protected boolean canJump = true;
 	protected boolean jumping = false;
-	protected static final float MAX_JUMP_HEIGHT = 2.5f * SCALE;
+	protected static final float MAX_JUMP_HEIGHT = 2.5f * Game.SCALE;
 	protected float jumpHeight = MAX_JUMP_HEIGHT;
 	protected long lastJumpTime;
-	protected int jumpMaxBoostTime = UPS;
+	protected static final int JUMP_MAX_BOOST_TIME = UPS;
 	protected boolean holdingSpace;
 
 	// ====== Game variables =======
@@ -69,7 +68,7 @@ public class Player extends Entity {
 		initSpeed(SPEED);
 		initMaxHealth(START_HEALTH);
 		initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
-		initAttackBox(ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
+		initAttackBox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 		initImages();
 	}
 
@@ -107,7 +106,7 @@ public class Player extends Entity {
 		moveToPosition(hitbox.x + xDirection, hitbox.y, hitbox.width, hitbox.height, level);
 
 		// Jump and boost
-		boolean maxJumpBoost = System.currentTimeMillis() <= jumpMaxBoostTime + lastJumpTime;
+		boolean maxJumpBoost = System.currentTimeMillis() <= JUMP_MAX_BOOST_TIME + lastJumpTime;
 		if (holdingSpace && airSpeed < 0 && maxJumpBoost) {
 			airSpeed -= GRAVITY;
 		}
@@ -129,15 +128,13 @@ public class Player extends Entity {
 		airSpeed = -jumpHeight;
 
 		// reset jump
-		jumpHeight = MAX_JUMP_HEIGHT;
 		jumping = false;
 		canJump = false;
 
-		SoundLoader.playAudio("/audio/jump.wav", 0.5);
+		SoundLoader.playSound("/sounds/jump.wav", 0.5);
 	}
 
 	public void jumpOnEnemy() {
-
 		// set jump
 		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
 		inAir = true;
@@ -178,7 +175,7 @@ public class Player extends Entity {
 		// bounce back
 		jumpOnEnemy();
 
-		SoundLoader.playAudio("/audio/ouchplayer.wav");
+		SoundLoader.playSound("/sounds/ouchplayer.wav");
 	}
 
 	public void hitByBullet(Bullet b) {
@@ -194,7 +191,7 @@ public class Player extends Entity {
 		// bounce back
 		jumpOnEnemy();
 
-		SoundLoader.playAudio("/audio/ouchplayer.wav");
+		SoundLoader.playSound("/sounds/ouchplayer.wav");
 	}
 
 	public void resetPlayer() {
@@ -227,8 +224,8 @@ public class Player extends Entity {
 
 		if (Game.DEBUG) {
 			drawHitbox(g, levelOffset);
+			drawAttackBox(g, levelOffset);
 		}
-//		drawAttackBox(g, levelOffset);
 	}
 
 	private void updateImageFlip() {

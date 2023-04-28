@@ -2,6 +2,7 @@ package objects;
 
 import constants.ObjectConstants.ObjectType;
 import helpers.SoundLoader;
+import main.Game;
 import main.Level;
 import main.Player;
 
@@ -10,7 +11,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Game.*;
+import static main.Game.TILES_SIZE;
+import static main.Game.TILES_SIZE_DEFAULT;
 
 public class Brick extends GameObject {
 
@@ -19,13 +21,14 @@ public class Brick extends GameObject {
 
     // break hitbox
     private final Rectangle2D.Float breakBox;
+    private static final float OFFSET = 2 * Game.SCALE;
+    private static final float H = 10; // hitbox below the brick has a small height
 
     public Brick(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        float off = 2 * SCALE;
-        float height = 10; // hitbox below the brick has a small height
 
-        initHitbox(x + off, y + TILES_SIZE - off, TILES_SIZE_DEFAULT - off, height);
+
+        initHitbox(x + OFFSET, y + TILES_SIZE - OFFSET, TILES_SIZE_DEFAULT - OFFSET, H);
         breakBox = new Rectangle2D.Float(x, y, TILES_SIZE, TILES_SIZE);
     }
 
@@ -59,7 +62,7 @@ public class Brick extends GameObject {
                     level.getLevelData()[tileY][tileX] = 91;
                     largestContact.setActive(false);
                 }
-                SoundLoader.playAudio("/audio/brick.wav", 0.8);
+                SoundLoader.playSound("/sounds/brick.wav", 0.8);
             }
     }
 

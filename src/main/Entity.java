@@ -3,7 +3,10 @@ package main;
 import constants.Direction;
 import objects.Platform;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.*;
@@ -23,7 +26,10 @@ public class Entity {
 	protected float airSpeed;
 
 	// ====== Position =======
-	protected float x, y, width, height;
+	protected final float x;
+	protected final float y;
+	protected final float width;
+	protected final float height;
 	protected float xDirection, xSpeed;
 	protected Direction direction = STILL;
 
@@ -57,11 +63,7 @@ public class Entity {
 		boolean isBottomRightSolid = isSolid(x + width, y + height, level);
 
 		// The entity can only move to a position if neither corner is touching something solid
-		if (!isTopLeftSolid && !isTopRightSolid && !isBottomLeftSolid && !isBottomRightSolid) {
-			return true;
-		}
-
-		return false;
+		return !isTopLeftSolid && !isTopRightSolid && !isBottomLeftSolid && !isBottomRightSolid;
 	}
 
 	protected boolean moveToPosition(float x, float y, float width, float height, Level level) {
@@ -292,8 +294,8 @@ public class Entity {
 		hitbox = new Rectangle2D.Float(x, y, width, height);
 	}
 
-	protected void initAttackBox(float width, float height) {
-		attackBox = new Rectangle2D.Float(0,0, width, height);
+	protected void initAttackBox(float x, float y, float width, float height) {
+		attackBox = new Rectangle2D.Float(x, y, width, height);
 	}
 
 	public void drawHitbox(Graphics g, int levelOffset) {

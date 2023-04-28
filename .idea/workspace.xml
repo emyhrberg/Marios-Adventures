@@ -9,21 +9,72 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Updated pause screen">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Reworking stuff">
+      <change afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/unused/levels/1_v1.2.psd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/musiclevel.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/level1.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/musiclevel2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/level2.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/musiclevel3.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/level3.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/musicmenu.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/menu.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/brick.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/brick.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/coin.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/coin.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/gameover.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/gameover.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/jump.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/jump.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/level1.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/level1.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/level2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/level2.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/level3.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/level3.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/menu.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/menu.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/coin.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/coin.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/enemy_got_hit_old.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/enemy_got_hit_old.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/enemyouch.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/enemyouch.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/gamecompleted.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/gamecompleted.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/gameover.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/gameover.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/gameover_new.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/gameover_new.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/jump.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/jump.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/jumphit.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/jumphit.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/level_completed (long 5sec).wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/level_completed (long 5sec).wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/level_completed_old.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/level_completed_old.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/menu_old.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/menu_old.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/pipe_loud_af.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/pipe_loud_af.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/player_got_hit_old.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/player_got_hit_old.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/playing_old.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/playing_old.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/old/success.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/old/success.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/ouchenemy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/ouchenemy.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/ouchplayer.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/ouchplayer.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/powerup.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/powerup.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/question.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/question.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/stomp.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/stomp.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/success.wav" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/gamecompleted.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/tiles-num.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sprites/tiles-num.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/EnemyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/EnemyConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/PlayerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/PlayerConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/GifLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GifLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ImageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Lava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Lava.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Pipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Pipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,25 +103,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures/out",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Github/Marios-Adventures/out&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src" />
@@ -127,19 +179,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="module" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="module" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -178,14 +217,8 @@
       <workItem from="1682603647661" duration="8273000" />
       <workItem from="1682619938820" duration="4386000" />
       <workItem from="1682629669851" duration="1759000" />
-      <workItem from="1682632891215" duration="9847000" />
-    </task>
-    <task id="LOCAL-00024" summary="Working on bricks breaking">
-      <created>1682194926820</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1682194926820</updated>
+      <workItem from="1682632891215" duration="15502000" />
+      <workItem from="1682686343586" duration="6193000" />
     </task>
     <task id="LOCAL-00025" summary="Working on bricks breaking">
       <created>1682195191469</created>
@@ -523,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682642377581</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="v1.2 release!">
+      <created>1682643588902</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1682643588902</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,7 +584,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Game playtested, no noticeable bugs!" />
     <MESSAGE value="Game playtested, no noticeable bugs, looks alright!" />
     <MESSAGE value="Game playtested and works as a JAR" />
     <MESSAGE value="Added variable jumping!!!!" />
@@ -569,7 +608,8 @@
     <MESSAGE value="Game playtested and looks good!" />
     <MESSAGE value="Refactoring resources" />
     <MESSAGE value="Updated pause screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated pause screen" />
+    <MESSAGE value="v1.2 release!" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2 release!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

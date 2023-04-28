@@ -8,7 +8,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import static main.Game.*;
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
 
 /**
  * When in game over state, this class handles drawing game over image
@@ -24,8 +25,8 @@ public class GameOver extends GameState {
     private static final int OVER_X_INIT = GAME_WIDTH;
     private int gameX = GAME_X_INIT;
     private int overX = OVER_X_INIT;
-    private static final float SPEED = (int) (10 * SCALE);
-    private static final int DIST = (int) (595 * SCALE);
+    private static final float SPEED = (int) (10 * Game.SCALE);
+    private static final int DIST = (int) (595 * Game.SCALE);
     private static final int GAME_MAX_DIST = GAME_X_INIT + DIST;
     private static final int OVER_MAX_DIST = OVER_X_INIT - DIST;
     private long firstCheckTime;

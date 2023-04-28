@@ -1,6 +1,5 @@
 package constants;
 
-
 public class PlayerConstants {
 
     public enum PlayerAction {

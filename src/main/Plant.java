@@ -8,15 +8,14 @@ import java.util.Random;
 import static constants.EnemyConstants.PlantAction.*;
 import static main.EnemyManager.PLANT_HEIGHT;
 import static main.EnemyManager.PLANT_WIDTH;
-import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 
 public class Plant extends Enemy {
 
     // Position
     protected PlantAction plantAction               = IDLE;
-    private static final float PLANT_SPEED          = 0.2f * SCALE;
-    private static final float PLANT_TOP_POS        = 1.1f * SCALE;
+    private static final float PLANT_SPEED          = 0.2f * Game.SCALE;
+    private static final float PLANT_TOP_POS        = 1.1f * Game.SCALE;
     private static final int PLANT_TOP_WAIT         = 1000;
     private static final int[] PLANT_BOTTOM_WAIT    = {3000,3200,3400,3600,3800,4000};
     private static final Random RND                 = new Random();
@@ -32,7 +31,7 @@ public class Plant extends Enemy {
     public Plant(float x, float y) {
         super(x, y, PLANT_WIDTH, PLANT_HEIGHT);
         initHitbox(x, y, PLANT_WIDTH, PLANT_HEIGHT);
-        initAttackBox(PLANT_WIDTH, PLANT_HEIGHT);
+        initAttackBox(x, y, PLANT_WIDTH, PLANT_HEIGHT);
     }
 
     public void update(Player player) {
@@ -88,7 +87,7 @@ public class Plant extends Enemy {
     private void updatePlantAttacking(Player player) {
         boolean canPlantDealDamage = System.currentTimeMillis() >= lastAttack + ATTACK_COOLDOWN;
 
-        attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * SCALE;
+        attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * Game.SCALE;
         attackBox.y = hitbox.y;
 
         if (attackBox.intersects(player.getHitbox()) && canPlantDealDamage) {

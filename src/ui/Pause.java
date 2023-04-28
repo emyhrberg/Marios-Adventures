@@ -1,7 +1,6 @@
 package ui;
 
 import helpers.FontLoader;
-import helpers.ImageLoader;
 import main.Game;
 import main.GameState;
 
@@ -9,7 +8,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 
 import static constants.GameState.PLAYING;
 

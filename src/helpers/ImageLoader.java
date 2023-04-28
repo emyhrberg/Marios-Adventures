@@ -23,7 +23,7 @@ public class ImageLoader {
 			if (is != null)
 				image = ImageIO.read(is);
 			else
-				System.err.println("Error: Image not found\n" + fileName);
+				System.err.println("Error: Image not found\n" + fileName + "\n");
 
 		} catch (IOException e) {
 			e.printStackTrace();

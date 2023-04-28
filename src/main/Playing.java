@@ -51,13 +51,13 @@ public class Playing extends GameState {
     // Drawing UI
     private static final BufferedImage MARIO = ImageLoader.loadImage("/ui/mario-icon.png");
     private static final BufferedImage COIN = ImageLoader.loadImage("/ui/coin-icon.png");
-    private static final int MARIO_W = (int) (19*SCALE*2);
-    private static final int MARIO_H = (int) (19*SCALE*2);
-    private static final int MARIO_X = (int) (MARIO_W + 10 * SCALE);
+    private static final int MARIO_W = (int) (19*Game.SCALE*2);
+    private static final int MARIO_H = (int) (19*Game.SCALE*2);
+    private static final int MARIO_X = (int) (MARIO_W + 10 * Game.SCALE);
     private static final int MARIO_Y = (int) (MARIO_H / 1.5);
-    private static final int COIN_Y = (int) (MARIO_H / 1.5 + MARIO_H + 10 * SCALE);
-    private static final int TOP_Y = (int) (MARIO_Y + MARIO_H - 4 * SCALE);
-    private static final int X_NEXT_TO_ICON = (int) (MARIO_X + MARIO_W + 4 * SCALE);
+    private static final int COIN_Y = (int) (MARIO_H / 1.5 + MARIO_H + 10 * Game.SCALE);
+    private static final int TOP_Y = (int) (MARIO_Y + MARIO_H - 4 * Game.SCALE);
+    private static final int X_NEXT_TO_ICON = (int) (MARIO_X + MARIO_W + 4 * Game.SCALE);
 
     // ====== Constructor ======
     public Playing(Game game) {
@@ -65,7 +65,7 @@ public class Playing extends GameState {
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(PLAYER_WIDTH * SCALE * PLAYER_SCALE, PLAYER_HEIGHT * SCALE * PLAYER_SCALE, game);
+        player          = new Player(PLAYER_WIDTH * Game.SCALE * PLAYER_SCALE, PLAYER_HEIGHT * Game.SCALE * PLAYER_SCALE, game);
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
@@ -198,6 +198,7 @@ public class Playing extends GameState {
         drawCoinCount(g);
 
         // Draw game
+        objectManager.drawPowerups(g, levelOffset);
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);
         objectManager.draw(g, levelOffset);
@@ -232,9 +233,9 @@ public class Playing extends GameState {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f)); // Set opacity to 0.5
         int x = (int) (-levelOffset * 0.17);
-        int y = (int) (130 * SCALE);
-        int w = (int) (1024 / 2 * SCALE);
-        int h = (int) (600 / 2 * SCALE);
+        int y = (int) (130 * Game.SCALE);
+        int w = (int) (1024 / 2 * Game.SCALE);
+        int h = (int) (600 / 2 * Game.SCALE);
         for (int i = 0; i < 4; i++) {
             g.drawImage(FOREST, x + i * w, y, w, h, null);
         }
@@ -261,7 +262,7 @@ public class Playing extends GameState {
         smallX = -levelOffset * 0.08f;
 
         for (int i = 0; i < 4; i++) {
-            g.drawImage(SMALL_CLOUDS, (int) smallX + i * CLOUDS_W, 80, null);
+            g.drawImage(SMALL_CLOUDS, (int) smallX + i * CLOUDS_W, 25, null);
         }
 
         // reset opacity
@@ -316,7 +317,7 @@ public class Playing extends GameState {
         // HEALTH
         final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
         g.setFont(g.getFont().deriveFont(48f));
-        int x2 = (int) (X_NEXT_TO_ICON + w + 2 * SCALE);
+        int x2 = (int) (X_NEXT_TO_ICON + w + 2 * Game.SCALE);
         TextLayout tl2 = new TextLayout(health, g.getFont(), g2d.getFontRenderContext());
         Shape shape2 = tl2.getOutline(null);
         AffineTransform transform2 = AffineTransform.getTranslateInstance(x2, TOP_Y);
@@ -346,7 +347,7 @@ public class Playing extends GameState {
         g.setFont(g.getFont().deriveFont(48f));
         TextLayout tl = new TextLayout(coins, g.getFont(), g2d.getFontRenderContext());
         Shape shape2 = tl.getOutline(null);
-        int y = (int) (COIN_Y + MARIO_H - 4 * SCALE);
+        int y = (int) (COIN_Y + MARIO_H - 4 * Game.SCALE);
         AffineTransform transform = AffineTransform.getTranslateInstance(X_NEXT_TO_ICON, y);
         g2d.transform(transform);
 

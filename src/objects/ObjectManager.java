@@ -19,7 +19,8 @@ import static objects.HealthPowerup.HEALTH_SIZE;
 import static objects.Lava.*;
 import static objects.Pipe.PIPE_HEIGHT;
 import static objects.Pipe.PIPE_WIDTH;
-import static objects.Platform.*;
+import static objects.Platform.PLATFORM_HEIGHT;
+import static objects.Platform.PLATFORM_WIDTH;
 
 public class ObjectManager {
 
@@ -58,7 +59,6 @@ public class ObjectManager {
     // ====== Bullets ======
     private static final BufferedImage BULLET_IMAGE     = ImageLoader.loadImage("/sprites/bullet.png");
     private final BufferedImage[] bulletImages          = new BufferedImage[8];
-    public static final List<Bullet> bullets = new ArrayList<>();
 
     // ====== Power-ups ======
     private static final BufferedImage POWERUP_HEALTH   = ImageLoader.loadImage("/sprites/health-powerup.png");
@@ -69,14 +69,15 @@ public class ObjectManager {
     private final BufferedImage[] flagImages            = new BufferedImage[3];
 
     // ====== List of objects ======
+    private List<Brick> bricks          = new ArrayList<>();
+    private List<Cannon> cannons        = new ArrayList<>();
     private List<Coin> coins            = new ArrayList<>();
-    private List<Question> questions    = new ArrayList<>();
-    private List<Platform> platforms    = new ArrayList<>();
+    private List<Flag> flags            = new ArrayList<>();
     private List<Lava> lava             = new ArrayList<>();
     private List<Pipe> pipes            = new ArrayList<>();
-    private List<Cannon> cannons        = new ArrayList<>();
-    private List<Brick> bricks          = new ArrayList<>();
-    private List<Flag> flags           = new ArrayList<>();
+    private List<Platform> platforms    = new ArrayList<>();
+    private List<Question> questions    = new ArrayList<>();
+
 
 
     public ObjectManager() {
@@ -125,23 +126,23 @@ public class ObjectManager {
     // ====== Update ======
 
     public void update(Level level, Player player) {
-        flags       = level.getFlags();
-        questions   = level.getQuestions();
         bricks      = level.getBricks();
-        lava        = level.getLava();
-        platforms   = level.getPlatforms();
-        coins       = level.getCoins();
         cannons     = level.getCannons();
+        coins       = level.getCoins();
+        flags       = level.getFlags();
+        lava        = level.getLava();
+        questions   = level.getQuestions();
         pipes       = level.getPipes();
+        platforms   = level.getPlatforms();
 
-        for (Question q : questions)    q.update(player, q);
         for (Brick b : bricks)          b.update(player, level, b);
+        for (Bullet b : bullets)        b.update(player, level, b);
+        for (Cannon c: cannons)         c.update(c);
+        for (Coin c : coins)            c.update(player, c);
+        for (HealthPowerup h : healths) h.update(player, level, h);
         for (Lava l: lava)              l.update(player, l);
         for (Platform p : platforms)    p.update(player, level, p);
-        for (Coin c : coins)            c.update(player, c);
-        for (Cannon c: cannons)         c.update(player, c);
-        for (HealthPowerup h : healths) h.update(player, level, h);
-        for (Bullet b : bullets)        b.update(player, level, b);
+        for (Question q : questions)    q.update(player, q);
     }
 
     // ====== Draw ======
@@ -155,8 +156,21 @@ public class ObjectManager {
         drawBullets(g, levelOffset);
         drawCannons(g, levelOffset);
         drawBreakingBrick(g, levelOffset);
-        drawHealths(g, levelOffset);
         drawFlags(g, levelOffset);
+    }
+
+    public void drawPowerups(Graphics g, int levelOffset) {
+        for (HealthPowerup h : healths) {
+            if (h.isActive()) {
+                float x = h.getHitbox().x - levelOffset;
+                float y = h.getHitbox().y;
+                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, HEALTH_SIZE, HEALTH_SIZE, null);
+
+                if (Game.DEBUG) {
+                    h.drawHitbox(g, levelOffset);
+                }
+            }
+        }
     }
 
     private void drawPlatforms(Graphics g, int levelOffset) {
@@ -165,34 +179,28 @@ public class ObjectManager {
             int y = (int) p.hitbox.y;
             g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
 
-            // Debug hitboxes
-//            p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
-//            p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
-//            p.drawSomeBox(p.getBottom(), Color.DARK_GRAY, g, levelOffset);
-//            p.drawSomeBox(p.getBottomLine(), Color.YELLOW, g, levelOffset);
-        }
-    }
-
-    private void drawHealths(Graphics g, int levelOffset) {
-        for (HealthPowerup h : healths) {
-            if (h.isActive()) {
-                float x = h.getHitbox().x - levelOffset;
-                float y = h.getHitbox().y;
-                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, HEALTH_SIZE, HEALTH_SIZE, null);
-
-                // Debug hitbox
-//                h.drawHitbox(g, levelOffset);
+            if (Game.DEBUG) {
+                p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
+                p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
+                p.drawSomeBox(p.getBottom(), Color.DARK_GRAY, g, levelOffset);
+                p.drawSomeBox(p.getBottomLine(), Color.YELLOW, g, levelOffset);
             }
         }
     }
 
     private void drawBullets(Graphics g, int levelOffset) {
+        if (bullets.size() == 0)
+            return;
+
         for (Bullet b : bullets) {
             if (b.isActive()) {
                 float x = b.hitbox.x - levelOffset;
                 float y = b.hitbox.y - Y_DRAW_OFF;
                 g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
-//                b.drawHitbox(g, levelOffset);
+
+                if (Game.DEBUG) {
+                    b.drawHitbox(g, levelOffset);
+                }
             }
         }
     }
@@ -217,7 +225,10 @@ public class ObjectManager {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
             g.drawImage(PIPE_IMAGES, x, y, PIPE_WIDTH, PIPE_HEIGHT, null);
-//            p.drawHitbox(g, levelOffset);
+
+            if (Game.DEBUG) {
+                p.drawHitbox(g, levelOffset);
+            }
         }
     }
 
@@ -226,7 +237,10 @@ public class ObjectManager {
             int x = (int) c.hitbox.x - levelOffset;
             int y = (int) c.hitbox.y;
             g.drawImage(cannonImages[c.animationIndex], x, y, CANNON_WIDTH, CANNON_HEIGHT, null);
-//            c.drawHitbox(g, levelOffset);
+
+            if (Game.DEBUG) {
+                c.drawHitbox(g, levelOffset);
+            }
         }
     }
 
@@ -235,7 +249,10 @@ public class ObjectManager {
             int x = (int) l.hitbox.x - levelOffset;
             int y = (int) l.hitbox.y - LAVA_Y_OFFSET;
             g.drawImage(LAVA_IMAGES, x, y, LAVA_WIDTH, LAVA_HEIGHT, null);
-//            l.drawHitbox(g, levelOffset);
+
+            if (Game.DEBUG) {
+                l.drawHitbox(g, levelOffset);
+            }
         }
     }
 
@@ -255,8 +272,9 @@ public class ObjectManager {
                     g.drawImage(questionImages[0][q.animationIndex],x,y, TILES_SIZE, TILES_SIZE,null);
                 }
 
-                // debug
-//                q.drawHitbox(g, levelOffset);
+                if (Game.DEBUG) {
+                    q.drawHitbox(g, levelOffset);
+                }
             }
         }
     }
@@ -273,8 +291,9 @@ public class ObjectManager {
                     g.drawImage(coinImages[c.animationIndex],x,y, COIN_SIZE,COIN_SIZE,null);
                 }
 
-                // debug
-//                c.drawSomeBox(c.hitbox, new Color(100,255,50,100), g, levelOffset);
+                if (Game.DEBUG) {
+                    c.drawSomeBox(c.hitbox, new Color(100,255,50,100), g, levelOffset);
+                }
             }
         }
     }
@@ -285,8 +304,10 @@ public class ObjectManager {
             int y = (int) f.hitbox.y;
             g.drawImage(flagImages[f.animationIndex],x,y,TILES_SIZE,TILES_SIZE,null);
 
-            // debug
-//            f.drawSomeBox(f.hitbox, new Color(100,255,50,100), g, levelOffset);
+
+            if (Game.DEBUG) {
+                f.drawSomeBox(f.hitbox, new Color(100,255,50,100), g, levelOffset);
+            }
         }
     }
 

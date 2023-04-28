@@ -1,8 +1,5 @@
 package constants;
 
-/**
- * Constants and enums for all enemies
- */
 public class EnemyConstants {
 
     public enum SharkAction {

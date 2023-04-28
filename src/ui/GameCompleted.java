@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * When in game completed state, this class handles drawing a you win gif
+ * When in game completed state, this class handles drawing a win gif
  */
 public class GameCompleted extends GameState {
 

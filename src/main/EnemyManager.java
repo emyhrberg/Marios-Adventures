@@ -8,8 +8,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Game.SCALE;
-
 /**
  * Handles all enemies
  * Updates the enemies position
@@ -23,12 +21,12 @@ public class EnemyManager {
 	private static final int IMAGES_IN_ROW 				= 7;
 	private final BufferedImage[][] sharkImages			= new BufferedImage[ROWS][IMAGES_IN_ROW];
 	private static final BufferedImage SHARK_IMAGE 		= ImageLoader.loadImage("/entities/shark.png");
-	private static final int SHARK_X_OFFSET 			= (int) (12 * SCALE);
-	private static final int SHARK_Y_OFFSET 			= (int) (10 * SCALE);
+	private static final int SHARK_X_OFFSET 			= (int) (12 * Game.SCALE);
+	private static final int SHARK_Y_OFFSET 			= (int) (10 * Game.SCALE);
 	public static final int SHARK_WIDTH_DEFAULT        	= 34;
 	public static final int SHARK_HEIGHT_DEFAULT       	= 30;
-	public static final int SHARK_WIDTH                	= (int) (SHARK_WIDTH_DEFAULT * 1.5 * SCALE);
-	public static final int SHARK_HEIGHT              	= (int) (SHARK_HEIGHT_DEFAULT * 1.5 * SCALE);
+	public static final int SHARK_WIDTH                	= (int) (SHARK_WIDTH_DEFAULT * 1.5 * Game.SCALE);
+	public static final int SHARK_HEIGHT              	= (int) (SHARK_HEIGHT_DEFAULT * 1.5 * Game.SCALE);
 
 	// ====== Plants =======
 	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/entities/plant.png");
@@ -36,8 +34,8 @@ public class EnemyManager {
 	private final BufferedImage[] plantImages			= new BufferedImage[PLANT_ROWS];
 	public static final int PLANT_WIDTH_DEFAULT			= 16;
 	public static final int PLANT_HEIGHT_DEFAULT		= 32;
-	public static final int PLANT_WIDTH					= (int) (PLANT_WIDTH_DEFAULT *2* SCALE);
-	public static final int PLANT_HEIGHT				= (int) (PLANT_HEIGHT_DEFAULT *2* SCALE);
+	public static final int PLANT_WIDTH					= (int) (PLANT_WIDTH_DEFAULT *2* Game.SCALE);
+	public static final int PLANT_HEIGHT				= (int) (PLANT_HEIGHT_DEFAULT *2* Game.SCALE);
 	public static final int PLANT_X_OFFSET				= PLANT_WIDTH / 2;
 
 	// ====== Game values ======
@@ -85,7 +83,7 @@ public class EnemyManager {
 		for (Shark s : sharks) {
 			if (s.isEnemyAlive() && player.attackBox.intersects(s.hitbox)) {
 				s.reduceEnemyHealth(player);
-				SoundLoader.playAudio("/audio/ouchenemy.wav", 0.7);
+				SoundLoader.playSound("/sounds/ouchenemy.wav", 0.7);
 			}
 		}
 	}
@@ -115,8 +113,10 @@ public class EnemyManager {
 				// Draw the image of the shark
 				g.drawImage(img, (int) x, (int) y, (int) w, SHARK_HEIGHT, null);
 
-//				s.drawHitbox(g, levelOffset);
-//				s.drawAttackBox(g, levelOffset);
+				if (Game.DEBUG) {
+					s.drawHitbox(g, levelOffset);
+					s.drawAttackBox(g, levelOffset);
+				}
 			}
 	}
 
@@ -131,8 +131,9 @@ public class EnemyManager {
 			// Draw the image of the shark
 			g.drawImage(img, (int) x, (int) y, PLANT_WIDTH, PLANT_HEIGHT, null);
 
-			// Draw hitboxes for debugging
-//			p.drawAttackBox(g, levelOffset);
+			if (Game.DEBUG) {
+				p.drawAttackBox(g, levelOffset);
+			}
 		}
 	}
 

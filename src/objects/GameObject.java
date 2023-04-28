@@ -1,18 +1,20 @@
 package objects;
 
 
+import main.Game;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
-import static main.Game.SCALE;
 
 public class GameObject {
 
     // Object position
-    protected int x, y;
-    protected ObjectType objectType;
+    protected final int x;
+    protected final int y;
+    protected final ObjectType objectType;
     protected Rectangle2D.Float hitbox;
 
     // Object properties
@@ -50,7 +52,11 @@ public class GameObject {
         isHit = false;
         isSparkle = false;
         isBreaking = false;
+        spawn = false;
     }
+
+    protected boolean spawn;
+
 
     // Hitboxes
 
@@ -59,7 +65,7 @@ public class GameObject {
     }
 
     protected void initHitbox(float x, float y, float width, float height) {
-        hitbox = new Rectangle2D.Float(x, y, width * SCALE, height * SCALE);
+        hitbox = new Rectangle2D.Float(x, y, width * Game.SCALE, height * Game.SCALE);
     }
 
     protected void drawHitbox(Graphics g, int levelOffset) {
