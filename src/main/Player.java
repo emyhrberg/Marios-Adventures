@@ -202,6 +202,8 @@ public class Player extends Entity {
 		hit = false;
 		health = maxHealth;
 		direction = STILL;
+		imageFlipWidth = 1;
+		imageFlipX = 0;
 		setInLava(false);
 	}
 

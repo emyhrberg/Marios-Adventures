@@ -9,20 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added save &amp; quit">
-      <change afterPath="$PROJECT_DIR$/resources/levels/1.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/levels/2.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Small fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sprites/tiles.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sprites/tiles.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/cursor.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,14 +158,7 @@
       <workItem from="1682619938820" duration="4386000" />
       <workItem from="1682629669851" duration="1759000" />
       <workItem from="1682632891215" duration="15502000" />
-      <workItem from="1682686343586" duration="10734000" />
-    </task>
-    <task id="LOCAL-00027" summary="Improving plant, lots of small bad changes, need to fix misc stuff now">
-      <created>1682265218579</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1682265218579</updated>
+      <workItem from="1682686343586" duration="13751000" />
     </task>
     <task id="LOCAL-00028" summary="Game working ok now">
       <created>1682265443316</created>
@@ -511,7 +496,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682695121139</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Small fixes">
+      <created>1682698112140</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1682698112140</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,7 +524,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added variable jumping!!!!" />
     <MESSAGE value="Improved font, improved platforms!" />
     <MESSAGE value="Improved lots of sound effects! And damage cooldown" />
     <MESSAGE value="Improved lots of sound effects!" />
@@ -557,7 +548,8 @@
     <MESSAGE value="v1.2 release!" />
     <MESSAGE value="Improved code for sound and debugging" />
     <MESSAGE value="Added save &amp; quit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added save &amp; quit" />
+    <MESSAGE value="Small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

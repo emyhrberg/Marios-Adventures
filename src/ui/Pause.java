@@ -16,87 +16,105 @@ import static constants.GameState.PLAYING;
  */
 public class Pause extends GameState {
 
+
+	// box
 	private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/inside-out.ttf");
-	private static final int W = 1920/4;
-	private static final int H = 1080/4;
+	private static final float FONT_SIZE = 48f;
+	private static final int W = (int) (265 * Game.SCALE);
+	private static final int H = (int) (220 * Game.SCALE);
 	private static final int X = Game.GAME_WIDTH / 2 - W / 2;
 	private static final int Y = Game.GAME_HEIGHT / 2 - H / 2;
+	private static final int PAD = 50;
+	private static final int ROUND = 25;
+	private static final Color BOX_COLOR = new Color(10, 10, 10, 242);
 
+	// options
 	private static final String cont = "continue";
 	private static final String quit = "save & quit";
+	private static final Color HIGHLIGHT_COLOR = new Color(232, 67, 33); // Color for highlighted text
+	private static final Color DEF_COLOR = new Color(224, 224, 244); // Color for default text
+	private static final Color STROKE_COLOR = new Color(17, 17, 17); // Color for stroke text
+	private static final BasicStroke STROKE_SIZE = new BasicStroke(4f);
+	private int selectedIndex = 0; // Currently selected option index
 
     public Pause(Game game) {
 		super(game);
     }
 
-    public void drawPause(Graphics g) {
+	public void drawPause(Graphics g) {
 		drawBox(g);
-		drawContinue(g);
-		drawQuit(g);
-    }
-
-	private void drawBox(Graphics g) {
-		g.setColor(new Color(10,10,10,180));
-		g.fillRoundRect(X, Y, W, H, 10,10);
+		drawOptions(g);
 	}
 
-	private static final int PAD = 50;
+	private void drawBox(Graphics g) {
+		g.setColor(BOX_COLOR);
+		g.fillRoundRect(X, Y, W, H, ROUND, ROUND);
+	}
 
-	private void drawContinue(Graphics g) {
-		g.setFont(CUSTOM_FONT);
+	private void drawOptions(Graphics g) {
+		drawOption(g, cont, 0, 0);
+		drawOption(g, quit, 1, 1);
+	}
+
+	private void drawOption(Graphics g, String option, int index, int yIndex) {
+		// font and shapes
 		Graphics2D g2d = (Graphics2D) g;
-		g.setFont(g.getFont().deriveFont(58f));
-		TextLayout tl = new TextLayout(cont, g.getFont(), g2d.getFontRenderContext());
+		g2d.setFont(CUSTOM_FONT);
+		g.setFont(g.getFont().deriveFont(FONT_SIZE));
+		TextLayout tl = new TextLayout(option, g.getFont(), g2d.getFontRenderContext());
 		Shape s = tl.getOutline(null);
+
+		// position
 		FontMetrics fm = g.getFontMetrics();
-		int conW = fm.stringWidth(cont);
-		int conH = fm.getHeight();
-		int conX = X + (W - conW) / 2;
-		int conY = Y + (H - conH) / 2 + fm.getAscent() - PAD;
-		AffineTransform transform = AffineTransform.getTranslateInstance(conX, conY);
+		int w = fm.stringWidth(option);
+		int h = fm.getHeight();
+		int x = X + (W - w) / 2;
+		int y = Y + (H - h) / 2 + fm.getAscent() - PAD; // continue Y
+		if (yIndex == 0) {
+			y = Y + (H - h) / 2 + fm.getAscent() - PAD; // continue Y
+		} else if (yIndex == 1) {
+			y = Y + (H - h) / 2 + fm.getAscent() + PAD; // quit Y
+		}
+		AffineTransform transform = AffineTransform.getTranslateInstance(x, y);
 		g2d.transform(transform);
 
-		// draw black
-		g2d.setStroke(new BasicStroke(5f));
-		g2d.setColor(new Color(5, 5, 5));
+		// Draw black stroke
+		g2d.setStroke(STROKE_SIZE);
+		g2d.setColor(STROKE_COLOR);
 		g2d.draw(s);
 
-		// draw white
-		g2d.setColor(new Color(224, 224, 224));
+		// Draw white or highlighted color
+		if (index == selectedIndex) {
+			g2d.setColor(HIGHLIGHT_COLOR);
+		} else {
+			g2d.setColor(DEF_COLOR);
+		}
 		g2d.fill(s);
 
-		// restore the original transform
+		// Restore the original transform
 		g2d.setTransform(new AffineTransform());
 	}
 
-	private void drawQuit(Graphics g) {
-		g.setFont(CUSTOM_FONT);
-		Graphics2D g2d = (Graphics2D) g;
-		g.setFont(g.getFont().deriveFont(58f));
-		TextLayout tl2 = new TextLayout(quit, g.getFont(), g2d.getFontRenderContext());
-		Shape s2 = tl2.getOutline(null);
-		FontMetrics fm2 = g.getFontMetrics();
-		int quitW = fm2.stringWidth(quit);
-		int quitH = fm2.getHeight();
-		int quitX = X + (W - quitW) / 2;
-		int quitY = Y + (H - quitH) / 2 + fm2.getAscent() + PAD;
-		AffineTransform transform2 = AffineTransform.getTranslateInstance(quitX, quitY);
-		g2d.transform(transform2);
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+			// Scrolling infinite!
+			case KeyEvent.VK_W -> selectedIndex = (selectedIndex + 1) % 2;
+			case KeyEvent.VK_S -> selectedIndex = (selectedIndex - 1 + 2) % 2;
 
-		// draw black
-		g2d.setStroke(new BasicStroke(5f));
-		g2d.setColor(new Color(5, 5, 5));
-		g2d.draw(s2);
-
-		// draw white
-		g2d.setColor(new Color(224, 224, 224));
-		g2d.fill(s2);
+//			case KeyEvent.VK_W -> selectedIndex = Math.max(selectedIndex - 1, 0);
+//			case KeyEvent.VK_S -> selectedIndex = Math.min(selectedIndex + 1, 1);
+			case KeyEvent.VK_ENTER -> handleSelection();
+			case KeyEvent.VK_ESCAPE -> game.getPlaying().resetGameSavePoint();
+		}
 	}
 
-    public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
-			case KeyEvent.VK_ESCAPE -> game.getPlaying().resetGameSavePoint();
-			case KeyEvent.VK_P, KeyEvent.VK_ENTER -> game.setGameState(PLAYING);
+	private void handleSelection() {
+		if (selectedIndex == 0) {
+			// Option "PLAY" is selected
+			game.setGameState(PLAYING);
+		} else if (selectedIndex == 1) {
+			game.getPlaying().resetGameSavePoint();
 		}
-    }
+		selectedIndex = 0;
+	}
 }

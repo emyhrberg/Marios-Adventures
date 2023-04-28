@@ -216,7 +216,7 @@ public class Playing extends GameState {
 
         // Create blur filter
         Kernel kernel = new Kernel(3, 3, matrix);
-        ConvolveOp blur = new ConvolveOp(kernel, ConvolveOp.EDGE_ZERO_FILL, null);
+        ConvolveOp blur = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
 
         // Apply blur filter to the off-screen image
         offScreenImage = blur.filter(offScreenImage, null);
