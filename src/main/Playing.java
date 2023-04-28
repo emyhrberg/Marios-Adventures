@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
@@ -23,7 +25,7 @@ import static objects.Coin.coinCount;
  * The playing state initializes classes for the game, including player, levels and more
  * This class also shows overlays for example paused or game over depending on the game state
  */
-public class Playing extends State {
+public class Playing extends GameState {
 
     // ====== Variables ======
     private static final float PLAYER_SCALE = 1.33f;
@@ -150,7 +152,39 @@ public class Playing extends State {
 
     // ====== Draw ======
 
+    private BufferedImage offScreenImage;
+
+    public void drawBlur(Graphics g) {
+        // Create off-screen image with the same dimensions as the game screen
+        if (offScreenImage == null || offScreenImage.getWidth() != GAME_WIDTH || offScreenImage.getHeight() != GAME_HEIGHT) {
+            offScreenImage = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        }
+
+        // Get graphics object of the off-screen image
+        Graphics2D g2d = offScreenImage.createGraphics();
+
+        // Draw all game elements onto the off-screen image
+        drawGame(g2d);
+
+        // Apply blur effect to the off-screen image
+        applyBlurEffect();
+
+        // Draw the blurred image onto the main graphics context
+        g.drawImage(offScreenImage, 0, 0, null);
+
+        // Add black opacity
+        g.setColor(new Color(0,0,0,150));
+        g.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+
+        // Dispose of the off-screen graphics object to release system resources
+        g2d.dispose();
+    }
+
     public void draw(Graphics g) {
+        drawGame(g);
+    }
+
+    private void drawGame(Graphics g) {
         // Draw background
         drawSky(g);
         drawForest(g);
@@ -162,13 +196,30 @@ public class Playing extends State {
         drawCoinIcon(g);
         drawHealthText(g);
         drawCoinCount(g);
-//        drawCountdownTimer(g);
 
         // Draw game
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);
         objectManager.draw(g, levelOffset);
         player.draw(g, levelOffset);
+    }
+
+    private void applyBlurEffect() {
+        // Define blur matrix
+        final float a = 0.1f;
+        final float b = 0.2f;
+        float[] matrix = {
+                a, a, a,
+                a, b, a,
+                a, a, a
+        };
+
+        // Create blur filter
+        Kernel kernel = new Kernel(3, 3, matrix);
+        ConvolveOp blur = new ConvolveOp(kernel, ConvolveOp.EDGE_ZERO_FILL, null);
+
+        // Apply blur filter to the off-screen image
+        offScreenImage = blur.filter(offScreenImage, null);
     }
 
     private void drawSky(Graphics g) {

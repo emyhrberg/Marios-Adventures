@@ -2,7 +2,7 @@ package ui;
 
 import helpers.ImageLoader;
 import main.Game;
-import main.State;
+import main.GameState;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,7 +13,7 @@ import static main.Game.*;
 /**
  * When in game over state, this class handles drawing game over image
  */
-public class GameOverOverlay extends State {
+public class GameOver extends GameState {
 
     private static final BufferedImage GAME = ImageLoader.loadImage("/ui/game.png");
     private static final BufferedImage OVER = ImageLoader.loadImage("/ui/over.png");
@@ -28,12 +28,11 @@ public class GameOverOverlay extends State {
     private static final int DIST = (int) (595 * SCALE);
     private static final int GAME_MAX_DIST = GAME_X_INIT + DIST;
     private static final int OVER_MAX_DIST = OVER_X_INIT - DIST;
-
-    // Wait
     private long firstCheckTime;
+    private int alpha = 0;
 
     // ====== Constructor ======
-    public GameOverOverlay(Game game) {
+    public GameOver(Game game) {
 	    super(game);
     }
 
@@ -48,19 +47,16 @@ public class GameOverOverlay extends State {
         if (game.isFirstTime()) {
             gameX = GAME_X_INIT;
             overX = OVER_X_INIT;
-            game.setFirstTime(false);
-            setAlpha(0);
+            alpha = 0;
             firstCheckTime = System.currentTimeMillis();
+            game.setFirstTime(false);
         }
 
         fadeToBlack(g);
 
         // wait for one second
-        if (System.currentTimeMillis() - firstCheckTime <= 1000) {
+        if (System.currentTimeMillis() - firstCheckTime <= 1000)
             return;
-        }
-
-
 
         // game text
         gameX += SPEED;
@@ -73,6 +69,16 @@ public class GameOverOverlay extends State {
         if (overX <= OVER_MAX_DIST)
             overX = OVER_MAX_DIST;
         g.drawImage(OVER, overX, Y, W, H, null);
+    }
+
+    private void fadeToBlack(Graphics g) {
+        alpha += 5;
+        if (alpha > 255)
+            alpha = 255;
+
+        // Draw a rectangle with opacity
+        g.setColor(new Color(0, 0, 0, alpha));
+        g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     }
 
     public void keyPressed(KeyEvent e) {

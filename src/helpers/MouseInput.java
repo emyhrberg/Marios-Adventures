@@ -1,4 +1,4 @@
-package misc;
+package helpers;
 
 import main.Game;
 

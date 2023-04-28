@@ -1,7 +1,7 @@
 package main;
 
-import misc.KeyboardInput;
-import misc.MouseInput;
+import helpers.KeyboardInput;
+import helpers.MouseInput;
 
 import javax.swing.*;
 import java.awt.*;

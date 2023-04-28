@@ -3,10 +3,10 @@ package main;
 import constants.GameState;
 import helpers.SoundLoader;
 import ui.Menu;
-import ui.GameCompletedOverlay;
-import ui.GameOverOverlay;
-import ui.LevelCompletedOverlay;
-import ui.PauseOverlay;
+import ui.GameCompleted;
+import ui.GameOver;
+import ui.LevelCompleted;
+import ui.Pause;
 
 import javax.sound.sampled.Clip;
 import java.awt.*;
@@ -51,10 +51,10 @@ public class Game implements Runnable {
     // ====== Game States ======
     private final Menu menu                                   = new Menu(this);
     private final Playing playing                             = new Playing(this);
-    private final PauseOverlay pauseOverlay                   = new PauseOverlay(this);
-    private final LevelCompletedOverlay levelCompletedOverlay = new LevelCompletedOverlay(this);
-    private final GameCompletedOverlay gameCompletedOverlay   = new GameCompletedOverlay(this);
-    private final GameOverOverlay gameOverOverlay             = new GameOverOverlay(this);
+    private final Pause pause = new Pause(this);
+    private final LevelCompleted levelCompleted = new LevelCompleted(this);
+    private final GameCompleted gameCompleted = new GameCompleted(this);
+    private final GameOver gameOver = new GameOver(this);
 
     // ====== Sounds ======
     private Clip menuClip, levelClip;
@@ -118,19 +118,19 @@ public class Game implements Runnable {
             case PLAYING            -> playing.draw(g);
             case LEVEL_COMPLETED    -> {
                 playing.draw(g);
-                levelCompletedOverlay.drawLevelCompleted(g);
+                levelCompleted.drawLevelCompleted(g);
             }
             case PAUSED             -> {
-                playing.draw(g);
-                pauseOverlay.drawPause(g);
+                playing.drawBlur(g);
+                pause.drawPause(g);
             }
             case GAME_COMPLETED     -> {
                 playing.draw(g);
-                gameCompletedOverlay.drawGameCompleted(g);
+                gameCompleted.drawGameCompleted(g);
             }
             case GAME_OVER          -> {
                 playing.draw(g);
-                gameOverOverlay.drawGameOver(g);
+                gameOver.drawGameOver(g);
             }
         }
     }
@@ -249,20 +249,20 @@ public class Game implements Runnable {
         return playing;
     }
 
-    public PauseOverlay getPauseOverlay() {
-        return pauseOverlay;
+    public Pause getPauseOverlay() {
+        return pause;
     }
 
-    public LevelCompletedOverlay getLevelCompletedOverlay() {
-        return levelCompletedOverlay;
+    public LevelCompleted getLevelCompletedOverlay() {
+        return levelCompleted;
     }
 
-    public GameCompletedOverlay getGameCompletedOverlay() {
-        return gameCompletedOverlay;
+    public GameCompleted getGameCompletedOverlay() {
+        return gameCompleted;
     }
 
-    public GameOverOverlay getGameOverOverlay() {
-        return gameOverOverlay;
+    public GameOver getGameOverOverlay() {
+        return gameOver;
     }
 
     public boolean isKeyNotAllowed() {

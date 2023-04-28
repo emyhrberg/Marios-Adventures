@@ -3,20 +3,23 @@ package ui;
 import helpers.GifLoader;
 import helpers.ImageLoader;
 import main.Game;
-import main.State;
+import main.GameState;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * When in game completed state, this class handles drawing a game over gif
+ * When in game completed state, this class handles drawing a you win gif
  */
-public class GameCompletedOverlay extends State {
+public class GameCompleted extends GameState {
+
     // ======= Variables =======
     private static final BufferedImage YOU_WIN_IMAGE = ImageLoader.loadImage("/ui/you-win.png");
+	private static final GifLoader gifImage = GifLoader.loadGif("/ui/stars.gif");
+
 
     // ====== Constructor ======
-    public GameCompletedOverlay(Game game) {
+    public GameCompleted(Game game) {
 		super(game);
     }
 
@@ -24,8 +27,8 @@ public class GameCompletedOverlay extends State {
 		if (game.isDrawNotAllowed()) {
 //			return;
 		}
+
 		// Draw the gif at the center of the screen
-		GifLoader gifImage = GifLoader.loadGif("ui/stars.gif");
 		Graphics2D g2d = (Graphics2D) g.create();
 
 		if (gifImage == null)

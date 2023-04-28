@@ -1,9 +1,8 @@
 package ui;
 
-import constants.GameState;
 import helpers.ImageLoader;
 import main.Game;
-import main.State;
+import main.GameState;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -15,7 +14,7 @@ import java.awt.image.BufferedImage;
  * Contains two buttons: Play and Quit which the user can click to start playing the game or exit game
  * Also loads GUI of background image and game title
  */
-public class Menu extends State {
+public class Menu extends GameState {
 
     // ====== Images ======
     private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("/ui/menu-bg.jpg");
@@ -40,8 +39,8 @@ public class Menu extends State {
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(0, START_BUTTON_Y, GameState.PLAYING, game);
-        buttons[1] = new MenuButton(1, QUIT_BUTTON_Y, GameState.QUIT, game);
+        buttons[0] = new MenuButton(0, START_BUTTON_Y, constants.GameState.PLAYING, game);
+        buttons[1] = new MenuButton(1, QUIT_BUTTON_Y, constants.GameState.QUIT, game);
     }
 
     /**
@@ -101,7 +100,7 @@ public class Menu extends State {
 
     public void keyPressed(final KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_ENTER  -> game.setGameState(GameState.PLAYING);
+            case KeyEvent.VK_ENTER  -> game.setGameState(constants.GameState.PLAYING);
             case KeyEvent.VK_ESCAPE -> System.exit(0);
         }
     }
