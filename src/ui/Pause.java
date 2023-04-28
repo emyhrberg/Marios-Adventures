@@ -22,7 +22,7 @@ public class Pause extends GameState {
 	private static final String title = "pause menu";
 	private static final Color RED = new Color(232, 67, 33); // Color for highlighted text
 	private static final Color WHITE = new Color(224, 224, 244); // Color for default text
-	private static final Color BLACK = new Color(17, 17, 17); // Color for stroke text
+	private static final Color BLACK = new Color(17, 17, 17); // Color for stroke
 	private static final BasicStroke STROKE_SIZE = new BasicStroke(5f);
 
 	// options
