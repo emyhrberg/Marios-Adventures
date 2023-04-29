@@ -11,10 +11,16 @@
 <br> 
 <img src="https://user-images.githubusercontent.com/121192176/235277963-fd85fa6d-035c-4efa-b896-d205b7c31abd.jpg" alt="Mario" width="1500">
 
+## Introduction
+
+Introducing "Mario's Adventures" - A Classic Platformer!
+
+Brace yourself for encounters with a colorful cast of enemies and bosses who will do anything to halt Mario's adventures. Strategize your moves, discover their weaknesses, and prove your skills in epic battles that will keep you on the edge of your seat!
+
 ## How To Use
 
 1. Download [Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) of at least version 17
-2. Download and run [MariosAdventures.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/MariosAdventures.jar)
+2. Download [MariosAdventures.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/MariosAdventures.jar) and run the file!
 
 ## Features
 
