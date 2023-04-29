@@ -25,8 +25,12 @@ public class LevelCompleted extends GameState {
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE -> game.getPlaying().resetGameGoToMenu();
-            case KeyEvent.VK_ENTER -> game.getPlaying().resetGameLoadNextLevel();
+            case KeyEvent.VK_ESCAPE :
+                game.getPlaying().resetGameGoToMenu();
+                break;
+            case KeyEvent.VK_ENTER :
+                game.getPlaying().resetGameLoadNextLevel();
+                break;
         }
     }
 }

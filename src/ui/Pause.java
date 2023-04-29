@@ -124,14 +124,25 @@ public class Pause extends GameState {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 			// Scrolling infinite!
-			case KeyEvent.VK_W, KeyEvent.VK_UP -> selectedIndex = (selectedIndex + 1) % 2;
-			case KeyEvent.VK_S, KeyEvent.VK_DOWN -> selectedIndex = (selectedIndex - 1 + 2) % 2;
+			case KeyEvent.VK_W :
+			case KeyEvent.VK_UP :
+				selectedIndex = (selectedIndex + 1) % 2;
+				break;
+			case KeyEvent.VK_S:
+			case KeyEvent.VK_DOWN :
+				selectedIndex = (selectedIndex - 1 + 2) % 2;
+				break;
 
 			// Only up and down scroll allowed!
 //			case KeyEvent.VK_W -> selectedIndex = Math.max(selectedIndex - 1, 0);
 //			case KeyEvent.VK_S -> selectedIndex = Math.min(selectedIndex + 1, 1);
-			case KeyEvent.VK_ENTER, KeyEvent.VK_SPACE -> handleSelection();
-			case KeyEvent.VK_ESCAPE -> game.getPlaying().resetGameSavePoint();
+			case KeyEvent.VK_ENTER :
+			case KeyEvent.VK_SPACE :
+				handleSelection();
+				break;
+			case KeyEvent.VK_ESCAPE :
+				game.getPlaying().resetGameSavePoint();
+				break;
 		}
 	}
 

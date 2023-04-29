@@ -94,9 +94,15 @@ public class Game implements Runnable {
 
     public void update() {
         switch (gameState) {
-            case MENU       -> menu.update();
-            case PLAYING    -> playing.update();
-            case LEVEL_COMPLETED, GAME_COMPLETED, GAME_OVER -> {
+            case MENU:
+                menu.update();
+                break;
+            case PLAYING:
+                playing.update();
+                break;
+            case LEVEL_COMPLETED:
+            case GAME_COMPLETED:
+            case GAME_OVER:
                 long timeSinceLastCheck = System.currentTimeMillis() - lastStateCheck;
                 if (timeSinceLastCheck >= DISALLOW_KEY_WAIT) {
                     allowPress = true;
@@ -107,30 +113,41 @@ public class Game implements Runnable {
                 if (timeSinceLastCheck >= GO_PLAYING_WAIT) {
                     playing.resetGameGoToPlaying();
                 }
-            }
+                break;
+            default:
+                // Handle the default case here
+                break;
         }
+
     }
 
     public void draw(Graphics g) {
         switch (gameState) {
-            case MENU               -> menu.draw(g);
-            case PLAYING            -> playing.draw(g);
-            case LEVEL_COMPLETED    -> {
+            case MENU:
+                menu.draw(g);
+                break;
+            case PLAYING:
+                playing.draw(g);
+                break;
+            case LEVEL_COMPLETED:
                 playing.draw(g);
                 levelCompleted.drawLevelCompleted(g);
-            }
-            case PAUSED             -> {
+                break;
+            case PAUSED:
                 playing.drawBlur(g);
                 pause.drawPause(g);
-            }
-            case GAME_COMPLETED     -> {
+                break;
+            case GAME_COMPLETED:
                 playing.draw(g);
                 gameCompleted.drawGameCompleted(g);
-            }
-            case GAME_OVER          -> {
+                break;
+            case GAME_OVER:
                 playing.draw(g);
                 gameOver.drawGameOver(g);
-            }
+                break;
+            default:
+                // Handle the default case here
+                break;
         }
     }
 

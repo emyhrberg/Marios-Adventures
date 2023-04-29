@@ -18,20 +18,46 @@ public class EnemyConstants {
 	}
 
 	public static int getPlantSpriteAmount(PlantAction plantAction) {
-		return switch (plantAction) {
-			case IDLE -> 1;
-			case MOVING_DOWN -> 1;
-			case MOVING_UP_FIRST -> 1;
-			case MOVING_UP_ANIMATE -> 2;
-			case TOP -> 2;
-		};
+		int result;
+		switch (plantAction) {
+			case IDLE:
+			case MOVING_DOWN:
+			case MOVING_UP_FIRST:
+				result = 1;
+				break;
+			case MOVING_UP_ANIMATE:
+			case TOP:
+				result = 2;
+				break;
+			default:
+				// Handle the default case here
+				// Set a default value for 'result' if needed
+				result = 0;
+				break;
+		}
+		return result;
 	}
 
-    public static int getSharkSpriteAmount(SharkAction sharkAction) {
-		return switch (sharkAction) {
-			case RUNNING 	-> 6;
-			case ATTACKING 	-> 7;
-			case HIT, DEAD 	-> 5;
-		};
-    }
+	public static int getSharkSpriteAmount(SharkAction sharkAction) {
+		int result;
+		switch (sharkAction) {
+			case RUNNING:
+				result = 6;
+				break;
+			case ATTACKING:
+				result = 7;
+				break;
+			case HIT:
+			case DEAD:
+				result = 5;
+				break;
+			default:
+				// Handle the default case here
+				// Set a default value for 'result' if needed
+				result = 0;
+				break;
+		}
+		return result;
+	}
+
 }

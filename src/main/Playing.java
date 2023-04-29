@@ -482,39 +482,50 @@ public class Playing extends GameState {
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_SPACE  -> {
+            case KeyEvent.VK_SPACE:
                 player.setJumping(true);
                 player.setHoldingSpace(true);
-            }
-            case KeyEvent.VK_A -> {
+                break;
+            case KeyEvent.VK_A:
                 movingLeft = true;
                 if (movingRight)
                     player.setDirection(STILL);
                 else
                     player.setDirection(LEFT);
-            }
-            case KeyEvent.VK_D -> {
+                break;
+            case KeyEvent.VK_D:
                 movingRight = true;
                 if (movingLeft)
                     player.setDirection(STILL);
                 else
                     player.setDirection(RIGHT);
-            }
-            case KeyEvent.VK_K -> player.setAttacking(true);
-            case KeyEvent.VK_P, KeyEvent.VK_ESCAPE, KeyEvent.VK_ENTER -> game.setGameState(PAUSED);
+                break;
+            case KeyEvent.VK_K:
+                player.setAttacking(true);
+                break;
+            case KeyEvent.VK_P:
+            case KeyEvent.VK_ESCAPE:
+            case KeyEvent.VK_ENTER:
+                game.setGameState(PAUSED);
+                break;
         }
+
     }
 
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_SPACE -> {
+            case KeyEvent.VK_SPACE:
                 player.setJumping(false);
                 player.setCanJump(true);
                 player.setHoldingSpace(false);
-            }
+                break;
             // Key released; Stop moving by setting the variables to false
-            case KeyEvent.VK_A -> movingLeft = false;
-            case KeyEvent.VK_D -> movingRight = false;
+            case KeyEvent.VK_A:
+                movingLeft = false;
+                break;
+            case KeyEvent.VK_D:
+                movingRight = false;
+                break;
         }
 
         // Handle when key released, set new direction

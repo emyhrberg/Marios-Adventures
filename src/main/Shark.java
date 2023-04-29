@@ -59,15 +59,21 @@ public class Shark extends Enemy {
         attackAllowed = System.currentTimeMillis() >= lastAttack + ATTACK_COOLDOWN;
 
         switch (sharkAction) {
-            case RUNNING 	-> {
+            case RUNNING:
                 checkCollisionWithPlayer(player);
                 updateRunning(level, player);
-            }
-            case ATTACKING 	-> {
+                break;
+            case ATTACKING:
                 checkCollisionWithPlayer(player);
                 updateAttacking(player);
-            }
-            case HIT, DEAD	-> pushEnemy(level);
+                break;
+            case HIT:
+            case DEAD:
+                pushEnemy(level);
+                break;
+            default:
+                // Handle the default case here
+                break;
         }
     }
 
@@ -257,8 +263,13 @@ public class Shark extends Enemy {
                 // Now, we are on the first animation index.
                 // Here, we set new enemy actions to prevent from getting stuck in the previous action
                 switch (sharkAction) {
-                    case ATTACKING, HIT -> sharkAction = RUNNING;
-                    case DEAD 		    -> enemyAlive = false;
+                    case ATTACKING:
+                    case HIT:
+                        sharkAction = RUNNING;
+                        break;
+                    case DEAD:
+                        enemyAlive = false;
+                        break;
                 }
             }
         }

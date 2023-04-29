@@ -101,8 +101,12 @@ public class Menu extends GameState {
 
     public void keyPressed(final KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_ENTER  -> game.setGameState(constants.GameState.PLAYING);
-            case KeyEvent.VK_ESCAPE -> System.exit(0);
+            case KeyEvent.VK_ENTER:
+                game.setGameState(constants.GameState.PLAYING);
+                break;
+            case KeyEvent.VK_ESCAPE :
+                System.exit(0);
+                break;
         }
     }
 }

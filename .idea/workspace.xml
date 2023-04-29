@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="game" />
+      <artifact name="module:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,9 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Marios Adventures release 1.2.3!">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/EnemyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/EnemyConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/PlayerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/PlayerConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/LevelCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +73,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "build.tools",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -160,7 +175,9 @@
       <workItem from="1682686343586" duration="15679000" />
       <workItem from="1682722274292" duration="1624000" />
       <workItem from="1682723923009" duration="9200000" />
-      <workItem from="1682775385573" duration="1773000" />
+      <workItem from="1682775385573" duration="2191000" />
+      <workItem from="1682778056767" duration="256000" />
+      <workItem from="1682778328191" duration="792000" />
     </task>
     <task id="LOCAL-00033" summary="Bricks working to 90%">
       <created>1682282964428</created>
