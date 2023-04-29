@@ -8,19 +8,21 @@
 
 <h4 align="center"> A 2D platformer game written in Java </h4>
 
-<br> 
-<img src="https://user-images.githubusercontent.com/121192176/235277963-fd85fa6d-035c-4efa-b896-d205b7c31abd.jpg" alt="Mario" width="1500">
+## How To Use
+
+| Java | No Java |
+| ------ | ------ |
+| [Mario.exe](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.exe) | [Mario.zip](https://www.mediafire.com/file/zc821jmh4a8oaa1/game.zip/file) |
+
+To run the game, you have two options:
+- Run the game using minimum Java 8 by downloading Mario.exe
+- Run the game using bundled-in JRE by downloading the ZIP file. This option works if you don't have Java.
 
 ## Introduction
 
 Introducing "Mario's Adventures" - A Classic Platformer!
 
 Brace yourself for encounters with a colorful cast of enemies and bosses who will do anything to halt Mario's adventures. Strategize your moves, discover their weaknesses, and prove your skills in epic battles that will keep you on the edge of your seat!
-
-## How To Use
-
-1. Download [Java](https://www.java.com/download/ie_manual.jsp) of at least version 8
-2. Download [Mario.exe](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.exe) and run the file!
 
 ## Features
 
@@ -29,3 +31,7 @@ Brace yourself for encounters with a colorful cast of enemies and bosses who wil
 * Traps
 * Moving platforms
 * Breakable bricks
+
+## Screenshot
+
+<img src="https://user-images.githubusercontent.com/121192176/235277963-fd85fa6d-035c-4efa-b896-d205b7c31abd.jpg" alt="Mario" width="1200">
