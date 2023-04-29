@@ -19,12 +19,12 @@ public class Bullet extends GameObject {
     public static final int BULLET_H = (int) (BULLET_H_DEF * Game.SCALE);
     private static final int HB_W = 36;
     private static final int HB_H = 20;
-    private static final float Y_OFF = 22 * Game.SCALE;
+    private static final float Y_OFF = 12 * Game.SCALE;
     public static final float Y_DRAW_OFF = 7 * Game.SCALE;
 
     // Properties
-    private static final float BULLET_SPEED = (int) (0.7 * Game.SCALE);
-    private static final float BULLET_DEATH_SPEED = (int) (1.1 * Game.SCALE);
+    private static final float BULLET_SPEED = 0.7f * Game.SCALE;
+    private static final float BULLET_DEATH_SPEED = 1.1f * Game.SCALE;
 
     // cooldown
     private boolean canCollide;
@@ -56,18 +56,18 @@ public class Bullet extends GameObject {
     private void updateBulletCollision(Level level, Player player, Bullet b) {
         canCollide = System.currentTimeMillis() - lastCheck >= COLLISION_DELAY;
 
-        if (b.hitbox.intersects(player.getHitbox())) {
+        if (hitbox.intersects(player.getHitbox())) {
             float playerBox = player.getHitbox().y + player.getHitbox().height;
             float bulletBox = hitbox.y + hitbox.height;
             float distBetweenBoxes = Math.abs(playerBox - bulletBox);
             float enemyHead = hitbox.height - 10 * Game.SCALE;
             boolean isOnTopOfBullet = distBetweenBoxes > enemyHead;
 
-            if (canCollide && !b.isHit) {
+            if (canCollide && !isHit) {
                 // BOUNCE ON BULLET
                 if (isOnTopOfBullet && player.getAirSpeed() > 0) {
                     player.jumpOnEnemy();
-                    b.setHit(true);
+                    setHit(true);
                     lastCheck = System.currentTimeMillis();
                     SoundLoader.playSound("/sounds/stomp.wav", 0.8);
                 } else {
@@ -76,19 +76,19 @@ public class Bullet extends GameObject {
                     lastCheck = System.currentTimeMillis();
                 }
             }
-        } else if (isBulletHittingLevel(b, level)) {
-            b.setActive(false);
+        } else if (isBulletHittingLevel(level)) {
+            setActive(false);
         }
     }
 
-    private boolean isBulletHittingLevel(Bullet b, Level level) {
-        int bulletX = (int) (b.hitbox.x / TILES_SIZE);
-        int bulletY = (int) ((b.hitbox.y + b.hitbox.height) / TILES_SIZE);
+    private boolean isBulletHittingLevel(Level level) {
+        int bulletX = (int) (hitbox.x / TILES_SIZE);
+        int bulletY = (int) ((hitbox.y + hitbox.height) / TILES_SIZE);
 
         // Handle situation where bullet was not stopped by a solid tile
         // and must be removed when touching edge of level
         if (bulletX <= 0 || bulletY >= TILES_IN_HEIGHT) {
-            b.setActive(false);
+            setActive(false);
             return false;
         }
 

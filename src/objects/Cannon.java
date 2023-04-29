@@ -15,7 +15,7 @@ public class Cannon extends GameObject {
     public static final int CANNON_H_DEF = 80;
     public static final int CANNON_WIDTH = (int) (CANNON_W_DEF *1.3* Game.SCALE);
     public static final int CANNON_HEIGHT = (int) (CANNON_H_DEF *1.3*Game.SCALE);
-    private static final float X_OFF = 22f * Game.SCALE;
+    private static final float X_OFF = 19f * Game.SCALE;
     private static final float Y_OFF = 6f * Game.SCALE;
 
     // Properties

@@ -78,8 +78,6 @@ public class ObjectManager {
     private List<Platform> platforms    = new ArrayList<>();
     private List<Question> questions    = new ArrayList<>();
 
-
-
     public ObjectManager() {
         initObjects();
     }

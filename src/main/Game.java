@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static constants.GameState.*;
+import static ui.Pause.isMuted;
 
 /**
  * This class implements a runnable Game
@@ -80,9 +81,15 @@ public class Game implements Runnable {
         gameComponent = new GameComponent(this);
         gameFrame = new GameFrame(gameComponent);
 
-        // Set game state on launch
-        gameState = MENU;
-        menuClip = SoundLoader.playSound("/sounds/menu.wav");
+        if (DEBUG) {
+            isMuted = true;
+            gameState = PLAYING;
+        } else {
+            // Set game state on launch
+            gameState = MENU;
+            menuClip = SoundLoader.playSound("/sounds/menu.wav");
+        }
+
 
         // Start game loop
         gameThread = new Thread(this);
@@ -232,7 +239,6 @@ public class Game implements Runnable {
 
         if (gameOverClip != null)
             gameOverClip.close();
-
     }
 
     private void handleWaitStates() {
@@ -249,7 +255,7 @@ public class Game implements Runnable {
         // check user screen
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;
         int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-//        System.out.println(w+"x"+h);
+        System.out.println(w+"x"+h);
 
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
@@ -257,9 +263,9 @@ public class Game implements Runnable {
         frame.dispose();
 
         // set fullscreen on new frame
+        frame.setUndecorated(true);
         frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(window);
         SCALE = 2.0f;
-        frame.setUndecorated(true);
         frame.add(gameComponent);
         frame.revalidate();
         frame.repaint();
