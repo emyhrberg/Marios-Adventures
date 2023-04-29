@@ -20,7 +20,7 @@ Brace yourself for encounters with a colorful cast of enemies and bosses who wil
 ## How To Use
 
 1. Download [Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) of at least version 17
-2. Download [MariosAdventures.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/MariosAdventures.jar) and run the file!
+2. Download [Mario.exe](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.exe) and run the file!
 
 ## Features
 
