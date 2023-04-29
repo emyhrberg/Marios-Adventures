@@ -1,12 +1,10 @@
 package ui;
 
-import helpers.ImageLoader;
 import main.Game;
 import main.GameState;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 
 /**
  * When in level completed state, this class handles drawing a level completed image
@@ -14,7 +12,7 @@ import java.awt.image.BufferedImage;
 public class LevelCompleted extends GameState {
 
     // ====== Variables ======
-    private static final BufferedImage LEVEL_COMPLETED_IMAGE = ImageLoader.loadImage("/ui/level-completed.png");
+//    private static final BufferedImage LEVEL_COMPLETED_IMAGE = ImageLoader.loadImage("/ui/level-completed.png");
 
     // ====== Constructor ======
     public LevelCompleted(Game game) {

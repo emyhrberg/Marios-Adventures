@@ -17,7 +17,7 @@ import static main.Level.solidTiles;
 public class Platform extends GameObject {
 
     // Platform hitbox
-    public static final int PLATFORM_WIDTH_HITBOX = 20 * 2;
+    public static final int PLATFORM_WIDTH_HITBOX = 20 * 2 + 4;
     public static final int PLATFORM_WIDTH_DEF = 32 * 2;
     public static final int PLATFORM_HEIGHT_DEF = 8 * 2;
     public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * Game.SCALE);
@@ -35,7 +35,7 @@ public class Platform extends GameObject {
         super(x, y, objectType);
         initHitbox(x, y+PLATFORM_Y_OFFSET, PLATFORM_WIDTH_HITBOX, PLATFORM_HEIGHT_DEF);
         bottom = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y+5, hitbox.width, hitbox.height));
-        top = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y, hitbox.width, 5));
+        top = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x-6, hitbox.y, hitbox.width, 5));
     }
 
     public void update(Player player, Level level, Platform p) {

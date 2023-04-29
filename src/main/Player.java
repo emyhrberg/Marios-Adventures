@@ -137,7 +137,7 @@ public class Player extends Entity {
 
 	public void jumpOnEnemy() {
 		// set jump
-		jumpHeight = (float) (0.7 * MAX_JUMP_HEIGHT);
+		jumpHeight = (float) (1.1 * MAX_JUMP_HEIGHT);
 		inAir = true;
 		airSpeed = -jumpHeight;
 

@@ -42,7 +42,9 @@ public class GameFrame extends JFrame {
 		addWindowFocusListener(new WindowFocusListener() {
 			@Override public void windowLostFocus(WindowEvent e) {
 				// Lost focus, pause
-				gameComponent.getGame().setGameState(GameState.PAUSED);
+				if (gameComponent.getGame().getGameState() == GameState.PLAYING) {
+					gameComponent.getGame().setGameState(GameState.PAUSED);
+				}
 			}
 			@Override public void windowGainedFocus(WindowEvent e) {
 			}

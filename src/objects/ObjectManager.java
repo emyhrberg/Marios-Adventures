@@ -164,7 +164,7 @@ public class ObjectManager {
             if (h.isActive()) {
                 float x = h.getHitbox().x - levelOffset;
                 float y = h.getHitbox().y;
-                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, HEALTH_SIZE, HEALTH_SIZE, null);
+                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, (int) HEALTH_SIZE, (int) HEALTH_SIZE, null);
 
                 if (Game.DEBUG) {
                     h.drawHitbox(g, levelOffset);
@@ -180,9 +180,9 @@ public class ObjectManager {
             g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
 
             if (Game.DEBUG) {
-                p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
+//                p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
                 p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
-                p.drawSomeBox(p.getBottom(), Color.DARK_GRAY, g, levelOffset);
+//                p.drawSomeBox(p.getBottom(), Color.DARK_GRAY, g, levelOffset);
                 p.drawSomeBox(p.getBottomLine(), Color.YELLOW, g, levelOffset);
             }
         }
@@ -196,7 +196,7 @@ public class ObjectManager {
             if (b.isActive()) {
                 float x = b.hitbox.x - levelOffset;
                 float y = b.hitbox.y - Y_DRAW_OFF;
-                g.drawImage(bulletImages[b.animationIndex], (int)x, (int)y, BULLET_W, BULLET_H, null);
+                g.drawImage(bulletImages[b.animationIndex], (int) x, (int) y, BULLET_W, BULLET_H, null);
 
                 if (Game.DEBUG) {
                     b.drawHitbox(g, levelOffset);

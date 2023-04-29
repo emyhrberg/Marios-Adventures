@@ -1,6 +1,5 @@
 package ui;
 
-import constants.GameState;
 import helpers.ImageLoader;
 import main.Game;
 
@@ -18,12 +17,12 @@ public class MenuButton {
     // ====== Button Variables ======
     private static final BufferedImage BUTTON_IMAGES = ImageLoader.loadImage("/ui/menu-buttons.png");
     private static final int NUMBER_OF_IMAGES = 3;
-    private static final int BUTTON_WIDTH_PIXELS = 125;
-    private static final int BUTTON_HEIGHT_PIXELS = 40;
-    private static final int BUTTON_WIDTH 		= (int) (1.5 * BUTTON_WIDTH_PIXELS * Game.SCALE);
-    private static final int BUTTON_HEIGHT 		= (int) (1.5 * BUTTON_HEIGHT_PIXELS * Game.SCALE);
+    private static final int BUTTON_WIDTH_PIXELS = 111;
+    private static final int BUTTON_HEIGHT_PIXELS = 67;
+    private static final int BUTTON_WIDTH 		= (int) (BUTTON_WIDTH_PIXELS * Game.SCALE);
+    private static final int BUTTON_HEIGHT 		= (int) (BUTTON_HEIGHT_PIXELS * Game.SCALE);
     private static final int BUTTON_CENTER 		= BUTTON_WIDTH / 2;
-    private static final int GAME_CENTER 		= GAME_WIDTH / 2;
+    private static final int GAME_CENTER 		= GAME_WIDTH / 2 - BUTTON_CENTER;
 
     // ====== Button Animation ======
     private BufferedImage[] animations;
@@ -36,25 +35,19 @@ public class MenuButton {
     private boolean mouseOverButton;
     private boolean mousePressButton;
 
-    // ====== Game ======
-    private final Game game;
-    private final GameState state;
-
     // ====== Constructor ======
-    public MenuButton(int buttonIndex, int y, GameState state, Game game) {
-	this.buttonIndex = buttonIndex;
-	this.y = y;
-	this.state = state;
-	this.game = game;
-	initButtonImages();
-	initButtonBounds();
+    public MenuButton(int buttonIndex, int y) {
+        this.buttonIndex = buttonIndex;
+        this.y = y;
+        initButtonImages();
+        initButtonBounds();
     }
 
     private void initButtonImages() {
         // Not hovering, hovering and pressed are the images
         animations = new BufferedImage[NUMBER_OF_IMAGES];
 
-        // Load button subimage
+        // Load button sub-images
         for (int i = 0; i < animations.length; i++) {
             int x = i * BUTTON_WIDTH_PIXELS;
             int y = buttonIndex * BUTTON_HEIGHT_PIXELS;
@@ -63,13 +56,11 @@ public class MenuButton {
     }
 
     private void initButtonBounds() {
-	    buttonBounds = new Rectangle(GAME_CENTER - BUTTON_CENTER, y, BUTTON_WIDTH, BUTTON_HEIGHT);
+	    buttonBounds = new Rectangle(GAME_CENTER, y, BUTTON_WIDTH, BUTTON_HEIGHT);
     }
 
     public void draw(Graphics g) {
-        int x = GAME_CENTER - BUTTON_CENTER;
-        int y = this.y;
-        g.drawImage(animations[mouseIndex], x, y, BUTTON_WIDTH, BUTTON_HEIGHT, null);
+        g.drawImage(animations[mouseIndex], GAME_CENTER, y, BUTTON_WIDTH, BUTTON_HEIGHT, null);
     }
 
     public void update() {
@@ -90,14 +81,12 @@ public class MenuButton {
         mouseOverButton = false;
     }
 
-    public void updateGameState() {
-        switch (state) {
-            case PLAYING 	-> game.setGameState(GameState.PLAYING);
-            case QUIT 		-> System.exit(0);
-        }
-    }
 
-    // ====== Getters ======
+    // ====== Getters & Setters ======
+
+    public int getButtonIndex() {
+        return buttonIndex;
+    }
 
     public boolean isMousePressButton() {
 	    return mousePressButton;
@@ -106,8 +95,6 @@ public class MenuButton {
     public Rectangle getButtonBounds() {
 	    return buttonBounds;
     }
-
-    // ====== Setters ======
 
     public void setMouseOverButton(final boolean mouseOverButton) {
 	    this.mouseOverButton = mouseOverButton;

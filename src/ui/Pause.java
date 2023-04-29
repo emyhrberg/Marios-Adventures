@@ -6,8 +6,10 @@ import main.GameState;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
+import java.security.Key;
 
 import static constants.GameState.PLAYING;
 
@@ -18,7 +20,7 @@ public class Pause extends GameState {
 
 	// Title
 	private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/inside-out.ttf");
-	private static final float FONT_SIZE_BIG = 92f;
+	private static final float FONT_SIZE_BIG = 68 * Game.SCALE;
 	private static final String title = "pause menu";
 	private static final Color RED = new Color(232, 67, 33); // Color for highlighted text
 	private static final Color WHITE = new Color(224, 224, 244); // Color for default text
@@ -26,15 +28,15 @@ public class Pause extends GameState {
 	private static final BasicStroke STROKE_SIZE = new BasicStroke(5f);
 
 	// options
-	private static final float FONT_SIZE = 56f;
+	private static final float FONT_SIZE = 42 * Game.SCALE;
 	private static final String RESUME = "resume";
 	private static final String QUIT = "save & quit";
 	private int selectedIndex = 0; // Currently selected option index
 
 	// y pos
-	private static final int TITLE_Y 	= 280;
-	private int OPTIONS_Y 				= 450;
-	private static final int PAD 		= 70;
+	private static final int TITLE_Y 	= (int) (200 * Game.SCALE);
+	private int OPTIONS_Y 				= (int) (330 * Game.SCALE);
+	private static final int PADDING 	= (int) (50 * Game.SCALE);
 
     public Pause(Game game) {
 		super(game);
@@ -89,9 +91,9 @@ public class Pause extends GameState {
 		int w = fm.stringWidth(option);
 		int x = (Game.GAME_WIDTH - w) / 2; // Centered X position
 		if (yIndex == 0) { // first
-			OPTIONS_Y -= PAD;
+			OPTIONS_Y -= PADDING;
 		} else if (yIndex == 1) {
-			OPTIONS_Y += PAD; // second
+			OPTIONS_Y += PADDING; // second
 		}
 		AffineTransform transform = AffineTransform.getTranslateInstance(x, OPTIONS_Y);
 		g2d.transform(transform);
@@ -111,6 +113,12 @@ public class Pause extends GameState {
 
 		// Restore the original transform
 		g2d.setTransform(new AffineTransform());
+	}
+
+	public void mousePressed(MouseEvent e) {
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			handleSelection();
+		}
 	}
 
 	public void keyPressed(KeyEvent e) {

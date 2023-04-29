@@ -23,16 +23,17 @@ public class MouseInput extends MouseAdapter {
 
     public void mousePressed(final MouseEvent e) {
         switch (game.getGameState()) {
-            case MENU       -> game.getMenu().updateMousePress(e);
+            case MENU       -> game.getMenu().mousePressed(e);
             case PLAYING    -> game.getPlaying().mousePressed(e);
+            case PAUSED     -> game.getPauseState().mousePressed(e);
         }
     }
 
     public void mouseReleased(final MouseEvent e) {
-        game.getMenu().updateMouseReleased(e);
+        game.getMenu().mouseReleased(e);
     }
 
     public void mouseMoved(MouseEvent e) {
-        game.getMenu().setMouseOverButton(e);
+        game.getMenu().mouseMoved(e);
     }
 }

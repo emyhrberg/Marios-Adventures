@@ -39,8 +39,8 @@ public class Menu extends GameState {
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(0, START_BUTTON_Y, constants.GameState.PLAYING, game);
-        buttons[1] = new MenuButton(1, QUIT_BUTTON_Y, constants.GameState.QUIT, game);
+        buttons[0] = new MenuButton(0, START_BUTTON_Y);
+        buttons[1] = new MenuButton(1, QUIT_BUTTON_Y);
     }
 
     /**
@@ -67,23 +67,24 @@ public class Menu extends GameState {
         return mb.getButtonBounds().contains(e.getX(), e.getY());
     }
 
-    public void updateMousePress(MouseEvent e) {
-        for (MenuButton button : buttons) {
-            if (isButtonInsideBounds(e, button)) {
+    public void mousePressed(MouseEvent e) {
+        for (MenuButton button : buttons)
+            if (isButtonInsideBounds(e, button))
                 button.setMousePressButton(true);
-            }
-        }
     }
 
-    public void updateMouseReleased(MouseEvent e) {
-        for (MenuButton button : buttons) {
-            if (isButtonInsideBounds(e, button)) {
-                if (button.isMousePressButton()) {
-                    button.updateGameState();
+    public void mouseReleased(MouseEvent e) {
+        for (MenuButton b : buttons)
+            if (isButtonInsideBounds(e, b)) {
+                if (b.isMousePressButton()) {
+                    if (b.getButtonIndex() == 0) {
+                        game.setGameState(constants.GameState.PLAYING);
+                    } else if (b.getButtonIndex() == 1) {
+                        System.exit(0);
+                    }
                 }
                 break;
             }
-        }
         resetButtons();
     }
 
@@ -92,7 +93,7 @@ public class Menu extends GameState {
             button.resetMouseAction();
     }
 
-    public void setMouseOverButton(MouseEvent e) {
+    public void mouseMoved(MouseEvent e) {
         for (MenuButton button : buttons) {
             button.setMouseOverButton(isButtonInsideBounds(e, button));
         }

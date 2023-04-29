@@ -235,10 +235,10 @@ public class Playing extends GameState {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f)); // Set opacity to 0.5
         int x = (int) (-levelOffset * 0.17);
-        int y = (int) (130 * Game.SCALE);
+        int y = (int) (230 * Game.SCALE);
         int w = (int) (1024 / 2 * Game.SCALE);
         int h = (int) (600 / 2 * Game.SCALE);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             g.drawImage(FOREST, x + i * w, y, w, h, null);
         }
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
@@ -501,7 +501,7 @@ public class Playing extends GameState {
                     player.setDirection(RIGHT);
             }
             case KeyEvent.VK_K -> player.setAttacking(true);
-            case KeyEvent.VK_P, KeyEvent.VK_ESCAPE -> game.setGameState(PAUSED);
+            case KeyEvent.VK_P, KeyEvent.VK_ESCAPE, KeyEvent.VK_ENTER -> game.setGameState(PAUSED);
         }
     }
 

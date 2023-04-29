@@ -15,7 +15,7 @@ public class Plant extends Enemy {
     // Position
     protected PlantAction plantAction               = IDLE;
     private static final float PLANT_SPEED          = 0.2f * Game.SCALE;
-    private static final float PLANT_TOP_POS        = 1.1f * Game.SCALE;
+    private static final float PLANT_TOP_POS        = 0.85f * Game.SCALE;
     private static final int PLANT_TOP_WAIT         = 1000;
     private static final int[] PLANT_BOTTOM_WAIT    = {4000,5000,6000};
     private static final Random RND                 = new Random();
@@ -53,7 +53,7 @@ public class Plant extends Enemy {
             hitbox.y -= PLANT_SPEED;
 
             // Start animating plant when starting to appear
-            if (tileDistance > PLANT_TOP_POS / 2) {
+            if (tileDistance >= PLANT_TOP_POS / 2) {
                 plantAction = MOVING_UP_ANIMATE;
             }
 
@@ -101,7 +101,7 @@ public class Plant extends Enemy {
         animationTick++;
 
         // Reset animation tick and update animation index
-        if (animationTick >= ANIMATION_SPEED * 7) {
+        if (animationTick >= ANIMATION_SPEED * 6) {
             animationTick = 0;
             animationIndex++;
 

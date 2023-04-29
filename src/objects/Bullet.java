@@ -15,10 +15,10 @@ public class Bullet extends GameObject {
     // Size
     public static final int BULLET_W_DEF = 50;
     public static final int BULLET_H_DEF = 38;
-    public static final int BULLET_W = (int) (BULLET_W_DEF * 0.8 * Game.SCALE);
-    public static final int BULLET_H = (int) (BULLET_H_DEF * 0.8 * Game.SCALE);
-    private static final int HB_W = 30;
-    private static final int HB_H = 18;
+    public static final int BULLET_W = (int) (BULLET_W_DEF * Game.SCALE);
+    public static final int BULLET_H = (int) (BULLET_H_DEF * Game.SCALE);
+    private static final int HB_W = 36;
+    private static final int HB_H = 22;
     private static final float Y_OFF = 8 * Game.SCALE;
     public static final float Y_DRAW_OFF = 3 * Game.SCALE;
 
@@ -26,8 +26,7 @@ public class Bullet extends GameObject {
     private static final float BULLET_SPEED = (int) (0.7 * Game.SCALE);
     private static final float BULLET_DEATH_SPEED = (int) (1.1 * Game.SCALE);
 
-
-    // cooldowns
+    // cooldown
     private boolean canCollide;
     private long lastCheck;
     private static final int COLLISION_DELAY = 1000;

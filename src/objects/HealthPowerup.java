@@ -7,24 +7,26 @@ import main.Level;
 import main.Player;
 
 import static main.Game.TILES_SIZE;
+import static main.Game.TILES_SIZE_DEFAULT;
 import static main.Level.solidTiles;
 import static objects.Question.lastBoxY;
 
 public class HealthPowerup extends Entity {
 
-    public static final int HEALTH_SIZE_DEF = 20;
-    public static final int HEALTH_SIZE = (int) (HEALTH_SIZE_DEF * Game.SCALE);
-    public static final int HEALTH_X_SPAWN_OFFSET = (int) (HEALTH_SIZE_DEF / 2 * 0.8);
+    public static final float HEALTH_SIZE_DEF = 25;
+    public static final float HEALTH_SIZE = (int) (HEALTH_SIZE_DEF * Game.SCALE);
+    public static final float X_OFF = HEALTH_SIZE_DEF / 2;
 
     // properties
     private boolean isActive = true;
+    private boolean spawnMove = true;
     private static final float X_SPEED = 0.40f * Game.SCALE;
     private static final float Y_SPEED = 0.25f * Game.SCALE;
-    private static final float Y_SPEED_SPAWN = 0.12f * Game.SCALE;
+    private static final float Y_SPEED_SPAWN = 0.15f * Game.SCALE;
 
     public HealthPowerup(int x, int y) {
-        super(x, y,0,0);
-        initHitbox(x + HEALTH_X_SPAWN_OFFSET, y - 0.000001f, HEALTH_SIZE, HEALTH_SIZE);
+        super(x, y, 0, 0);
+        initHitbox(x + X_OFF, y, HEALTH_SIZE, HEALTH_SIZE);
     }
 
     public void update(Player player, Level level, HealthPowerup h) {
@@ -36,15 +38,12 @@ public class HealthPowerup extends Entity {
 
     private void updateHealthPickup(Player player, HealthPowerup h) {
         if (h.getHitbox().intersects(player.getHitbox())) {
-            h.setActive(false);
-
-            // increase health if applicable
+            // increase health and disable item
             player.setHealth(player.getHealth() + 1);
+            h.setActive(false);
             SoundLoader.playSound("/sounds/powerup.wav", 0.7);
         }
     }
-
-    boolean spawnMove = true;
 
     private void updateHealthPos(Level level, HealthPowerup h) {
         if (spawnMove) {
@@ -52,7 +51,7 @@ public class HealthPowerup extends Entity {
             float dist = Math.abs(lastBoxY - hitbox.y);
             if (dist <= hitbox.height) {
                 hitbox.y -= Y_SPEED_SPAWN;
-                return;
+                return; // exit and keep loop-moving down
             } else {
                 spawnMove = false;
             }

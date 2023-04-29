@@ -26,7 +26,7 @@ public class GameOver extends GameState {
     private int gameX = GAME_X_INIT;
     private int overX = OVER_X_INIT;
     private static final float SPEED = (int) (10 * Game.SCALE);
-    private static final int DIST = (int) (595 * Game.SCALE);
+    private static final int DIST = (int) (575 * Game.SCALE);
     private static final int GAME_MAX_DIST = GAME_X_INIT + DIST;
     private static final int OVER_MAX_DIST = OVER_X_INIT - DIST;
     private long firstCheckTime;

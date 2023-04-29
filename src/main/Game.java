@@ -22,10 +22,9 @@ import static constants.GameState.*;
 public class Game implements Runnable {
 
     public static final boolean DEBUG = false;
-    public static final boolean DEPLOY = false;
 
     // ====== Game loop ======
-    public static final int UPS         = 200;
+    public static final int UPS         = 180;
     public static final int FPS         = 60;
     private long previousTime           = System.nanoTime();
     private double deltaU               = 0;
@@ -35,7 +34,7 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE                   = 0.75f;
+    public static float SCALE                   = 1.75f;
     public static final int TILES_SIZE_DEFAULT  = 40;
     public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
     public static final int TILES_IN_WIDTH      = 26;
@@ -78,12 +77,8 @@ public class Game implements Runnable {
         new GameFrame(gameComponent);
 
         // Set game state on launch
-        if (DEPLOY) {
-            menuClip = SoundLoader.playSound("/sounds/menu.wav");
-            gameState = MENU;
-        } else {
-            gameState = PLAYING;
-        }
+        gameState = MENU;
+        menuClip = SoundLoader.playSound("/sounds/menu.wav");
 
         // Get the available screen size (excluding the taskbar)
 //        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
@@ -189,7 +184,7 @@ public class Game implements Runnable {
     private void playGameStateSounds() {
         if (gameState == PLAYING) {
             stopSounds();
-            playingClip = SoundLoader.playSoundLoop("/sounds/level2.wav");
+            playingClip = SoundLoader.playSoundLoop("/sounds/playing.wav");
             if (prevState == PAUSED && playingClip != null) {
                 playingClip.setFramePosition(playingClipFrame);
             }
