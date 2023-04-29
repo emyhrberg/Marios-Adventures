@@ -9,35 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Marios Adventures release 1.2.3!">
-      <change afterPath="$PROJECT_DIR$/resources/sprites/health-powerup_backup.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sprites/tiles_all.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/a.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/EnemyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/EnemyConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/PlayerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/PlayerConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/GameRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GameRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/ImageBlurrer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns.">
+      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2.psd" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,14 +166,7 @@
       <workItem from="1682778056767" duration="256000" />
       <workItem from="1682778328191" duration="792000" />
       <workItem from="1682779651435" duration="9138000" />
-      <workItem from="1682799984674" duration="756000" />
-    </task>
-    <task id="LOCAL-00033" summary="Bricks working to 90%">
-      <created>1682282964428</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1682282964428</updated>
+      <workItem from="1682799984674" duration="1359000" />
     </task>
     <task id="LOCAL-00034" summary="Game playtested! first level ok, only some bugs with bricks">
       <created>1682284140883</created>
@@ -537,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682775884041</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns.">
+      <created>1682800753233</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1682800753234</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +532,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Improved bullet bills to go down when hit" />
     <MESSAGE value="Game playtested, looks good :)" />
     <MESSAGE value="Added gameover fade" />
     <MESSAGE value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
@@ -583,7 +556,8 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Another test" />
     <MESSAGE value="Marios Adventures release 1.2.3!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Marios Adventures release 1.2.3!" />
+    <MESSAGE value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
