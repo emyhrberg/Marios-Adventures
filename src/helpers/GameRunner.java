@@ -3,8 +3,7 @@ package helpers;
 import main.Game;
 
 /**
- * The GameRunner class is responsible for creating a new instance of the Game and launching it
- * The class has a main method which calls the startGameLoop to start the game
+ * The GameRunner class is responsible for creating a new instance of the Game and therefore launching the game
  */
 public class GameRunner {
     public static void main(String[] args) {

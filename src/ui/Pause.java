@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
-import java.security.Key;
 
 import static constants.GameState.PLAYING;
 
@@ -30,13 +29,18 @@ public class Pause extends GameState {
 	// options
 	private static final float FONT_SIZE = 42 * Game.SCALE;
 	private static final String RESUME = "resume";
+	private String muteUnmute = "mute";
 	private static final String QUIT = "save & quit";
 	private int selectedIndex = 0; // Currently selected option index
+	public static boolean isMuted = false;
 
 	// y pos
 	private static final int TITLE_Y 	= (int) (200 * Game.SCALE);
-	private int OPTIONS_Y 				= (int) (330 * Game.SCALE);
 	private static final int PADDING 	= (int) (50 * Game.SCALE);
+	private static final int OPTION1 = (int) (330 * Game.SCALE);
+	private static final int OPTION2 	= (int) (330 * Game.SCALE) + PADDING;
+	private static final int OPTION3 	= (int) (330 * Game.SCALE) + PADDING * 2;
+	private AffineTransform transform;
 
     public Pause(Game game) {
 		super(game);
@@ -49,7 +53,8 @@ public class Pause extends GameState {
 
 	private void drawOptions(Graphics g) {
 		drawOption(g, RESUME, 0, 0);
-		drawOption(g, QUIT, 1, 1);
+		drawOption(g, muteUnmute, 1, 1);
+		drawOption(g, QUIT, 2, 2);
 	}
 
 	private void drawPauseTitle(Graphics g) {
@@ -90,12 +95,18 @@ public class Pause extends GameState {
 		FontMetrics fm = g.getFontMetrics();
 		int w = fm.stringWidth(option);
 		int x = (Game.GAME_WIDTH - w) / 2; // Centered X position
-		if (yIndex == 0) { // first
-			OPTIONS_Y -= PADDING;
-		} else if (yIndex == 1) {
-			OPTIONS_Y += PADDING; // second
+		if (yIndex == 0)
+		{
+			transform = AffineTransform.getTranslateInstance(x, OPTION1);
 		}
-		AffineTransform transform = AffineTransform.getTranslateInstance(x, OPTIONS_Y);
+		else if (yIndex == 1)
+		{
+			transform = AffineTransform.getTranslateInstance(x, OPTION2);
+		}
+		else if (yIndex == 2)
+		{
+			transform = AffineTransform.getTranslateInstance(x, OPTION3);
+		}
 		g2d.transform(transform);
 
 		// Draw black stroke
@@ -116,9 +127,8 @@ public class Pause extends GameState {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1) {
+		if (e.getButton() == MouseEvent.BUTTON1)
 			handleSelection();
-		}
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -126,16 +136,12 @@ public class Pause extends GameState {
 			// Scrolling infinite!
 			case KeyEvent.VK_W :
 			case KeyEvent.VK_UP :
-				selectedIndex = (selectedIndex + 1) % 2;
+				selectedIndex = (selectedIndex - 1 + 3) % 3;
 				break;
 			case KeyEvent.VK_S:
 			case KeyEvent.VK_DOWN :
-				selectedIndex = (selectedIndex - 1 + 2) % 2;
+				selectedIndex = (selectedIndex + 1) % 3;
 				break;
-
-			// Only up and down scroll allowed!
-//			case KeyEvent.VK_W -> selectedIndex = Math.max(selectedIndex - 1, 0);
-//			case KeyEvent.VK_S -> selectedIndex = Math.min(selectedIndex + 1, 1);
 			case KeyEvent.VK_ENTER :
 			case KeyEvent.VK_SPACE :
 				handleSelection();
@@ -150,9 +156,17 @@ public class Pause extends GameState {
 		if (selectedIndex == 0) {
 			// Option "PLAY" is selected
 			game.setGameState(PLAYING);
+			selectedIndex = 0;
 		} else if (selectedIndex == 1) {
+			isMuted = !isMuted;
+			if (isMuted) {
+				muteUnmute = "unmute";
+			} else {
+				muteUnmute = "mute";
+			}
+		} else if (selectedIndex == 2) {
 			game.getPlaying().resetGameSavePoint();
+			selectedIndex = 0;
 		}
-		selectedIndex = 0;
 	}
 }

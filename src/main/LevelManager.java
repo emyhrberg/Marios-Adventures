@@ -40,7 +40,7 @@ public class LevelManager {
 		levels = new ArrayList<>();
 
 		// Load a single level!
-		try (InputStream is = LevelManager.class.getResourceAsStream("/levels/1.png")) {
+		try (InputStream is = LevelManager.class.getResourceAsStream("/levels/2.png")) {
 			levels.add(new Level(ImageIO.read(is)));
 		} catch (IOException e) {
 			e.printStackTrace();

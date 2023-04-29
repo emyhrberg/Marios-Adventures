@@ -4,6 +4,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This class loads a custom font
+ */
 public class FontLoader {
 
     public static Font loadFont(String fontName) {

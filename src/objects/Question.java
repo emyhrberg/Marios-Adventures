@@ -39,15 +39,6 @@ public class Question extends GameObject {
     public static float lastBoxY;
 
     private void updatePlayerQuestionCollision(Player player, Question q) {
-        boolean timePassed = System.currentTimeMillis() - q.lastCollision >= POWERUP_SPAWN_DELAY;
-        if (lastCollision != 0 && timePassed && !q.spawn && q.isHit) {
-            int x = (int) (hitbox.x);
-            int y = (int) (hitbox.y);
-            healths.add(new HealthPowerup(x, y));
-            lastBoxY = hitbox.y;
-            q.spawn = true;
-        }
-
         if (q.hitbox.intersects(player.getHitbox()) && player.getAirSpeed() < 0) {
             // Question collision first time!
             if (!q.isHit()) {
@@ -59,6 +50,13 @@ public class Question extends GameObject {
             q.pushYDir = UP;
             player.resetAirSpeed();
             SoundLoader.playSound("/sounds/question.wav");
+        }
+
+        boolean timePassed = System.currentTimeMillis() - q.lastCollision >= POWERUP_SPAWN_DELAY;
+        if (lastCollision != 0 && timePassed && !q.spawn && q.isHit) {
+            healths.add(new HealthPowerup(hitbox.x, hitbox.y));
+            lastBoxY = hitbox.y;
+            q.spawn = true;
         }
     }
 

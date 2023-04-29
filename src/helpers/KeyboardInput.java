@@ -22,6 +22,8 @@ public class KeyboardInput extends KeyAdapter {
     }
 
     public void keyPressed(KeyEvent e) {
+        game.keyPressed(e);
+
         switch (game.getGameState()) {
             case PLAYING:
                 game.getPlaying().keyPressed(e);
@@ -49,6 +51,7 @@ public class KeyboardInput extends KeyAdapter {
     }
 
     public void keyReleased(KeyEvent e) {
+        game.keyReleased(e);
         game.getPlaying().keyReleased(e);
     }
 

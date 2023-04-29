@@ -1,1 +1,5 @@
+# Gitignore does not push certain files or folders to git
+# Folders /folder
+# Files file.txt
+
 /out

@@ -1,5 +1,8 @@
 package constants;
 
+/**
+ * Constants for the player action and the number of animation for each respective action
+ */
 public class PlayerConstants {
 
     public enum PlayerAction {

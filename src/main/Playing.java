@@ -505,7 +505,6 @@ public class Playing extends GameState {
                 break;
             case KeyEvent.VK_P:
             case KeyEvent.VK_ESCAPE:
-            case KeyEvent.VK_ENTER:
                 game.setGameState(PAUSED);
                 break;
         }

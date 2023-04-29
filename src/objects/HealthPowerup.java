@@ -13,9 +13,9 @@ import static objects.Question.lastBoxY;
 
 public class HealthPowerup extends Entity {
 
-    public static final float HEALTH_SIZE_DEF = 25;
-    public static final float HEALTH_SIZE = (int) (HEALTH_SIZE_DEF * Game.SCALE);
-    public static final float X_OFF = HEALTH_SIZE_DEF / 2;
+    public static final int HEALTH_SIZE_DEF = (int) (TILES_SIZE_DEFAULT * 0.5f);
+    public static final int HEALTH_SIZE = (int) (HEALTH_SIZE_DEF * Game.SCALE * 1.33);
+    public static final float X_OFF = 0;
 
     // properties
     private boolean isActive = true;
@@ -24,9 +24,9 @@ public class HealthPowerup extends Entity {
     private static final float Y_SPEED = 0.25f * Game.SCALE;
     private static final float Y_SPEED_SPAWN = 0.15f * Game.SCALE;
 
-    public HealthPowerup(int x, int y) {
-        super(x, y, 0, 0);
-        initHitbox(x + X_OFF, y, HEALTH_SIZE, HEALTH_SIZE);
+    public HealthPowerup(float x, float y) {
+        super(x, y, 0,0);
+        initHitbox(x, y, HEALTH_SIZE, HEALTH_SIZE);
     }
 
     public void update(Player player, Level level, HealthPowerup h) {

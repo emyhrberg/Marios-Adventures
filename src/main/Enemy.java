@@ -1,11 +1,12 @@
 package main;
 
-import static constants.Direction.LEFT;
-import static constants.Direction.RIGHT;
+import constants.Direction;
+
 import static constants.EnemyConstants.SharkAction;
 
 /**
- * This class handles all Enemy behavior, functionality, movement and extends the Entity class
+ * This class handles all Enemy behavior, functionality, movement
+ * Extends the Entity class for shared properties like gravity and collision
  */
 public class Enemy extends Entity {
 
@@ -28,9 +29,9 @@ public class Enemy extends Entity {
 
         // Update push dir
         if (player.getHitbox().x < hitbox.x)
-            pushXDir = RIGHT;
+            pushXDir = Direction.RIGHT;
         else
-            pushXDir = LEFT;
+            pushXDir = Direction.LEFT;
 
         // Set enemy action
         if (health <= 0)
@@ -58,14 +59,14 @@ public class Enemy extends Entity {
     }
 
     public float getImageFlipX() {
-        if (direction == RIGHT)
+        if (direction == Direction.RIGHT)
             return width;
         else
             return 0;
     }
 
     public int getImageFlipWidth() {
-        if (direction == RIGHT)
+        if (direction == Direction.RIGHT)
             return -1;
         else
             return 1;

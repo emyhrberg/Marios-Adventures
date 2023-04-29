@@ -1,5 +1,8 @@
 package constants;
 
+/**
+ * Actions and number of sprites for all enemies
+ */
 public class EnemyConstants {
 
     public enum SharkAction {

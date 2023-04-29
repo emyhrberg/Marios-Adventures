@@ -9,9 +9,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
 
-import static main.Game.GAME_HEIGHT;
-import static main.Game.GAME_WIDTH;
-
 /**
  * This class handles showing the game by using the package javax.Swing
  * Uses the game component which consists of the entire game
@@ -25,11 +22,15 @@ public class GameFrame extends JFrame {
 		setTitle("Mario's Adventures!");
 		setIconImage(icon);
 
+		// check user screen size
+		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+		System.out.println(w+"x"+h);
+
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
-//		setUndecorated(true);
-		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
+		setResizable(true);
+		setPreferredSize(new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT));
 
 		// add and pack
 		add(gameComponent);
@@ -43,7 +44,7 @@ public class GameFrame extends JFrame {
 			@Override public void windowLostFocus(WindowEvent e) {
 				// Lost focus, pause
 				if (gameComponent.getGame().getGameState() == GameState.PLAYING) {
-					gameComponent.getGame().setGameState(GameState.PAUSED);
+//					gameComponent.getGame().setGameState(GameState.PAUSED);
 				}
 			}
 			@Override public void windowGainedFocus(WindowEvent e) {

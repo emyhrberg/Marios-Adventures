@@ -5,9 +5,14 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static ui.Pause.isMuted;
+
 public class SoundLoader {
 
 	public static Clip playSound(String fileName, double... volumeArr) {
+		if (isMuted)
+			return null;
+
 		float volume = (float) (volumeArr.length > 0 ? volumeArr[0] : 1.0); // set default volume of 1.0 if volume argument is not provided
 
 		try (InputStream is = SoundLoader.class.getResourceAsStream(fileName)) {
@@ -38,6 +43,9 @@ public class SoundLoader {
 	}
 
 	public static Clip playSoundLoop(String fileName, double... volumeArr) {
+		if (isMuted)
+			return null;
+
 		float volume = (float) (volumeArr.length > 0 ? volumeArr[0] : 1.0); // set default volume of 1.0 if volume argument is not provided
 
 		try (InputStream is = SoundLoader.class.getResourceAsStream(fileName)) {

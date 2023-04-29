@@ -1,5 +1,8 @@
 package constants;
 
+/**
+ * Constants for types of objects and how many images to included in their respective animation
+ */
 public class ObjectConstants {
 
     public enum ObjectType {

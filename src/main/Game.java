@@ -6,7 +6,9 @@ import ui.Menu;
 import ui.*;
 
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import static constants.GameState.*;
 
@@ -21,7 +23,7 @@ import static constants.GameState.*;
  */
 public class Game implements Runnable {
 
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
 
     // ====== Game loop ======
     public static final int UPS         = 180;
@@ -34,7 +36,7 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE                   = 1.75f;
+    public static float SCALE                   = 1.25f;
     public static final int TILES_SIZE_DEFAULT  = 40;
     public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
     public static final int TILES_IN_WIDTH      = 26;
@@ -44,6 +46,8 @@ public class Game implements Runnable {
 
     // ====== Game Variables ======
     private final GameComponent gameComponent;
+    private final GameFrame gameFrame;
+    private Thread gameThread;
     private GameState gameState;
     private GameState prevState;
 
@@ -74,22 +78,15 @@ public class Game implements Runnable {
     // ====== Constructor ======
     public Game() {
         gameComponent = new GameComponent(this);
-        new GameFrame(gameComponent);
+        gameFrame = new GameFrame(gameComponent);
 
         // Set game state on launch
         gameState = MENU;
         menuClip = SoundLoader.playSound("/sounds/menu.wav");
 
-        // Get the available screen size (excluding the taskbar)
-//        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
-        int userWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-        if (userWidth == 1920) {
-            SCALE = 1.85f;
-        } else if (userWidth < 1920) {
-            SCALE = 1.2f;
-        }
-
-        startGameLoop();
+        // Start game loop
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     public void update() {
@@ -118,7 +115,6 @@ public class Game implements Runnable {
                 // Handle the default case here
                 break;
         }
-
     }
 
     public void draw(Graphics g) {
@@ -151,12 +147,6 @@ public class Game implements Runnable {
         }
     }
 
-    private void startGameLoop() {
-        Thread gameThread = new Thread(this);
-        gameThread.start();
-    }
-
-    @Override
     public void run() {
         // Main loop
         while (true) {
@@ -253,7 +243,94 @@ public class Game implements Runnable {
         }
     }
 
-    // ====== Getters ======
+    ///////////////// FULL SCREEN ////////////////
+
+    private void goFullScreen() {
+        // check user screen
+        int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+//        System.out.println(w+"x"+h);
+
+        // dispose old frame
+        Window window = SwingUtilities.windowForComponent(gameComponent);
+        JFrame frame = (JFrame) window;
+        frame.dispose();
+
+        // set fullscreen on new frame
+        frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(window);
+        SCALE = 2.0f;
+        frame.setUndecorated(true);
+        frame.add(gameComponent);
+        frame.revalidate();
+        frame.repaint();
+        frame.setVisible(true);
+        fullScreen = true;
+    }
+
+    private void goWindowed() {
+        // dispose old frame
+        Window window = SwingUtilities.windowForComponent(gameComponent);
+        JFrame frame = (JFrame) window;
+        frame.dispose();
+
+        // set windowed on new frame
+        SCALE = 1.0f;
+        frame.setUndecorated(false);
+        frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(null);
+        frame.add(gameComponent);
+        frame.revalidate();
+        frame.repaint();
+        frame.setVisible(true);
+        fullScreen = false;
+    }
+
+    // Declare boolean variables to track the state of each button
+    private boolean isAltPressed = false;
+    private boolean isEnterPressed = false;
+    private boolean altEnter = false;
+    private boolean fullScreen = false;
+
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        int alt = KeyEvent.VK_ALT;
+        int enter = KeyEvent.VK_ENTER;
+
+        if (key == alt) {
+            isAltPressed = true;
+        } else if (key == enter) {
+            isEnterPressed = true;
+        }
+
+        // Check if both buttons are held at the same time
+        if (isAltPressed && isEnterPressed && !altEnter) {
+            fullScreen = !fullScreen;
+            altEnter = true;
+            
+            if (fullScreen) {
+                goFullScreen();
+            } else {
+                goWindowed();
+            }
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        int alt = KeyEvent.VK_ALT;
+        int enter = KeyEvent.VK_ENTER;
+
+        if (key == alt || key == enter) {
+            isAltPressed = false;
+            isEnterPressed = false;
+            altEnter = false;
+        }
+    }
+
+    public static float SCL() {
+        return SCALE;
+    }
+
+    // ====== Getters && Setters ======
 
     public GameComponent getGameComponent() {
         return gameComponent;

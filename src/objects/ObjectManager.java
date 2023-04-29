@@ -164,7 +164,7 @@ public class ObjectManager {
             if (h.isActive()) {
                 float x = h.getHitbox().x - levelOffset;
                 float y = h.getHitbox().y;
-                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, (int) HEALTH_SIZE, (int) HEALTH_SIZE, null);
+                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, HEALTH_SIZE, HEALTH_SIZE, null);
 
                 if (Game.DEBUG) {
                     h.drawHitbox(g, levelOffset);
