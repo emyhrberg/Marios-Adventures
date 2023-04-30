@@ -25,6 +25,7 @@ public class EnemyManager {
 	private static final int SHARK_Y_OFF	 			= 10;
 	public static final int SHARK_W 					= 34;
 	public static final int SHARK_H 					= 30;
+	public static final float SHARK_SCALE 				= 1.5f;
 
 	// ====== Plants =======
 	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/entities/plant.png");
@@ -111,8 +112,8 @@ public class EnemyManager {
 			if (s.isEnemyAlive()) {
 				float x = s.hitbox.x - levelOffset - SHARK_X_OFF * Game.SCALE + s.getImageFlipX();
 				float y = s.hitbox.y - SHARK_Y_OFF * Game.SCALE;
-				float w = SHARK_W * Game.SCALE * 1.5f * s.getImageFlipWidth();
-				float h = SHARK_H * Game.SCALE * 1.5f;
+				float w = SHARK_W * Game.SCALE * SHARK_SCALE * s.getImageFlipWidth();
+				float h = SHARK_H * Game.SCALE * SHARK_SCALE;
 
 				// Get the proper image representing the right action
 				final BufferedImage img = sharkImages[s.sharkAction.ordinal()][s.animationIndex];

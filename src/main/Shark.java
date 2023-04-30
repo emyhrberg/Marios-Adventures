@@ -1,5 +1,7 @@
 package main;
 
+import constants.Direction;
+import constants.EnemyConstants;
 import helpers.SoundLoader;
 
 import java.awt.geom.Rectangle2D;
@@ -25,9 +27,12 @@ public class Shark extends Enemy {
     private static final int ATTACKBOX_HEIGHT       = HITBOX_HEIGHT;
 
     // ====== Enemy Settings ======
+    protected boolean enemyAlive = true;
+    protected EnemyConstants.SharkAction sharkAction = EnemyConstants.SharkAction.RUNNING;
     private static final int MAX_HEALTH             = 1;
     protected static final float SPEED	            = 0.25f;
     private static final float DETECT_DISTANCE      = 3;
+
 
     public Shark(float x, float y) {
         super(x, y, EnemyManager.SHARK_W * Game.SCALE, EnemyManager.SHARK_H * Game.SCALE);
@@ -218,6 +223,62 @@ public class Shark extends Enemy {
         // Push back X with double speed!
         moveToPosition(hitbox.x + xDirection * 2, hitbox.y, hitbox.width, hitbox.height, level);
 
+    }
+
+    // ====== Update enemy values ======
+
+    protected void reduceEnemyHealth(Player player) {
+        health -= 1;
+
+        // Update push dir
+        if (player.getHitbox().x < hitbox.x)
+            pushXDir = Direction.RIGHT;
+        else
+            pushXDir = Direction.LEFT;
+
+        // Set enemy action
+        if (health <= 0)
+            setAction(EnemyConstants.SharkAction.DEAD);
+        else
+            setAction(EnemyConstants.SharkAction.HIT);
+    }
+
+    public void resetEnemy() {
+        setAction(EnemyConstants.SharkAction.RUNNING);
+        hitbox.x = x;
+        hitbox.y = y;
+        health = maxHealth;
+        enemyAlive = true;
+    }
+
+    // ====== Getters && Setters ======
+
+    protected void setAction(EnemyConstants.SharkAction sharkAction) {
+        this.sharkAction = sharkAction;
+
+        // When setting a new action, reset the previous action
+        animationTick = 0;
+        animationIndex = 0;
+    }
+
+    public float getImageFlipX() {
+        if (direction == Direction.RIGHT)
+            return width * EnemyManager.SHARK_SCALE;
+        else
+            return 0;
+    }
+
+    public int getImageFlipWidth() {
+        if (direction == Direction.RIGHT)
+            return -1;
+        else
+            return 1;
+    }
+
+    public boolean isEnemyAlive() {
+        if (hitbox.y >= Game.GAME_HEIGHT)
+            return false;
+        return enemyAlive;
     }
 
     // ====== Animations ======

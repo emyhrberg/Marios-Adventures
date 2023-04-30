@@ -32,6 +32,7 @@ public class Player extends Entity {
 	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/entities/player.png");
 	public static final int PLAYER_WIDTH 				= 50;
 	public static final int PLAYER_HEIGHT 				= 50;
+	public static final float PLAYER_SCALE 				= 1.33f;
 	private static final int PLAYER_X_OFF 				= 14;
 	private static final int PLAYER_Y_OFF 				= 18;
 	private static final int HITBOX_WIDTH 				= 30;
@@ -100,7 +101,7 @@ public class Player extends Entity {
 
 		// Player is in air; fall to the ground
 		if (inAir)
-			fallToGround(level);
+			startFalling(level);
 
 		// Player wants to move horizontally
 		updateDirection();
@@ -112,12 +113,14 @@ public class Player extends Entity {
 			airSpeed -= GRAVITY*1.4;
 		}
 
+		System.out.println(canJump);
 		if (canJump && jumping) {
 			jump();
 		}
 	}
 
 	public void jump() {
+
 		if (inAir || !canJump)
 			return;
 
@@ -134,23 +137,6 @@ public class Player extends Entity {
 		canJump = false;
 
 		SoundLoader.playSound("/sounds/jump.wav", 0.5);
-	}
-
-	private void fallToGround(Level level) {
-		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
-			// Set ySpeed
-			airSpeed += GRAVITY;
-		} else {
-			// Cannot move to position -> Stop falling, reset jump height
-			if (airSpeed > 0) {
-				airSpeed = 0;
-				inAir = false;
-			} else {
-				airSpeed = GRAVITY * 8;
-			}
-			canJump = true;
-			jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
-		}
 	}
 
 	public void jumpOnEnemy() {

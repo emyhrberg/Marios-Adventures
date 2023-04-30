@@ -15,8 +15,7 @@ import java.awt.image.Kernel;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
-import static main.Player.PLAYER_HEIGHT;
-import static main.Player.PLAYER_WIDTH;
+import static main.Player.*;
 import static objects.Coin.coinCount;
 
 /**
@@ -27,7 +26,6 @@ import static objects.Coin.coinCount;
 public class Playing extends GameState {
 
     // ====== Variables ======
-    private static final float PLAYER_SCALE = 1.33f;
     private final Player player;
     private Point spawnPoint;
     private int levelOffset;
@@ -67,7 +65,7 @@ public class Playing extends GameState {
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(PLAYER_WIDTH * PLAYER_SCALE * Game.SCALE, PLAYER_HEIGHT * PLAYER_SCALE * Game.SCALE, game);
+        player          = new Player(PLAYER_WIDTH * Game.SCALE * PLAYER_SCALE, PLAYER_HEIGHT * Game.SCALE * PLAYER_SCALE, game);
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
