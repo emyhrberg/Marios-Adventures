@@ -34,7 +34,7 @@ public class GameOver extends GameState {
 
     // ====== Constructor ======
     public GameOver(Game game) {
-	    super(game);
+        super(game);
     }
 
     public void drawGameOver(Graphics g) {
@@ -79,7 +79,7 @@ public class GameOver extends GameState {
 
         // Draw a rectangle with opacity
         g.setColor(new Color(0, 0, 0, alpha));
-        g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
     }
 
     public void keyPressed(KeyEvent e) {

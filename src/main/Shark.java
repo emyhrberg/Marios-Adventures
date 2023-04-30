@@ -11,6 +11,7 @@ import static constants.Direction.RIGHT;
 import static constants.EnemyConstants.SharkAction.ATTACKING;
 import static constants.EnemyConstants.SharkAction.RUNNING;
 import static constants.EnemyConstants.getSharkSpriteAmount;
+import static main.EnemyManager.*;
 
 /**
  * The shark class represents a type of Enemy
@@ -29,20 +30,20 @@ public class Shark extends Enemy {
     // ====== Enemy Settings ======
     protected boolean enemyAlive = true;
     protected EnemyConstants.SharkAction sharkAction = EnemyConstants.SharkAction.RUNNING;
-    private static final int MAX_HEALTH             = 1;
-    protected static final float SPEED	            = 0.25f;
-    private static final float DETECT_DISTANCE      = 3;
-
+    protected static final int MAX_HEALTH           = 1;
+    protected static final float SPEED	            = 0.25f * Game.SCALE;
+    protected static final float DETECT_DISTANCE    = Game.TILES_SIZE * 3;
+    protected static final float ATTACK_DISTANCE    = (float) (Game.TILES_SIZE);
 
     public Shark(float x, float y) {
-        super(x, y, EnemyManager.SHARK_W * Game.SCALE, EnemyManager.SHARK_H * Game.SCALE);
+        super(x, y, EnemyManager.SHARK_W * SHARK_SCALE * Game.SCALE, EnemyManager.SHARK_H * SHARK_SCALE * Game.SCALE);
 
         // Init hitboxes
         initHitbox(x, y, HITBOX_WIDTH * Game.SCALE, HITBOX_HEIGHT * Game.SCALE);
-        initAttackBox(x, y, ATTACKBOX_WIDTH * Game.SCALE, ATTACKBOX_HEIGHT * Game.SCALE);
+        initAttackbox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 
         // Init enemy settings
-        initSpeed(SPEED * Game.SCALE);
+        initSpeed(SPEED);
         initMaxHealth(MAX_HEALTH);
     }
 
@@ -125,7 +126,7 @@ public class Shark extends Enemy {
         int distance = (int) Math.abs(player.hitbox.x - hitbox.x);
 
         // Check if within detect distance, on same Y, and not blocked by tiles
-        if (distance <= DETECT_DISTANCE * Game.TILES_SIZE && enemyY == playerY && isSightClear(level, player)) {
+        if (distance <= DETECT_DISTANCE && enemyY == playerY && isSightClear(level, player)) {
             // All criteria filled, player detected!
             turnTowardsPlayer(player);
 
@@ -171,6 +172,10 @@ public class Shark extends Enemy {
     // ====== Shark Attacking ======
 
     private void updateAttacking(Player player) {
+        // Do not attack on the first animation index
+        if (animationIndex == 0)
+            attackChecked = false;
+
         // Only deal damage on the last animation index
         final int attackIndex = 4;
         if (animationIndex == attackIndex && !player.isHit() && attackbox.intersects(player.hitbox))
@@ -190,7 +195,7 @@ public class Shark extends Enemy {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
                 SoundLoader.playSound("/sounds/stomp.wav", 0.8);
-            } else if (attackbox.intersects(player.hitbox) && !player.hit) {
+            } else if (!player.hit && attackbox.intersects(player.hitbox)) {
                 player.hitByEnemy(this);
             }
         }
@@ -208,7 +213,7 @@ public class Shark extends Enemy {
         int distance = (int) Math.abs(player.hitbox.x - hitbox.x);
 
         // If the distance is less than the attackDistance, the enemy should attack the player!
-        return distance <= Game.TILES_SIZE;
+        return distance <= ATTACK_DISTANCE;
     }
 
     // ====== Shark Misc ======
@@ -263,7 +268,7 @@ public class Shark extends Enemy {
 
     public float getImageFlipX() {
         if (direction == Direction.RIGHT)
-            return width * EnemyManager.SHARK_SCALE;
+            return width;
         else
             return 0;
     }

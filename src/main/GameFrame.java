@@ -25,12 +25,16 @@ public class GameFrame extends JFrame {
 		// check user screen size
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-		System.out.println("User size: " + w + " x " + h);
-		System.out.println("Game size: " + Game.GAME_WIDTH + " x " + Game.GAME_HEIGHT);
+		System.out.printf("--------------------------------%n");
+		System.out.printf("| %-6s | %-6s | %6s |%n", "", "WIDTH", "HEIGHT");
+		System.out.printf("--------------------------------%n");
+		System.out.printf("| %-6s | %-6s | %6d |%n", "User", w,  h);
+		System.out.printf("| %-6s | %-6s | %6d |%n", "Play", Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		System.out.printf("--------------------------------%n");
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
+		setResizable(true);
 		setPreferredSize(new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT));
 
 		// add and pack

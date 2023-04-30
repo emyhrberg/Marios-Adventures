@@ -11,12 +11,11 @@ import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
 public class Cannon extends GameObject {
 
     // Size
-    public static final int CANNON_W_DEF = 50;
-    public static final int CANNON_H_DEF = 67;
-    public static final int CANNON_WIDTH = (int) (CANNON_W_DEF *1.3* Game.SCALE);
-    public static final int CANNON_HEIGHT = (int) (CANNON_H_DEF *1.3*Game.SCALE);
-    private static final float X_OFF = 19f * Game.SCALE;
-    private static final float Y_OFF = 6f * Game.SCALE;
+    public static final int CANNON_W = 50;
+    public static final int CANNON_H = 67;
+    public static final float CANNON_SCALE = 1.3f;
+    private static final float X_OFF = 19;
+    private static final float Y_OFF = 6;
 
     // Properties
     public static final List<Bullet> bullets = new ArrayList<>();
@@ -26,7 +25,7 @@ public class Cannon extends GameObject {
 
     public Cannon(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x - X_OFF, y - Y_OFF, CANNON_W_DEF, CANNON_H_DEF);
+        initHitbox(x - X_OFF * Game.SCALE, y - Y_OFF * Game.SCALE, CANNON_W, CANNON_H);
     }
 
     public void update() {

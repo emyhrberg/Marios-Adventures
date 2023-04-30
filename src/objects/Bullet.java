@@ -13,22 +13,19 @@ import static main.Level.solidTiles;
 public class Bullet extends GameObject {
 
     // Size
-    public static final int BULLET_W_DEF = 50;
-    public static final int BULLET_H_DEF = 38;
-    public static final int BULLET_W = (int) (BULLET_W_DEF * Game.SCALE);
-    public static final int BULLET_H = (int) (BULLET_H_DEF * Game.SCALE);
+    public static final int BULLET_W = 50;
+    public static final int BULLET_H = 38;
     private static final int HB_W = 36;
     private static final int HB_H = 20;
-    private static final float Y_OFF = 12 * Game.SCALE;
-    public static final float Y_DRAW_OFF = 7 * Game.SCALE;
+    public static final float BULLET_Y_OFF = 12;
 
     // Properties
-    private static final float BULLET_SPEED = 0.7f * Game.SCALE;
-    private static final float BULLET_DEATH_SPEED = 1.1f * Game.SCALE;
+    private static final float BULLET_SPEED = 0.7f;
+    private static final float BULLET_DEATH_SPEED = 1.1f;
 
     public Bullet(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y + Y_OFF, HB_W, HB_H);
+        initHitbox(x, y + BULLET_Y_OFF * Game.SCALE, HB_W, HB_H);
     }
 
     public void update(Player player, Level level, Bullet b) {
@@ -41,9 +38,9 @@ public class Bullet extends GameObject {
 
     private void updateBulletPos() {
         if (!isHit) {
-            hitbox.x -= BULLET_SPEED;
+            hitbox.x -= BULLET_SPEED * Game.SCALE;
         } else {
-            hitbox.y += BULLET_DEATH_SPEED;
+            hitbox.y += BULLET_DEATH_SPEED * Game.SCALE;
         }
     }
 

@@ -11,16 +11,15 @@ import static main.Game.TILES_SIZE_DEFAULT;
 public class Coin extends GameObject {
 
     // Coin size
-    public static final float COIN_SIZE_DEFAULT = (int) (TILES_SIZE_DEFAULT * 0.75);
-    public static final float COIN_SIZE = (int) (COIN_SIZE_DEFAULT * Game.SCALE);
-    private static final float X = (TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2f * Game.SCALE;
-    private static final float Y = (TILES_SIZE_DEFAULT - COIN_SIZE_DEFAULT) / 2f * Game.SCALE;
+    public static final float COIN_SIZE = (int) (TILES_SIZE_DEFAULT * 0.75);
+    private static final float X = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * Game.SCALE;
+    private static final float Y = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * Game.SCALE;
 
     public static int coinCount;
 
     public Coin(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x + X, y + Y, COIN_SIZE_DEFAULT, COIN_SIZE_DEFAULT);
+        initHitbox(x + X, y + Y, COIN_SIZE, COIN_SIZE);
     }
 
     public void update(Player player, Coin c) {

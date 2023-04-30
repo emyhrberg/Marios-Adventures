@@ -9,14 +9,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="WIP scale enemies">
-      <change afterPath="$PROJECT_DIR$/resources/entities/shark_backup.png" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/entities/shark.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/entities/shark.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mario.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Mario.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module.iml" beforeDir="false" afterPath="$PROJECT_DIR$/module.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/entities/shark_bad.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/EnemyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/EnemyConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/PlayerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/PlayerConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/GameRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GameRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/GifLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GifLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ImageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Plant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/_fullscreenTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Lava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Lava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Pipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Pipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/LevelCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Pause.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,26 +102,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Github/Marios-Adventures&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Erik/Github/PlatformerTutorial-ep28_finale",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.import",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src" />
@@ -171,7 +224,50 @@
       <workItem from="1682778056767" duration="256000" />
       <workItem from="1682778328191" duration="792000" />
       <workItem from="1682779651435" duration="9138000" />
-      <workItem from="1682799984674" duration="14437000" />
+      <workItem from="1682799984674" duration="9972000" />
+      <workItem from="1682875322681" duration="5363000" />
+    </task>
+    <task id="LOCAL-00036" summary="Added brick break explosion (not great)">
+      <created>1682349403879</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1682349403879</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Working on platform bug, works on 2.png but not on 1.png">
+      <created>1682349770534</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1682349770534</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Fixed platforms! Refactoring ObjectManager code">
+      <created>1682355355433</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1682355355433</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Refactored ObjectManager to move functionality out to individual classes. Need to fix so player can fall off platform">
+      <created>1682357495934</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1682357495934</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Deleted platforms code, trying again to fix platforms">
+      <created>1682359080313</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1682359080313</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Platforms working!">
+      <created>1682361075747</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1682361075747</updated>
     </task>
     <task id="LOCAL-00042" summary="Game playtested, no noticeable bugs!">
       <created>1682367318889</created>
@@ -474,49 +570,7 @@
       <option name="project" value="LOCAL" />
       <updated>1682807071448</updated>
     </task>
-    <task id="LOCAL-00085" summary="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes">
-      <created>1682813004753</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1682813004753</updated>
-    </task>
-    <task id="LOCAL-00086" summary="1.2.5">
-      <created>1682816054056</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1682816054056</updated>
-    </task>
-    <task id="LOCAL-00087" summary="1.2.5">
-      <created>1682817261397</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1682817261397</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Fullscreen and scale WIP">
-      <created>1682867179562</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1682867179562</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Fullscreen and scale WIP">
-      <created>1682867211294</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1682867211294</updated>
-    </task>
-    <task id="LOCAL-00090" summary="WIP scale enemies">
-      <created>1682870936919</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1682870936919</updated>
-    </task>
-    <option name="localTasksCounter" value="91" />
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,6 +591,10 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Game playtested, looks good :)" />
+    <MESSAGE value="Added gameover fade" />
+    <MESSAGE value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
+    <MESSAGE value="Added jar" />
     <MESSAGE value="Fixed reset timer and coin count" />
     <MESSAGE value="Misc improvements, playtesting looks good!" />
     <MESSAGE value="Code cleanup for objects, looks good, plays well!" />
@@ -558,11 +616,7 @@
     <MESSAGE value="Another test" />
     <MESSAGE value="Marios Adventures release 1.2.3!" />
     <MESSAGE value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
-    <MESSAGE value="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes" />
-    <MESSAGE value="1.2.5" />
-    <MESSAGE value="Fullscreen and scale WIP" />
-    <MESSAGE value="WIP scale enemies" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP scale enemies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

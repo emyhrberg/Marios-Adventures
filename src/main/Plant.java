@@ -6,26 +6,27 @@ import constants.EnemyConstants.PlantAction;
 import java.util.Random;
 
 import static constants.EnemyConstants.PlantAction.*;
-import static main.Game.TILES_SIZE;
 
 public class Plant extends Enemy {
 
     // Position
     protected PlantAction plantAction               = IDLE;
-    private static final float PLANT_SPEED          = 0.2f * Game.SCALE;
-    private static final float PLANT_TOP_POS        = 0.75f * Game.SCALE;
+    private static final float PLANT_SPEED          = 0.2f;
+    private static final float PLANT_TOP_POS        = 0.75f;
     private static final int PLANT_TOP_WAIT         = 1000;
     private static final int[] PLANT_BOTTOM_WAIT    = {4000,5000,6000};
     private static final Random RND                 = new Random();
-    private final float origPos                     = y / TILES_SIZE;
+    private final float origPos                     = y / Game.TILES_SIZE;
     private long lastTopPosition;
     private long lastBottomPosition;
     private int bottomWaitIndexBetweenZeroAndTwo;
 
     public Plant(float x, float y) {
-        super(x, y, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
-        initHitbox(x, y, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
-        initAttackBox(x, y, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
+        super(x, y, EnemyManager.PLANT_W * EnemyManager.PLANT_SCALE * Game.SCALE, EnemyManager.PLANT_H * EnemyManager.PLANT_SCALE * Game.SCALE);
+        float w = EnemyManager.PLANT_W * EnemyManager.PLANT_SCALE * Game.SCALE;
+        float h = EnemyManager.PLANT_H * EnemyManager.PLANT_SCALE * Game.SCALE;
+        initHitbox(x, y, w, h);
+        initAttackbox(x, y, w, h);
     }
 
     public void update(Player player) {
@@ -35,7 +36,7 @@ public class Plant extends Enemy {
     }
 
     private void updatePlantPos() {
-        float currPos = hitbox.y / TILES_SIZE;
+        float currPos = hitbox.y / Game.TILES_SIZE;
         float tileDistance = origPos - currPos;
 
         boolean canMoveDown = System.currentTimeMillis() >= lastTopPosition + PLANT_TOP_WAIT;
@@ -44,15 +45,15 @@ public class Plant extends Enemy {
         // Movement
         if (plantAction == MOVING_UP_FIRST || plantAction == MOVING_UP_ANIMATE) {
             // Move plant upwards
-            hitbox.y -= PLANT_SPEED;
+            hitbox.y -= PLANT_SPEED * Game.SCALE;
 
             // Start animating plant when starting to appear
-            if (tileDistance >= PLANT_TOP_POS / 2) {
+            if (tileDistance >= PLANT_TOP_POS * Game.SCALE / 3) {
                 plantAction = MOVING_UP_ANIMATE;
             }
 
             // Plant is at maximum up position, set to top
-            if (tileDistance > PLANT_TOP_POS) {
+            if (tileDistance > PLANT_TOP_POS * Game.SCALE) {
                 plantAction = TOP;
                 lastTopPosition = System.currentTimeMillis();
             }
@@ -62,7 +63,7 @@ public class Plant extends Enemy {
                 plantAction = MOVING_DOWN;
             }
         } else if (plantAction == MOVING_DOWN) {
-            hitbox.y += PLANT_SPEED;
+            hitbox.y += PLANT_SPEED * Game.SCALE;
             if (tileDistance <= 0) {
                 // Save last bottom position and generate a random number to determine seconds to stay at bottom
                 plantAction = IDLE;
@@ -79,7 +80,7 @@ public class Plant extends Enemy {
     }
 
     private void updatePlantAttacking(Player player) {
-        attackbox.x = hitbox.x - TILES_SIZE / 2f + 3 * Game.SCALE;
+        attackbox.x = hitbox.x - Game.TILES_SIZE / 2f + 3 * Game.SCALE;
         attackbox.y = hitbox.y;
 
         if (!player.isHit() && attackbox.intersects(player.getHitbox())) {

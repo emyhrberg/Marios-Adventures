@@ -14,4 +14,5 @@ public class Enemy extends Entity {
     protected Enemy(float x, float y, float width, float height) {
         super(x, y, width, height);
     }
+
 }

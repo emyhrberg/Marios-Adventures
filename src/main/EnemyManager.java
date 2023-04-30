@@ -23,17 +23,17 @@ public class EnemyManager {
 	private static final BufferedImage SHARK_IMAGE 		= ImageLoader.loadImage("/entities/shark.png");
 	private static final int SHARK_X_OFF				= 12;
 	private static final int SHARK_Y_OFF	 			= 10;
+	public static final float SHARK_SCALE 				= 1.5f;
 	public static final int SHARK_W 					= 34;
 	public static final int SHARK_H 					= 30;
-	public static final float SHARK_SCALE 				= 1.5f;
 
 	// ====== Plants =======
 	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/entities/plant.png");
 	private static final int PLANT_ROWS 				= 2;
 	private final BufferedImage[] plantImages			= new BufferedImage[PLANT_ROWS];
-	public static final int PLANT_W 					= 16;
-	public static final int PLANT_H						 = 32;
-	public static final int PLANT_X_OFF = PLANT_W / 2;
+	public static final int PLANT_SCALE 				= 2;
+	public static final int PLANT_W						= 16;
+	public static final int PLANT_H 					= 32;
 
 	// ====== Game values ======
 	private List<Shark> sharks = new ArrayList<>();
@@ -48,13 +48,12 @@ public class EnemyManager {
 	private void initEnemies() {
 		// Init sharks
 		for (int y = 0; y < ROWS; y++)
-			for (int x = 0; x < IMAGES_IN_ROW; x++) {
+			for (int x = 0; x < IMAGES_IN_ROW; x++)
 				sharkImages[y][x] = SHARK_IMAGE.getSubimage(SHARK_W * x, SHARK_H * y, SHARK_W, SHARK_H);
-			}
 
 		// Init plants
-		for (int i = 0; i < 2; i++)
-			plantImages[i] = PLANT_IMAGE.getSubimage(PLANT_W *i, 0, PLANT_W, PLANT_H);
+		for (int x = 0; x < 2; x++)
+			plantImages[x] = PLANT_IMAGE.getSubimage(PLANT_W * x, 0, PLANT_W, PLANT_H);
 	}
 
 	// ====== Update ======
@@ -70,8 +69,9 @@ public class EnemyManager {
 				s.update(level, player);
 
 		// Update every individual plant
-		for (Plant p : plants)
+		for (Plant p : plants) {
 			p.update(player);
+		}
 	}
 
 	public void attackEnemyIfHit(Player player) {
@@ -88,18 +88,6 @@ public class EnemyManager {
 			s.resetEnemy();
 	}
 
-	public void scaleUp() {
-		for (Shark s : sharks) {
-			s.initSpeed(Shark.SPEED * Game.SCALE);
-			s.initHitbox(s.hitbox.x * Game.SCALE, s.hitbox.y * Game.SCALE, s.hitbox.width * Game.SCALE, s.hitbox.height * Game.SCALE);
-		}
-
-		for (Plant p : plants) {
-			p.initHitbox(p.hitbox.x * Game.SCALE, p.hitbox.y * Game.SCALE, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
-			p.initAttackBox(p.hitbox.x, p.hitbox.y, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
-		}
-	}
-
 	// ====== Animations ======
 
 	public void draw(Graphics g, int levelOffset) {
@@ -110,10 +98,10 @@ public class EnemyManager {
 	private void drawSharks(Graphics g, int levelOffset) {
 		for (Shark s : sharks)
 			if (s.isEnemyAlive()) {
-				float x = s.hitbox.x - levelOffset - SHARK_X_OFF * Game.SCALE + s.getImageFlipX();
-				float y = s.hitbox.y - SHARK_Y_OFF * Game.SCALE;
-				float w = SHARK_W * Game.SCALE * SHARK_SCALE * s.getImageFlipWidth();
-				float h = SHARK_H * Game.SCALE * SHARK_SCALE;
+				float x = s.getHitbox().x - levelOffset - SHARK_X_OFF * Game.SCALE + s.getImageFlipX();
+				float y = s.getHitbox().y - SHARK_Y_OFF * Game.SCALE;
+				float w = SHARK_W * SHARK_SCALE * Game.SCALE * s.getImageFlipWidth();
+				float h = SHARK_H * SHARK_SCALE * Game.SCALE;
 
 				// Get the proper image representing the right action
 				final BufferedImage img = sharkImages[s.sharkAction.ordinal()][s.animationIndex];
@@ -122,20 +110,21 @@ public class EnemyManager {
 				g.drawImage(img, (int) x, (int) y, (int) w, (int) h, null);
 
 				s.drawHitbox(g, levelOffset);
+				s.drawAttackBox(g, levelOffset);
 
 				if (Game.DEBUG) {
-					s.drawAttackBox(g, levelOffset);
 					s.drawHitbox(g, levelOffset);
+					s.drawAttackBox(g, levelOffset);
 				}
 			}
 	}
 
 	private void drawPlants(Graphics g, int levelOffset) {
 		for (Plant p : plants) {
-			float x = p.getHitbox().x - levelOffset - PLANT_X_OFF * Game.SCALE;
+			float w = PLANT_W * PLANT_SCALE * Game.SCALE;
+			float h = PLANT_H * PLANT_SCALE * Game.SCALE;
+			float x = p.getHitbox().x - levelOffset - w / 2;
 			float y = p.getHitbox().y;
-			float w = PLANT_W * 2;
-			float h = PLANT_H * 2;
 
 			// Get the proper image representing the right action
 			final BufferedImage img = plantImages[p.animationIndex];
@@ -148,4 +137,5 @@ public class EnemyManager {
 			}
 		}
 	}
+
 }

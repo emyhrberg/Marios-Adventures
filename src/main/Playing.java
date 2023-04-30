@@ -15,7 +15,8 @@ import java.awt.image.Kernel;
 
 import static constants.Direction.*;
 import static constants.GameState.*;
-import static main.Player.*;
+import static main.Player.PLAYER_HEIGHT;
+import static main.Player.PLAYER_WIDTH;
 import static objects.Coin.coinCount;
 
 /**
@@ -26,6 +27,7 @@ import static objects.Coin.coinCount;
 public class Playing extends GameState {
 
     // ====== Variables ======
+    private static final float PLAYER_SCALE = 1.33f;
     private final Player player;
     private Point spawnPoint;
     private int levelOffset;
@@ -41,6 +43,7 @@ public class Playing extends GameState {
     private final ObjectManager objectManager;
 
     // Drawing background
+    private static final BufferedImage SUN = ImageLoader.loadImage("/ui/sun.png");
     private static final BufferedImage SKY = ImageLoader.loadImage("/ui/sky.png");
     private static final BufferedImage BIG_CLOUDS = ImageLoader.loadImage("/ui/big-clouds.png");
     private static final BufferedImage SMALL_CLOUDS = ImageLoader.loadImage("/ui/small-clouds.png");
@@ -65,7 +68,7 @@ public class Playing extends GameState {
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(PLAYER_WIDTH * Game.SCALE * PLAYER_SCALE, PLAYER_HEIGHT * Game.SCALE * PLAYER_SCALE, game);
+        player          = new Player(PLAYER_WIDTH * PLAYER_SCALE * Game.SCALE, PLAYER_HEIGHT * PLAYER_SCALE * Game.SCALE, game);
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
@@ -228,7 +231,14 @@ public class Playing extends GameState {
     }
 
     private void drawSky(Graphics g) {
-        g.drawImage(SKY,0,0, Game.GAME_WIDTH, (int) (0.8f*Game.GAME_HEIGHT),null);
+        int x = (int) (-levelOffset * 0.17);
+        int y = 0;
+        int w = (int) (4320  * Game.SCALE);
+        int h = Game.GAME_HEIGHT;
+        for (int i = 0; i < 8; i++) {
+            g.drawImage(SKY, x + i * w, y, w, h, null);
+        }
+
     }
 
     // ====== Background ======
@@ -541,14 +551,6 @@ public class Playing extends GameState {
     }
 
     // ====== Getters ======
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public ObjectManager getObjectManager() {
-        return objectManager;
-    }
 
     public EnemyManager getEnemyManager() {
         return enemyManager;

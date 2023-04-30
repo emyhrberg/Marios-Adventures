@@ -12,7 +12,7 @@
 
 | Java | No Java |
 | ------ | ------ |
-| [Mario.exe](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.exe) | [Mario.zip](https://www.mediafire.com/file/0f53mhryj75fxwr/Mario.zip/file)|
+| [Mario.exe](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.exe) | [Mario.zip](https://www.mediafire.com/file/zc821jmh4a8oaa1/game.zip/file) |
 
 To run the game, you have two options:
 - Run the game using minimum Java 8 by downloading Mario.exe

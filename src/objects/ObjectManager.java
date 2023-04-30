@@ -17,8 +17,9 @@ import static objects.Cannon.*;
 import static objects.Coin.COIN_SIZE;
 import static objects.HealthPowerup.HEALTH_SIZE;
 import static objects.Lava.*;
-import static objects.Platform.PLATFORM_H;
-import static objects.Platform.PLATFORM_W;
+import static objects.Pipe.*;
+import static objects.Platform.PLATFORM_HEIGHT;
+import static objects.Platform.PLATFORM_WIDTH;
 
 public class ObjectManager {
 
@@ -38,8 +39,8 @@ public class ObjectManager {
     private static final BufferedImage LAVA_IMAGES      = ImageLoader.loadImage("/sprites/lava.png");
 
     // ====== Sparkle =======
-    private static final int SPARKLE_W_DEF = 100;
-    private static final int SPARKLE_H_DEF = 100;
+    private static final int SPARKLE_W = 100;
+    private static final int SPARKLE_H = 100;
     private static final BufferedImage SPARKLE_IMAGES   = ImageLoader.loadImage("/sprites/sparkle.png");
     private final BufferedImage[] sparkleImages         = new BufferedImage[7];
 
@@ -95,7 +96,7 @@ public class ObjectManager {
 
         // Init sparkles
         for (int i = 0; i < 7; i++) {
-            sparkleImages[i] = SPARKLE_IMAGES.getSubimage(SPARKLE_W_DEF * i, 0, SPARKLE_W_DEF, SPARKLE_H_DEF);
+            sparkleImages[i] = SPARKLE_IMAGES.getSubimage(SPARKLE_W * i, 0, SPARKLE_W, SPARKLE_H);
         }
 
         // Init breaks
@@ -105,12 +106,12 @@ public class ObjectManager {
 
         // Init cannons
         for (int i = 0; i < 7; i++) {
-            cannonImages[i] = CANNON_IMAGES.getSubimage(CANNON_W_DEF * i, 0, CANNON_W_DEF, CANNON_H_DEF);
+            cannonImages[i] = CANNON_IMAGES.getSubimage(CANNON_W * i, 0, CANNON_W, CANNON_H);
         }
 
         // Init bullets
         for (int i = 0; i < 8; i++) {
-            bulletImages[i] = BULLET_IMAGE.getSubimage(BULLET_W_DEF * i, 0, BULLET_W_DEF, BULLET_H_DEF);
+            bulletImages[i] = BULLET_IMAGE.getSubimage(BULLET_W * i, 0, BULLET_W, BULLET_H);
         }
 
         // Init flags
@@ -160,7 +161,9 @@ public class ObjectManager {
             if (h.isActive()) {
                 float x = h.getHitbox().x - levelOffset;
                 float y = h.getHitbox().y;
-                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, (int) HEALTH_SIZE, (int) HEALTH_SIZE, null);
+                float w = HEALTH_SIZE * Game.SCALE;
+                float hi = HEALTH_SIZE * Game.SCALE;
+                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, (int) w, (int) hi, null);
 
                 if (Game.DEBUG) {
                     h.drawHitbox(g, levelOffset);
@@ -173,9 +176,7 @@ public class ObjectManager {
         for (Platform p : platforms)  {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
-            int w = (int) (PLATFORM_W * Game.SCALE);
-            int h = (int) (PLATFORM_H * Game.SCALE);
-            g.drawImage(PLATFORM_IMAGES, x, y, w, h, null);
+            g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
 
             if (Game.DEBUG) {
 //                p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
@@ -193,8 +194,10 @@ public class ObjectManager {
         for (Bullet b : bullets) {
             if (b.isActive()) {
                 float x = b.hitbox.x - levelOffset;
-                float y = b.hitbox.y - Y_DRAW_OFF;
-                g.drawImage(bulletImages[b.animationIndex], (int) x, (int) y, BULLET_W, BULLET_H, null);
+                float y = b.hitbox.y - BULLET_Y_OFF * Game.SCALE;
+                float w = BULLET_W * Game.SCALE;
+                float h = BULLET_H * Game.SCALE;
+                g.drawImage(bulletImages[b.animationIndex], (int) x, (int) y, (int) w, (int) h, null);
 
                 if (Game.DEBUG) {
                     b.drawHitbox(g, levelOffset);
@@ -222,10 +225,9 @@ public class ObjectManager {
         for (Pipe p : pipes)  {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
-            int w = (int) (Pipe.PIPE_W * Game.SCALE * 2);
-            int h = (int) (Pipe.PIPE_H * Game.SCALE * 2);
-
-            g.drawImage(PIPE_IMAGES, x, y, w, h, null);
+            float w = PIPE_W * PIPE_SCALE * Game.SCALE;
+            float h = PIPE_H * PIPE_SCALE * Game.SCALE;
+            g.drawImage(PIPE_IMAGES, x, y, (int) w, (int) h, null);
 
             if (Game.DEBUG) {
                 p.drawHitbox(g, levelOffset);
@@ -237,7 +239,9 @@ public class ObjectManager {
         for (Cannon c : cannons)  {
             int x = (int) c.hitbox.x - levelOffset;
             int y = (int) c.hitbox.y;
-            g.drawImage(cannonImages[c.animationIndex], x, y, CANNON_WIDTH, CANNON_HEIGHT, null);
+            int w = (int) (CANNON_W * CANNON_SCALE * Game.SCALE);
+            int h = (int) (CANNON_H * CANNON_SCALE * Game.SCALE);
+            g.drawImage(cannonImages[c.animationIndex], x, y, w, h, null);
 
             if (Game.DEBUG) {
                 c.drawHitbox(g, levelOffset);
@@ -248,8 +252,12 @@ public class ObjectManager {
     private void drawLava(Graphics g, int levelOffset) {
         for (Lava l : lava)  {
             int x = (int) l.hitbox.x - levelOffset;
-            int y = (int) l.hitbox.y - LAVA_Y_OFFSET;
-            g.drawImage(LAVA_IMAGES, x, y, LAVA_WIDTH, LAVA_HEIGHT, null);
+            int y = (int) (l.hitbox.y - LAVA_Y_OFF * Game.SCALE);
+            int w = (int) (LAVA_W * Game.SCALE);
+            int h = (int) (LAVA_H * Game.SCALE);
+            g.drawImage(LAVA_IMAGES, x, y, w, h, null);
+
+            l.drawHitbox(g, levelOffset);
 
             if (Game.DEBUG) {
                 l.drawHitbox(g, levelOffset);
@@ -285,11 +293,13 @@ public class ObjectManager {
             if (c.isActive()) {
                 int x = (int) c.hitbox.x - levelOffset;
                 int y = (int) c.hitbox.y;
+                int w = (int) (COIN_SIZE * Game.SCALE);
+                int h = (int) (COIN_SIZE * Game.SCALE);
 
                 if (c.isSparkle()) {
-                    g.drawImage(sparkleImages[c.animationIndex],x,y,TILES_SIZE_DEFAULT,TILES_SIZE_DEFAULT,null);
+                    g.drawImage(sparkleImages[c.animationIndex], x, y, w, h, null);
                 } else {
-                    g.drawImage(coinImages[c.animationIndex],x,y, (int) COIN_SIZE, (int) COIN_SIZE, null);
+                    g.drawImage(coinImages[c.animationIndex], x, y, w, h, null);
                 }
 
                 if (Game.DEBUG) {
@@ -313,15 +323,17 @@ public class ObjectManager {
     }
 
     public void resetAllObjects() {
-        for (Question q : questions)    q.resetObject();
-        for (Coin c : coins)            c.resetObject();
-        for (Brick b : bricks)          b.resetObject();
+        for (Question q : questions) q.resetObject();
+        for (Coin c : coins) c.resetObject();
+        for (Brick b : bricks) b.resetObject();
 
         bullets.clear();
         healths.clear();
     }
 
     public void scaleUp() {
+        for (Question q : questions)    q.initHitbox(q.hitbox.x * Game.SCALE, q.hitbox.y * Game.SCALE, q.hitbox.width * Game.SCALE, q.hitbox.height * Game.SCALE);
+        for (Coin c : coins)            c.initHitbox(c.hitbox.x * Game.SCALE, c.hitbox.y * Game.SCALE, c.hitbox.width * Game.SCALE, c.hitbox.height * Game.SCALE);
         for (Brick b : bricks)          b.initHitbox(b.hitbox.x * Game.SCALE, b.hitbox.y * Game.SCALE, b.hitbox.width * Game.SCALE, b.hitbox.height * Game.SCALE);
 //        for (Bullet b : bullets)
         for (Cannon c: cannons)         c.initHitbox(c.hitbox.x * Game.SCALE, c.hitbox.y * Game.SCALE, c.hitbox.width * Game.SCALE, c.hitbox.height * Game.SCALE);

@@ -24,7 +24,7 @@ import static ui.Pause.isMuted;
  */
 public class Game implements Runnable {
 
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
 
     // ====== Game loop ======
     public static final int UPS         = 180;
@@ -37,13 +37,13 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE             = 1.5f;
-    public static int TILES_SIZE_DEFAULT  = 40;
-    public static int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
-    public static int TILES_IN_WIDTH      = 32;
-    public static int TILES_IN_HEIGHT     = 18;
-    public static int GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
-    public static int GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
+    public static float SCALE                   = 1.0f;
+    public static final int TILES_SIZE_DEFAULT  = 40;
+    public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
+    public static final int TILES_IN_WIDTH      = 32;
+    public static final int TILES_IN_HEIGHT     = 18;
+    public static final int GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
+    public static final int GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
 
     // ====== Game Variables ======
     private final GameComponent gameComponent;
@@ -72,7 +72,7 @@ public class Game implements Runnable {
     private boolean allowDraw;
     private long lastStateCheck;
     private boolean isFirstTime = false;
-    private static final int DISALLOW_DRAW_WAIT = 300;
+    private static final int DISALLOW_DRAW_WAIT = 2300;
     private static final int DISALLOW_KEY_WAIT  = 2300;
     private static final int GO_PLAYING_WAIT    = 8500;
 
@@ -86,8 +86,10 @@ public class Game implements Runnable {
             gameState = PLAYING;
         } else {
             // Set game state on launch
+//            gameState = PLAYING;
+//            menuClip = SoundLoader.playSound("/sounds/menu.wav");
+            isMuted = true;
             gameState = PLAYING;
-            menuClip = SoundLoader.playSound("/sounds/menu.wav");
         }
 
 
@@ -251,32 +253,7 @@ public class Game implements Runnable {
 
     ///////////////// FULL SCREEN ////////////////
 
-    private void scaleUp() {
-        SCALE = SCALE * 1.5f;
-
-        // Update tiles
-        TILES_SIZE = (int) (TILES_SIZE_DEFAULT * SCALE);
-
-        // update player
-        playing.getPlayer().scaleUp();
-        playing.getObjectManager().scaleUp();
-        playing.getEnemyManager().scaleUp();
-    }
-
-    private void scaleDown() {
-        SCALE = SCALE * 0.67f;
-
-        // Update tiles
-        TILES_SIZE = (int) (TILES_SIZE_DEFAULT * SCALE);
-
-        // update player
-        playing.getPlayer().scaleUp();
-        playing.getObjectManager().scaleUp();
-    }
-
     private void goFullScreen() {
-        scaleUp();
-
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
         JFrame frame = (JFrame) window;
@@ -293,8 +270,6 @@ public class Game implements Runnable {
     }
 
     private void goWindowed() {
-        scaleDown();
-
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
         JFrame frame = (JFrame) window;
@@ -315,7 +290,7 @@ public class Game implements Runnable {
     private boolean isEnterPressed = false;
     private boolean altEnter = false;
     private boolean fullScreen = false;
-    private boolean f;
+    private boolean isF = false;
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
@@ -323,17 +298,17 @@ public class Game implements Runnable {
         int enter = KeyEvent.VK_ENTER;
 
         // temp
-        if (key == KeyEvent.VK_F) {
-            f = true;
-        }
-        if (f) {
+        if (key == KeyEvent.VK_F)
+            isF = true;
+
+        if (isF) {
             fullScreen = !fullScreen;
             if (fullScreen) {
                 goFullScreen();
             } else {
                 goWindowed();
             }
-            f = false;
+            isF = false;
         }
 
         if (key == alt) {

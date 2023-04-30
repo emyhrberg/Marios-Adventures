@@ -18,7 +18,7 @@ import static main.Level.*;
 public class Entity {
 
 	// ====== Falling on spawn =======
-	public static final float GRAVITY = 0.05f * Game.SCALE;
+	public static final float GRAVITY = 0.05f;
 	protected boolean inAir;
 	protected float airSpeed;
 
@@ -129,14 +129,14 @@ public class Entity {
 	protected void startFalling(Level level) {
 		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
 			// Set ySpeed
-			airSpeed += GRAVITY;
+			airSpeed += GRAVITY * Game.SCALE;
 		} else {
 			// Cannot move to position -> Stop falling, reset jump height
 			if (airSpeed > 0) {
 				airSpeed = 0;
 				inAir = false;
 			} else {
-				airSpeed = GRAVITY * 8;
+				airSpeed = GRAVITY * Game.SCALE;
 			}
 		}
 	}
@@ -183,7 +183,7 @@ public class Entity {
 	public void unbindPlatform() {
 		currentPlatform = null;
 		onPlatform = false;
-		hitbox.y -= Platform.PLATFORM_Y_OFF +1;
+		hitbox.y -= Platform.PLATFORM_Y_OFFSET+1;
 	}
 
 	public boolean isOnPlatform(Platform platform){
@@ -291,7 +291,7 @@ public class Entity {
 		hitbox = new Rectangle2D.Float(x, y, width, height);
 	}
 
-	protected void initAttackBox(float x, float y, float width, float height) {
+	protected void initAttackbox(float x, float y, float width, float height) {
 		attackbox = new Rectangle2D.Float(x, y, width, height);
 	}
 
@@ -303,7 +303,7 @@ public class Entity {
 		// draw stroke
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setStroke(new BasicStroke(3)); // set stroke width
-		g2d.setColor(Color.YELLOW); // set stroke color
+		g2d.setColor(Color.BLACK); // set stroke color
 		g2d.drawRect((int) hitbox.x - levelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height); // draw the rectangle outline
 	}
 
