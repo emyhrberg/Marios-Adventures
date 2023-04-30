@@ -12,7 +12,7 @@ public class Cannon extends GameObject {
 
     // Size
     public static final int CANNON_W_DEF = 50;
-    public static final int CANNON_H_DEF = 80;
+    public static final int CANNON_H_DEF = 67;
     public static final int CANNON_WIDTH = (int) (CANNON_W_DEF *1.3* Game.SCALE);
     public static final int CANNON_HEIGHT = (int) (CANNON_H_DEF *1.3*Game.SCALE);
     private static final float X_OFF = 19f * Game.SCALE;
@@ -29,9 +29,9 @@ public class Cannon extends GameObject {
         initHitbox(x - X_OFF, y - Y_OFF, CANNON_W_DEF, CANNON_H_DEF);
     }
 
-    public void update(Cannon c) {
+    public void update() {
         updateShootCooldown();
-        shoot(c);
+        shoot();
     }
 
     private void updateShootCooldown() {
@@ -47,9 +47,9 @@ public class Cannon extends GameObject {
         }
     }
 
-    private void shoot(Cannon c) {
+    private void shoot() {
         if (canShoot && animationIndex == 4) {
-            bullets.add(new Bullet((int) c.hitbox.x, (int) c.hitbox.y, BULLET_TYPE));
+            bullets.add(new Bullet((int) hitbox.x, (int) hitbox.y, BULLET_TYPE));
             lastCannonShot = System.currentTimeMillis();
         }
     }

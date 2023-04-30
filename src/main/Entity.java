@@ -346,6 +346,10 @@ public class Entity {
 
 	// ====== Getters & Setters ======
 
+	public boolean isHit() {
+		return hit;
+	}
+
 	public void setDirection(final Direction direction) {
 		this.direction = direction;
 	}

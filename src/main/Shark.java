@@ -32,11 +32,6 @@ public class Shark extends Enemy {
     protected static final float DETECT_DISTANCE    = Game.TILES_SIZE * 3;
     protected static final float ATTACK_DISTANCE    = (float) (Game.TILES_SIZE);
 
-    // Cooldown
-    private boolean attackAllowed;
-    private long lastAttack;
-    private static final int ATTACK_COOLDOWN = 1000;
-
     public Shark(float x, float y) {
         super(x, y, SHARK_WIDTH, SHARK_HEIGHT);
 
@@ -56,8 +51,6 @@ public class Shark extends Enemy {
     }
 
     protected void updateSharkActions(Level level, Player player) {
-        attackAllowed = System.currentTimeMillis() >= lastAttack + ATTACK_COOLDOWN;
-
         switch (sharkAction) {
             case RUNNING:
                 checkCollisionWithPlayer(player);
@@ -184,16 +177,12 @@ public class Shark extends Enemy {
 
         // Only deal damage on the last animation index
         final int attackIndex = 4;
-        if (animationIndex == attackIndex && !attackChecked && attackAllowed) {
-            if (attackBox.intersects(player.hitbox)) {
-                player.hitByEnemy(this);
-            }
-            attackChecked = true;
-        }
+        if (animationIndex == attackIndex && !player.isHit() && attackBox.intersects(player.hitbox))
+            player.hitByEnemy(this);
     }
 
     private void checkCollisionWithPlayer(Player player) {
-        if (hitbox.intersects(player.getHitbox())) {
+        if (!player.isHit() && hitbox.intersects(player.getHitbox()) ) {
             float playerHitbox = player.hitbox.y + player.hitbox.height;
             float enemyHitbox = hitbox.y + hitbox.height;
             float distBetweenPlayerAndEnemy = Math.abs(playerHitbox - enemyHitbox);
@@ -201,16 +190,13 @@ public class Shark extends Enemy {
             boolean isTouchingEnemyHead = distBetweenPlayerAndEnemy > enemyHead;
 
             // usually distance is slightly above 42 when landing on top of the enemy, also check that player is falling downwards
-            if (isTouchingEnemyHead && player.airSpeed > 0 && attackAllowed) {
+            if (isTouchingEnemyHead && player.airSpeed > 0) {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
                 SoundLoader.playSound("/sounds/stomp.wav", 0.8);
-                attackAllowed = false;
             } else {
-                if (attackBox.intersects(player.hitbox) && !attackChecked && attackAllowed) {
+                if (attackBox.intersects(player.hitbox)) {
                     player.hitByEnemy(this);
-                    lastAttack = System.currentTimeMillis();
-                    attackChecked = true;
                 }
             }
         }

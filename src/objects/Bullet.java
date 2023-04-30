@@ -26,12 +26,6 @@ public class Bullet extends GameObject {
     private static final float BULLET_SPEED = 0.7f * Game.SCALE;
     private static final float BULLET_DEATH_SPEED = 1.1f * Game.SCALE;
 
-    // cooldown
-    private boolean canCollide;
-    private long lastCheck;
-    private static final int COLLISION_DELAY = 1000;
-
-
     public Bullet(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
         initHitbox(x, y + Y_OFF, HB_W, HB_H);
@@ -54,27 +48,21 @@ public class Bullet extends GameObject {
     }
 
     private void updateBulletCollision(Level level, Player player, Bullet b) {
-        canCollide = System.currentTimeMillis() - lastCheck >= COLLISION_DELAY;
-
-        if (hitbox.intersects(player.getHitbox())) {
+        if (!player.isHit() && hitbox.intersects(player.getHitbox())) {
             float playerBox = player.getHitbox().y + player.getHitbox().height;
             float bulletBox = hitbox.y + hitbox.height;
             float distBetweenBoxes = Math.abs(playerBox - bulletBox);
             float enemyHead = hitbox.height - 10 * Game.SCALE;
             boolean isOnTopOfBullet = distBetweenBoxes > enemyHead;
 
-            if (canCollide && !isHit) {
-                // BOUNCE ON BULLET
-                if (isOnTopOfBullet && player.getAirSpeed() > 0) {
-                    player.jumpOnEnemy();
-                    setHit(true);
-                    lastCheck = System.currentTimeMillis();
-                    SoundLoader.playSound("/sounds/stomp.wav", 0.8);
-                } else {
-                    // TAKE DAMAGE FROM BULLET
-                    player.hitByBullet(b);
-                    lastCheck = System.currentTimeMillis();
-                }
+            // BOUNCE ON BULLET
+            if (isOnTopOfBullet && player.getAirSpeed() > 0) {
+                player.jumpOnEnemy();
+                setHit(true);
+                SoundLoader.playSound("/sounds/stomp.wav", 0.8);
+            } else {
+                // TAKE DAMAGE FROM BULLET
+                player.hitByBullet(b);
             }
         } else if (isBulletHittingLevel(level)) {
             setActive(false);

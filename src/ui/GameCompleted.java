@@ -50,7 +50,6 @@ public class GameCompleted extends GameState {
 
 	public void keyPressed(KeyEvent e) {
 		if (game.isKeyNotAllowed()) {
-			System.out.println(e.getKeyCode());
 //			return;
 		}
 

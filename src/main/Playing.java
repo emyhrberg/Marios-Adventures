@@ -226,22 +226,19 @@ public class Playing extends GameState {
     }
 
     private void drawSky(Graphics g) {
-        g.drawImage(SKY,0,0, Game.GAME_WIDTH, Game.GAME_HEIGHT,null);
+        g.drawImage(SKY,0,0, Game.GAME_WIDTH, (int) (0.8f*Game.GAME_HEIGHT),null);
     }
 
     // ====== Background ======
 
     private void drawForest(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f)); // Set opacity to 0.5
         int x = (int) (-levelOffset * 0.17);
         int y = (int) (230 * Game.SCALE);
         int w = (int) (1024 / 2 * Game.SCALE);
-        int h = (int) (600 / 2 * Game.SCALE);
+        int h = (int) (1024 / 2 * Game.SCALE);
         for (int i = 0; i < 8; i++) {
             g.drawImage(FOREST, x + i * w, y, w, h, null);
         }
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 
     float bigX;

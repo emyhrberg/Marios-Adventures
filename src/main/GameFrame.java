@@ -25,7 +25,8 @@ public class GameFrame extends JFrame {
 		// check user screen size
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-		System.out.println(w+"x"+h);
+		System.out.println("User size: " + w + "x" + h);
+		System.out.println("Actual size: " + Game.GAME_WIDTH + "x" + Game.GAME_HEIGHT);
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

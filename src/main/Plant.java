@@ -15,7 +15,7 @@ public class Plant extends Enemy {
     // Position
     protected PlantAction plantAction               = IDLE;
     private static final float PLANT_SPEED          = 0.2f * Game.SCALE;
-    private static final float PLANT_TOP_POS        = 0.85f * Game.SCALE;
+    private static final float PLANT_TOP_POS        = 0.75f * Game.SCALE;
     private static final int PLANT_TOP_WAIT         = 1000;
     private static final int[] PLANT_BOTTOM_WAIT    = {4000,5000,6000};
     private static final Random RND                 = new Random();
@@ -23,10 +23,6 @@ public class Plant extends Enemy {
     private long lastTopPosition;
     private long lastBottomPosition;
     private int bottomWaitIndexBetweenZeroAndTwo;
-
-    // Attacking
-    private long lastAttack;
-    private static final int ATTACK_COOLDOWN = 1000;
 
     public Plant(float x, float y) {
         super(x, y, PLANT_WIDTH, PLANT_HEIGHT);
@@ -85,14 +81,11 @@ public class Plant extends Enemy {
     }
 
     private void updatePlantAttacking(Player player) {
-        boolean canPlantDealDamage = System.currentTimeMillis() >= lastAttack + ATTACK_COOLDOWN;
-
         attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * Game.SCALE;
         attackBox.y = hitbox.y;
 
-        if (attackBox.intersects(player.getHitbox()) && canPlantDealDamage) {
+        if (!player.isHit() && attackBox.intersects(player.getHitbox())) {
             player.hitByEnemy(this);
-            lastAttack = System.currentTimeMillis();
         }
     }
 

@@ -43,7 +43,7 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 0.8f * Game.SCALE;
-	private static final int START_HEALTH 				= 3;
+	private static final int START_HEALTH 				= 30;
 
 	// ====== Jumping ======
 	private boolean canJump = true;
@@ -108,7 +108,7 @@ public class Player extends Entity {
 		// Jump and boost
 		boolean maxJumpBoost = System.currentTimeMillis() <= JUMP_MAX_BOOST_TIME + lastJumpTime;
 		if (holdingSpace && airSpeed < 0 && maxJumpBoost) {
-			airSpeed -= GRAVITY*1.2;
+			airSpeed -= GRAVITY*1.4;
 		}
 
 		if (canJump && jumping) {

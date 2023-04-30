@@ -135,7 +135,7 @@ public class ObjectManager {
 
         for (Brick b : bricks)          b.update(player, level, b);
         for (Bullet b : bullets)        b.update(player, level, b);
-        for (Cannon c: cannons)         c.update(c);
+        for (Cannon c: cannons)         c.update();
         for (Coin c : coins)            c.update(player, c);
         for (HealthPowerup h : healths) h.update(player, level, h);
         for (Lava l: lava)              l.update(player, l);
@@ -162,7 +162,7 @@ public class ObjectManager {
             if (h.isActive()) {
                 float x = h.getHitbox().x - levelOffset;
                 float y = h.getHitbox().y;
-                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, HEALTH_SIZE, HEALTH_SIZE, null);
+                g.drawImage(POWERUP_HEALTH, (int) x, (int) y, (int) HEALTH_SIZE, (int) HEALTH_SIZE, null);
 
                 if (Game.DEBUG) {
                     h.drawHitbox(g, levelOffset);
@@ -286,7 +286,7 @@ public class ObjectManager {
                 if (c.isSparkle()) {
                     g.drawImage(sparkleImages[c.animationIndex],x,y,TILES_SIZE_DEFAULT,TILES_SIZE_DEFAULT,null);
                 } else {
-                    g.drawImage(coinImages[c.animationIndex],x,y, COIN_SIZE,COIN_SIZE,null);
+                    g.drawImage(coinImages[c.animationIndex],x,y, (int) COIN_SIZE, (int) COIN_SIZE, null);
                 }
 
                 if (Game.DEBUG) {

@@ -24,7 +24,7 @@ import static ui.Pause.isMuted;
  */
 public class Game implements Runnable {
 
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
 
     // ====== Game loop ======
     public static final int UPS         = 180;
@@ -37,11 +37,13 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE                   = 1.25f;
+    public static float SCALE                   = 1.5f;
     public static final int TILES_SIZE_DEFAULT  = 40;
     public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
-    public static final int TILES_IN_WIDTH      = 26;
-    public static final int TILES_IN_HEIGHT     = 14;
+    public static final int TILES_IN_WIDTH      = 32;
+    public static final int TILES_IN_HEIGHT     = 18;
+//    public static final int GAME_WIDTH          = 1920;
+//    public static final int GAME_HEIGHT         = 1080;
     public static final int GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
     public static final int GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
 
@@ -255,7 +257,8 @@ public class Game implements Runnable {
         // check user screen
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;
         int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-        System.out.println(w+"x"+h);
+        System.out.println("User size: " + w + "x" + h);
+        System.out.println("Actual size: " + GAME_WIDTH + "x" + GAME_HEIGHT);
 
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
@@ -265,7 +268,6 @@ public class Game implements Runnable {
         // set fullscreen on new frame
         frame.setUndecorated(true);
         frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(window);
-        SCALE = 2.0f;
         frame.add(gameComponent);
         frame.revalidate();
         frame.repaint();
@@ -280,7 +282,6 @@ public class Game implements Runnable {
         frame.dispose();
 
         // set windowed on new frame
-        SCALE = 1.0f;
         frame.setUndecorated(false);
         frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(null);
         frame.add(gameComponent);
