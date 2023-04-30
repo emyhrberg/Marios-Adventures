@@ -39,6 +39,7 @@ public class Level {
     private static final int CANNON = 5;
     private static final int BRICK = 6;
     private static final int FLAG = 7;
+    private static final int CANNON_FAST = 8;
 
     // ====== List of objects ======
     private final List<Coin> coins            = new ArrayList<>();
@@ -112,11 +113,13 @@ public class Level {
                 if (blue == PIPE)
                     pipes.add(new Pipe(x * TILES_SIZE, y * TILES_SIZE, PIPE_TYPE));
                 if (blue == CANNON)
-                    cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE));
+                    cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE, 3000));
                 if (blue == BRICK)
                     bricks.add(new Brick(x * TILES_SIZE, y * TILES_SIZE, BRICK_TYPE));
                 if (blue == FLAG)
                     flags.add(new Flag(x*TILES_SIZE, y*TILES_SIZE, FLAG_TYPE));
+                if (blue == CANNON_FAST)
+                    cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE, 1000));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);

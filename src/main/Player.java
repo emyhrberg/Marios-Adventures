@@ -226,7 +226,7 @@ public class Player extends Entity {
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
 		drawHitbox(g, levelOffset);
-		drawAttackBox(g, levelOffset);
+//		drawAttackBox(g, levelOffset);
 
 		if (Game.DEBUG) {
 			drawHitbox(g, levelOffset);

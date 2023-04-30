@@ -31,7 +31,7 @@ public class Bullet extends GameObject {
     public void update(Player player, Level level, Bullet b) {
         if (b.isActive()) {
             updateAnimationTick();
-            updateBulletCollision(level, player, b);
+            updatePlayerBulletCollision(level, player, b);
             updateBulletPos();
         }
     }
@@ -44,8 +44,9 @@ public class Bullet extends GameObject {
         }
     }
 
-    private void updateBulletCollision(Level level, Player player, Bullet b) {
-        if (!player.isHit() && hitbox.intersects(player.getHitbox())) {
+    private void updatePlayerBulletCollision(Level level, Player player, Bullet b) {
+        // check the player isn't hit, the bullet isn't hit, and that player and bullet are colliding
+        if (!player.isHit() && !isHit && hitbox.intersects(player.getHitbox())) {
             float playerBox = player.getHitbox().y + player.getHitbox().height;
             float bulletBox = hitbox.y + hitbox.height;
             float distBetweenBoxes = Math.abs(playerBox - bulletBox);

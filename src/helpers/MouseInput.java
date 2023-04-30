@@ -39,10 +39,30 @@ public class MouseInput extends MouseAdapter {
     }
 
     public void mouseReleased(final MouseEvent e) {
-        game.getMenu().mouseReleased(e);
+        switch (game.getGameState()) {
+            case MENU:
+                game.getMenu().mouseReleased(e);
+                break;
+            case PAUSED:
+                game.getPauseState().mouseReleased(e);
+                break;
+            default:
+                // Handle the default case here
+                break;
+        }
     }
 
     public void mouseMoved(MouseEvent e) {
-        game.getMenu().mouseMoved(e);
+        switch (game.getGameState()) {
+            case MENU:
+                game.getMenu().mouseMoved(e);
+                break;
+            case PAUSED:
+                game.getPauseState().mouseMoved(e);
+                break;
+            default:
+                // Handle the default case here
+                break;
+        }
     }
 }

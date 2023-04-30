@@ -16,21 +16,9 @@ import java.awt.image.BufferedImage;
  */
 public class Menu extends GameState {
 
-    // ====== Images ======
     private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("/ui/menu-bg.jpg");
     private static final BufferedImage TITLE_IMAGE        = ImageLoader.loadImage("/ui/menu-title.png");
-
-    // ====== Title Position ======
-    private static final int TITLE_WIDTH    = (int) (1280 / 2 * Game.SCALE);
-    private static final int TITLE_HEIGHT   = (int) (720 / 2 * Game.SCALE);
-    private static final int TITLE_X        = Game.GAME_WIDTH / 2 - TITLE_WIDTH / 2;
-    private static final int TITLE_Y        = (int) (40 * Game.SCALE);
-
-    // ====== Buttons ======
-    private static final int START_BUTTON_Y = (int) (300 * Game.SCALE);
-    private static final int QUIT_BUTTON_Y  = (int) (370 * Game.SCALE);
-    private static final int BUTTON_COUNT   = 2;
-    private final MenuButton[] buttons      = new MenuButton[BUTTON_COUNT];
+    private final MenuButton[] buttons                    = new MenuButton[2];
 
     // ====== Constructor ======
     public Menu(Game game) {
@@ -39,13 +27,13 @@ public class Menu extends GameState {
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(0, START_BUTTON_Y);
-        buttons[1] = new MenuButton(1, QUIT_BUTTON_Y);
+        int startY = (int) (300 * Game.SCALE);
+        int quitY = (int) (380 * Game.SCALE);
+
+        buttons[0] = new MenuButton(0, startY);
+        buttons[1] = new MenuButton(1, quitY);
     }
 
-    /**
-     * Updates the buttons in the menu by iterating through them and calling the update function
-     */
     public void update() {
         for (MenuButton button : buttons)
             button.update();
@@ -56,7 +44,11 @@ public class Menu extends GameState {
         g.drawImage(BACKGROUND_IMAGE, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
 
         // Draw bg title
-        g.drawImage(TITLE_IMAGE, TITLE_X, TITLE_Y, TITLE_WIDTH, TITLE_HEIGHT, null);
+        int w = (int) (1280 / 2 * Game.SCALE);
+        int h = (int) (720 / 2 * Game.SCALE);
+        int y = (int) (40 * Game.SCALE);
+        int x = Game.GAME_WIDTH / 2 - w / 2;
+        g.drawImage(TITLE_IMAGE, x, y, w, h, null);
 
         // Draw buttons
         for (MenuButton button : buttons)
@@ -75,28 +67,27 @@ public class Menu extends GameState {
 
     public void mouseReleased(MouseEvent e) {
         for (MenuButton b : buttons)
-            if (isButtonInsideBounds(e, b)) {
-                if (b.isMousePressButton()) {
-                    if (b.getButtonIndex() == 0) {
-                        game.setGameState(constants.GameState.PLAYING);
-                    } else if (b.getButtonIndex() == 1) {
-                        System.exit(0);
-                    }
+            if (isButtonInsideBounds(e, b) && b.isMousePressButton()) {
+
+                // do stuff depending on button pressed
+                if (b.getButtonIndex() == 0) {
+                    game.setGameState(constants.GameState.PLAYING);
+                } else if (b.getButtonIndex() == 1) {
+                    System.exit(0);
                 }
                 break;
             }
-        resetButtons();
-    }
 
-    private void resetButtons() {
-        for (MenuButton button : buttons)
-            button.resetMouseAction();
+        // Reset buttons
+        for (MenuButton button : buttons) {
+            button.setMouseOverButton(false);
+            button.setMousePressButton(false);
+        }
     }
 
     public void mouseMoved(MouseEvent e) {
-        for (MenuButton button : buttons) {
+        for (MenuButton button : buttons)
             button.setMouseOverButton(isButtonInsideBounds(e, button));
-        }
     }
 
     public void keyPressed(final KeyEvent e) {
@@ -104,7 +95,7 @@ public class Menu extends GameState {
             case KeyEvent.VK_ENTER:
                 game.setGameState(constants.GameState.PLAYING);
                 break;
-            case KeyEvent.VK_ESCAPE :
+            case KeyEvent.VK_ESCAPE:
                 System.exit(0);
                 break;
         }

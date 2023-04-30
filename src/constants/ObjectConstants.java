@@ -20,7 +20,7 @@ public class ObjectConstants {
     }
 
     public static int getSpriteAmount(ObjectType objectType) {
-        int result = 1;
+        int result = 0;
         switch (objectType) {
             case PLATFORM_TYPE:
             case LAVA_TYPE:

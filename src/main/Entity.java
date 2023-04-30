@@ -27,8 +27,9 @@ public class Entity {
 	protected final float y;
 	protected final float width;
 	protected final float height;
-	protected float xDirection, xSpeed;
-	protected Direction direction = STILL;
+	public static float xDirection;
+	public static float xSpeed;
+	public static Direction direction = STILL;
 
 	// ====== Health =======
 	protected int maxHealth, health;

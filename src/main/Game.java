@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static constants.GameState.*;
-import static ui.Pause.isMuted;
+import static ui.Paused.isMuted;
 
 /**
  * This class implements a runnable Game
@@ -37,7 +37,7 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE                   = 1.0f;
+    public static float SCALE                   = 1.5f;
     public static final int TILES_SIZE_DEFAULT  = 40;
     public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
     public static final int TILES_IN_WIDTH      = 32;
@@ -55,7 +55,7 @@ public class Game implements Runnable {
     // ====== Game States ======
     private final Menu menu                     = new Menu(this);
     private final Playing playing               = new Playing(this);
-    private final Pause pause                   = new Pause(this);
+    private final Paused paused                 = new Paused(this);
     private final LevelCompleted levelCompleted = new LevelCompleted(this);
     private final GameCompleted gameCompleted   = new GameCompleted(this);
     private final GameOver gameOver             = new GameOver(this);
@@ -89,7 +89,7 @@ public class Game implements Runnable {
 //            gameState = PLAYING;
 //            menuClip = SoundLoader.playSound("/sounds/menu.wav");
             isMuted = true;
-            gameState = PLAYING;
+            gameState = MENU;
         }
 
 
@@ -105,6 +105,9 @@ public class Game implements Runnable {
                 break;
             case PLAYING:
                 playing.update();
+                break;
+            case PAUSED:
+                paused.update();
                 break;
             case LEVEL_COMPLETED:
             case GAME_COMPLETED:
@@ -140,7 +143,7 @@ public class Game implements Runnable {
                 break;
             case PAUSED:
                 playing.drawBlur(g);
-                pause.drawPause(g);
+                paused.draw(g);
                 break;
             case GAME_COMPLETED:
                 playing.draw(g);
@@ -360,8 +363,8 @@ public class Game implements Runnable {
         return playing;
     }
 
-    public Pause getPauseState() {
-        return pause;
+    public Paused getPauseState() {
+        return paused;
     }
 
     public LevelCompleted getLevelCompletedState() {

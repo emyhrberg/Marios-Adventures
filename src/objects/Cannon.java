@@ -19,12 +19,13 @@ public class Cannon extends GameObject {
 
     // Properties
     public static final List<Bullet> bullets = new ArrayList<>();
-    private static final int CANNON_DELAY = 3000;
     private long lastCannonShot;
     private boolean canShoot;
+    private final int cooldown;
 
-    public Cannon(int x, int y, ObjectType objectType) {
+    public Cannon(int x, int y, ObjectType objectType, int cooldown) {
         super(x, y, objectType);
+        this.cooldown = cooldown;
         initHitbox(x - X_OFF * Game.SCALE, y - Y_OFF * Game.SCALE, CANNON_W, CANNON_H);
     }
 
@@ -34,7 +35,7 @@ public class Cannon extends GameObject {
     }
 
     private void updateShootCooldown() {
-        canShoot = System.currentTimeMillis() >= lastCannonShot + CANNON_DELAY;
+        canShoot = System.currentTimeMillis() >= lastCannonShot + cooldown;
 
         if (canShoot) {
             updateCannonAnimation();

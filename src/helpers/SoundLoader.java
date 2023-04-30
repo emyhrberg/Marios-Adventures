@@ -5,7 +5,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static ui.Pause.isMuted;
+import static ui.Paused.isMuted;
 
 public class SoundLoader {
 
