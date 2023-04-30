@@ -37,15 +37,13 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE                   = 1.5f;
-    public static final int TILES_SIZE_DEFAULT  = 40;
-    public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
-    public static final int TILES_IN_WIDTH      = 32;
-    public static final int TILES_IN_HEIGHT     = 18;
-//    public static final int GAME_WIDTH          = 1920;
-//    public static final int GAME_HEIGHT         = 1080;
-    public static final int GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
-    public static final int GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
+    public static float SCALE             = 1.0f;
+    public static int TILES_SIZE_DEFAULT  = 40;
+    public static int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
+    public static int TILES_IN_WIDTH      = 32;
+    public static int TILES_IN_HEIGHT     = 18;
+    public static int GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
+    public static int GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
 
     // ====== Game Variables ======
     private final GameComponent gameComponent;
@@ -257,8 +255,9 @@ public class Game implements Runnable {
         // check user screen
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;
         int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-        System.out.println("User size: " + w + "x" + h);
-        System.out.println("Actual size: " + GAME_WIDTH + "x" + GAME_HEIGHT);
+        if (w == 1920) {
+            SCALE = 1.5f;
+        }
 
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
@@ -276,6 +275,14 @@ public class Game implements Runnable {
     }
 
     private void goWindowed() {
+        // check user screen
+        int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+        if (w == 1920) {
+            SCALE = 1.0f;
+            TILES_SIZE_DEFAULT -= 1;
+        }
+
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
         JFrame frame = (JFrame) window;
@@ -331,10 +338,6 @@ public class Game implements Runnable {
             isEnterPressed = false;
             altEnter = false;
         }
-    }
-
-    public static float SCL() {
-        return SCALE;
     }
 
     // ====== Getters && Setters ======

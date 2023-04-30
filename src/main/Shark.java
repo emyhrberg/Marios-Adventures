@@ -71,8 +71,6 @@ public class Shark extends Enemy {
     }
 
     private void updateRunning(Level level, Player player) {
-        checkCollisionWithPlayer(player);
-
         // ====== Start falling on spawn ======
         if (isEntityInAir(hitbox, level))
             inAir = true;
@@ -171,18 +169,14 @@ public class Shark extends Enemy {
     // ====== Shark Attacking ======
 
     private void updateAttacking(Player player) {
-        // Do not attack on the first animation index
-        if (animationIndex == 0)
-            attackChecked = false;
-
         // Only deal damage on the last animation index
         final int attackIndex = 4;
-        if (animationIndex == attackIndex && !player.isHit() && attackBox.intersects(player.hitbox))
+        if (animationIndex == attackIndex && !player.isHit() && attackbox.intersects(player.hitbox))
             player.hitByEnemy(this);
     }
 
     private void checkCollisionWithPlayer(Player player) {
-        if (!player.isHit() && hitbox.intersects(player.getHitbox()) ) {
+        if (hitbox.intersects(player.getHitbox())) {
             float playerHitbox = player.hitbox.y + player.hitbox.height;
             float enemyHitbox = hitbox.y + hitbox.height;
             float distBetweenPlayerAndEnemy = Math.abs(playerHitbox - enemyHitbox);
@@ -194,10 +188,8 @@ public class Shark extends Enemy {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
                 SoundLoader.playSound("/sounds/stomp.wav", 0.8);
-            } else {
-                if (attackBox.intersects(player.hitbox)) {
-                    player.hitByEnemy(this);
-                }
+            } else if (attackbox.intersects(player.hitbox) && !player.hit) {
+                player.hitByEnemy(this);
             }
         }
     }

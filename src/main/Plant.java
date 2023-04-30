@@ -81,10 +81,10 @@ public class Plant extends Enemy {
     }
 
     private void updatePlantAttacking(Player player) {
-        attackBox.x = hitbox.x - TILES_SIZE / 2f + 3 * Game.SCALE;
-        attackBox.y = hitbox.y;
+        attackbox.x = hitbox.x - TILES_SIZE / 2f + 3 * Game.SCALE;
+        attackbox.y = hitbox.y;
 
-        if (!player.isHit() && attackBox.intersects(player.getHitbox())) {
+        if (!player.isHit() && attackbox.intersects(player.getHitbox())) {
             player.hitByEnemy(this);
         }
     }

@@ -9,29 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns.">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sprites/cannon.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sprites/cannon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sprites/health-powerup.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sprites/health-powerup.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sprites/health-powerup_backup.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/forest.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/forest.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/game.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/game.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/over.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/over.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/a.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/_fullscreenTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,14 +175,7 @@
       <workItem from="1682778056767" duration="256000" />
       <workItem from="1682778328191" duration="792000" />
       <workItem from="1682779651435" duration="9138000" />
-      <workItem from="1682799984674" duration="9972000" />
-    </task>
-    <task id="LOCAL-00036" summary="Added brick break explosion (not great)">
-      <created>1682349403879</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1682349403879</updated>
+      <workItem from="1682799984674" duration="13079000" />
     </task>
     <task id="LOCAL-00037" summary="Working on platform bug, works on 2.png but not on 1.png">
       <created>1682349770534</created>
@@ -531,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682807071448</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes">
+      <created>1682813004753</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1682813004753</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +541,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Game playtested, looks good :)" />
     <MESSAGE value="Added gameover fade" />
     <MESSAGE value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
     <MESSAGE value="Added jar" />
@@ -577,7 +565,8 @@
     <MESSAGE value="Another test" />
     <MESSAGE value="Marios Adventures release 1.2.3!" />
     <MESSAGE value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
+    <MESSAGE value="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

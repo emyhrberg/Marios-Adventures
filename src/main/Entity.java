@@ -40,7 +40,7 @@ public class Entity {
 	protected Direction pushXDir;
 
 	// ====== Hitboxes ======
-	protected Rectangle2D.Float hitbox, attackBox;
+	protected Rectangle2D.Float hitbox, attackbox;
 
 	// ====== Constructor ======
 	protected Entity(float x, float y, float width, float height) {
@@ -292,7 +292,7 @@ public class Entity {
 	}
 
 	protected void initAttackBox(float x, float y, float width, float height) {
-		attackBox = new Rectangle2D.Float(x, y, width, height);
+		attackbox = new Rectangle2D.Float(x, y, width, height);
 	}
 
 	public void drawHitbox(Graphics g, int levelOffset) {
@@ -303,34 +303,34 @@ public class Entity {
 		// draw stroke
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setStroke(new BasicStroke(3)); // set stroke width
-		g2d.setColor(Color.BLACK); // set stroke color
+		g2d.setColor(Color.YELLOW); // set stroke color
 		g2d.drawRect((int) hitbox.x - levelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height); // draw the rectangle outline
 	}
 
 	protected void drawAttackBox(Graphics g, int levelOffset) {
 		g.setColor(new Color(255, 0, 255, 80));
-		g.fillRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+		g.fillRect((int) attackbox.x - levelOffset, (int) attackbox.y, (int) attackbox.width, (int) attackbox.height);
 
 		// draw stroke
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setStroke(new BasicStroke(3)); // set stroke width
 		g2d.setColor(Color.BLACK); // set stroke color
-		g2d.drawRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height); // draw the rectangle outline
+		g2d.drawRect((int) attackbox.x - levelOffset, (int) attackbox.y, (int) attackbox.width, (int) attackbox.height); // draw the rectangle outline
 	}
 
 	protected void updateAttackbox() {
 		// Attackbox Y
-		attackBox.y = hitbox.y;
+		attackbox.y = hitbox.y;
 
 		if (direction == RIGHT)
-			attackBox.x = hitbox.x;
+			attackbox.x = hitbox.x;
 		if (direction == LEFT)
-			attackBox.x = hitbox.x + hitbox.width - attackBox.width;
+			attackbox.x = hitbox.x + hitbox.width - attackbox.width;
 		if (hit)
 			if (pushXDir == LEFT)
-				attackBox.x = hitbox.x;
+				attackbox.x = hitbox.x;
 			else
-				attackBox.x = hitbox.x + hitbox.width - attackBox.width;
+				attackbox.x = hitbox.x + hitbox.width - attackbox.width;
 	}
 
 	// ====== Initializers =======

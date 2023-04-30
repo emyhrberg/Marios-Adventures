@@ -81,7 +81,7 @@ public class EnemyManager {
 
 	public void attackEnemyIfHit(Player player) {
 		for (Shark s : sharks) {
-			if (s.isEnemyAlive() && player.attackBox.intersects(s.hitbox)) {
+			if (s.isEnemyAlive() && player.attackbox.intersects(s.hitbox)) {
 				s.reduceEnemyHealth(player);
 				SoundLoader.playSound("/sounds/ouchenemy.wav", 0.7);
 			}
