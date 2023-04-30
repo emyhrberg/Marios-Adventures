@@ -1,4 +1,4 @@
-# Gitignore does not push certain files or folders to git
+# Gitignore does not push some files or folders to git
 # Folders /folder
 # Files file.txt
 
