@@ -42,6 +42,7 @@ public class EnemyManager {
 	private List<Shark> sharks = new ArrayList<>();
 	private List<Plant> plants = new ArrayList<>();
 
+
 	// ====== Constructor ======
 
 	public EnemyManager() {
