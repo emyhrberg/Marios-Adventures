@@ -33,7 +33,7 @@ public class Shark extends Enemy {
     protected static final float ATTACK_DISTANCE    = (float) (Game.TILES_SIZE);
 
     public Shark(float x, float y) {
-        super(x, y, SHARK_WIDTH, SHARK_HEIGHT);
+        super(x, y, SHARK_WIDTH * Game.SCALE, SHARK_HEIGHT * Game.SCALE);
 
         // Init hitboxes
         initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);

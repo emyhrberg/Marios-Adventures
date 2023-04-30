@@ -540,6 +540,14 @@ public class Playing extends GameState {
 
     // ====== Getters ======
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public ObjectManager getObjectManager() {
+        return objectManager;
+    }
+
     public EnemyManager getEnemyManager() {
         return enemyManager;
     }

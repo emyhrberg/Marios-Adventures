@@ -32,10 +32,10 @@ public class Player extends Entity {
 	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/entities/player.png");
 	public static final int PLAYER_WIDTH 				= 50;
 	public static final int PLAYER_HEIGHT 				= 50;
-	private static final int PLAYER_X_OFF 				= (int) (14 * Game.SCALE);
-	private static final int PLAYER_Y_OFF 				= (int) (18 * Game.SCALE);
-	private static final int HITBOX_WIDTH 				= (int) (30 * Game.SCALE);
-	private static final int HITBOX_HEIGHT 				= (int) (39 * Game.SCALE);
+	private static final int PLAYER_X_OFF 				= 14;
+	private static final int PLAYER_Y_OFF 				= 18;
+	private static final int HITBOX_WIDTH 				= 30;
+	private static final int HITBOX_HEIGHT 				= 39;
 	private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
 	private static final int ATTACKBOX_HEIGHT 			= HITBOX_HEIGHT;
 	private int imageFlipX, imageFlipWidth = 1;
@@ -67,7 +67,7 @@ public class Player extends Entity {
 		setDirection(STILL);
 		initSpeed(SPEED);
 		initMaxHealth(START_HEALTH);
-		initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
+		initHitbox(x, y, HITBOX_WIDTH * Game.SCALE, HITBOX_HEIGHT * Game.SCALE);
 		initAttackBox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 		initImages();
 	}
@@ -207,6 +207,10 @@ public class Player extends Entity {
 		setInLava(false);
 	}
 
+	public void scaleUp() {
+		hitbox.x += 100;
+	}
+
 	// ====== Draw and Animations ======
 
 	public void draw(Graphics g, int levelOffset) {
@@ -224,6 +228,9 @@ public class Player extends Entity {
 
 		// Draw the image according to the player action and loop through the animation index to show all the images
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
+
+		drawHitbox(g, levelOffset);
+		drawAttackBox(g, levelOffset);
 
 		if (Game.DEBUG) {
 			drawHitbox(g, levelOffset);

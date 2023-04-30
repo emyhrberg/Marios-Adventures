@@ -21,12 +21,12 @@ public class EnemyManager {
 	private static final int IMAGES_IN_ROW 				= 7;
 	private final BufferedImage[][] sharkImages			= new BufferedImage[ROWS][IMAGES_IN_ROW];
 	private static final BufferedImage SHARK_IMAGE 		= ImageLoader.loadImage("/entities/shark.png");
-	private static final int SHARK_X_OFFSET 			= (int) (12 * Game.SCALE);
-	private static final int SHARK_Y_OFFSET 			= (int) (10 * Game.SCALE);
+	private static final int SHARK_X_OFFSET 			= 12;
+	private static final int SHARK_Y_OFFSET 			= 10;
 	public static final int SHARK_WIDTH_DEFAULT        	= 34;
 	public static final int SHARK_HEIGHT_DEFAULT       	= 30;
-	public static final int SHARK_WIDTH                	= (int) (SHARK_WIDTH_DEFAULT * 1.5 * Game.SCALE);
-	public static final int SHARK_HEIGHT              	= (int) (SHARK_HEIGHT_DEFAULT * 1.5 * Game.SCALE);
+	public static final int SHARK_WIDTH                	= (int) (SHARK_WIDTH_DEFAULT * 1.5);
+	public static final int SHARK_HEIGHT              	= (int) (SHARK_HEIGHT_DEFAULT * 1.5);
 
 	// ====== Plants =======
 	private static final BufferedImage PLANT_IMAGE 		= ImageLoader.loadImage("/entities/plant.png");
@@ -34,8 +34,8 @@ public class EnemyManager {
 	private final BufferedImage[] plantImages			= new BufferedImage[PLANT_ROWS];
 	public static final int PLANT_WIDTH_DEFAULT			= 16;
 	public static final int PLANT_HEIGHT_DEFAULT		= 32;
-	public static final int PLANT_WIDTH					= (int) (PLANT_WIDTH_DEFAULT *2* Game.SCALE);
-	public static final int PLANT_HEIGHT				= (int) (PLANT_HEIGHT_DEFAULT *2* Game.SCALE);
+	public static final int PLANT_WIDTH					= PLANT_WIDTH_DEFAULT * 2;
+	public static final int PLANT_HEIGHT				= PLANT_HEIGHT_DEFAULT * 2;
 	public static final int PLANT_X_OFFSET				= PLANT_WIDTH / 2;
 
 	// ====== Game values ======
@@ -93,6 +93,10 @@ public class EnemyManager {
 			s.resetEnemy();
 	}
 
+	public void scaleUp() {
+
+	}
+
 	// ====== Animations ======
 
 	public void draw(Graphics g, int levelOffset) {
@@ -103,9 +107,9 @@ public class EnemyManager {
 	private void drawSharks(Graphics g, int levelOffset) {
 		for (Shark s : sharks)
 			if (s.isEnemyAlive()) {
-				float x = s.getHitbox().x - levelOffset - SHARK_X_OFFSET + s.getImageFlipX();
-				float y = s.getHitbox().y - SHARK_Y_OFFSET;
-				float w = SHARK_WIDTH * s.getImageFlipWidth();
+				float x = s.getHitbox().x - levelOffset - SHARK_X_OFFSET * Game.SCALE + s.getImageFlipX();
+				float y = s.getHitbox().y - SHARK_Y_OFFSET * Game.SCALE;
+				float w = SHARK_WIDTH * Game.SCALE * s.getImageFlipWidth();
 
 				// Get the proper image representing the right action
 				final BufferedImage img = sharkImages[s.sharkAction.ordinal()][s.animationIndex];
@@ -122,7 +126,7 @@ public class EnemyManager {
 
 	private void drawPlants(Graphics g, int levelOffset) {
 		for (Plant p : plants) {
-			float x = p.getHitbox().x - levelOffset - PLANT_X_OFFSET;
+			float x = p.getHitbox().x - levelOffset - PLANT_X_OFFSET * Game.SCALE;
 			float y = p.getHitbox().y;
 
 			// Get the proper image representing the right action

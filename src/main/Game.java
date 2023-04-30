@@ -251,13 +251,20 @@ public class Game implements Runnable {
 
     ///////////////// FULL SCREEN ////////////////
 
+    private void scaleUp() {
+        SCALE = 1.5f;
+
+        // Update tiles
+        TILES_SIZE = (int) (TILES_SIZE_DEFAULT * SCALE);
+
+        // update player
+        playing.getPlayer().scaleUp();
+        playing.getObjectManager().scaleUp();
+    }
+
     private void goFullScreen() {
-        // check user screen
-        int w = Toolkit.getDefaultToolkit().getScreenSize().width;
-        int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-        if (w == 1920) {
-            SCALE = 1.5f;
-        }
+        // scale
+        scaleUp();
 
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
@@ -275,13 +282,8 @@ public class Game implements Runnable {
     }
 
     private void goWindowed() {
-        // check user screen
-        int w = Toolkit.getDefaultToolkit().getScreenSize().width;
-        int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-        if (w == 1920) {
-            SCALE = 1.0f;
-            TILES_SIZE_DEFAULT -= 1;
-        }
+        // scale
+
 
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
@@ -303,11 +305,26 @@ public class Game implements Runnable {
     private boolean isEnterPressed = false;
     private boolean altEnter = false;
     private boolean fullScreen = false;
+    private boolean f;
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         int alt = KeyEvent.VK_ALT;
         int enter = KeyEvent.VK_ENTER;
+
+        // temp
+        if (key == KeyEvent.VK_F) {
+            f = true;
+        }
+        if (f) {
+            fullScreen = !fullScreen;
+            if (fullScreen) {
+                goFullScreen();
+            } else {
+                goWindowed();
+            }
+            f = false;
+        }
 
         if (key == alt) {
             isAltPressed = true;

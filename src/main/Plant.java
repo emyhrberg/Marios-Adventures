@@ -6,8 +6,6 @@ import constants.EnemyConstants.PlantAction;
 import java.util.Random;
 
 import static constants.EnemyConstants.PlantAction.*;
-import static main.EnemyManager.PLANT_HEIGHT;
-import static main.EnemyManager.PLANT_WIDTH;
 import static main.Game.TILES_SIZE;
 
 public class Plant extends Enemy {
@@ -25,9 +23,9 @@ public class Plant extends Enemy {
     private int bottomWaitIndexBetweenZeroAndTwo;
 
     public Plant(float x, float y) {
-        super(x, y, PLANT_WIDTH, PLANT_HEIGHT);
-        initHitbox(x, y, PLANT_WIDTH, PLANT_HEIGHT);
-        initAttackBox(x, y, PLANT_WIDTH, PLANT_HEIGHT);
+        super(x, y, EnemyManager.PLANT_WIDTH * Game.SCALE, EnemyManager.PLANT_HEIGHT);
+        initHitbox(x, y, EnemyManager.PLANT_WIDTH * Game.SCALE, EnemyManager.PLANT_HEIGHT);
+        initAttackBox(x, y, EnemyManager.PLANT_WIDTH * Game.SCALE, EnemyManager.PLANT_HEIGHT);
     }
 
     public void update(Player player) {

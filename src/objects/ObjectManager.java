@@ -310,12 +310,18 @@ public class ObjectManager {
     }
 
     public void resetAllObjects() {
-        for (Question q : questions) q.resetObject();
-        for (Coin c : coins) c.resetObject();
-        for (Brick b : bricks) b.resetObject();
+        for (Question q : questions)    q.resetObject();
+        for (Coin c : coins)            c.resetObject();
+        for (Brick b : bricks)          b.resetObject();
 
         bullets.clear();
         healths.clear();
+    }
+
+    public void scaleUp() {
+        for (Question q : questions)    q.initHitbox(q.hitbox.x * Game.SCALE, q.hitbox.y * Game.SCALE, q.hitbox.width * Game.SCALE, q.hitbox.height * Game.SCALE);
+        for (Coin c : coins)            c.initHitbox(c.hitbox.x * Game.SCALE, c.hitbox.y * Game.SCALE, c.hitbox.width * Game.SCALE, c.hitbox.height * Game.SCALE);
+        for (Brick b : bricks)          b.initHitbox(b.hitbox.x * Game.SCALE, b.hitbox.y * Game.SCALE, b.hitbox.width * Game.SCALE, b.hitbox.height * Game.SCALE);
     }
 
 }

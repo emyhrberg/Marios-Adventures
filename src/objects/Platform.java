@@ -105,12 +105,18 @@ public class Platform extends GameObject {
 
         int distanceToTile = 0;
 
+        if (tileX <= 0)
+            return false;
+
         return solidTiles.contains(level.getLevelData()[tileY][tileX - distanceToTile]);
     }
 
     private boolean hitSolidTileRight(Level level) {
         int tileX = (int) (hitbox.x / TILES_SIZE);
         int tileY = (int) (hitbox.y / TILES_SIZE);
+
+        if (tileX <= 0)
+            return false;
 
         int distanceToTile = 0;
 
