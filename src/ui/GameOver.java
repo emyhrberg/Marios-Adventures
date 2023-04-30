@@ -18,15 +18,15 @@ public class GameOver extends GameState {
 
     private static final BufferedImage GAME = ImageLoader.loadImage("/ui/game.png");
     private static final BufferedImage OVER = ImageLoader.loadImage("/ui/over.png");
-    private static final int W = 408;
-    private static final int H = 128;
+    private static final int W = 300;
+    private static final int H = 100;
     private static final int Y = GAME_HEIGHT / 2 - H / 2;
     private static final int GAME_X_INIT = -W;
     private static final int OVER_X_INIT = GAME_WIDTH;
     private int gameX = GAME_X_INIT;
     private int overX = OVER_X_INIT;
     private static final float SPEED = (int) (10 * Game.SCALE);
-    private static final int DIST = (int) (575 * Game.SCALE);
+    private static final int DIST = (int) (670 * Game.SCALE);
     private static final int GAME_MAX_DIST = GAME_X_INIT + DIST;
     private static final int OVER_MAX_DIST = OVER_X_INIT - DIST;
     private long firstCheckTime;

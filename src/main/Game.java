@@ -72,7 +72,7 @@ public class Game implements Runnable {
     private boolean allowDraw;
     private long lastStateCheck;
     private boolean isFirstTime = false;
-    private static final int DISALLOW_DRAW_WAIT = 2300;
+    private static final int DISALLOW_DRAW_WAIT = 300;
     private static final int DISALLOW_KEY_WAIT  = 2300;
     private static final int GO_PLAYING_WAIT    = 8500;
 
@@ -86,7 +86,7 @@ public class Game implements Runnable {
             gameState = PLAYING;
         } else {
             // Set game state on launch
-            gameState = MENU;
+            gameState = PLAYING;
             menuClip = SoundLoader.playSound("/sounds/menu.wav");
         }
 

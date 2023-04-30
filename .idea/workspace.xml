@@ -9,18 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="1.2.5">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/ui/game.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/game.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/ui/over.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/over.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/pause.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,11 +63,11 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.import",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -175,14 +173,7 @@
       <workItem from="1682778056767" duration="256000" />
       <workItem from="1682778328191" duration="792000" />
       <workItem from="1682779651435" duration="9138000" />
-      <workItem from="1682799984674" duration="13079000" />
-    </task>
-    <task id="LOCAL-00037" summary="Working on platform bug, works on 2.png but not on 1.png">
-      <created>1682349770534</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1682349770534</updated>
+      <workItem from="1682799984674" duration="14082000" />
     </task>
     <task id="LOCAL-00038" summary="Fixed platforms! Refactoring ObjectManager code">
       <created>1682355355433</created>
@@ -520,7 +511,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682813004753</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="1.2.5">
+      <created>1682816054056</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1682816054056</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +539,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added gameover fade" />
     <MESSAGE value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
     <MESSAGE value="Added jar" />
     <MESSAGE value="Fixed reset timer and coin count" />
@@ -566,7 +563,8 @@
     <MESSAGE value="Marios Adventures release 1.2.3!" />
     <MESSAGE value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
     <MESSAGE value="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fullscreen looks good in 1920x1080!&#10;Health-spawns fixed!&#10;Bullet-spawns fixed!&#10;Todo: Make game look good in different screen sizes" />
+    <MESSAGE value="1.2.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.2.5" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
