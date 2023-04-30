@@ -60,7 +60,7 @@ public class Enemy extends Entity {
 
     public float getImageFlipX() {
         if (direction == Direction.RIGHT)
-            return width;
+            return width * 1.5f;
         else
             return 0;
     }

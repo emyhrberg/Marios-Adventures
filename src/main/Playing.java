@@ -27,7 +27,7 @@ import static objects.Coin.coinCount;
 public class Playing extends GameState {
 
     // ====== Variables ======
-    private static final float PLAYER_SCALE = 1.33f * Game.SCALE;
+    private static final float PLAYER_SCALE = 1.33f;
     private final Player player;
     private Point spawnPoint;
     private int levelOffset;
@@ -67,7 +67,7 @@ public class Playing extends GameState {
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(PLAYER_WIDTH * PLAYER_SCALE, PLAYER_HEIGHT * PLAYER_SCALE, game);
+        player          = new Player(PLAYER_WIDTH * PLAYER_SCALE * Game.SCALE, PLAYER_HEIGHT * PLAYER_SCALE * Game.SCALE, game);
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
@@ -110,7 +110,11 @@ public class Playing extends GameState {
     }
 
     private void updatePlayerOutsideLevel() {
-        if (player.getHitbox().y - player.getHitbox().height * 2 >= Game.GAME_HEIGHT)
+        int playerY = (int) player.hitbox.y / Game.TILES_SIZE;
+        int bottomY = Game.TILES_IN_HEIGHT;
+        boolean isPlayerBelowLevel = playerY >= bottomY + 3;
+
+        if (isPlayerBelowLevel)
             game.setGameState(GAME_OVER);
     }
 

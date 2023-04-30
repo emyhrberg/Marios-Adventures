@@ -23,9 +23,9 @@ public class Plant extends Enemy {
     private int bottomWaitIndexBetweenZeroAndTwo;
 
     public Plant(float x, float y) {
-        super(x, y, EnemyManager.PLANT_WIDTH * Game.SCALE, EnemyManager.PLANT_HEIGHT);
-        initHitbox(x, y, EnemyManager.PLANT_WIDTH * Game.SCALE, EnemyManager.PLANT_HEIGHT);
-        initAttackBox(x, y, EnemyManager.PLANT_WIDTH * Game.SCALE, EnemyManager.PLANT_HEIGHT);
+        super(x, y, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
+        initHitbox(x, y, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
+        initAttackBox(x, y, EnemyManager.PLANT_W * Game.SCALE, EnemyManager.PLANT_H);
     }
 
     public void update(Player player) {

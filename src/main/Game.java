@@ -24,7 +24,7 @@ import static ui.Pause.isMuted;
  */
 public class Game implements Runnable {
 
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
 
     // ====== Game loop ======
     public static final int UPS         = 180;
@@ -252,7 +252,19 @@ public class Game implements Runnable {
     ///////////////// FULL SCREEN ////////////////
 
     private void scaleUp() {
-        SCALE = 1.5f;
+        SCALE = SCALE * 1.5f;
+
+        // Update tiles
+        TILES_SIZE = (int) (TILES_SIZE_DEFAULT * SCALE);
+
+        // update player
+        playing.getPlayer().scaleUp();
+        playing.getObjectManager().scaleUp();
+        playing.getEnemyManager().scaleUp();
+    }
+
+    private void scaleDown() {
+        SCALE = SCALE * 0.67f;
 
         // Update tiles
         TILES_SIZE = (int) (TILES_SIZE_DEFAULT * SCALE);
@@ -263,7 +275,6 @@ public class Game implements Runnable {
     }
 
     private void goFullScreen() {
-        // scale
         scaleUp();
 
         // dispose old frame
@@ -282,8 +293,7 @@ public class Game implements Runnable {
     }
 
     private void goWindowed() {
-        // scale
-
+        scaleDown();
 
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);

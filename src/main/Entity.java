@@ -183,7 +183,7 @@ public class Entity {
 	public void unbindPlatform() {
 		currentPlatform = null;
 		onPlatform = false;
-		hitbox.y -= Platform.PLATFORM_Y_OFFSET+1;
+		hitbox.y -= Platform.PLATFORM_Y_OFF +1;
 	}
 
 	public boolean isOnPlatform(Platform platform){

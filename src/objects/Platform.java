@@ -18,11 +18,9 @@ public class Platform extends GameObject {
 
     // Platform hitbox
     public static final int PLATFORM_WIDTH_HITBOX = 20 * 2 + 4;
-    public static final int PLATFORM_WIDTH_DEF = 32 * 2;
-    public static final int PLATFORM_HEIGHT_DEF = 8 * 2;
-    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * Game.SCALE);
-    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * Game.SCALE);
-    public static final int PLATFORM_Y_OFFSET = 5;
+    public static final int PLATFORM_W = 32 * 2;
+    public static final int PLATFORM_H = 8 * 2;
+    public static final int PLATFORM_Y_OFF = 5;
     private final Rectangle2D.Float bottom;
     private final Rectangle2D.Float top;
 
@@ -33,7 +31,7 @@ public class Platform extends GameObject {
 
     public Platform(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y+PLATFORM_Y_OFFSET, PLATFORM_WIDTH_HITBOX, PLATFORM_HEIGHT_DEF);
+        initHitbox(x, y + PLATFORM_Y_OFF, PLATFORM_WIDTH_HITBOX, PLATFORM_H);
         bottom = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y+5, hitbox.width, hitbox.height));
         top = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x-6, hitbox.y, hitbox.width, 5));
     }
@@ -68,7 +66,6 @@ public class Platform extends GameObject {
             platDir = RIGHT;
         if (hitSolidTileRight(level))
             platDir = LEFT;
-
 
         // Move platform position
         hitbox.x += platSpeed;

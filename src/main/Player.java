@@ -38,17 +38,18 @@ public class Player extends Entity {
 	private static final int HITBOX_HEIGHT 				= 39;
 	private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
 	private static final int ATTACKBOX_HEIGHT 			= HITBOX_HEIGHT;
-	private int imageFlipX, imageFlipWidth = 1;
+	private float imageFlipX;
+	private int imageFlipWidth = 1;
 
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
-	private static final float SPEED					= 0.8f * Game.SCALE;
+	private static final float SPEED					= 0.8f;
 	private static final int START_HEALTH 				= 3;
 
 	// ====== Jumping ======
 	private boolean canJump = true;
 	private boolean jumping = false;
-	private static final float MAX_JUMP_HEIGHT = 2.5f * Game.SCALE;
+	private static float MAX_JUMP_HEIGHT 			= 2.5f;
 	private float jumpHeight = MAX_JUMP_HEIGHT;
 	private long lastJumpTime;
 	private static final int JUMP_MAX_BOOST_TIME = UPS;
@@ -65,7 +66,7 @@ public class Player extends Entity {
 		this.game = game;
 
 		setDirection(STILL);
-		initSpeed(SPEED);
+		initSpeed(SPEED * Game.SCALE);
 		initMaxHealth(START_HEALTH);
 		initHitbox(x, y, HITBOX_WIDTH * Game.SCALE, HITBOX_HEIGHT * Game.SCALE);
 		initAttackBox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
@@ -99,7 +100,7 @@ public class Player extends Entity {
 
 		// Player is in air; fall to the ground
 		if (inAir)
-			startFalling(level);
+			fallToGround(level);
 
 		// Player wants to move horizontally
 		updateDirection();
@@ -135,8 +136,25 @@ public class Player extends Entity {
 		SoundLoader.playSound("/sounds/jump.wav", 0.5);
 	}
 
+	private void fallToGround(Level level) {
+		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
+			// Set ySpeed
+			airSpeed += GRAVITY;
+		} else {
+			// Cannot move to position -> Stop falling, reset jump height
+			if (airSpeed > 0) {
+				airSpeed = 0;
+				inAir = false;
+			} else {
+				airSpeed = GRAVITY * 8;
+			}
+			canJump = true;
+			jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
+		}
+	}
+
 	public void jumpOnEnemy() {
-		// set jump
+		// start jump
 		jumpHeight = (float) (1.1 * MAX_JUMP_HEIGHT);
 		inAir = true;
 		airSpeed = -jumpHeight;
@@ -144,6 +162,7 @@ public class Player extends Entity {
 		// reset jump
 		jumpHeight = MAX_JUMP_HEIGHT;
 		jumping = false;
+		canJump = false;
 	}
 
 	private void updateAttacking() {
@@ -208,7 +227,10 @@ public class Player extends Entity {
 	}
 
 	public void scaleUp() {
-		hitbox.x += 100;
+		MAX_JUMP_HEIGHT *= Game.SCALE;
+		initSpeed(SPEED * Game.SCALE);
+		initHitbox(hitbox.x * Game.SCALE, hitbox.y * Game.SCALE, hitbox.width * Game.SCALE, hitbox.height * Game.SCALE);
+		initAttackBox(hitbox.x * Game.SCALE, hitbox.y * Game.SCALE, ATTACKBOX_WIDTH * Game.SCALE, ATTACKBOX_HEIGHT * Game.SCALE);
 	}
 
 	// ====== Draw and Animations ======
@@ -218,16 +240,17 @@ public class Player extends Entity {
 		updateImageFlip();
 
 		// Get x, y, width and height in order to draw the animations
-		final float x = hitbox.x - levelOffset - PLAYER_X_OFF + imageFlipX;
-		final float y = hitbox.y - PLAYER_Y_OFF;
-		final float w = width * imageFlipWidth;
+		final float x = hitbox.x - levelOffset - PLAYER_X_OFF * Game.SCALE + imageFlipX;
+		final float y = hitbox.y - PLAYER_Y_OFF * Game.SCALE;
+		final float w = width * Game.SCALE * imageFlipWidth;
+		final float h = height * Game.SCALE;
 
 		// Get the proper image representing the right action
 		final int action = playerAction.ordinal();
 		final BufferedImage img = playerImages[action][animationIndex];
 
 		// Draw the image according to the player action and loop through the animation index to show all the images
-		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
+		g.drawImage(img, (int) x, (int) y, (int) w, (int) h, null);
 
 		drawHitbox(g, levelOffset);
 		drawAttackBox(g, levelOffset);
@@ -246,7 +269,7 @@ public class Player extends Entity {
 		}
 		// When facing left, draw from left to right by drawing an extra width and flipping the image width with -1
 		if (direction == LEFT) {
-			imageFlipX = (int) (width / 1.15);
+			imageFlipX = width / 1.33f * Game.SCALE;
 			imageFlipWidth = -1;
 		}
 	}
