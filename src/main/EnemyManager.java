@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ui.Menu.SCALE;
+
 /**
  * Handles all enemies
  * Updates the enemies position
@@ -98,10 +100,10 @@ public class EnemyManager {
 	private void drawSharks(Graphics g, int levelOffset) {
 		for (Shark s : sharks)
 			if (s.isEnemyAlive()) {
-				float x = s.getHitbox().x - levelOffset - SHARK_X_OFF * Game.SCALE + s.getImageFlipX();
-				float y = s.getHitbox().y - SHARK_Y_OFF * Game.SCALE;
-				float w = SHARK_W * SHARK_SCALE * Game.SCALE * s.getImageFlipWidth();
-				float h = SHARK_H * SHARK_SCALE * Game.SCALE;
+				float x = s.getHitbox().x - levelOffset - SHARK_X_OFF * SCALE + s.getImageFlipX();
+				float y = s.getHitbox().y - SHARK_Y_OFF * SCALE;
+				float w = SHARK_W * SHARK_SCALE * SCALE * s.getImageFlipWidth();
+				float h = SHARK_H * SHARK_SCALE * SCALE;
 
 				// Get the proper image representing the right action
 				final BufferedImage img = sharkImages[s.sharkAction.ordinal()][s.animationIndex];
@@ -121,8 +123,8 @@ public class EnemyManager {
 
 	private void drawPlants(Graphics g, int levelOffset) {
 		for (Plant p : plants) {
-			float w = PLANT_W * PLANT_SCALE * Game.SCALE;
-			float h = PLANT_H * PLANT_SCALE * Game.SCALE;
+			float w = PLANT_W * PLANT_SCALE * SCALE;
+			float h = PLANT_H * PLANT_SCALE * SCALE;
 			float x = p.getHitbox().x - levelOffset - w / 2;
 			float y = p.getHitbox().y;
 

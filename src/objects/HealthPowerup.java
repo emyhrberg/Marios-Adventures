@@ -2,14 +2,12 @@ package objects;
 
 import helpers.SoundLoader;
 import main.Entity;
-import main.Game;
 import main.Level;
 import main.Player;
 
-import static main.Game.TILES_SIZE;
-import static main.Game.TILES_SIZE_DEFAULT;
 import static main.Level.solidTiles;
 import static objects.Question.lastBoxY;
+import static ui.Menu.*;
 
 public class HealthPowerup extends Entity {
 
@@ -18,14 +16,14 @@ public class HealthPowerup extends Entity {
     // properties
     private boolean isActive = true;
     private boolean spawnMove = true;
-    private static final float X_SPEED = 0.40f * Game.SCALE;
-    private static final float Y_SPEED = 0.25f * Game.SCALE;
-    private static final float Y_SPEED_SPAWN = 0.15f * Game.SCALE;
+    private static final float X_SPEED = 0.40f ;
+    private static final float Y_SPEED = 0.25f ;
+    private static final float Y_SPEED_SPAWN = 0.15f;
 
     public HealthPowerup(float x, float y) {
         super(x, y, 0, 0);
-        float xOff = (TILES_SIZE_DEFAULT - HEALTH_SIZE) / 2f * Game.SCALE;
-        initHitbox(x + xOff, y, HEALTH_SIZE * Game.SCALE, HEALTH_SIZE * Game.SCALE);
+        float xOff = (TILES_SIZE_DEFAULT - HEALTH_SIZE) / 2f * SCALE;
+        initHitbox(x + xOff, y, HEALTH_SIZE * SCALE, HEALTH_SIZE * SCALE);
     }
 
     public void update(Player player, Level level, HealthPowerup h) {
@@ -49,7 +47,7 @@ public class HealthPowerup extends Entity {
             // keep moving the powerup until distance has gone up to above the question-mark, at level height
             float dist = Math.abs(lastBoxY - hitbox.y);
             if (dist <= hitbox.height) {
-                hitbox.y -= Y_SPEED_SPAWN;
+                hitbox.y -= Y_SPEED_SPAWN * SCALE;
                 return; // exit and keep loop-moving down
             } else {
                 spawnMove = false;
@@ -66,10 +64,10 @@ public class HealthPowerup extends Entity {
 
         // Player is in air; fall to the ground
         if (inAir) {
-            h.getHitbox().y += Y_SPEED; // move down
+            h.getHitbox().y += Y_SPEED * SCALE; // move down
             startFalling(level); // stop falling when hit the ground
         } else {
-            h.getHitbox().x += X_SPEED; // move right
+            h.getHitbox().x += X_SPEED * SCALE; // move right
         }
     }
 

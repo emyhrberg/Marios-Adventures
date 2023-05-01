@@ -2,7 +2,6 @@ package objects;
 
 import constants.Direction;
 import helpers.SoundLoader;
-import main.Game;
 import main.Player;
 
 import static constants.Direction.DOWN;
@@ -10,6 +9,7 @@ import static constants.Direction.UP;
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
 import static objects.ObjectManager.healths;
+import static ui.Menu.SCALE;
 
 public class Question extends GameObject {
 
@@ -20,8 +20,8 @@ public class Question extends GameObject {
     // Pushback
     private float pushYDraw;
     private Direction pushYDir;
-    private static final float BLOCK_SPEED = 1.25f * Game.SCALE;
-    private static final float BLOCK_LIMIT = -30f * Game.SCALE;
+    private static final float BLOCK_SPEED = 1.25f;
+    private static final float BLOCK_LIMIT = -30f;
 
     public Question(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
@@ -74,11 +74,11 @@ public class Question extends GameObject {
     private void updateQuestionBounce() {
         // Set pushBackOffsetDir to UP to start this animation
         if (pushYDir == UP) {
-            pushYDraw -= BLOCK_SPEED;
-            if (pushYDraw <= BLOCK_LIMIT)
+            pushYDraw -= BLOCK_SPEED * SCALE;
+            if (pushYDraw <= BLOCK_LIMIT * SCALE)
                 pushYDir = DOWN;
         } else {
-            pushYDraw += BLOCK_SPEED;
+            pushYDraw += BLOCK_SPEED * SCALE;
             if (pushYDraw >= 0)
                 pushYDraw = 0;
         }

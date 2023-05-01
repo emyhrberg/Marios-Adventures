@@ -1,12 +1,12 @@
 package ui;
 
 import helpers.ImageLoader;
-import main.Game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static main.Game.GAME_WIDTH;
+import static ui.Menu.GAME_WIDTH;
+import static ui.Menu.SCALE;
 
 /**
  * Initializes GUI for buttons on the menu
@@ -18,7 +18,6 @@ public class MenuButton {
     private static final BufferedImage BUTTON_IMAGES = ImageLoader.loadImage("/ui/menu-buttons.png");
     private static final int BUTTON_W = 163;
     private static final int BUTTON_H = 80;
-    private static final int GAME_CENTER = GAME_WIDTH / 2 - BUTTON_W / 2;
 
     // ====== Button Animation ======
     private final BufferedImage[] animations = new BufferedImage[3];
@@ -48,11 +47,13 @@ public class MenuButton {
     }
 
     private void initButtonBounds() {
-	    buttonBounds = new Rectangle(GAME_CENTER, y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE));
+        final int GAME_CENTER = GAME_WIDTH / 2 - BUTTON_W / 2;
+	    buttonBounds = new Rectangle(GAME_CENTER, y, (int) (BUTTON_W * SCALE), (int) (BUTTON_H * SCALE));
     }
 
     public void draw(Graphics g) {
-        g.drawImage(animations[mouseIndex], GAME_CENTER, y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE), null);
+        final int GAME_CENTER = GAME_WIDTH / 2 - BUTTON_W / 2;
+        g.drawImage(animations[mouseIndex], GAME_CENTER, y, (int) (BUTTON_W * SCALE), (int) (BUTTON_H * SCALE), null);
     }
 
     public void update() {

@@ -1,7 +1,6 @@
 package objects;
 
 import constants.Direction;
-import main.Game;
 import main.Level;
 import main.Player;
 
@@ -10,8 +9,9 @@ import java.awt.geom.Rectangle2D;
 import static constants.Direction.LEFT;
 import static constants.Direction.RIGHT;
 import static constants.ObjectConstants.ObjectType;
-import static main.Game.TILES_SIZE;
 import static main.Level.solidTiles;
+import static ui.Menu.SCALE;
+import static ui.Menu.TILES_SIZE;
 
 public class Platform extends GameObject {
 
@@ -24,15 +24,15 @@ public class Platform extends GameObject {
 
     // Platform moving
     private Direction platDir = LEFT;
-    private static final float MAX_SPEED = 0.9f * Game.SCALE;
+    private static final float MAX_SPEED = 0.9f * SCALE;
     private float platSpeed;
 
     public Platform(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
 
         initHitbox(x - PLATFORM_W / 2f, y, PLATFORM_W, PLATFORM_H);
-        top = new Rectangle2D.Float(hitbox.x - EXTRA_WIDTH / 2 * Game.SCALE, hitbox.y, hitbox.width + EXTRA_WIDTH * Game.SCALE, 1);
-        left = new Rectangle2D.Float(hitbox.x - EXTRA_WIDTH / 2 * Game.SCALE * Game.SCALE, hitbox.y, hitbox.width + EXTRA_WIDTH * Game.SCALE * Game.SCALE, 1);
+        top = new Rectangle2D.Float(hitbox.x - EXTRA_WIDTH / 2 * SCALE, hitbox.y, hitbox.width + EXTRA_WIDTH * SCALE, 1);
+        left = new Rectangle2D.Float(hitbox.x - EXTRA_WIDTH / 2 * SCALE * SCALE, hitbox.y, hitbox.width + EXTRA_WIDTH * SCALE * SCALE, 1);
     }
 
     public void update(Player player, Level level, Platform p) {

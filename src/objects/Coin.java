@@ -1,24 +1,24 @@
 package objects;
 
 import helpers.SoundLoader;
-import main.Game;
 import main.Player;
 
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
-import static main.Game.TILES_SIZE_DEFAULT;
+import static ui.Menu.SCALE;
+import static ui.Menu.TILES_SIZE_DEFAULT;
 
 public class Coin extends GameObject {
 
     // Coin size
     public static final float COIN_SIZE = (int) (TILES_SIZE_DEFAULT * 0.75);
-    private static final float X = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * Game.SCALE;
-    private static final float Y = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * Game.SCALE;
 
     public static int coinCount;
 
     public Coin(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
+        final float X = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * SCALE;
+        final float Y = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * SCALE;
         initHitbox(x + X, y + Y, COIN_SIZE, COIN_SIZE);
     }
 

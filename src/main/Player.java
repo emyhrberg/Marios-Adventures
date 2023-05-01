@@ -14,6 +14,7 @@ import static constants.PlayerConstants.PlayerAction;
 import static constants.PlayerConstants.PlayerAction.*;
 import static constants.PlayerConstants.getSpriteAmount;
 import static main.Game.UPS;
+import static ui.Menu.SCALE;
 
 /**
  * Handles player movement by updating its position
@@ -70,10 +71,10 @@ public class Player extends Entity {
 		this.game = game;
 
 		setDirection(STILL);
-		initSpeed(SPEED * Game.SCALE);
+		initSpeed(SPEED * SCALE);
 		initMaxHealth(START_HEALTH);
-		initHitbox(x, y, HITBOX_WIDTH * Game.SCALE, HITBOX_HEIGHT * Game.SCALE);
-		initAttackbox(x, y, ATTACKBOX_WIDTH * Game.SCALE, ATTACKBOX_HEIGHT * Game.SCALE);
+		initHitbox(x, y, HITBOX_WIDTH * SCALE, HITBOX_HEIGHT * SCALE);
+		initAttackbox(x, y, ATTACKBOX_WIDTH * SCALE, ATTACKBOX_HEIGHT * SCALE);
 		initImages();
 
 		// temp
@@ -132,7 +133,7 @@ public class Player extends Entity {
 		// Jump and boost
 		boolean maxJumpBoost = System.currentTimeMillis() <= JUMP_MAX_BOOST_TIME + lastJumpTime;
 		if (holdingSpace && airSpeed < 0 && maxJumpBoost && !hit) {
-			airSpeed -= GRAVITY * 1.4 * Game.SCALE;
+			airSpeed -= GRAVITY * 1.4 * SCALE;
 		}
 
 		if (canJump && jumping) {
@@ -172,12 +173,12 @@ public class Player extends Entity {
 
 		// start jump
 		lastJumpTime = System.currentTimeMillis();
-		jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
+		jumpHeight = MAX_JUMP_HEIGHT * SCALE;
 		inAir = true;
 		airSpeed = -jumpHeight;
 
 		// reset jump
-		jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
+		jumpHeight = MAX_JUMP_HEIGHT * SCALE;
 		jumping = false;
 		canJump = false;
 
@@ -186,7 +187,7 @@ public class Player extends Entity {
 
 	public void jumpOnEnemy() {
 		// set jump
-		jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
+		jumpHeight = MAX_JUMP_HEIGHT * SCALE;
 		inAir = true;
 		airSpeed = -jumpHeight;
 
@@ -265,8 +266,8 @@ public class Player extends Entity {
 		updateImageFlip();
 
 		// Get x, y, width and height in order to draw the animations
-		final float x = hitbox.x - levelOffset - PLAYER_X_OFF * Game.SCALE + imageFlipX;
-		final float y = hitbox.y - PLAYER_Y_OFF * Game.SCALE;
+		final float x = hitbox.x - levelOffset - PLAYER_X_OFF * SCALE + imageFlipX;
+		final float y = hitbox.y - PLAYER_Y_OFF * SCALE;
 		final float w = width * imageFlipWidth;
 
 		// Get the proper image representing the right action

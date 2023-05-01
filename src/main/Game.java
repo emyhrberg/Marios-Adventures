@@ -37,22 +37,13 @@ public class Game implements Runnable {
     private long lastCheck;
 
     // ====== Game Variables ======
-    public static float SCALE                   = 1.5f;
-    public static final int TILES_SIZE_DEFAULT  = 40;
-    public static final int TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * Game.SCALE);
-    public static final int TILES_IN_WIDTH      = 32;
-    public static final int TILES_IN_HEIGHT     = 18;
-    public static final int GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
-    public static final int GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
-
-    // ====== Game Variables ======
     private final GameComponent gameComponent;
     private final GameFrame gameFrame;
     private Thread gameThread;
     private GameState gameState;
     private GameState prevState;
 
-    // ====== Game States ======
+    // ====== Game States ====== note: construct Menu first because it has all SCALE variables
     private final Menu menu                     = new Menu(this);
     private final Playing playing               = new Playing(this);
     private final Paused paused                 = new Paused(this);
@@ -82,9 +73,12 @@ public class Game implements Runnable {
         gameFrame = new GameFrame(gameComponent);
 
         // temp
-        gameState = PLAYING;
+        gameState = MENU;
         isMuted = true;
-        goFullScreen();
+
+        if (menu.getUserW() == 1920) {
+            goFullScreen();
+        }
 
         // Set game state on launch
 //        gameState = MENU;

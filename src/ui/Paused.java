@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import static ui.Menu.SCALE;
+
 /**
  * Pause game-state, draws the overlay
  */
@@ -22,8 +24,8 @@ public class Paused extends GameState {
 
 	private void initButtons() {
 		// y pos
-		final int PADDING 	= (int) (100 * Game.SCALE);
-		final int OPTION1 	= (int) (200 * Game.SCALE);
+		final int PADDING 	= (int) (100 * SCALE);
+		final int OPTION1 	= (int) (200 * SCALE);
 
 		buttons[0] = new PauseButton(0, OPTION1);
 		buttons[1] = new PauseButton(1, OPTION1 + PADDING);

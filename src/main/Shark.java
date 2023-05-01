@@ -12,6 +12,7 @@ import static constants.EnemyConstants.SharkAction.ATTACKING;
 import static constants.EnemyConstants.SharkAction.RUNNING;
 import static constants.EnemyConstants.getSharkSpriteAmount;
 import static main.EnemyManager.*;
+import static ui.Menu.*;
 
 /**
  * The shark class represents a type of Enemy
@@ -32,18 +33,18 @@ public class Shark extends Enemy {
     protected EnemyConstants.SharkAction sharkAction = EnemyConstants.SharkAction.RUNNING;
     protected static final int MAX_HEALTH           = 1;
     protected static final float SPEED	            = 0.25f;
-    protected static final float DETECT_DISTANCE    = Game.TILES_SIZE * 3;
-    protected static final float ATTACK_DISTANCE    = (float) (Game.TILES_SIZE);
+    protected static final float DETECT_DISTANCE    = TILES_SIZE * 3;
+    protected static final float ATTACK_DISTANCE    = (float) (TILES_SIZE);
 
     public Shark(float x, float y) {
-        super(x, y, EnemyManager.SHARK_W * SHARK_SCALE * Game.SCALE, EnemyManager.SHARK_H * SHARK_SCALE * Game.SCALE);
+        super(x, y, EnemyManager.SHARK_W * SHARK_SCALE * SCALE, EnemyManager.SHARK_H * SHARK_SCALE * SCALE);
 
         // Init hitboxes
-        initHitbox(x, y, HITBOX_WIDTH * Game.SCALE, HITBOX_HEIGHT * Game.SCALE);
+        initHitbox(x, y, HITBOX_WIDTH * SCALE, HITBOX_HEIGHT * SCALE);
         initAttackbox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 
         // Init enemy settings
-        initSpeed(SPEED * Game.SCALE);
+        initSpeed(SPEED * SCALE);
         initMaxHealth(MAX_HEALTH);
     }
 
@@ -128,8 +129,8 @@ public class Shark extends Enemy {
 
     private void updateEnemyDetection(Level level, Player player) {
         // Get Y position of the player and enemy
-        int enemyY 	= (int) (hitbox.y / Game.TILES_SIZE);
-        int playerY 	= (int) (player.getHitbox().y / Game.TILES_SIZE);
+        int enemyY 	= (int) (hitbox.y / TILES_SIZE);
+        int playerY 	= (int) (player.getHitbox().y / TILES_SIZE);
 
         // Get distance between player and enemy hitbox
         int distance = (int) Math.abs(player.hitbox.x - hitbox.x);
@@ -146,15 +147,15 @@ public class Shark extends Enemy {
 
     private boolean isSightClear(Level level, Player player) {
         Rectangle2D.Float playerBox = player.getHitbox();
-        int tileY = (int) (hitbox.y / Game.TILES_SIZE);
-        int xStart = (int) (hitbox.x / Game.TILES_SIZE);
+        int tileY = (int) (hitbox.y / TILES_SIZE);
+        int xStart = (int) (hitbox.x / TILES_SIZE);
         int xEnd;
 
         // check when player is on the left edge
         if (isSolid(playerBox.x, playerBox.y + playerBox.height + 1, level))
-            xEnd = (int) (playerBox.x / Game.TILES_SIZE);
+            xEnd = (int) (playerBox.x / TILES_SIZE);
         else
-            xEnd = (int) ((playerBox.x + playerBox.width) / Game.TILES_SIZE);
+            xEnd = (int) ((playerBox.x + playerBox.width) / TILES_SIZE);
 
         if (xStart > xEnd)
             return isAllTilesWalkable(xEnd, xStart, tileY, level);
@@ -191,8 +192,6 @@ public class Shark extends Enemy {
             player.hitByEnemy(this);
     }
 
-    private static final int DISALLOW_COLLISION = 200;
-
     private void updatePlayerSharkCollision(Player player) {
         player.setCanCollide(System.currentTimeMillis() - player.getLastCheck() >= player.disallowCollision());
 
@@ -200,7 +199,7 @@ public class Shark extends Enemy {
             float playerHitbox = player.hitbox.y + player.hitbox.height;
             float enemyHitbox = hitbox.y + hitbox.height;
             float distBetweenPlayerAndEnemy = Math.abs(playerHitbox - enemyHitbox);
-            float enemyHead = hitbox.height - 10 * Game.SCALE;
+            float enemyHead = hitbox.height - 10 * SCALE;
             boolean isTouchingEnemyHead = distBetweenPlayerAndEnemy > enemyHead;
 
             // usually distance is slightly above 42 when landing on top of the enemy, also check that player is falling downwards
@@ -294,7 +293,7 @@ public class Shark extends Enemy {
     }
 
     public boolean isEnemyAlive() {
-        if (hitbox.y >= Game.GAME_HEIGHT)
+        if (hitbox.y >= GAME_HEIGHT)
             return false;
         return enemyAlive;
     }

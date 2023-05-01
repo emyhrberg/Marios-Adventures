@@ -9,6 +9,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
 
+import static ui.Menu.GAME_HEIGHT;
+import static ui.Menu.GAME_WIDTH;
+
 /**
  * This class handles showing the game by using the package javax.Swing
  * Uses the game component which consists of the entire game
@@ -29,13 +32,13 @@ public class GameFrame extends JFrame {
 		System.out.printf("| %-6s | %-6s | %6s |%n", "", "WIDTH", "HEIGHT");
 		System.out.printf("--------------------------------%n");
 		System.out.printf("| %-6s | %-6s | %6d |%n", "User", w,  h);
-		System.out.printf("| %-6s | %-6s | %6d |%n", "Play", Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		System.out.printf("| %-6s | %-6s | %6d |%n", "Play", GAME_WIDTH, GAME_HEIGHT);
 		System.out.printf("--------------------------------%n");
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		setPreferredSize(new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT));
+		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
 
 		// add and pack
 		add(gameComponent);

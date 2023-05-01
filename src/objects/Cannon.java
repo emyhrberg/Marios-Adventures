@@ -1,12 +1,12 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
-import main.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static constants.ObjectConstants.ObjectType.BULLET_TYPE;
+import static ui.Menu.SCALE;
 
 public class Cannon extends GameObject {
 
@@ -26,7 +26,7 @@ public class Cannon extends GameObject {
     public Cannon(int x, int y, ObjectType objectType, int cooldown) {
         super(x, y, objectType);
         this.cooldown = cooldown;
-        initHitbox(x - X_OFF * Game.SCALE, y - Y_OFF * Game.SCALE, CANNON_W, CANNON_H);
+        initHitbox(x - X_OFF * SCALE, y - Y_OFF * SCALE, CANNON_W, CANNON_H);
     }
 
     public void update() {

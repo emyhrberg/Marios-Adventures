@@ -1,21 +1,18 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
-import main.Game;
 
 import static constants.ObjectConstants.getSpriteAmount;
 
 public class Flag extends GameObject {
 
-    private static final float X_OFF = 5 * Game.SCALE*2 + 5;
-
     public Flag(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x - X_OFF, y, 40,40);
+        initHitbox(x, y, 40,40);
     }
 
     public void update() {
-//        updateFlagAnim();
+        updateFlagAnim();
     }
 
     private void updateFlagAnim() {

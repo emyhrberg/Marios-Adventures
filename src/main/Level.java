@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static constants.ObjectConstants.ObjectType.*;
-import static main.Game.TILES_SIZE;
+import static ui.Menu.TILES_IN_WIDTH;
+import static ui.Menu.TILES_SIZE;
 
 /**
  * This class constructs a level which contains levelData, a 2D array
@@ -67,7 +68,7 @@ public class Level {
         initLevelData(image);
 
         // Initialize max level offset for the level; the maximum distance in pixels for the level
-        maxLevelOffset = TILES_SIZE * (image.getWidth() - Game.TILES_IN_WIDTH);
+        maxLevelOffset = TILES_SIZE * (image.getWidth() - TILES_IN_WIDTH);
     }
 
     private void initLevelData(BufferedImage image) {
@@ -119,7 +120,7 @@ public class Level {
                 if (blue == FLAG)
                     flags.add(new Flag(x*TILES_SIZE, y*TILES_SIZE, FLAG_TYPE));
                 if (blue == CANNON_FAST)
-                    cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE, 1000));
+                    cannons.add(new Cannon(x * TILES_SIZE, y * TILES_SIZE, CANNON_TYPE, 500));
 
                 // Print level data
 //                System.out.printf("%02d ", levelData[y][x]);

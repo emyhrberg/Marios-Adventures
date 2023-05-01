@@ -2,13 +2,11 @@ package objects;
 
 import constants.ObjectConstants.ObjectType;
 import helpers.SoundLoader;
-import main.Game;
 import main.Level;
 import main.Player;
 
-import static main.Game.TILES_IN_HEIGHT;
-import static main.Game.TILES_SIZE;
 import static main.Level.solidTiles;
+import static ui.Menu.*;
 
 public class Bullet extends GameObject {
 
@@ -25,7 +23,7 @@ public class Bullet extends GameObject {
 
     public Bullet(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y + BULLET_Y_OFF * Game.SCALE, HB_W, HB_H);
+        initHitbox(x, y + BULLET_Y_OFF * SCALE, HB_W, HB_H);
     }
 
     public void update(Player player, Level level, Bullet b) {
@@ -38,9 +36,9 @@ public class Bullet extends GameObject {
 
     private void updateBulletPos() {
         if (!isHit) {
-            hitbox.x -= BULLET_SPEED * Game.SCALE;
+            hitbox.x -= BULLET_SPEED * SCALE;
         } else {
-            hitbox.y += BULLET_DEATH_SPEED * Game.SCALE;
+            hitbox.y += BULLET_DEATH_SPEED * SCALE;
         }
     }
 
@@ -50,7 +48,7 @@ public class Bullet extends GameObject {
             float playerBox = player.getHitbox().y + player.getHitbox().height;
             float bulletBox = hitbox.y + hitbox.height;
             float distBetweenBoxes = Math.abs(playerBox - bulletBox);
-            float enemyHead = hitbox.height - 10 * Game.SCALE;
+            float enemyHead = hitbox.height - 10 * SCALE;
             boolean isOnTopOfBullet = distBetweenBoxes > enemyHead;
 
             // BOUNCE ON BULLET

@@ -1,13 +1,12 @@
 package objects;
 
 
-import main.Game;
-
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static constants.ObjectConstants.ObjectType;
 import static constants.ObjectConstants.getSpriteAmount;
+import static ui.Menu.SCALE;
 
 public class GameObject {
 
@@ -65,7 +64,7 @@ public class GameObject {
     }
 
     protected void initHitbox(float x, float y, float width, float height) {
-        hitbox = new Rectangle2D.Float(x, y, width * Game.SCALE, height * Game.SCALE);
+        hitbox = new Rectangle2D.Float(x, y, width * SCALE, height * SCALE);
     }
 
     protected void drawHitbox(Graphics g, int levelOffset) {

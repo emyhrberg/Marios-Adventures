@@ -16,6 +16,7 @@ import static constants.GameState.*;
 import static main.Player.PLAYER_HEIGHT;
 import static main.Player.PLAYER_WIDTH;
 import static objects.Coin.coinCount;
+import static ui.Menu.*;
 
 /**
  * Playing is where the player plays the game
@@ -50,18 +51,18 @@ public class Playing extends GameState {
     // Drawing UI
     private static final BufferedImage MARIO = ImageLoader.loadImage("/ui/mario-icon.png");
     private static final BufferedImage COIN = ImageLoader.loadImage("/ui/coin-icon.png");
-
+    
     // ====== Constructor ======
     public Playing(Game game) {
         super(game);
 
         // Init classes
         levelManager    = new LevelManager();
-        player          = new Player(PLAYER_WIDTH * PLAYER_SCALE * Game.SCALE, PLAYER_HEIGHT * PLAYER_SCALE * Game.SCALE, game);
+        player          = new Player(PLAYER_WIDTH * PLAYER_SCALE * SCALE, PLAYER_HEIGHT * PLAYER_SCALE * SCALE, game);
         enemyManager    = new EnemyManager();
         objectManager   = new ObjectManager();
 
-        // Set level for player class
+        // Set level and spawn for player class
         player.setLevel(levelManager.getLevel());
         resetSpawnPoint();
     }
@@ -87,7 +88,7 @@ public class Playing extends GameState {
         int playerX = (int) player.hitbox.x;
 
         // Update level offset with player and half the game width to center the player
-        levelOffset = playerX - Game.GAME_WIDTH / 2;
+        levelOffset = playerX - GAME_WIDTH / 2;
 
         // Reset level offset if at the leftmost of the map
         if (levelOffset < 0)
@@ -100,8 +101,8 @@ public class Playing extends GameState {
     }
 
     private void updatePlayerOutsideLevel() {
-        int playerY = (int) player.hitbox.y / Game.TILES_SIZE;
-        int bottomY = Game.TILES_IN_HEIGHT;
+        int playerY = (int) player.hitbox.y / TILES_SIZE;
+        int bottomY = TILES_IN_HEIGHT;
         boolean isPlayerBelowLevel = playerY >= bottomY + 3;
 
         if (isPlayerBelowLevel)
@@ -120,10 +121,10 @@ public class Playing extends GameState {
 
     private void updateFinalPointState() {
         // Get the X and Y position for the player and "final point"
-        int finalX = levelManager.getLevel().getFinalPoint().x / Game.TILES_SIZE;
-        int finalY = levelManager.getLevel().getFinalPoint().y / Game.TILES_SIZE;
-        int playerX = (int) player.getHitbox().x / Game.TILES_SIZE;
-        int playerY = (int) player.getHitbox().y / Game.TILES_SIZE;
+        int finalX = levelManager.getLevel().getFinalPoint().x / TILES_SIZE;
+        int finalY = levelManager.getLevel().getFinalPoint().y / TILES_SIZE;
+        int playerX = (int) player.getHitbox().x / TILES_SIZE;
+        int playerY = (int) player.getHitbox().y / TILES_SIZE;
 
         // Player is inside the final position, meaning
         // Exact X position
@@ -149,8 +150,8 @@ public class Playing extends GameState {
 
     public void drawBlur(Graphics g) {
         // Create off-screen image with the same dimensions as the game screen
-        if (offScreenImage == null || offScreenImage.getWidth() != Game.GAME_WIDTH || offScreenImage.getHeight() != Game.GAME_HEIGHT) {
-            offScreenImage = new BufferedImage(Game.GAME_WIDTH, Game.GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        if (offScreenImage == null || offScreenImage.getWidth() != GAME_WIDTH || offScreenImage.getHeight() != GAME_HEIGHT) {
+            offScreenImage = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         }
 
         // Get graphics object of the off-screen image
@@ -167,7 +168,7 @@ public class Playing extends GameState {
 
         // Add black opacity
         g.setColor(new Color(0,0,0,150));
-        g.fillRect(0,0,Game.GAME_WIDTH,Game.GAME_HEIGHT);
+        g.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
 
         // Dispose of the off-screen graphics object to release system resources
         g2d.dispose();
@@ -217,8 +218,8 @@ public class Playing extends GameState {
     private void drawSky(Graphics g) {
         int x = (int) (-levelOffset * 0.17);
         int y = 0;
-        int w = (int) (4320  * Game.SCALE);
-        int h = Game.GAME_HEIGHT;
+        int w = (int) (4320  * SCALE);
+        int h = GAME_HEIGHT;
         for (int i = 0; i < 8; i++) {
             g.drawImage(SKY, x + i * w, y, w, h, null);
         }
@@ -229,9 +230,9 @@ public class Playing extends GameState {
 
     private void drawForest(Graphics g) {
         int x = (int) (-levelOffset * 0.17);
-        int y = (int) (230 * Game.SCALE);
-        int w = (int) (1024 / 2 * Game.SCALE);
-        int h = (int) (1024 / 2 * Game.SCALE);
+        int y = (int) (230 * SCALE);
+        int w = (int) (1024 / 2 * SCALE);
+        int h = (int) (1024 / 2 * SCALE);
         for (int i = 0; i < 8; i++) {
             g.drawImage(FOREST, x + i * w, y, w, h, null);
         }
@@ -284,42 +285,40 @@ public class Playing extends GameState {
 
     private void drawHealthText(Graphics g) {
         final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
-        g.setFont(CUSTOM_FONT.deriveFont(48 * Game.SCALE));
+        g.setFont(CUSTOM_FONT.deriveFont(48 * SCALE));
         g.setColor(new Color(244,244,244));
 
-        int x = (int) (10 * Game.SCALE);
-        int y = (int) (50 * Game.SCALE);
+        int x = (int) (10 * SCALE);
+        int y = (int) (50 * SCALE);
         g.drawString("Health: " + health, x, y);
     }
 
     private void drawCoinCount(Graphics g) {
         final String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
-        g.setFont(CUSTOM_FONT.deriveFont(48 * Game.SCALE));
+        g.setFont(CUSTOM_FONT.deriveFont(48 * SCALE));
         g.setColor(new Color(244,244,244));
 
-        int x = (int) (300 * Game.SCALE);
-        int y = (int) (50 * Game.SCALE);
+        int x = (int) (300 * SCALE);
+        int y = (int) (50 * SCALE);
         g.drawString("Coins: " + coins, x, y);
     }
 
     private void drawCountdownTimer(Graphics g) {
         String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
-        g.setFont(CUSTOM_FONT.deriveFont(48f * Game.SCALE));
+        g.setFont(CUSTOM_FONT.deriveFont(48f * SCALE));
 
     }
 
     // ====== Reset methods ======
 
-    boolean savedSpawn = false;
-    Point savedSpawnPoint;
+    private boolean savedSpawn = false;
+    private Point savedSpawnPoint;
 
     private void resetSpawnPoint() {
         if (savedSpawn)
             spawnPoint = savedSpawnPoint;
         else
             spawnPoint = levelManager.getLevel().getSpawnPoint();
-
-        System.out.println(spawnPoint);
 
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;

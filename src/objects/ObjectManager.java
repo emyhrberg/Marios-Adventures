@@ -10,15 +10,15 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Game.TILES_SIZE;
-import static main.Game.TILES_SIZE_DEFAULT;
 import static objects.Bullet.*;
 import static objects.Cannon.*;
 import static objects.Coin.COIN_SIZE;
 import static objects.HealthPowerup.HEALTH_SIZE;
 import static objects.Lava.*;
 import static objects.Pipe.*;
-import static objects.Platform.*;
+import static objects.Platform.PLATFORM_H;
+import static objects.Platform.PLATFORM_W;
+import static ui.Menu.*;
 
 public class ObjectManager {
 
@@ -160,8 +160,8 @@ public class ObjectManager {
             if (h.isActive()) {
                 float x = h.getHitbox().x - levelOffset;
                 float y = h.getHitbox().y;
-                float w = HEALTH_SIZE * Game.SCALE;
-                float hi = HEALTH_SIZE * Game.SCALE;
+                float w = HEALTH_SIZE * SCALE;
+                float hi = HEALTH_SIZE * SCALE;
                 g.drawImage(POWERUP_HEALTH, (int) x, (int) y, (int) w, (int) hi, null);
 
                 if (Game.DEBUG) {
@@ -175,8 +175,8 @@ public class ObjectManager {
         for (Platform p : platforms)  {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
-            int w = (int) (PLATFORM_W * Game.SCALE);
-            int h = (int) (PLATFORM_H * Game.SCALE);
+            int w = (int) (PLATFORM_W * SCALE);
+            int h = (int) (PLATFORM_H * SCALE);
             g.drawImage(PLATFORM_IMAGES, x, y, w, h, null);
 
 //            p.drawSomeBox(p.hitbox, new Color(0,255,0,100), g, levelOffset);
@@ -196,9 +196,9 @@ public class ObjectManager {
         for (Bullet b : bullets) {
             if (b.isActive()) {
                 float x = b.hitbox.x - levelOffset;
-                float y = b.hitbox.y - BULLET_Y_OFF * Game.SCALE;
-                float w = BULLET_W * Game.SCALE;
-                float h = BULLET_H * Game.SCALE;
+                float y = b.hitbox.y - BULLET_Y_OFF * SCALE;
+                float w = BULLET_W * SCALE;
+                float h = BULLET_H * SCALE;
                 g.drawImage(bulletImages[b.animationIndex], (int) x, (int) y, (int) w, (int) h, null);
 
                 if (Game.DEBUG) {
@@ -227,8 +227,8 @@ public class ObjectManager {
         for (Pipe p : pipes)  {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
-            float w = PIPE_W * PIPE_SCALE * Game.SCALE;
-            float h = PIPE_H * PIPE_SCALE * Game.SCALE;
+            float w = PIPE_W * PIPE_SCALE * SCALE;
+            float h = PIPE_H * PIPE_SCALE * SCALE;
             g.drawImage(PIPE_IMAGES, x, y, (int) w, (int) h, null);
 
             if (Game.DEBUG) {
@@ -241,8 +241,8 @@ public class ObjectManager {
         for (Cannon c : cannons)  {
             int x = (int) c.hitbox.x - levelOffset;
             int y = (int) c.hitbox.y;
-            int w = (int) (CANNON_W * CANNON_SCALE * Game.SCALE);
-            int h = (int) (CANNON_H * CANNON_SCALE * Game.SCALE);
+            int w = (int) (CANNON_W * CANNON_SCALE * SCALE);
+            int h = (int) (CANNON_H * CANNON_SCALE * SCALE);
             g.drawImage(cannonImages[c.animationIndex], x, y, w, h, null);
 
             if (Game.DEBUG) {
@@ -254,9 +254,9 @@ public class ObjectManager {
     private void drawLava(Graphics g, int levelOffset) {
         for (Lava l : lava)  {
             int x = (int) l.hitbox.x - levelOffset;
-            int y = (int) (l.hitbox.y - LAVA_Y_OFF * Game.SCALE);
-            int w = (int) (LAVA_W * Game.SCALE);
-            int h = (int) (LAVA_H * Game.SCALE);
+            int y = (int) (l.hitbox.y - LAVA_Y_OFF * SCALE);
+            int w = (int) (LAVA_W * SCALE);
+            int h = (int) (LAVA_H * SCALE);
             g.drawImage(LAVA_IMAGES, x, y, w, h, null);
 
             if (Game.DEBUG) {
@@ -293,8 +293,8 @@ public class ObjectManager {
             if (c.isActive()) {
                 int x = (int) c.hitbox.x - levelOffset;
                 int y = (int) c.hitbox.y;
-                int w = (int) (COIN_SIZE * Game.SCALE);
-                int h = (int) (COIN_SIZE * Game.SCALE);
+                int w = (int) (COIN_SIZE * SCALE);
+                int h = (int) (COIN_SIZE * SCALE);
 
                 if (c.isSparkle()) {
                     g.drawImage(sparkleImages[c.animationIndex], x, y, w, h, null);
@@ -311,13 +311,13 @@ public class ObjectManager {
 
     private void drawFlags(Graphics g, int levelOffset) {
         for (Flag f : flags)  {
-            int x = (int) f.hitbox.x - levelOffset;
+            int x = (int) (f.hitbox.x - levelOffset - 23 * SCALE);
             int y = (int) f.hitbox.y;
             g.drawImage(flagImages[f.animationIndex],x,y,TILES_SIZE,TILES_SIZE,null);
 
 
             if (Game.DEBUG) {
-                f.drawSomeBox(f.hitbox, new Color(100,255,50,100), g, levelOffset);
+//                f.drawSomeBox(f.hitbox, new Color(100,255,50,100), g, levelOffset);
             }
         }
     }
@@ -332,17 +332,17 @@ public class ObjectManager {
     }
 
     public void scaleUp() {
-        for (Question q : questions)    q.initHitbox(q.hitbox.x * Game.SCALE, q.hitbox.y * Game.SCALE, q.hitbox.width * Game.SCALE, q.hitbox.height * Game.SCALE);
-        for (Coin c : coins)            c.initHitbox(c.hitbox.x * Game.SCALE, c.hitbox.y * Game.SCALE, c.hitbox.width * Game.SCALE, c.hitbox.height * Game.SCALE);
-        for (Brick b : bricks)          b.initHitbox(b.hitbox.x * Game.SCALE, b.hitbox.y * Game.SCALE, b.hitbox.width * Game.SCALE, b.hitbox.height * Game.SCALE);
+        for (Question q : questions)    q.initHitbox(q.hitbox.x * SCALE, q.hitbox.y * SCALE, q.hitbox.width * SCALE, q.hitbox.height * SCALE);
+        for (Coin c : coins)            c.initHitbox(c.hitbox.x * SCALE, c.hitbox.y * SCALE, c.hitbox.width * SCALE, c.hitbox.height * SCALE);
+        for (Brick b : bricks)          b.initHitbox(b.hitbox.x * SCALE, b.hitbox.y * SCALE, b.hitbox.width * SCALE, b.hitbox.height * SCALE);
 //        for (Bullet b : bullets)
-        for (Cannon c: cannons)         c.initHitbox(c.hitbox.x * Game.SCALE, c.hitbox.y * Game.SCALE, c.hitbox.width * Game.SCALE, c.hitbox.height * Game.SCALE);
-        for (Coin c : coins)            c.initHitbox(c.hitbox.x * Game.SCALE, c.hitbox.y * Game.SCALE, c.hitbox.width * Game.SCALE, c.hitbox.height * Game.SCALE);
+        for (Cannon c: cannons)         c.initHitbox(c.hitbox.x * SCALE, c.hitbox.y * SCALE, c.hitbox.width * SCALE, c.hitbox.height * SCALE);
+        for (Coin c : coins)            c.initHitbox(c.hitbox.x * SCALE, c.hitbox.y * SCALE, c.hitbox.width * SCALE, c.hitbox.height * SCALE);
 //        for (HealthPowerup h : healths)
-        for (Lava l: lava)              l.initHitbox(l.hitbox.x * Game.SCALE, l.hitbox.y * Game.SCALE, l.hitbox.width * Game.SCALE, l.hitbox.height * Game.SCALE);
-        for (Pipe p: pipes)             p.initHitbox(p.hitbox.x * Game.SCALE, p.hitbox.y * Game.SCALE, p.hitbox.width * Game.SCALE, p.hitbox.height * Game.SCALE);
-        for (Platform p : platforms)    p.initHitbox(p.hitbox.x * Game.SCALE, p.hitbox.y * Game.SCALE, p.hitbox.width * Game.SCALE, p.hitbox.height * Game.SCALE);
-        for (Question q : questions)    q.initHitbox(q.hitbox.x * Game.SCALE, q.hitbox.y * Game.SCALE, q.hitbox.width * Game.SCALE, q.hitbox.height * Game.SCALE);
+        for (Lava l: lava)              l.initHitbox(l.hitbox.x * SCALE, l.hitbox.y * SCALE, l.hitbox.width * SCALE, l.hitbox.height * SCALE);
+        for (Pipe p: pipes)             p.initHitbox(p.hitbox.x * SCALE, p.hitbox.y * SCALE, p.hitbox.width * SCALE, p.hitbox.height * SCALE);
+        for (Platform p : platforms)    p.initHitbox(p.hitbox.x * SCALE, p.hitbox.y * SCALE, p.hitbox.width * SCALE, p.hitbox.height * SCALE);
+        for (Question q : questions)    q.initHitbox(q.hitbox.x * SCALE, q.hitbox.y * SCALE, q.hitbox.width * SCALE, q.hitbox.height * SCALE);
     }
 
 }

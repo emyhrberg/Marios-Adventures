@@ -7,8 +7,8 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.*;
-import static main.Game.TILES_SIZE;
 import static main.Level.*;
+import static ui.Menu.*;
 
 /**
  * Represents any entity in the game, including the player and enemy
@@ -116,7 +116,7 @@ public class Entity {
 	}
 
 	protected boolean isTileOutsideLevel(int tileY) {
-		return tileY < 0 || tileY >= Game.TILES_IN_HEIGHT;
+		return tileY < 0 || tileY >= TILES_IN_HEIGHT;
 	}
 
 	// ====== Entity falling ======
@@ -140,14 +140,14 @@ public class Entity {
 	protected void startFalling(Level level) {
 		if (moveToPosition(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, level)) {
 			// Set ySpeed
-			airSpeed += GRAVITY * Game.SCALE;
+			airSpeed += GRAVITY * SCALE;
 		} else {
 			// Cannot move to position -> Stop falling, reset jump height
 			if (airSpeed > 0) {
 				airSpeed = 0;
 				inAir = false;
 			} else {
-				airSpeed = GRAVITY * Game.SCALE;
+				airSpeed = GRAVITY * SCALE;
 			}
 		}
 	}
@@ -346,7 +346,7 @@ public class Entity {
 	// ====== Initializers =======
 
 	protected void initSpeed(final float value) {
-		this.xSpeed = value * Game.SCALE;
+		this.xSpeed = value * SCALE;
 	}
 
 	protected void initMaxHealth(final int value) {

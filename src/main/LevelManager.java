@@ -10,6 +10,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ui.Menu.TILES_IN_HEIGHT;
+import static ui.Menu.TILES_SIZE;
+
 /**
  * This class manages all the levels for the game
  * Imports the necessary sprites for the levels
@@ -83,17 +86,17 @@ public class LevelManager {
 		final int levelWidth = levelData[0].length;
 
 		// Loop through all pixels of the level
-		for (int j = 0; j < Game.TILES_IN_HEIGHT; j++)
+		for (int j = 0; j < TILES_IN_HEIGHT; j++)
 			for (int i = 0; i < levelWidth; i++) {
 				// Position of a tile
-				int x = Game.TILES_SIZE * i - levelOffset; // add level offset to x
-				int y = Game.TILES_SIZE * j;
+				int x = TILES_SIZE * i - levelOffset; // add level offset to x
+				int y = TILES_SIZE * j;
 
 				// Get index
 				int index = levelData[j][i];
 
 				// Draw tiles
-				g.drawImage(tilesImages[index], x, y, Game.TILES_SIZE, Game.TILES_SIZE, null);
+				g.drawImage(tilesImages[index], x, y, TILES_SIZE, TILES_SIZE, null);
 			}
     }
 

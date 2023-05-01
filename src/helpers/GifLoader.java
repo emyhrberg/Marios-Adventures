@@ -1,11 +1,12 @@
 package helpers;
 
-import main.Game;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
+
+import static ui.Menu.GAME_HEIGHT;
+import static ui.Menu.GAME_WIDTH;
 
 /**
  * GifLoader is a helper class used to load gifs to the game
@@ -36,11 +37,11 @@ public class GifLoader {
 		ImageIcon imageIcon = new ImageIcon(url);
 
 		// Scale image to fill screen
-		double width 	= Game.GAME_WIDTH / (double) imageIcon.getIconWidth();
-		double height 	= Game.GAME_HEIGHT / (double) imageIcon.getIconHeight();
+		double width 	= GAME_WIDTH / (double) imageIcon.getIconWidth();
+		double height 	= GAME_HEIGHT / (double) imageIcon.getIconHeight();
 		double scale 	= Math.max(width, height);
-		double x 	= (Game.GAME_WIDTH - imageIcon.getIconWidth() * scale) / 2;
-		double y 	= (Game.GAME_HEIGHT - imageIcon.getIconHeight() * scale) / 2;
+		double x 	= (GAME_WIDTH - imageIcon.getIconWidth() * scale) / 2;
+		double y 	= (GAME_HEIGHT - imageIcon.getIconHeight() * scale) / 2;
 		AffineTransform transform = AffineTransform.getScaleInstance(scale, scale);
 		Dimension position = new Dimension((int) x, (int) y);
 

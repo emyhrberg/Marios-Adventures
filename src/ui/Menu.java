@@ -16,19 +16,51 @@ import java.awt.image.BufferedImage;
  */
 public class Menu extends GameState {
 
-    private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("/ui/menu-bg.jpg");
-    private static final BufferedImage TITLE_IMAGE        = ImageLoader.loadImage("/ui/menu-title.png");
-    private final MenuButton[] buttons                    = new MenuButton[2];
+    // ====== Game Variables ======
+    public static float SCALE          ;
+    public static int TILES_SIZE_DEFAULT  ;
+    public static int TILES_SIZE          ;
+    public static int TILES_IN_WIDTH       ;
+    public static int TILES_IN_HEIGHT      ;
+    public static int GAME_WIDTH           ;
+    public static int GAME_HEIGHT        ;
+    private int userW;
 
     // ====== Constructor ======
     public Menu(Game game) {
         super(game);
+        initScale();
         loadButtons();
     }
 
+    private void initScale() {
+        userW = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+        if (userW == 1920) {
+            SCALE = 1.5f;
+        } else if (userW == 1280) {
+            SCALE = 1.0f;
+        } else {
+            SCALE = 1.0f;
+        }
+        TILES_SIZE_DEFAULT  = 40;
+        TILES_SIZE          = (int) (TILES_SIZE_DEFAULT * SCALE);
+        TILES_IN_WIDTH      = 32;
+        TILES_IN_HEIGHT     = 18;
+        GAME_WIDTH          = TILES_SIZE * TILES_IN_WIDTH;
+        GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
+    }
+
+    public int getUserW() {
+        return userW;
+    }
+
+    private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("/ui/menu-bg.jpg");
+    private static final BufferedImage TITLE_IMAGE        = ImageLoader.loadImage("/ui/menu-title.png");
+    private final MenuButton[] buttons                    = new MenuButton[2];
+
     private void loadButtons() {
-        int startY = (int) (300 * Game.SCALE);
-        int quitY = (int) (380 * Game.SCALE);
+        int startY = (int) (300 * SCALE);
+        int quitY = (int) (380 * SCALE);
 
         buttons[0] = new MenuButton(0, startY);
         buttons[1] = new MenuButton(1, quitY);
@@ -41,13 +73,13 @@ public class Menu extends GameState {
 
     public void draw(Graphics g) {
         // Draw bg image
-        g.drawImage(BACKGROUND_IMAGE, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
+        g.drawImage(BACKGROUND_IMAGE, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
 
         // Draw bg title
-        int w = (int) (1280 / 2 * Game.SCALE);
-        int h = (int) (720 / 2 * Game.SCALE);
-        int y = (int) (40 * Game.SCALE);
-        int x = Game.GAME_WIDTH / 2 - w / 2;
+        int w = (int) (1280 / 2 * SCALE);
+        int h = (int) (720 / 2 * SCALE);
+        int y = (int) (40 * SCALE);
+        int x = GAME_WIDTH / 2 - w / 2;
         g.drawImage(TITLE_IMAGE, x, y, w, h, null);
 
         // Draw buttons
