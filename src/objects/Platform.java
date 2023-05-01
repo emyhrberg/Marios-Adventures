@@ -5,7 +5,6 @@ import main.Game;
 import main.Level;
 import main.Player;
 
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static constants.Direction.LEFT;
@@ -17,14 +16,11 @@ import static main.Level.solidTiles;
 public class Platform extends GameObject {
 
     // Platform hitbox
-    public static final int PLATFORM_WIDTH_HITBOX = 20 * 2 + 4;
-    public static final int PLATFORM_WIDTH_DEF = 32 * 2;
-    public static final int PLATFORM_HEIGHT_DEF = 8 * 2;
-    public static final int PLATFORM_WIDTH = (int) (PLATFORM_WIDTH_DEF * Game.SCALE);
-    public static final int PLATFORM_HEIGHT = (int) (PLATFORM_HEIGHT_DEF * Game.SCALE);
-    public static final int PLATFORM_Y_OFFSET = 5;
-    private final Rectangle2D.Float bottom;
+    public static final int PLATFORM_W = 40 * 2;
+    public static final int PLATFORM_H = 16 * 2;
     private final Rectangle2D.Float top;
+    private final Rectangle2D.Float left;
+    private static final float EXTRA_WIDTH = 5;
 
     // Platform moving
     private Direction platDir = LEFT;
@@ -33,9 +29,10 @@ public class Platform extends GameObject {
 
     public Platform(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        initHitbox(x, y+PLATFORM_Y_OFFSET, PLATFORM_WIDTH_HITBOX, PLATFORM_HEIGHT_DEF);
-        bottom = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x, hitbox.y+5, hitbox.width, hitbox.height));
-        top = (Rectangle2D.Float) hitbox.createIntersection(new Rectangle2D.Float(hitbox.x-6, hitbox.y, hitbox.width, 5));
+
+        initHitbox(x - PLATFORM_W / 2f, y, PLATFORM_W, PLATFORM_H);
+        top = new Rectangle2D.Float(hitbox.x - EXTRA_WIDTH / 2 * Game.SCALE, hitbox.y, hitbox.width + EXTRA_WIDTH * Game.SCALE, 1);
+        left = new Rectangle2D.Float(hitbox.x - EXTRA_WIDTH / 2 * Game.SCALE * Game.SCALE, hitbox.y, hitbox.width + EXTRA_WIDTH * Game.SCALE * Game.SCALE, 1);
     }
 
     public void update(Player player, Level level, Platform p) {
@@ -45,17 +42,10 @@ public class Platform extends GameObject {
     }
 
     private void updatePlatformBinding(Player player, Platform p) {
-        // Player collision with bottom or sides of platform, set player in air
-        if (p.getBottom().intersects(player.getHitbox())) {
+        if (p.getLeft().intersects(player.getRightbox())) {
             player.setInAir(true);
-            if (!p.getBottomLine().intersects(player.getHitboxTop())) {
-                player.getHitbox().x = p.getXOfClosestHitbox(player);
-            }
-
-        // Player on top of the platform
-        } else if (p.getTop().intersects(player.getHitbox())) {
+        } else if (p.getTop().intersects(player.getHitbox()))
             player.bindPlatform(p);
-        }
     }
 
     private void updatePlatformPos(Player player, Level level) {
@@ -72,31 +62,19 @@ public class Platform extends GameObject {
 
         // Move platform position
         hitbox.x += platSpeed;
-        bottom.x += platSpeed;
         top.x += platSpeed;
 
         // move player with the platform's direction
-        if (player.isOnPlatform(this)) {
+        if (player.isOnPlatform())
             player.getHitbox().x += platSpeed;
-        }
-    }
-
-    public float getXOfClosestHitbox(Player player) {
-        float left = Math.abs(player.getHitbox().x-hitbox.x);
-        float right = Math.abs(player.getHitbox().x+ player.getHitbox().width - (hitbox.x+hitbox.width));
-        return left < right ? hitbox.x-player.getHitbox().width: (hitbox.x+ hitbox.width);
-    }
-
-    public Rectangle2D.Float getBottom() {
-        return bottom;
     }
 
     public Rectangle2D.Float getTop() {
         return top;
     }
 
-    public Rectangle2D.Float getBottomLine() {
-        return new Rectangle.Float(bottom.x,bottom.y+bottom.height-1,bottom.width,3);
+    public Rectangle2D.Float getLeft() {
+        return left;
     }
 
     private boolean hitSolidTileLeft(Level level) {
@@ -112,7 +90,7 @@ public class Platform extends GameObject {
         int tileX = (int) (hitbox.x / TILES_SIZE);
         int tileY = (int) (hitbox.y / TILES_SIZE);
 
-        int distanceToTile = 0;
+        int distanceToTile = 1;
 
         return solidTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
     }

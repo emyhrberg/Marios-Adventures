@@ -31,7 +31,7 @@ public class Shark extends Enemy {
     protected boolean enemyAlive = true;
     protected EnemyConstants.SharkAction sharkAction = EnemyConstants.SharkAction.RUNNING;
     protected static final int MAX_HEALTH           = 1;
-    protected static final float SPEED	            = 0.25f * Game.SCALE;
+    protected static final float SPEED	            = 0.25f;
     protected static final float DETECT_DISTANCE    = Game.TILES_SIZE * 3;
     protected static final float ATTACK_DISTANCE    = (float) (Game.TILES_SIZE);
 
@@ -43,7 +43,7 @@ public class Shark extends Enemy {
         initAttackbox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
 
         // Init enemy settings
-        initSpeed(SPEED);
+        initSpeed(SPEED * Game.SCALE);
         initMaxHealth(MAX_HEALTH);
     }
 

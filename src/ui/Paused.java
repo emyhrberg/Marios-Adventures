@@ -100,7 +100,6 @@ public class Paused extends GameState {
 		else if (b.getButtonIndex() == 2)
 		{ // QUIT
 			game.getPlaying().resetGameSavePoint();
-			System.out.println("quit");
 		}
 	}
 }

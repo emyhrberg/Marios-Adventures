@@ -5,6 +5,7 @@ import helpers.SoundLoader;
 import objects.Bullet;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import static constants.Direction.*;
@@ -32,10 +33,10 @@ public class Player extends Entity {
 	private static final BufferedImage PLAYER_SPRITES 	= ImageLoader.loadImage("/entities/player.png");
 	public static final int PLAYER_WIDTH 				= 50;
 	public static final int PLAYER_HEIGHT 				= 50;
-	private static final int PLAYER_X_OFF 				= (int) (14 * Game.SCALE);
-	private static final int PLAYER_Y_OFF 				= (int) (18 * Game.SCALE);
-	private static final int HITBOX_WIDTH 				= (int) (30 * Game.SCALE);
-	private static final int HITBOX_HEIGHT 				= (int) (39 * Game.SCALE);
+	private static final int PLAYER_X_OFF 				= 14;
+	private static final int PLAYER_Y_OFF 				= 18;
+	private static final int HITBOX_WIDTH 				= 30;
+	private static final int HITBOX_HEIGHT 				= 39;
 	private static final int ATTACKBOX_WIDTH 			= HITBOX_WIDTH * 3;
 	private static final int ATTACKBOX_HEIGHT 			= HITBOX_HEIGHT;
 	private int imageFlipX, imageFlipWidth = 1;
@@ -46,10 +47,10 @@ public class Player extends Entity {
 	private static final int START_HEALTH 				= 30;
 
 	// ====== Jumping ======
+	private static final float MAX_JUMP_HEIGHT 			= 2.5f;
+	private float jumpHeight = MAX_JUMP_HEIGHT;
 	private boolean canJump = true;
 	private boolean jumping = false;
-	private static final float MAX_JUMP_HEIGHT = 2.5f * Game.SCALE;
-	private float jumpHeight = MAX_JUMP_HEIGHT;
 	private long lastJumpTime;
 	private static final int JUMP_MAX_BOOST_TIME = UPS;
 	private boolean holdingSpace;
@@ -71,9 +72,13 @@ public class Player extends Entity {
 		setDirection(STILL);
 		initSpeed(SPEED * Game.SCALE);
 		initMaxHealth(START_HEALTH);
-		initHitbox(x, y, HITBOX_WIDTH, HITBOX_HEIGHT);
-		initAttackbox(x, y, ATTACKBOX_WIDTH, ATTACKBOX_HEIGHT);
+		initHitbox(x, y, HITBOX_WIDTH * Game.SCALE, HITBOX_HEIGHT * Game.SCALE);
+		initAttackbox(x, y, ATTACKBOX_WIDTH * Game.SCALE, ATTACKBOX_HEIGHT * Game.SCALE);
 		initImages();
+
+		// temp
+		leftbox = new Rectangle2D.Float(x - 5, y, 10, height);
+		rightbox = new Rectangle2D.Float(x + width, y, 5, height);
 	}
 
 	private void initImages() {
@@ -89,11 +94,26 @@ public class Player extends Entity {
 	// ====== Update =======
 
 	public void update() {
+		updateSideBox();
 		updatePos();
 		updateAttackbox();
 		updateAttacking();
 		updateAnimationTick();
 		updateAnimation();
+	}
+
+	private void updateSideBox() {
+		// rightbox
+		rightbox.x = hitbox.x + hitbox.width - 5;
+		rightbox.y = hitbox.y;
+		rightbox.width = 10;
+		rightbox.height = hitbox.height;
+
+		// leftbox
+		leftbox.x = hitbox.x - 5;
+		leftbox.y = hitbox.y;
+		leftbox.width = 10;
+		leftbox.height = hitbox.height;
 	}
 
 	private void updatePos() {
@@ -111,7 +131,7 @@ public class Player extends Entity {
 
 		// Jump and boost
 		boolean maxJumpBoost = System.currentTimeMillis() <= JUMP_MAX_BOOST_TIME + lastJumpTime;
-		if (holdingSpace && airSpeed < 0 && maxJumpBoost) {
+		if (holdingSpace && airSpeed < 0 && maxJumpBoost && !hit) {
 			airSpeed -= GRAVITY * 1.4 * Game.SCALE;
 		}
 
@@ -152,11 +172,12 @@ public class Player extends Entity {
 
 		// start jump
 		lastJumpTime = System.currentTimeMillis();
-		jumpHeight = MAX_JUMP_HEIGHT;
+		jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
 		inAir = true;
 		airSpeed = -jumpHeight;
 
 		// reset jump
+		jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
 		jumping = false;
 		canJump = false;
 
@@ -165,7 +186,7 @@ public class Player extends Entity {
 
 	public void jumpOnEnemy() {
 		// set jump
-		jumpHeight = (float) (1.1 * MAX_JUMP_HEIGHT);
+		jumpHeight = MAX_JUMP_HEIGHT * Game.SCALE;
 		inAir = true;
 		airSpeed = -jumpHeight;
 
@@ -244,8 +265,8 @@ public class Player extends Entity {
 		updateImageFlip();
 
 		// Get x, y, width and height in order to draw the animations
-		final float x = hitbox.x - levelOffset - PLAYER_X_OFF + imageFlipX;
-		final float y = hitbox.y - PLAYER_Y_OFF;
+		final float x = hitbox.x - levelOffset - PLAYER_X_OFF * Game.SCALE + imageFlipX;
+		final float y = hitbox.y - PLAYER_Y_OFF * Game.SCALE;
 		final float w = width * imageFlipWidth;
 
 		// Get the proper image representing the right action
@@ -256,6 +277,8 @@ public class Player extends Entity {
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
 //		drawHitbox(g, levelOffset);
+//		drawBox(leftbox, new Color(255,0,255,100), g, levelOffset);
+//		drawBox(rightbox, new Color(40,56,210,100), g, levelOffset);
 //		drawAttackBox(g, levelOffset);
 
 		if (Game.DEBUG) {

@@ -18,8 +18,7 @@ import static objects.Coin.COIN_SIZE;
 import static objects.HealthPowerup.HEALTH_SIZE;
 import static objects.Lava.*;
 import static objects.Pipe.*;
-import static objects.Platform.PLATFORM_HEIGHT;
-import static objects.Platform.PLATFORM_WIDTH;
+import static objects.Platform.*;
 
 public class ObjectManager {
 
@@ -176,13 +175,16 @@ public class ObjectManager {
         for (Platform p : platforms)  {
             int x = (int) p.hitbox.x - levelOffset;
             int y = (int) p.hitbox.y;
-            g.drawImage(PLATFORM_IMAGES, x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT, null);
+            int w = (int) (PLATFORM_W * Game.SCALE);
+            int h = (int) (PLATFORM_H * Game.SCALE);
+            g.drawImage(PLATFORM_IMAGES, x, y, w, h, null);
+
+            p.drawSomeBox(p.hitbox, new Color(0,255,0,100), g, levelOffset);
+            p.drawSomeBox(p.getTop(), new Color(255,0,255,120), g, levelOffset);
 
             if (Game.DEBUG) {
-//                p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
-                p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
-//                p.drawSomeBox(p.getBottom(), Color.DARK_GRAY, g, levelOffset);
-                p.drawSomeBox(p.getBottomLine(), Color.YELLOW, g, levelOffset);
+                p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);
+//                p.drawSomeBox(p.getTop(), Color.BLUE, g, levelOffset);
             }
         }
     }

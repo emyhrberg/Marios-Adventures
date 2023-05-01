@@ -41,7 +41,7 @@ public class Entity {
 	protected Direction pushXDir;
 
 	// ====== Hitboxes ======
-	protected Rectangle2D.Float hitbox, attackbox;
+	protected Rectangle2D.Float hitbox, attackbox, rightbox, leftbox;
 
 	// ====== Constructor ======
 	protected Entity(float x, float y, float width, float height) {
@@ -81,12 +81,11 @@ public class Entity {
 		if (canMoveToPosition(x, y, width, height, level) && health > 0) {
 
 			// smooth movement
-			float targetX = x;
-			float distanceX = targetX - hitbox.x;
+			float distanceX = x - hitbox.x;
 
 			if (Math.abs(distanceX) < Math.abs(xDirection)) {
 				// If the remaining distance is less than the current xDirection, snap to the target position
-				hitbox.x = targetX;
+				hitbox.x = x;
 			} else {
 				// Gradually adjust the x position
 				hitbox.x += xDirection;
@@ -186,15 +185,11 @@ public class Entity {
 	public void unbindPlatform() {
 		currentPlatform = null;
 		onPlatform = false;
-		hitbox.y -= Platform.PLATFORM_Y_OFFSET+1;
+
 	}
 
-	public boolean isOnPlatform(Platform platform){
-		return onPlatform && currentPlatform == platform;
-	}
-
-	public Rectangle2D.Float getHitboxTop() {
-		return new Rectangle2D.Float(this.getHitbox().x,this.getHitbox().y,this.getHitbox().width,2);
+	public boolean isOnPlatform() {
+		return onPlatform;
 	}
 
 	// ====== Lava ======
@@ -310,6 +305,18 @@ public class Entity {
 		g2d.drawRect((int) hitbox.x - levelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height); // draw the rectangle outline
 	}
 
+	public void drawBox(Rectangle2D.Float box, Color color, Graphics g, int levelOffset) {
+		// draw hitbox
+		g.setColor(color);
+		g.fillRect((int) (box.x - levelOffset), (int) box.y, (int) box.width, (int) box.height);
+
+		// draw stroke
+		Graphics2D g2d = (Graphics2D) g.create();
+		g2d.setStroke(new BasicStroke(3)); // set stroke width
+		g2d.setColor(Color.BLACK); // set stroke color
+		g2d.drawRect((int) box.x - levelOffset, (int) box.y, (int) box.width, (int) box.height); // draw the rectangle outline
+	}
+
 	protected void drawAttackBox(Graphics g, int levelOffset) {
 		g.setColor(new Color(255, 0, 255, 80));
 		g.fillRect((int) attackbox.x - levelOffset, (int) attackbox.y, (int) attackbox.width, (int) attackbox.height);
@@ -349,6 +356,14 @@ public class Entity {
 
 	// ====== Getters & Setters ======
 
+	public Rectangle2D.Float getLeftbox() {
+		return leftbox;
+	}
+
+	public Rectangle2D.Float getRightbox() {
+		return rightbox;
+	}
+
 	public boolean isHit() {
 		return hit;
 	}
@@ -376,5 +391,7 @@ public class Entity {
 	public Rectangle2D.Float getHitbox() {
 		return hitbox;
 	}
+
+
 
 }

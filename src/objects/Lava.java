@@ -8,7 +8,7 @@ public class Lava extends GameObject {
 
     // Size
     public static final int LAVA_W = 80*3;
-    public static final int LAVA_H = 32*3;
+    public static final int LAVA_H = 64*3;
     public static final int LAVA_Y_OFF = 10*3;
 
     public Lava(int x, int y, ObjectType objectType) {
