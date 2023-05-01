@@ -56,11 +56,11 @@ public class Shark extends Enemy {
     protected void updateSharkActions(Level level, Player player) {
         switch (sharkAction) {
             case RUNNING:
-                checkCollisionWithPlayer(player);
+                updatePlayerSharkCollision(player);
                 updateRunning(level, player);
                 break;
             case ATTACKING:
-                checkCollisionWithPlayer(player);
+                updatePlayerSharkCollision(player);
                 updateAttacking(player);
                 break;
             case HIT:
@@ -106,6 +106,15 @@ public class Shark extends Enemy {
             direction = RIGHT;
         else if (direction == RIGHT)
             direction = LEFT;
+    }
+
+    private void updateDirection() {
+        if (direction == LEFT)
+            xDirection = -xSpeed;
+        else if (direction == RIGHT)
+            xDirection = xSpeed;
+        else
+            xDirection = 0;
     }
 
     private boolean isSolidGround(Rectangle2D.Float hitbox, float xDirection, Level level) {
@@ -182,8 +191,12 @@ public class Shark extends Enemy {
             player.hitByEnemy(this);
     }
 
-    private void checkCollisionWithPlayer(Player player) {
-        if (hitbox.intersects(player.getHitbox())) {
+    private static final int DISALLOW_COLLISION = 200;
+
+    private void updatePlayerSharkCollision(Player player) {
+        player.setCanCollide(System.currentTimeMillis() - player.getLastCheck() >= player.disallowCollision());
+
+        if (hitbox.intersects(player.getHitbox()) && player.canCollide()) {
             float playerHitbox = player.hitbox.y + player.hitbox.height;
             float enemyHitbox = hitbox.y + hitbox.height;
             float distBetweenPlayerAndEnemy = Math.abs(playerHitbox - enemyHitbox);

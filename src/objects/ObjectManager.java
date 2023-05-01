@@ -257,8 +257,6 @@ public class ObjectManager {
             int h = (int) (LAVA_H * Game.SCALE);
             g.drawImage(LAVA_IMAGES, x, y, w, h, null);
 
-            l.drawHitbox(g, levelOffset);
-
             if (Game.DEBUG) {
                 l.drawHitbox(g, levelOffset);
             }

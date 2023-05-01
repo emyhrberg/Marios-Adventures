@@ -136,14 +136,11 @@ public class Playing extends GameState {
         int playerX = (int) player.getHitbox().x / Game.TILES_SIZE;
         int playerY = (int) player.getHitbox().y / Game.TILES_SIZE;
 
-//        System.out.println("X: " + playerX + " | Y: " + playerY);
-//        System.out.println("X: " + finalX + " | Y: " + finalY);
-
-        // Player is inside the final position
+        // Player is inside the final position, meaning
         // Exact X position
-        // At the exact Y position on the bottom or up to 3 tiles above it.
+        // Exact Y position on the bottom or up to 3 tiles above it.
         if (playerX == finalX) {
-            if (playerY >= finalY - 3 && playerY <= finalY) {
+            if (playerY >= finalY - 3 || playerY <= finalY) {
                 setLevelCompleted();
             }
         }
@@ -491,10 +488,6 @@ public class Playing extends GameState {
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_SPACE:
-                player.setJumping(true);
-                player.setHoldingSpace(true);
-                break;
             case KeyEvent.VK_A:
                 movingLeft = true;
                 if (movingRight)
@@ -509,6 +502,10 @@ public class Playing extends GameState {
                 else
                     player.setDirection(RIGHT);
                 break;
+            case KeyEvent.VK_SPACE:
+                player.setJumping(true);
+                player.setHoldingSpace(true);
+                break;
             case KeyEvent.VK_K:
                 player.setAttacking(true);
                 break;
@@ -522,17 +519,17 @@ public class Playing extends GameState {
 
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_SPACE:
-                player.setJumping(false);
-                player.setCanJump(true);
-                player.setHoldingSpace(false);
-                break;
             // Key released; Stop moving by setting the variables to false
             case KeyEvent.VK_A:
                 movingLeft = false;
                 break;
             case KeyEvent.VK_D:
                 movingRight = false;
+                break;
+            case KeyEvent.VK_SPACE:
+                player.setJumping(false);
+                player.setCanJump(true);
+                player.setHoldingSpace(false);
                 break;
         }
 

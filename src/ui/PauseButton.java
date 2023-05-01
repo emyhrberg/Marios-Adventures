@@ -56,10 +56,11 @@ public class PauseButton {
     }
 
     public void draw(Graphics g) {
+        System.out.println(isMuted);
         if (isMuted) {
-            g.drawImage(animations[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE), null);
-        } else {
             g.drawImage(unmuteAni[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE), null);
+        } else {
+            g.drawImage(animations[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE), null);
         }
     }
 

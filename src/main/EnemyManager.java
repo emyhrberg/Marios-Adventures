@@ -109,8 +109,8 @@ public class EnemyManager {
 				// Draw the image of the shark
 				g.drawImage(img, (int) x, (int) y, (int) w, (int) h, null);
 
-				s.drawHitbox(g, levelOffset);
-				s.drawAttackBox(g, levelOffset);
+//				s.drawHitbox(g, levelOffset);
+//				s.drawAttackBox(g, levelOffset);
 
 				if (Game.DEBUG) {
 					s.drawHitbox(g, levelOffset);

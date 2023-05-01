@@ -27,9 +27,9 @@ public class Entity {
 	protected final float y;
 	protected final float width;
 	protected final float height;
-	public static float xDirection;
-	public static float xSpeed;
-	public static Direction direction = STILL;
+	protected float xDirection;
+	protected float xSpeed;
+	protected Direction direction = STILL;
 
 	// ====== Health =======
 	protected int maxHealth, health;
@@ -79,8 +79,19 @@ public class Entity {
 
 		// Handle if entity can move to position
 		if (canMoveToPosition(x, y, width, height, level) && health > 0) {
-			// Update hitbox x and y position
-			hitbox.x += x - hitbox.x;
+
+			// smooth movement
+			float targetX = x;
+			float distanceX = targetX - hitbox.x;
+
+			if (Math.abs(distanceX) < Math.abs(xDirection)) {
+				// If the remaining distance is less than the current xDirection, snap to the target position
+				hitbox.x = targetX;
+			} else {
+				// Gradually adjust the x position
+				hitbox.x += xDirection;
+			}
+
 			hitbox.y += y - hitbox.y;
 			return true;
 		}
@@ -140,15 +151,6 @@ public class Entity {
 				airSpeed = GRAVITY * Game.SCALE;
 			}
 		}
-	}
-
-	protected void updateDirection() {
-		if (direction == LEFT)
-			xDirection = -xSpeed;
-		else if (direction == RIGHT)
-			xDirection = xSpeed;
-		else
-			xDirection = 0;
 	}
 
 	// ====== Platforms ======

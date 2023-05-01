@@ -54,6 +54,10 @@ public class Player extends Entity {
 	private static final int JUMP_MAX_BOOST_TIME = UPS;
 	private boolean holdingSpace;
 
+	// ====== Collision cooldown ======
+	private long lastCheck;
+	private boolean canCollide = true;
+
 	// ====== Game variables =======
 	private final Game game;
 	private Level level;
@@ -116,6 +120,30 @@ public class Player extends Entity {
 		}
 	}
 
+	private static final float acceleration = 0.05f;
+
+	private void updateDirection() {
+		float targetXDirection = 0.0f;
+
+		if (direction == LEFT) {
+			targetXDirection = -xSpeed;
+		} else if (direction == RIGHT) {
+			targetXDirection = xSpeed;
+		}
+
+		if (xDirection < targetXDirection) {
+			xDirection += acceleration;
+			if (xDirection > targetXDirection) {
+				xDirection = targetXDirection;
+			}
+		} else if (xDirection > targetXDirection) {
+			xDirection -= acceleration;
+			if (xDirection < targetXDirection) {
+				xDirection = targetXDirection;
+			}
+		}
+	}
+
 	public void jump() {
 		if (inAir || !canJump)
 			return;
@@ -144,6 +172,10 @@ public class Player extends Entity {
 		// reset jump
 		jumpHeight = MAX_JUMP_HEIGHT;
 		jumping = false;
+
+		// disallow damage or bounce for 200 ms
+		lastCheck = System.currentTimeMillis();
+		canCollide = false;
 	}
 
 	private void updateAttacking() {
@@ -173,7 +205,6 @@ public class Player extends Entity {
 		else
 			pushXDir = LEFT;
 
-		// bounce back
 		jumpOnEnemy();
 
 		SoundLoader.playSound("/sounds/ouchplayer.wav");
@@ -189,7 +220,6 @@ public class Player extends Entity {
 		else
 			pushXDir = LEFT;
 
-		// bounce back
 		jumpOnEnemy();
 
 		SoundLoader.playSound("/sounds/ouchplayer.wav");
@@ -225,7 +255,7 @@ public class Player extends Entity {
 		// Draw the image according to the player action and loop through the animation index to show all the images
 		g.drawImage(img, (int) x, (int) y, (int) w, (int) height, null);
 
-		drawHitbox(g, levelOffset);
+//		drawHitbox(g, levelOffset);
 //		drawAttackBox(g, levelOffset);
 
 		if (Game.DEBUG) {
@@ -306,8 +336,8 @@ public class Player extends Entity {
 		if (pushXDir == RIGHT)
 			xDirection = xSpeed;
 
-		// Move player X, direction with double direction
-		moveToPosition((float) (hitbox.x + xDirection * 0.5), hitbox.y, hitbox.width, hitbox.height, level);
+		// Move player X
+		moveToPosition(hitbox.x, hitbox.y, hitbox.width, hitbox.height, level);
 	}
 
 	private void playerDeathAndGameOver() {
@@ -334,6 +364,22 @@ public class Player extends Entity {
 	}
 
 	// ====== Getters & Setters ======
+
+	public int disallowCollision() {
+		return 200;
+	}
+
+	public void setCanCollide(boolean canCollide) {
+		this.canCollide = canCollide;
+	}
+
+	public boolean canCollide() {
+		return canCollide;
+	}
+
+	public long getLastCheck() {
+		return lastCheck;
+	}
 
 	public void setHoldingSpace(boolean holdingSpace) {
 		this.holdingSpace = holdingSpace;
