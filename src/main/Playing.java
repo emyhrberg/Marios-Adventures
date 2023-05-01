@@ -315,9 +315,9 @@ public class Playing extends GameState {
     private Point savedSpawnPoint;
 
     private void resetSpawnPoint() {
-        if (savedSpawn)
-            spawnPoint = savedSpawnPoint;
-        else
+//        if (savedSpawn)
+//            spawnPoint = savedSpawnPoint;
+//        else
             spawnPoint = levelManager.getLevel().getSpawnPoint();
 
         player.getHitbox().x = spawnPoint.x;

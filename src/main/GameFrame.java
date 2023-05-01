@@ -25,16 +25,6 @@ public class GameFrame extends JFrame {
 		setTitle("Mario's Adventures!");
 		setIconImage(icon);
 
-		// check user screen size
-		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
-		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-		System.out.printf("--------------------------------%n");
-		System.out.printf("| %-6s | %-6s | %6s |%n", "", "WIDTH", "HEIGHT");
-		System.out.printf("--------------------------------%n");
-		System.out.printf("| %-6s | %-6s | %6d |%n", "User", w,  h);
-		System.out.printf("| %-6s | %-6s | %6d |%n", "Play", GAME_WIDTH, GAME_HEIGHT);
-		System.out.printf("--------------------------------%n");
-
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);

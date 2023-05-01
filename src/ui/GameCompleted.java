@@ -1,6 +1,5 @@
 package ui;
 
-import helpers.GifLoader;
 import helpers.ImageLoader;
 import main.Game;
 import main.GameState;
@@ -18,8 +17,6 @@ public class GameCompleted extends GameState {
 
     // ======= Variables =======
     private static final BufferedImage YOU_WIN_IMAGE = ImageLoader.loadImage("/ui/you-win.png");
-	private static final GifLoader gifImage = GifLoader.loadGif("/ui/stars.gif");
-
 
     // ====== Constructor ======
     public GameCompleted(Game game) {
@@ -30,15 +27,6 @@ public class GameCompleted extends GameState {
 		if (game.isDrawNotAllowed()) {
 //			return;
 		}
-
-		// Draw the gif at the center of the screen
-		Graphics2D g2d = (Graphics2D) g.create();
-
-		if (gifImage == null)
-			return;
-
-		g2d.translate(gifImage.getPosition().getWidth(), gifImage.getPosition().getHeight());
-		g2d.drawImage(gifImage.getImageIcon().getImage(), gifImage.getTransform(), game.getGameComponent());
 
 		// Draw the overlay image
 		final int imageW = (int) (500 * SCALE);

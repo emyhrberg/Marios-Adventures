@@ -3,7 +3,7 @@ package ui;
 import main.Game;
 import main.GameState;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -11,16 +11,14 @@ import java.awt.event.KeyEvent;
  */
 public class LevelCompleted extends GameState {
 
-    // ====== Variables ======
-//    private static final BufferedImage LEVEL_COMPLETED_IMAGE = ImageLoader.loadImage("/ui/level-completed.png");
-
     // ====== Constructor ======
     public LevelCompleted(Game game) {
 	    super(game);
     }
 
     public void drawLevelCompleted(Graphics g) {
-
+        g.setFont(g.getFont().deriveFont(80f));
+        g.drawString("level completed press enter!", 500, 500);
     }
 
     public void keyPressed(KeyEvent e) {

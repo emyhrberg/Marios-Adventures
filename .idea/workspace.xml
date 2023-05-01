@@ -9,11 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game tested, no noticable bugs!&#10;Fixed scaling bug where health UI was causing g2d transform to mess up&#10;Moved scaling variables to Menu class&#10;Changed to temp health UI&#10;Improved pause screen, added save option">
-      <change afterPath="$PROJECT_DIR$/MarioGame.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added JAR file">
+      <change afterPath="$PROJECT_DIR$/resources/levels/3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mario.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/GifLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/LevelCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompleted.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +60,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Github/PlatformerTutorial-ep28_finale",
+    "last_opened_file_path": "C:/Users/Erik/Downloads/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -172,14 +179,9 @@
       <workItem from="1682875322681" duration="6037000" />
       <workItem from="1682881587782" duration="5217000" />
       <workItem from="1682891872048" duration="14650000" />
-      <workItem from="1682939279049" duration="9447000" />
-    </task>
-    <task id="LOCAL-00043" summary="Game playtested, no noticeable bugs!">
-      <created>1682367513704</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1682367513704</updated>
+      <workItem from="1682939279049" duration="10073000" />
+      <workItem from="1682955819577" duration="3080000" />
+      <workItem from="1682979661863" duration="1489000" />
     </task>
     <task id="LOCAL-00044" summary="Game playtested, no noticeable bugs!">
       <created>1682367526407</created>
@@ -517,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682952500249</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Added JAR file">
+      <created>1682952953314</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1682952953314</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +547,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Small image fix" />
     <MESSAGE value="Small stuff" />
     <MESSAGE value="Improved top bar UI!" />
     <MESSAGE value="Started working on improving background" />
@@ -563,7 +571,8 @@
     <MESSAGE value="Improved platform bug where player would fall through, not 100% though&#10;Fixed bug where lava was too small on the bottom&#10;Added left and rightbox to player to handle platforms better&#10;Tried to fix coin and health UI, will have to improve on later" />
     <MESSAGE value="Fixed scaling bug where health UI was causing g2d transform to mess up&#10;Changed to temp health UI&#10;Improved pause screen, added save option" />
     <MESSAGE value="Game tested, no noticable bugs!&#10;Fixed scaling bug where health UI was causing g2d transform to mess up&#10;Moved scaling variables to Menu class&#10;Changed to temp health UI&#10;Improved pause screen, added save option" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game tested, no noticable bugs!&#10;Fixed scaling bug where health UI was causing g2d transform to mess up&#10;Moved scaling variables to Menu class&#10;Changed to temp health UI&#10;Improved pause screen, added save option" />
+    <MESSAGE value="Added JAR file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added JAR file" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
