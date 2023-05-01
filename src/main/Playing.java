@@ -7,8 +7,6 @@ import objects.ObjectManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextLayout;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
@@ -36,7 +34,7 @@ public class Playing extends GameState {
     private boolean movingLeft, movingRight;
     private static final int START_T = 300;
     private int t = START_T;
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/inside-out.ttf");
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/marionew.ttf");
 
     private final EnemyManager enemyManager;
     private final LevelManager levelManager;
@@ -187,10 +185,8 @@ public class Playing extends GameState {
         drawBigClouds(g);
 
         // Draw UI
-        drawMarioIcon(g);
-        drawCoinIcon(g);
-        drawHealthText(g);
         drawCoinCount(g);
+        drawHealthText(g);
 
         // Draw game
         objectManager.drawPowerups(g, levelOffset);
@@ -286,114 +282,45 @@ public class Playing extends GameState {
         }
     }
 
-    private static final int M = 19 * 3;
-    private static final int MARIO_X = 70;
-    private static final int MARIO_Y = 40;
-
-    private static final int C = 48;
-
-    private void drawMarioIcon(Graphics g) {
-        float x = MARIO_X;
-        float y = MARIO_Y;
-        g.drawImage(MARIO, (int) (x * Game.SCALE), (int) (y * Game.SCALE), M, M, null);
-    }
-
     private void drawHealthText(Graphics g) {
-        // HEALTH
         final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
-        Graphics2D g2d = (Graphics2D) g;
-        g.setFont(g.getFont().deriveFont(35 * Game.SCALE));
-        TextLayout tl = new TextLayout(health, g.getFont(), g2d.getFontRenderContext());
-        Shape shape = tl.getOutline(null);
+        g.setFont(CUSTOM_FONT.deriveFont(48 * Game.SCALE));
+        g.setColor(new Color(244,244,244));
 
-        double w = g.getFontMetrics().stringWidth(health);
-        double h = g.getFontMetrics().getHeight();
-        double x = MARIO_X + M / 1.5f;
-        double y = MARIO_Y + M / 2f;
-        AffineTransform transform2 = AffineTransform.getTranslateInstance(x * Game.SCALE, y * Game.SCALE);
-        g2d.transform(transform2);
-
-        // draw black
-        g2d.setStroke(new BasicStroke(5f));
-        g2d.setColor(new Color(5, 5, 5));
-        g2d.draw(shape);
-
-        // draw white
-        g2d.setColor(new Color(224, 224, 224));
-        g2d.fill(shape);
-
-        // restore the original transform
-        g2d.setTransform(new AffineTransform());
-    }
-
-    private void drawCoinIcon(Graphics g) {
-        float x = MARIO_X;
-        float y = MARIO_Y + M;
-        g.drawImage(COIN, (int) (x * Game.SCALE), (int) (y * Game.SCALE), C, C, null);
+        int x = (int) (10 * Game.SCALE);
+        int y = (int) (50 * Game.SCALE);
+        g.drawString("Health: " + health, x, y);
     }
 
     private void drawCoinCount(Graphics g) {
-        String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
-        Graphics2D g2d = (Graphics2D) g;
-        g.setFont(g.getFont().deriveFont(35 * Game.SCALE));
-        TextLayout tl = new TextLayout(coins, g.getFont(), g2d.getFontRenderContext());
-        Shape shape2 = tl.getOutline(null);
-        double w = g.getFontMetrics().stringWidth(coins);
-        double h = g.getFontMetrics().getHeight();
-        double x = MARIO_X + C / 1.5f;
-        double y = MARIO_Y + M + M / 2f;
-        AffineTransform transform = AffineTransform.getTranslateInstance(x * Game.SCALE, y * Game.SCALE);
-        g2d.transform(transform);
+        final String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
+        g.setFont(CUSTOM_FONT.deriveFont(48 * Game.SCALE));
+        g.setColor(new Color(244,244,244));
 
-        // draw black
-        g2d.setStroke(new BasicStroke(5f));
-        g2d.setColor(new Color(5, 5, 5));
-        g2d.draw(shape2);
-
-        // draw white
-        g2d.setColor(new Color(224, 224, 224));
-        g2d.fill(shape2);
-
-        // restore the original transform
-        g2d.setTransform(new AffineTransform());
+        int x = (int) (300 * Game.SCALE);
+        int y = (int) (50 * Game.SCALE);
+        g.drawString("Coins: " + coins, x, y);
     }
 
     private void drawCountdownTimer(Graphics g) {
         String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
-        Graphics2D g2d = (Graphics2D) g;
-        g.setFont(g.getFont().deriveFont(48f));
-        TextLayout tl = new TextLayout(countdown, g.getFont(), g2d.getFontRenderContext());
-        Shape shape = tl.getOutline(null);
-        int w = g.getFontMetrics().stringWidth(countdown);
-        AffineTransform transform = AffineTransform.getTranslateInstance(400 * Game.SCALE, 30 * Game.SCALE);
-        g2d.transform(transform);
-
-        // draw black
-        g2d.setStroke(new BasicStroke(5f));
-        g2d.setColor(new Color(5, 5, 5));
-        g2d.draw(shape);
-
-        // draw white
-        g2d.setColor(new Color(224, 224, 224));
-        g2d.fill(shape);
-
-        // restore the original transform
-        g2d.setTransform(new AffineTransform());
+        g.setFont(CUSTOM_FONT.deriveFont(48f * Game.SCALE));
 
     }
 
     // ====== Reset methods ======
 
-    private void resetSpawnPoint() {
-        // Set saved spawn
-        if (spawnPoint != null)
-            spawnPoint = new Point((int) player.hitbox.x, (int) player.hitbox.y);
+    boolean savedSpawn = false;
+    Point savedSpawnPoint;
 
-        // Otherwise, get spawn point from map
+    private void resetSpawnPoint() {
+        if (savedSpawn)
+            spawnPoint = savedSpawnPoint;
         else
             spawnPoint = levelManager.getLevel().getSpawnPoint();
 
-        // Put player hitbox at the point
+        System.out.println(spawnPoint);
+
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;
     }
@@ -418,19 +345,17 @@ public class Playing extends GameState {
     }
 
     public void resetGameGoToMenu() {
-        spawnPoint = null;
+        savedSpawn = false;
         resetGame();
         game.setGameState(MENU);
     }
 
-    public void resetGameSavePoint() {
-        spawnPoint = new Point((int) player.getHitbox().x, (int) player.getHitbox().y);
-        resetGame();
-        game.setGameState(MENU);
+    public void saveSpawnPoint() {
+        savedSpawnPoint = new Point((int) player.getHitbox().x, (int) player.getHitbox().y);
+        savedSpawn = true;
     }
 
     public void resetGameGoToPlaying() {
-        spawnPoint = null;
         resetGame();
         game.setGameState(PLAYING);
     }
@@ -439,12 +364,8 @@ public class Playing extends GameState {
         // Load next level
         final int nextLevel = levelManager.getLevelIndex() + 1;
         levelManager.setLevelIndex(nextLevel);
-
-        player.setLevel(levelManager.getLevel()); // todo not necc prob
-
+        player.setLevel(levelManager.getLevel());
         resetGame();
-
-        // Start playing
         game.setGameState(PLAYING);
     }
 

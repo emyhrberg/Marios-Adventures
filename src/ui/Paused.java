@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 public class Paused extends GameState {
 
 	public static boolean isMuted = false;
-	private final PauseButton[] buttons = new PauseButton[3];
+	private final PauseButton[] buttons = new PauseButton[4];
 
     public Paused(Game game) {
 		super(game);
@@ -24,31 +24,25 @@ public class Paused extends GameState {
 		// y pos
 		final int PADDING 	= (int) (100 * Game.SCALE);
 		final int OPTION1 	= (int) (200 * Game.SCALE);
-		final int OPTION2 	= OPTION1 + PADDING;
-		final int OPTION3 	= OPTION2 + PADDING;
 
 		buttons[0] = new PauseButton(0, OPTION1);
-		buttons[1] = new PauseButton(1, OPTION2);
-		buttons[2] = new PauseButton(2, OPTION3);
-//		buttons[3] = new PauseButton(3, OPTION4);
+		buttons[1] = new PauseButton(1, OPTION1 + PADDING);
+		buttons[2] = new PauseButton(2, OPTION1 + PADDING * 2);
+		buttons[3] = new PauseButton(3, OPTION1 + PADDING * 3);
 	}
-
-	// Update stuff
-
-	public void update() {
-		for (PauseButton b : buttons)
-			b.update();
-	}
-
-	// NEW!
 
 	public void draw(Graphics g) {
 		for (PauseButton b : buttons)
 			b.draw(g);
 	}
 
-	private boolean isButtonInsideBounds(MouseEvent e, PauseButton mb) {
-		return mb.getButtonBounds().contains(e.getX(), e.getY());
+	public void update() {
+		for (PauseButton b : buttons)
+			b.update();
+	}
+
+	private boolean isButtonInsideBounds(MouseEvent e, PauseButton b) {
+		return b.getButtonBounds().contains(e.getX(), e.getY());
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -59,15 +53,12 @@ public class Paused extends GameState {
 
 	public void mouseReleased(MouseEvent e) {
 		for (PauseButton b : buttons)
-			if (isButtonInsideBounds(e, b) && b.isMousePressButton()) {
+			if (isButtonInsideBounds(e, b) && b.isMousePressButton())
 				buttonPressed(b);
-				break;
-			}
 
-		// Reset buttons
-		for (PauseButton b : buttons) {
-			b.setMouseOverButton(false);
-			b.setMousePressButton(false);
+		for (PauseButton button : buttons) {
+			button.setMouseOverButton(false);
+			button.setMousePressButton(false);
 		}
 	}
 
@@ -98,8 +89,12 @@ public class Paused extends GameState {
 			isMuted = !isMuted;
 		}
 		else if (b.getButtonIndex() == 2)
+		{ // SAVE
+			game.getPlaying().saveSpawnPoint();
+		}
+		else if (b.getButtonIndex() == 3)
 		{ // QUIT
-			game.getPlaying().resetGameSavePoint();
+			game.getPlaying().resetGameGoToMenu();
 		}
 	}
 }

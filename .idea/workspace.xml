@@ -9,25 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="RESET. Game working well, ready to fix bugs:&#10;- Platform fallthrough&#10;- Fullscreen &#10;- Starting SCALE depending on user screen size?">
-      <change afterPath="$PROJECT_DIR$/resources/ui/menu-buttons_backup2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/pause-buttons.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/PauseButton.java" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Improved platform bug where player would fall through, not 100% though&#10;Fixed bug where lava was too small on the bottom&#10;Added left and rightbox to player to handle platforms better&#10;Tried to fix coin and health UI, will have to improve on later">
+      <change afterPath="$PROJECT_DIR$/resources/fonts/akukamu.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/grobold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/insideout.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/mario256.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/mario286.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/marionew.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fonts/vanilla.otf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/inside-out.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/menu-buttons.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/ObjectConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ObjectConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/pause-buttons-unmute.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/pause-buttons-unmute.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/pause-buttons.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/pause-buttons.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Cannon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjectManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Paused.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/PauseButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/PauseButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Paused.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Paused.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,35 +187,8 @@
       <workItem from="1682799984674" duration="9972000" />
       <workItem from="1682875322681" duration="6037000" />
       <workItem from="1682881587782" duration="5217000" />
-      <workItem from="1682891872048" duration="3928000" />
-    </task>
-    <task id="LOCAL-00037" summary="Working on platform bug, works on 2.png but not on 1.png">
-      <created>1682349770534</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1682349770534</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Fixed platforms! Refactoring ObjectManager code">
-      <created>1682355355433</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1682355355433</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Refactored ObjectManager to move functionality out to individual classes. Need to fix so player can fall off platform">
-      <created>1682357495934</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1682357495934</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Deleted platforms code, trying again to fix platforms">
-      <created>1682359080313</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1682359080313</updated>
+      <workItem from="1682891872048" duration="14650000" />
+      <workItem from="1682939279049" duration="5409000" />
     </task>
     <task id="LOCAL-00041" summary="Platforms working!">
       <created>1682361075747</created>
@@ -530,7 +505,35 @@
       <option name="project" value="LOCAL" />
       <updated>1682880831236</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Improved menu and pause screen ui!">
+      <created>1682896128581</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1682896128581</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Added image">
+      <created>1682896147557</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1682896147558</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Improved player movement by adding acceleration&#10;Fixed bug where player would take damage when bouncing on two enemies simultaneously&#10;Fixed bug where mute / unmute was incorrect">
+      <created>1682899478954</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1682899478954</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Improved platform bug where player would fall through, not 100% though&#10;Fixed bug where lava was too small on the bottom&#10;Added left and rightbox to player to handle platforms better&#10;Tried to fix coin and health UI, will have to improve on later">
+      <created>1682906725323</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1682906725323</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,10 +554,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added gameover fade" />
-    <MESSAGE value="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation" />
-    <MESSAGE value="Added jar" />
-    <MESSAGE value="Fixed reset timer and coin count" />
     <MESSAGE value="Misc improvements, playtesting looks good!" />
     <MESSAGE value="Code cleanup for objects, looks good, plays well!" />
     <MESSAGE value="Small image fix" />
@@ -576,7 +575,11 @@
     <MESSAGE value="Marios Adventures release 1.2.3!" />
     <MESSAGE value="Working on bugs; fullscreen, scale, health-spawns, bullet-spawns." />
     <MESSAGE value="RESET. Game working well, ready to fix bugs:&#10;- Platform fallthrough&#10;- Fullscreen &#10;- Starting SCALE depending on user screen size?" />
-    <option name="LAST_COMMIT_MESSAGE" value="RESET. Game working well, ready to fix bugs:&#10;- Platform fallthrough&#10;- Fullscreen &#10;- Starting SCALE depending on user screen size?" />
+    <MESSAGE value="Improved menu and pause screen ui!" />
+    <MESSAGE value="Added image" />
+    <MESSAGE value="Improved player movement by adding acceleration&#10;Fixed bug where player would take damage when bouncing on two enemies simultaneously&#10;Fixed bug where mute / unmute was incorrect" />
+    <MESSAGE value="Improved platform bug where player would fall through, not 100% though&#10;Fixed bug where lava was too small on the bottom&#10;Added left and rightbox to player to handle platforms better&#10;Tried to fix coin and health UI, will have to improve on later" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved platform bug where player would fall through, not 100% though&#10;Fixed bug where lava was too small on the bottom&#10;Added left and rightbox to player to handle platforms better&#10;Tried to fix coin and health UI, will have to improve on later" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

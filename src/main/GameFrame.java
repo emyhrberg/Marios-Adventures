@@ -34,7 +34,7 @@ public class GameFrame extends JFrame {
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(true);
+		setResizable(false);
 		setPreferredSize(new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT));
 
 		// add and pack

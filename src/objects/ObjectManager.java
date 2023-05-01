@@ -179,8 +179,8 @@ public class ObjectManager {
             int h = (int) (PLATFORM_H * Game.SCALE);
             g.drawImage(PLATFORM_IMAGES, x, y, w, h, null);
 
-            p.drawSomeBox(p.hitbox, new Color(0,255,0,100), g, levelOffset);
-            p.drawSomeBox(p.getTop(), new Color(255,0,255,120), g, levelOffset);
+//            p.drawSomeBox(p.hitbox, new Color(0,255,0,100), g, levelOffset);
+//            p.drawSomeBox(p.getTop(), new Color(255,0,255,120), g, levelOffset);
 
             if (Game.DEBUG) {
                 p.drawSomeBox(p.hitbox, Color.GREEN, g, levelOffset);

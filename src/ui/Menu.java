@@ -67,22 +67,20 @@ public class Menu extends GameState {
 
     public void mouseReleased(MouseEvent e) {
         for (MenuButton b : buttons)
-            if (isButtonInsideBounds(e, b) && b.isMousePressButton()) {
+            if (isButtonInsideBounds(e, b) && b.isMousePressButton())
+                buttonPressed(b);
 
-                // do stuff depending on button pressed
-                if (b.getButtonIndex() == 0) {
-                    game.setGameState(constants.GameState.PLAYING);
-                } else if (b.getButtonIndex() == 1) {
-                    System.exit(0);
-                }
-                break;
-            }
-
-        // Reset buttons
         for (MenuButton button : buttons) {
             button.setMouseOverButton(false);
             button.setMousePressButton(false);
         }
+    }
+
+    private void buttonPressed(MenuButton b) {
+        if (b.getButtonIndex() == 0)
+            game.setGameState(constants.GameState.PLAYING);
+        if (b.getButtonIndex() == 1)
+            System.exit(0);
     }
 
     public void mouseMoved(MouseEvent e) {

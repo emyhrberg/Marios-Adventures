@@ -56,14 +56,9 @@ public class MenuButton {
     }
 
     public void update() {
-        // Default, index 0
         mouseIndex = 0;
-
-        // Mouse over, index 1
         if (mouseOverButton)
             mouseIndex = 1;
-
-        // Mouse pressed, index 2
         if (mousePressButton)
             mouseIndex = 2;
     }

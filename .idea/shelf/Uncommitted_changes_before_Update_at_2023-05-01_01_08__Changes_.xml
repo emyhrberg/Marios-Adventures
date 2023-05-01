@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]" date="1682896132516" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2023-05-01 01:08 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="resources/ui/menu_buttons.psd" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/menu_buttons.psd" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="resources/ui/pause-buttons-unmute.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/pause-buttons-unmute.png" />
+  </binary>
+</changelist>

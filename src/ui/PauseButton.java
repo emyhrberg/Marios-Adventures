@@ -22,7 +22,7 @@ public class PauseButton {
     private static final int BUTTON_H = 80;
     private static final int GAME_CENTER = GAME_WIDTH / 2 - BUTTON_W / 2;
     private final BufferedImage[] animations = new BufferedImage[3];
-    private final BufferedImage[] unmuteAni = new BufferedImage[3];
+    private final BufferedImage[] animationsUnmute = new BufferedImage[3];
     private Rectangle buttonBounds;
     private final float y;
 
@@ -38,17 +38,16 @@ public class PauseButton {
         this.y = y;
         initButtonImages();
         initButtonBounds();
-        initUnmuteImages();
     }
 
     private void initButtonImages() {
+        // all buttons
         for (int i = 0; i < animations.length; i++)
             animations[i] = BUTTON_IMAGES.getSubimage(i * BUTTON_W, buttonIndex * BUTTON_H, BUTTON_W, BUTTON_H);
-    }
 
-    private void initUnmuteImages() {
+        // all buttons except with unmute instead of mute
         for (int i = 0; i < animations.length; i++)
-            unmuteAni[i] = UNMUTE_IMAGES.getSubimage(i * BUTTON_W, buttonIndex * BUTTON_H, BUTTON_W, BUTTON_H);
+            animationsUnmute[i] = UNMUTE_IMAGES.getSubimage(i * BUTTON_W, buttonIndex * BUTTON_H, BUTTON_W, BUTTON_H);
     }
 
     private void initButtonBounds() {
@@ -57,7 +56,7 @@ public class PauseButton {
 
     public void draw(Graphics g) {
         if (isMuted) {
-            g.drawImage(unmuteAni[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE), null);
+            g.drawImage(animationsUnmute[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE), null);
         } else {
             g.drawImage(animations[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * Game.SCALE), (int) (BUTTON_H * Game.SCALE), null);
         }

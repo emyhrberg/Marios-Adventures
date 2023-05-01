@@ -81,16 +81,14 @@ public class Game implements Runnable {
         gameComponent = new GameComponent(this);
         gameFrame = new GameFrame(gameComponent);
 
-        if (DEBUG) {
-            isMuted = true;
-            gameState = PLAYING;
-        } else {
-            // Set game state on launch
-//            gameState = PLAYING;
-//            menuClip = SoundLoader.playSound("/sounds/menu.wav");
-            isMuted = true;
-            gameState = MENU;
-        }
+        // temp
+        gameState = PLAYING;
+        isMuted = true;
+        goFullScreen();
+
+        // Set game state on launch
+//        gameState = MENU;
+//        menuClip = SoundLoader.playSound("/sounds/menu.wav");
 
 
         // Start game loop
