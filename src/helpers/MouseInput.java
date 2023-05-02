@@ -32,6 +32,8 @@ public class MouseInput extends MouseAdapter {
             case PAUSED:
                 game.getPauseState().mousePressed(e);
                 break;
+            case GAME_OVER:
+                game.getGameOverState().mousePressed(e);
             default:
                 // Handle the default case here
                 break;

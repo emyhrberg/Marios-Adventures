@@ -9,19 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Done:&#10;- Split into 2 levels. &#10;Todo: &#10;- Add hud for health and coins&#10;- Add level completed screen&#10;- Add game completed screen">
-      <change afterPath="$PROJECT_DIR$/resources/fonts/mario2d.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sprites/65082.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/hud.png" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixes:&#10;- Add when playing, hide cursor, and when in pause or menu, show cursor&#10;- Fix bug where saved spawn point would not reset when going to next level&#10;- Started working on HUD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/c-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/c-icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/ui/coin-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/h-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/h-icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/LevelCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompleted.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,14 +179,7 @@
       <workItem from="1682939279049" duration="10073000" />
       <workItem from="1682955819577" duration="3080000" />
       <workItem from="1682979661863" duration="6930000" />
-      <workItem from="1683024388709" duration="7317000" />
-    </task>
-    <task id="LOCAL-00046" summary="Game playtested and works as a JAR">
-      <created>1682374561498</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1682374561498</updated>
+      <workItem from="1683024388709" duration="12185000" />
     </task>
     <task id="LOCAL-00047" summary="Added variable jumping!!!!">
       <created>1682377449588</created>
@@ -528,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682986776564</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Fixes:&#10;- Add when playing, hide cursor, and when in pause or menu, show cursor&#10;- Fix bug where saved spawn point would not reset when going to next level&#10;- Started working on HUD">
+      <created>1683038920941</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1683038920941</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +545,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Started working on improving background" />
     <MESSAGE value="Fixed bug causing health powerup to keep moving through solid tiles to the right" />
     <MESSAGE value="Added clouds" />
     <MESSAGE value="New background added and working well!" />
@@ -574,7 +569,8 @@
     <MESSAGE value="Added JAR file" />
     <MESSAGE value="Split into 2 levels" />
     <MESSAGE value="Done:&#10;- Split into 2 levels. &#10;Todo: &#10;- Add hud for health and coins&#10;- Add level completed screen&#10;- Add game completed screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done:&#10;- Split into 2 levels. &#10;Todo: &#10;- Add hud for health and coins&#10;- Add level completed screen&#10;- Add game completed screen" />
+    <MESSAGE value="Fixes:&#10;- Add when playing, hide cursor, and when in pause or menu, show cursor&#10;- Fix bug where saved spawn point would not reset when going to next level&#10;- Started working on HUD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes:&#10;- Add when playing, hide cursor, and when in pause or menu, show cursor&#10;- Fix bug where saved spawn point would not reset when going to next level&#10;- Started working on HUD" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

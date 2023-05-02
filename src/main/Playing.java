@@ -48,10 +48,13 @@ public class Playing extends GameState {
     private static final BufferedImage FOREST = ImageLoader.loadImage("/ui/forest.png");
 
     // Draw HUD
+    private static final BufferedImage C_ICON = ImageLoader.loadImage("/ui/c-icon.png");
+    private static final BufferedImage H_ICON = ImageLoader.loadImage("/ui/h-icon.png");
 
     // ====== Constructor ======
     public Playing(Game game) {
         super(game);
+        initNums();
 
         // Init classes
         levelManager    = new LevelManager();
@@ -184,7 +187,7 @@ public class Playing extends GameState {
 
         // Draw UI
         drawCoinCount(g);
-        drawHealth(g);
+        drawHUD(g);
 
         // Draw game
         objectManager.drawPowerups(g, levelOffset);
@@ -280,25 +283,62 @@ public class Playing extends GameState {
         }
     }
 
-    private void drawHealth(Graphics g) {
-        final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
-        g.setFont(CUSTOM_FONT.deriveFont(48 * SCALE));
-        g.setColor(new Color(244,244,244));
-        int x = (int) (10 * SCALE);
-        int y = (int) (50 * SCALE);
-        g.drawString("Health: " + health, x, y);
+
+    private static final BufferedImage NUMS = ImageLoader.loadImage("/ui/nums.png");
+    private static final BufferedImage[] nums = new BufferedImage[10];
+    private static final int numW = 52;
+    private static final int numH = 43;
+
+    private void initNums() {
+        for (int i = 0; i < 10; i++) {
+            nums[i] = NUMS.getSubimage(numW * i, 0, numW, numH);
+        }
     }
 
-    private void drawCoinCount(Graphics g) {
-        final String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
-        g.setFont(CUSTOM_FONT.deriveFont(48 * SCALE));
-        g.setColor(new Color(244,244,244));
-        FontMetrics fm = g.getFontMetrics();
-        int h = fm.getHeight();
-        int x = (int) (10 * SCALE);
-        int y = (int) (50 + h * SCALE);
-        g.drawString("Coins: " + coins, x, y);
+    private void drawHUD(Graphics g) {
+        // =======================================
+        // HEALTH ICON
+        // =======================================
+        int size = (int) (72 * SCALE);
+        int x = size / 2;
+        int y = size / 3;
+        g.drawImage(H_ICON, x, y, size, size, null);
+
+        // HEALTH NUMBERS
+        x = x + H_ICON.getWidth() + size / 3;
+        y = y + size / 2; // align with icon
+        g.drawImage(nums[0], x, y, null);
+        x += (int) (numW / 2 * SCALE);
+        g.drawImage(nums[player.health], x, y, null);
+
+        // =======================================
+        // COIN ICON
+        // =======================================
+        x = size / 2;
+        y = size / 3 + size;
+        g.drawImage(C_ICON, x, y, size, size, null);
+
+        // COIN NUMBERS
+        x = x + C_ICON.getWidth() + size / 3;
+        y = y + size / 2; // align with icon
+
+        if (coinCount < 10) {
+            System.out.println("draw");
+            g.drawImage(nums[0], x, y, null);
+            x += (int) (numW / 2 * SCALE);
+            g.drawImage(nums[coinCount], x, y, null);
+        } else {
+            g.drawImage(nums[coinCount / 10], x, y, null);
+            x += (int) (numW / 2 * SCALE);
+            g.drawImage(nums[coinCount % 10], x, y, null);
+        }
     }
+
+
+    private void drawCoinCount(Graphics g) {
+
+    }
+
 
     private void drawCountdownTimer(Graphics g) {
         String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
