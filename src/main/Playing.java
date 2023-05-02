@@ -35,7 +35,7 @@ public class Playing extends GameState {
     private boolean movingLeft, movingRight;
     private static final int START_T = 300;
     private int t = START_T;
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/marionew.ttf");
+    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/mario2d.ttf");
 
     private final EnemyManager enemyManager;
     private final LevelManager levelManager;
@@ -341,7 +341,6 @@ public class Playing extends GameState {
     }
 
     public void resetGameGoToMenu() {
-        savedSpawn = false;
         resetGame();
         game.setGameState(MENU);
     }
@@ -361,6 +360,9 @@ public class Playing extends GameState {
         final int nextLevel = levelManager.getLevelIndex() + 1;
         levelManager.setLevelIndex(nextLevel);
         player.setLevel(levelManager.getLevel());
+
+        // Reset
+        savedSpawn = false;
         resetGame();
         game.setGameState(PLAYING);
     }

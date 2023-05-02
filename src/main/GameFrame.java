@@ -20,6 +20,9 @@ public class GameFrame extends JFrame {
 
 	private static final BufferedImage icon = ImageLoader.loadImage("/ui/mario-icon.png");
 
+	Cursor blankCursor;
+	Cursor defaultCursor;
+
     public GameFrame(final GameComponent gameComponent) {
 		// title and icon
 		setTitle("Mario's Adventures!");
@@ -29,6 +32,11 @@ public class GameFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
+
+		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+		blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
+		defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+		setCursor(blankCursor);
 
 		// add and pack
 		add(gameComponent);
@@ -42,7 +50,7 @@ public class GameFrame extends JFrame {
 			@Override public void windowLostFocus(WindowEvent e) {
 				// Lost focus, pause
 				if (gameComponent.getGame().getGameState() == GameState.PLAYING) {
-//					gameComponent.getGame().setGameState(GameState.PAUSED);
+					gameComponent.getGame().setGameState(GameState.PAUSED);
 				}
 			}
 			@Override public void windowGainedFocus(WindowEvent e) {

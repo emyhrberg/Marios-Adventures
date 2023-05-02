@@ -21,15 +21,14 @@ public class GameCompleted extends GameState {
     }
 
     public void drawGameCompleted(Graphics g) {
-		if (game.isDrawNotAllowed()) {
-//			return;
-		}
-
-		// Draw the overlay image
-		final int imageW = (int) (500 * SCALE);
-		final int imageH = (int) (500 * SCALE);
-		final int imageX = GAME_WIDTH / 2 - imageH / 2;
-		final int imageY = GAME_HEIGHT / 2 - imageH / 2;
+		String s = "Game completed! Press any key to continue";
+		g.setFont(g.getFont().deriveFont(80f));
+		FontMetrics fm = g.getFontMetrics();
+		int w = fm.stringWidth(s);
+		int h = fm.getHeight();
+		int x = GAME_WIDTH / 2 - w / 2;
+		int y = GAME_HEIGHT / 2 - h / 2;
+		g.drawString(s, x, y);
 	}
 
 	public void keyPressed(KeyEvent e) {

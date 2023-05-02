@@ -93,12 +93,15 @@ public class Game implements Runnable {
     public void update() {
         switch (gameState) {
             case MENU:
+                gameFrame.setCursor(gameFrame.defaultCursor);
                 menu.update();
                 break;
             case PLAYING:
+                gameFrame.setCursor(gameFrame.blankCursor);
                 playing.update();
                 break;
             case PAUSED:
+                gameFrame.setCursor(gameFrame.defaultCursor);
                 paused.update();
                 break;
             case LEVEL_COMPLETED:
@@ -338,10 +341,6 @@ public class Game implements Runnable {
     }
 
     // ====== Getters && Setters ======
-
-    public GameComponent getGameComponent() {
-        return gameComponent;
-    }
 
     public GameState getGameState() {
         return gameState;

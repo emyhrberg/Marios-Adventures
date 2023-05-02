@@ -9,25 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Split into 2 levels">
-      <change afterPath="$PROJECT_DIR$/resources/ui/heart-empty.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/heart-full.png" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Done:&#10;- Split into 2 levels. &#10;Todo: &#10;- Add hud for health and coins&#10;- Add level completed screen&#10;- Add game completed screen">
+      <change afterPath="$PROJECT_DIR$/resources/fonts/mario2d.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sprites/65082.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/hud.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons-backup.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons_backup2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/menu_buttons.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/stars.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/sun.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/you-win.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/coin-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/LevelCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompleted.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,26 +54,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Downloads/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Downloads/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src" />
@@ -188,14 +182,8 @@
       <workItem from="1682891872048" duration="14650000" />
       <workItem from="1682939279049" duration="10073000" />
       <workItem from="1682955819577" duration="3080000" />
-      <workItem from="1682979661863" duration="6574000" />
-    </task>
-    <task id="LOCAL-00045" summary="Game playtested, no noticeable bugs, looks alright!">
-      <created>1682373926577</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1682373926577</updated>
+      <workItem from="1682979661863" duration="6930000" />
+      <workItem from="1683024388709" duration="7317000" />
     </task>
     <task id="LOCAL-00046" summary="Game playtested and works as a JAR">
       <created>1682374561498</created>
@@ -533,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682981549514</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Done:&#10;- Split into 2 levels. &#10;Todo: &#10;- Add hud for health and coins&#10;- Add level completed screen&#10;- Add game completed screen">
+      <created>1682986776564</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1682986776564</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +549,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Improved top bar UI!" />
     <MESSAGE value="Started working on improving background" />
     <MESSAGE value="Fixed bug causing health powerup to keep moving through solid tiles to the right" />
     <MESSAGE value="Added clouds" />
@@ -579,7 +573,8 @@
     <MESSAGE value="Game tested, no noticable bugs!&#10;Fixed scaling bug where health UI was causing g2d transform to mess up&#10;Moved scaling variables to Menu class&#10;Changed to temp health UI&#10;Improved pause screen, added save option" />
     <MESSAGE value="Added JAR file" />
     <MESSAGE value="Split into 2 levels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Split into 2 levels" />
+    <MESSAGE value="Done:&#10;- Split into 2 levels. &#10;Todo: &#10;- Add hud for health and coins&#10;- Add level completed screen&#10;- Add game completed screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done:&#10;- Split into 2 levels. &#10;Todo: &#10;- Add hud for health and coins&#10;- Add level completed screen&#10;- Add game completed screen" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
