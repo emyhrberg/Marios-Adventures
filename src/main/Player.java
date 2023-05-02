@@ -45,7 +45,7 @@ public class Player extends Entity {
 	// ====== Player Settings ======
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 1.1f;
-	private static final int START_HEALTH 				= 30;
+	private static final int START_HEALTH 				= 5;
 
 	// ====== Jumping ======
 	private static final float MAX_JUMP_HEIGHT 			= 2.5f;

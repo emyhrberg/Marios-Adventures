@@ -36,7 +36,8 @@ public class HealthPowerup extends Entity {
     private void updateHealthPickup(Player player, HealthPowerup h) {
         if (h.getHitbox().intersects(player.getHitbox())) {
             // increase health and disable item
-            player.setHealth(player.getHealth() + 1);
+            if (player.getHealth() < 5)
+                player.setHealth(player.getHealth() + 1);
             h.setActive(false);
             SoundLoader.playSound("/sounds/powerup.wav", 0.7);
         }

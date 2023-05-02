@@ -218,7 +218,7 @@ public class Game implements Runnable {
             gameOverClip = SoundLoader.playSound("/sounds/gameover.wav");
         }
 
-        else if (gameState == GAME_COMPLETED) {
+        else if (gameState == GAME_COMPLETED || gameState == LEVEL_COMPLETED) {
             stopSounds();
             gameCompletedClip = SoundLoader.playSound("/sounds/gamecompleted.wav");
         }

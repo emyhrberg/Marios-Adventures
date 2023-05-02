@@ -17,20 +17,27 @@ import java.awt.image.BufferedImage;
 public class Menu extends GameState {
 
     // ====== Game Variables ======
-    public static float SCALE          ;
-    public static int TILES_SIZE_DEFAULT  ;
-    public static int TILES_SIZE          ;
-    public static int TILES_IN_WIDTH       ;
-    public static int TILES_IN_HEIGHT      ;
-    public static int GAME_WIDTH           ;
-    public static int GAME_HEIGHT        ;
+    public static float SCALE;
+    public static int TILES_SIZE_DEFAULT;
+    public static int TILES_SIZE;
+    public static int TILES_IN_WIDTH;
+    public static int TILES_IN_HEIGHT;
+    public static int GAME_WIDTH;
+    public static int GAME_HEIGHT;
     private int userW;
+
+    private final BufferedImage bgImage;
+    private final BufferedImage titleImage;
+    private final MenuButton[] buttons                    = new MenuButton[2];
 
     // ====== Constructor ======
     public Menu(Game game) {
         super(game);
+        bgImage = ImageLoader.loadImage("/ui/menu-bg.jpg");
+        titleImage = ImageLoader.loadImage("/ui/menu-title.png");
         initScale();
         loadButtons();
+
     }
 
     private void initScale() {
@@ -54,10 +61,6 @@ public class Menu extends GameState {
         return userW;
     }
 
-    private static final BufferedImage BACKGROUND_IMAGE   = ImageLoader.loadImage("/ui/menu-bg.jpg");
-    private static final BufferedImage TITLE_IMAGE        = ImageLoader.loadImage("/ui/menu-title.png");
-    private final MenuButton[] buttons                    = new MenuButton[2];
-
     private void loadButtons() {
         int startY = (int) (300 * SCALE);
         int quitY = (int) (380 * SCALE);
@@ -73,14 +76,14 @@ public class Menu extends GameState {
 
     public void draw(Graphics g) {
         // Draw bg image
-        g.drawImage(BACKGROUND_IMAGE, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
+        g.drawImage(bgImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
 
         // Draw bg title
         int w = (int) (1280 / 2 * SCALE);
         int h = (int) (720 / 2 * SCALE);
         int y = (int) (40 * SCALE);
         int x = GAME_WIDTH / 2 - w / 2;
-        g.drawImage(TITLE_IMAGE, x, y, w, h, null);
+        g.drawImage(titleImage, x, y, w, h, null);
 
         // Draw buttons
         for (MenuButton button : buttons)

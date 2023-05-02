@@ -1,12 +1,10 @@
 package ui;
 
-import helpers.ImageLoader;
 import main.Game;
 import main.GameState;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 
 import static ui.Menu.*;
 
@@ -16,7 +14,6 @@ import static ui.Menu.*;
 public class GameCompleted extends GameState {
 
     // ======= Variables =======
-    private static final BufferedImage YOU_WIN_IMAGE = ImageLoader.loadImage("/ui/you-win.png");
 
     // ====== Constructor ======
     public GameCompleted(Game game) {
@@ -33,9 +30,6 @@ public class GameCompleted extends GameState {
 		final int imageH = (int) (500 * SCALE);
 		final int imageX = GAME_WIDTH / 2 - imageH / 2;
 		final int imageY = GAME_HEIGHT / 2 - imageH / 2;
-
-		// Draw the image
-		g.drawImage(YOU_WIN_IMAGE, imageX, imageY, imageW, imageH, null);
 	}
 
 	public void keyPressed(KeyEvent e) {

@@ -17,9 +17,8 @@ public class Coin extends GameObject {
 
     public Coin(int x, int y, ObjectType objectType) {
         super(x, y, objectType);
-        final float X = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * SCALE;
-        final float Y = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * SCALE;
-        initHitbox(x + X, y + Y, COIN_SIZE, COIN_SIZE);
+        final float CENTER = (TILES_SIZE_DEFAULT - COIN_SIZE) / 2f * SCALE;
+        initHitbox(x + CENTER, y + CENTER, COIN_SIZE, COIN_SIZE);
     }
 
     public void update(Player player, Coin c) {

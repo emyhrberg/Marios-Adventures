@@ -41,17 +41,14 @@ public class Playing extends GameState {
     private final LevelManager levelManager;
     private final ObjectManager objectManager;
 
-    // Drawing background
-    private static final BufferedImage SUN = ImageLoader.loadImage("/ui/sun.png");
+    // Draw Background
     private static final BufferedImage SKY = ImageLoader.loadImage("/ui/sky.png");
     private static final BufferedImage BIG_CLOUDS = ImageLoader.loadImage("/ui/big-clouds.png");
     private static final BufferedImage SMALL_CLOUDS = ImageLoader.loadImage("/ui/small-clouds.png");
     private static final BufferedImage FOREST = ImageLoader.loadImage("/ui/forest.png");
 
-    // Drawing UI
-    private static final BufferedImage MARIO = ImageLoader.loadImage("/ui/mario-icon.png");
-    private static final BufferedImage COIN = ImageLoader.loadImage("/ui/coin-icon.png");
-    
+    // Draw HUD
+
     // ====== Constructor ======
     public Playing(Game game) {
         super(game);
@@ -187,7 +184,7 @@ public class Playing extends GameState {
 
         // Draw UI
         drawCoinCount(g);
-        drawHealthText(g);
+        drawHealth(g);
 
         // Draw game
         objectManager.drawPowerups(g, levelOffset);
@@ -283,11 +280,10 @@ public class Playing extends GameState {
         }
     }
 
-    private void drawHealthText(Graphics g) {
+    private void drawHealth(Graphics g) {
         final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
         g.setFont(CUSTOM_FONT.deriveFont(48 * SCALE));
         g.setColor(new Color(244,244,244));
-
         int x = (int) (10 * SCALE);
         int y = (int) (50 * SCALE);
         g.drawString("Health: " + health, x, y);
@@ -297,9 +293,10 @@ public class Playing extends GameState {
         final String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
         g.setFont(CUSTOM_FONT.deriveFont(48 * SCALE));
         g.setColor(new Color(244,244,244));
-
-        int x = (int) (300 * SCALE);
-        int y = (int) (50 * SCALE);
+        FontMetrics fm = g.getFontMetrics();
+        int h = fm.getHeight();
+        int x = (int) (10 * SCALE);
+        int y = (int) (50 + h * SCALE);
         g.drawString("Coins: " + coins, x, y);
     }
 
@@ -315,9 +312,9 @@ public class Playing extends GameState {
     private Point savedSpawnPoint;
 
     private void resetSpawnPoint() {
-//        if (savedSpawn)
-//            spawnPoint = savedSpawnPoint;
-//        else
+        if (savedSpawn)
+            spawnPoint = savedSpawnPoint;
+        else
             spawnPoint = levelManager.getLevel().getSpawnPoint();
 
         player.getHitbox().x = spawnPoint.x;
@@ -369,18 +366,6 @@ public class Playing extends GameState {
     }
 
     public void setLevelCompleted() {
-        // calculate grade by factors speed and coins
-        // A below 80 seconds and 30 coins
-        if (coinCount >= 30 && t >= 220) {
-            System.out.println("Grade: A");
-        } else if (coinCount >= 20 && t >= 200) {
-            System.out.println("Grade: B");
-        } else if (coinCount >= 10 && t >= 150) {
-            System.out.println("Grade: C");
-        } else {
-            System.out.println("Grade: D");
-        }
-
         // Set level complete or game complete, if at the last level
         final int currentLevel = game.getPlaying().getLevelManager().getLevelIndex();
         final int last = game.getPlaying().getLevelManager().getAmountOfLevels() - 1;
