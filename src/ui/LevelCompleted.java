@@ -1,18 +1,22 @@
 package ui;
 
+import helpers.ImageLoader;
 import main.Game;
 import main.GameState;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
-import static ui.Menu.GAME_HEIGHT;
-import static ui.Menu.GAME_WIDTH;
+import static ui.Menu.*;
 
 /**
  * When in level completed state, this class handles drawing a level completed image
  */
 public class LevelCompleted extends GameState {
+
+    // ======= Variables =======
+    private static final BufferedImage img = ImageLoader.loadImage("ui/level-completed.png");
 
     // ====== Constructor ======
     public LevelCompleted(Game game) {
@@ -20,14 +24,11 @@ public class LevelCompleted extends GameState {
     }
 
     public void drawLevelCompleted(Graphics g) {
-        String s = "Level completed! Press Enter to continue";
-        g.setFont(g.getFont().deriveFont(80f));
-        FontMetrics fm = g.getFontMetrics();
-        int w = fm.stringWidth(s);
-        int h = fm.getHeight();
+        int w = (int) (1920 * SCALE);
+        int h = (int) (1080 * SCALE);
         int x = GAME_WIDTH / 2 - w / 2;
         int y = GAME_HEIGHT / 2 - h / 2;
-        g.drawString(s, x, y);
+        g.drawImage(img, x, y, w, h, null);
     }
 
     public void keyPressed(KeyEvent e) {

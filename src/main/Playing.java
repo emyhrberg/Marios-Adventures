@@ -127,10 +127,10 @@ public class Playing extends GameState {
         int playerY = (int) player.getHitbox().y / TILES_SIZE;
 
         // Player is inside the final position, meaning
-        // Exact X position
+        // Exact X position ( + 1 for player hitbox width offset)
         // Exact Y position on the bottom or up to 3 tiles above it.
-        if (playerX == finalX) {
-            if (playerY >= finalY - 3 || playerY <= finalY) {
+        if (playerX + 1 == finalX) {
+            if (playerY <= finalY && playerY + 3 >= finalY) {
                 setLevelCompleted();
             }
         }
@@ -302,44 +302,36 @@ public class Playing extends GameState {
 
         // ========== HEALTH ===========
         g.drawImage(H_ICON, x, y, icon, icon, null);
-        g.drawRect(x, y, icon, icon);
 
         // 1
         x += 0.75*icon;
         y += (icon - h);
         g.drawImage(healthX, x, y, w, h, null);
-        g.drawRect(x, y, w, h);
 
         // 2
         x += 0.7*w;
         g.drawImage(nums[0], x, y, w, h, null);
-        g.drawRect(x, y, w, h);
 
         // 3
         x += 0.7*w;
         g.drawImage(nums[player.health], x, y, w, h, null);
-        g.drawRect(x, y, w, h);
 
         // ========== COIN ===========
         y = icon / 3 + icon;
         x = icon / 2;
         g.drawImage(C_ICON, x, y, icon, icon, null);
-        g.drawRect(x, y, icon, icon);
 
         // 1
         x += 0.9*icon;
         y += h / 2;
         g.drawImage(numsY[coinCount / 10], x, y, w, h, null);
-        g.drawRect(x, y, w, h);
 
         // 2
         x += 0.65*w;
         g.drawImage(numsY[coinCount % 10], x, y, w, h, null);
-        g.drawRect(x, y, w, h);
 
         // Draw countdown?
         String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
-
     }
     // ====== Reset methods ======
 
@@ -376,10 +368,6 @@ public class Playing extends GameState {
     }
 
     public void resetGameGoToMenu() {
-        final int nextLevel = levelManager.getLevelIndex() + 1;
-        levelManager.setLevelIndex(nextLevel);
-        player.setLevel(levelManager.getLevel());
-
         // Reset
         savedSpawn = false;
         resetGame();

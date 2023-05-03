@@ -133,7 +133,7 @@ public class Game implements Runnable {
                 playing.draw(g);
                 break;
             case LEVEL_COMPLETED:
-                playing.draw(g);
+                playing.drawBlur(g);
                 levelCompleted.drawLevelCompleted(g);
                 break;
             case PAUSED:
@@ -141,6 +141,7 @@ public class Game implements Runnable {
                 paused.draw(g);
                 break;
             case GAME_COMPLETED:
+                playing.drawBlur(g);
                 playing.draw(g);
                 gameCompleted.drawGameCompleted(g);
                 break;

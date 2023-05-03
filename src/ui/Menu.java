@@ -36,8 +36,7 @@ public class Menu extends GameState {
         bgImage = ImageLoader.loadImage("/ui/menu-bg.jpg");
         titleImage = ImageLoader.loadImage("/ui/menu-title.png");
         initScale();
-        loadButtons();
-
+        initButtons();
     }
 
     private void initScale() {
@@ -61,7 +60,7 @@ public class Menu extends GameState {
         return userW;
     }
 
-    private void loadButtons() {
+    private void initButtons() {
         int startY = (int) (300 * SCALE);
         int quitY = (int) (380 * SCALE);
 
