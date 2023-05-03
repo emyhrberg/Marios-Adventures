@@ -9,20 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Nice volume font working well">
-      <change afterPath="$PROJECT_DIR$/resources/levels/1_test.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/levels/2_test.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/volume-nums.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/volume.psd" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Game playtested, looks good! Release 1.3!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VolumeSlider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mario.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Mario.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Paused.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Paused.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,26 +48,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Github/PlatformerTutorial-ep28_finale&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Erik/Github/PlatformerTutorial-ep28_finale",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src\ui" />
@@ -189,14 +182,7 @@
       <workItem from="1683024388709" duration="26014000" />
       <workItem from="1683108678088" duration="8196000" />
       <workItem from="1683117808117" duration="25830000" />
-      <workItem from="1683149622931" duration="3417000" />
-    </task>
-    <task id="LOCAL-00052" summary="Improved bullet bills to go down when hit">
-      <created>1682431311130</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1682431311131</updated>
+      <workItem from="1683149622931" duration="4042000" />
     </task>
     <task id="LOCAL-00053" summary="Game playtested, looks good :)">
       <created>1682445690012</created>
@@ -534,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683150200525</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Game playtested, looks good! Release 1.3!">
+      <created>1683154145762</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1683154145762</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +548,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="v1.2 release!" />
     <MESSAGE value="Improved code for sound and debugging" />
     <MESSAGE value="Added save &amp; quit" />
     <MESSAGE value="Small fixes" />
@@ -580,7 +572,8 @@
     <MESSAGE value="Small fixes. Need to fix level/game completed and possible bug when pausing in game over and resuming" />
     <MESSAGE value="Added basic option in main menu and pause menu to adjust volume&#10;Improved HUD" />
     <MESSAGE value="Nice volume font working well" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nice volume font working well" />
+    <MESSAGE value="Game playtested, looks good! Release 1.3!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game playtested, looks good! Release 1.3!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
