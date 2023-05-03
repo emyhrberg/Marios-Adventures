@@ -28,7 +28,7 @@ public class Menu extends GameState {
 
     private final BufferedImage bgImage;
     private final BufferedImage titleImage;
-    private final MenuButton[] buttons                    = new MenuButton[2];
+    private final MenuButton[] buttons = new MenuButton[2];
 
     // ====== Constructor ======
     public Menu(Game game) {

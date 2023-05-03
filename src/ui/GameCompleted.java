@@ -37,7 +37,6 @@ public class GameCompleted extends GameState {
 		}
 
 		// Reset game and go to 1st level
-		game.getPlaying().getLevelManager().setLevelIndex(0);
 		game.getPlaying().resetGameGoToMenu();
 	}
 }

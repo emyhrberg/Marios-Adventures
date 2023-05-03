@@ -24,7 +24,7 @@ public class Platform extends GameObject {
 
     // Platform moving
     private Direction platDir = LEFT;
-    private static final float MAX_SPEED = 0.9f * SCALE;
+    private static final float MAX_SPEED = 0.9f;
     private float platSpeed;
 
     public Platform(int x, int y, ObjectType objectType) {
@@ -50,9 +50,9 @@ public class Platform extends GameObject {
 
     private void updatePlatformPos(Player player, Level level) {
         if (platDir == RIGHT)
-            platSpeed = MAX_SPEED;
+            platSpeed = MAX_SPEED * SCALE;
         if (platDir == LEFT)
-            platSpeed = -MAX_SPEED;
+            platSpeed = -MAX_SPEED * SCALE;
 
         if (hitSolidTileLeft(level))
             platDir = RIGHT;

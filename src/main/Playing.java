@@ -179,17 +179,11 @@ public class Playing extends GameState {
     }
 
     private void drawGame(Graphics g) {
-        // Draw background
         drawSky(g);
         drawForest(g);
         drawSmallClouds(g);
         drawBigClouds(g);
-
-        // Draw UI
-        drawCoinCount(g);
         drawHUD(g);
-
-        // Draw game
         objectManager.drawPowerups(g, levelOffset);
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);
@@ -285,67 +279,68 @@ public class Playing extends GameState {
 
 
     private static final BufferedImage NUMS = ImageLoader.loadImage("/ui/nums.png");
+    private static final BufferedImage NUMS_Y = ImageLoader.loadImage("/ui/nums-yellow.png");
+    private static final BufferedImage healthX = ImageLoader.loadImage("/ui/x.png");
     private static final BufferedImage[] nums = new BufferedImage[10];
-    private static final int numW = 52;
-    private static final int numH = 43;
+    private static final BufferedImage[] numsY = new BufferedImage[10];
+    private static final int numW = 315;
+    private static final int numH = 300;
 
     private void initNums() {
         for (int i = 0; i < 10; i++) {
             nums[i] = NUMS.getSubimage(numW * i, 0, numW, numH);
+            numsY[i] = NUMS_Y.getSubimage(numW * i, 0, numW, numH);
         }
     }
 
     private void drawHUD(Graphics g) {
-        // =======================================
-        // HEALTH ICON
-        // =======================================
-        int size = (int) (72 * SCALE);
-        int x = size / 2;
-        int y = size / 3;
-        g.drawImage(H_ICON, x, y, size, size, null);
+        int icon = (int) (72 * SCALE);
+        int w = (int) (316 / 7 * SCALE);
+        int h = (int) (300 / 7 * SCALE);
+        int x = icon / 2;
+        int y = icon / 3;
 
-        // HEALTH NUMBERS
-        x = x + H_ICON.getWidth() + size / 3;
-        y = y + size / 2; // align with icon
-        g.drawImage(nums[0], x, y, null);
-        x += (int) (numW / 2 * SCALE);
-        g.drawImage(nums[player.health], x, y, null);
+        // ========== HEALTH ===========
+        g.drawImage(H_ICON, x, y, icon, icon, null);
+        g.drawRect(x, y, icon, icon);
 
-        // =======================================
-        // COIN ICON
-        // =======================================
-        x = size / 2;
-        y = size / 3 + size;
-        g.drawImage(C_ICON, x, y, size, size, null);
+        // 1
+        x += 0.75*icon;
+        y += (icon - h);
+        g.drawImage(healthX, x, y, w, h, null);
+        g.drawRect(x, y, w, h);
 
-        // COIN NUMBERS
-        x = x + C_ICON.getWidth() + size / 3;
-        y = y + size / 2; // align with icon
+        // 2
+        x += 0.7*w;
+        g.drawImage(nums[0], x, y, w, h, null);
+        g.drawRect(x, y, w, h);
 
-        if (coinCount < 10) {
-            System.out.println("draw");
-            g.drawImage(nums[0], x, y, null);
-            x += (int) (numW / 2 * SCALE);
-            g.drawImage(nums[coinCount], x, y, null);
-        } else {
-            g.drawImage(nums[coinCount / 10], x, y, null);
-            x += (int) (numW / 2 * SCALE);
-            g.drawImage(nums[coinCount % 10], x, y, null);
-        }
-    }
+        // 3
+        x += 0.7*w;
+        g.drawImage(nums[player.health], x, y, w, h, null);
+        g.drawRect(x, y, w, h);
 
+        // ========== COIN ===========
+        y = icon / 3 + icon;
+        x = icon / 2;
+        g.drawImage(C_ICON, x, y, icon, icon, null);
+        g.drawRect(x, y, icon, icon);
 
-    private void drawCoinCount(Graphics g) {
+        // 1
+        x += 0.9*icon;
+        y += h / 2;
+        g.drawImage(numsY[coinCount / 10], x, y, w, h, null);
+        g.drawRect(x, y, w, h);
 
-    }
+        // 2
+        x += 0.65*w;
+        g.drawImage(numsY[coinCount % 10], x, y, w, h, null);
+        g.drawRect(x, y, w, h);
 
-
-    private void drawCountdownTimer(Graphics g) {
+        // Draw countdown?
         String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
-        g.setFont(CUSTOM_FONT.deriveFont(48f * SCALE));
 
     }
-
     // ====== Reset methods ======
 
     private boolean savedSpawn = false;
@@ -381,6 +376,12 @@ public class Playing extends GameState {
     }
 
     public void resetGameGoToMenu() {
+        final int nextLevel = levelManager.getLevelIndex() + 1;
+        levelManager.setLevelIndex(nextLevel);
+        player.setLevel(levelManager.getLevel());
+
+        // Reset
+        savedSpawn = false;
         resetGame();
         game.setGameState(MENU);
     }
