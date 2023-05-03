@@ -9,16 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added basic option in main menu and pause menu to adjust volume&#10;Improved HUD">
-      <change afterPath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/volume-nums.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/volume.png" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Nice volume font working well">
+      <change afterPath="$PROJECT_DIR$/resources/levels/1_test.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/levels/2_test.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/volume-nums.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/volume.psd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Options.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VolumeSlider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,14 +189,7 @@
       <workItem from="1683024388709" duration="26014000" />
       <workItem from="1683108678088" duration="8196000" />
       <workItem from="1683117808117" duration="25830000" />
-      <workItem from="1683149622931" duration="315000" />
-    </task>
-    <task id="LOCAL-00051" summary="Improved lots of sound effects!">
-      <created>1682385226745</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1682385226745</updated>
+      <workItem from="1683149622931" duration="3417000" />
     </task>
     <task id="LOCAL-00052" summary="Improved bullet bills to go down when hit">
       <created>1682431311130</created>
@@ -530,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683145279779</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Nice volume font working well">
+      <created>1683150200524</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1683150200525</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +555,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactoring resources" />
     <MESSAGE value="v1.2 release!" />
     <MESSAGE value="Improved code for sound and debugging" />
     <MESSAGE value="Added save &amp; quit" />
@@ -576,7 +579,8 @@
     <MESSAGE value="Added awesome playing HUD for health and coins!&#10;Working very well in 1280x720 and 1920x1080!" />
     <MESSAGE value="Small fixes. Need to fix level/game completed and possible bug when pausing in game over and resuming" />
     <MESSAGE value="Added basic option in main menu and pause menu to adjust volume&#10;Improved HUD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic option in main menu and pause menu to adjust volume&#10;Improved HUD" />
+    <MESSAGE value="Nice volume font working well" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nice volume font working well" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

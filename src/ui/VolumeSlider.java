@@ -14,7 +14,7 @@ import static constants.GameState.MENU;
 import static constants.GameState.PLAYING;
 import static ui.Menu.*;
 
-public class Settings extends GameState {
+public class VolumeSlider extends GameState {
 
     // pos
     private final int w;
@@ -34,7 +34,7 @@ public class Settings extends GameState {
     private int volume = 20;
     public static float actualVolume = 20 * 0.5f - 44;
 
-    public Settings(Game game) {
+    public VolumeSlider(Game game) {
         super(game);
 
         // Init volume rectangle bounds
@@ -51,8 +51,10 @@ public class Settings extends GameState {
 
     public void draw(Graphics g) {
         // bg
-        g.setColor(new Color(0,0,0, 200));
-        g.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+        if (game.getPrevState() == MENU) {
+            g.setColor(new Color(0, 0, 0, 220));
+            g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        }
 
         // text
         int numW = 64;
@@ -63,27 +65,28 @@ public class Settings extends GameState {
 
         int padding1 = 20;
         int padding2 = -10;
-        int leftmostX = x + (w - textW - 3 * numW - padding1 * 2 - padding2 * 2) / 2;
+        int leftmostX = x + (w - textW - 2 * numW - padding1 * 2 - padding2 * 2) / 2;
 
         // Draw the 3 rectangles
-        g.drawRect(leftmostX + textW + padding1, newY, numW, numH);
-        g.drawRect(leftmostX + textW + padding1 + numW + padding2, newY, numW, numH);
-        g.drawRect(leftmostX + textW + padding1 + 2 * numW + padding2 * 2, newY, numW, numH);
+//        g.drawRect(leftmostX + textW + padding1, newY, numW, numH);
+//        g.drawRect(leftmostX + textW + padding1 + numW + padding2, newY, numW, numH);
+//        g.drawRect(leftmostX + textW + padding1 + 2 * numW + padding2 * 2, newY, numW, numH);
 
         // Draw volume text
-        g.drawRect(leftmostX, newY, textW, textH);
+//        g.drawRect(leftmostX, newY, textW, textH);
         g.drawImage(VOLUME_TEXT, leftmostX, newY, textW, textH, null); // volume text
 
-
-
-
         // nums
-        int num1 = volume / 100;
         int num2 = (volume % 100) / 10;
         int num3 = volume % 10;
-        g.drawImage(nums[num1], leftmostX + textW + padding1, newY, numW, numH, null);
-        g.drawImage(nums[num2], leftmostX + textW + padding1 + numW + padding2, newY, numW, numH, null);
-        g.drawImage(nums[num3], leftmostX + textW + padding1 + 2 * numW + padding2 * 2, newY, numW, numH, null);
+        if (volume == 100) {
+            g.drawImage(nums[volume / 100], leftmostX + textW + padding1, newY, numW, numH, null);
+            g.drawImage(nums[num2], leftmostX + textW + padding1 + numW + padding2, newY, numW, numH, null);
+            g.drawImage(nums[num3], leftmostX + textW + padding1 + 2 * numW + padding2 * 2, newY, numW, numH, null);
+        } else {
+            g.drawImage(nums[num2], leftmostX + textW + padding1, newY, numW, numH, null);
+            g.drawImage(nums[num3], leftmostX + textW + padding1 + numW + padding2, newY, numW, numH, null);
+        }
 
         // background white volume bar
         int arc = 25;
@@ -97,16 +100,28 @@ public class Settings extends GameState {
         g2d.drawRoundRect(x,y,w,h,arc,arc); // draw the rectangle outline
 
         // fill volume bar
+        int stroke = 3;
+        int fillX = x + stroke;
+        int fillY = y + stroke;
+        int fillW;
+//        if (volume <= 1)
+//            fillW = (int) (w * 0.01) - stroke * 2;
+//        else
+            fillW = (int) (w * percentVolume) - stroke * 2;
+        int fillH = h - stroke * 2;
         g.setColor(new Color(48,242,3));
-        g.fillRoundRect(x, y, (int) (w * percentVolume), h, arc, arc);
+        g.fillRoundRect(fillX, fillY, fillW, fillH, arc - stroke, arc - stroke);
 
-        // ----------------------TEST
-        g.drawRect(x, y, w, h); // original rectangle
     }
 
     public void mousePressed(MouseEvent e) {
         if (bounds.contains(e.getPoint()))
             updateVolume(e);
+        else
+            if (game.getPrevState() == MENU)
+                game.setGameState(MENU);
+            else
+                game.setGameState(PLAYING);
     }
 
     public void mouseDragged(MouseEvent e) {
@@ -129,7 +144,7 @@ public class Settings extends GameState {
         // min and max values for drawing volume bar
         if (percentVolume >= 1)
             percentVolume = 1;
-        else if (percentVolume <= 0.01) {
+        else if (percentVolume <= 0.00) {
             percentVolume = 0;
             if (game.getMenuClip() != null && game.getMenuClip().isActive()) {
                 FloatControl control = (FloatControl) game.getMenuClip().getControl(FloatControl.Type.MASTER_GAIN);

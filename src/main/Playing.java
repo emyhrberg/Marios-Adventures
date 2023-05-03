@@ -188,7 +188,7 @@ public class Playing extends GameState {
         g.drawImage(offScreenImage, 0, 0, null);
 
         // Add black opacity
-        g.setColor(new Color(0,0,0,150));
+        g.setColor(new Color(0,0,0,220));
         g.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
 
         // Dispose of the off-screen graphics object to release system resources

@@ -49,7 +49,7 @@ public class Game implements Runnable {
     private final LevelCompleted levelCompleted = new LevelCompleted(this);
     private final GameCompleted gameCompleted   = new GameCompleted(this);
     private final GameOver gameOver             = new GameOver(this);
-    private final Settings options               = new Settings(this);
+    private final VolumeSlider options               = new VolumeSlider(this);
 
     // ====== Sounds ======
     private Clip menuClip;
@@ -310,7 +310,7 @@ public class Game implements Runnable {
         return prevState;
     }
 
-    public Settings getOptions() {
+    public VolumeSlider getOptions() {
         return options;
     }
 

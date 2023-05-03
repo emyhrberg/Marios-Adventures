@@ -5,7 +5,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static ui.Settings.actualVolume;
+import static ui.VolumeSlider.actualVolume;
 
 public class SoundPlayer {
 

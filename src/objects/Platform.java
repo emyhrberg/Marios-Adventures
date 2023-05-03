@@ -83,6 +83,9 @@ public class Platform extends GameObject {
 
         int distanceToTile = 0;
 
+        if (tileX < 0)
+            return false;
+
         return solidTiles.contains(level.getLevelData()[tileY][tileX - distanceToTile]);
     }
 
