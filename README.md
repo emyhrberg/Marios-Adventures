@@ -12,7 +12,7 @@
 
 | Java                                                                                | No Java |
 |-------------------------------------------------------------------------------------| ------ |
-| [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar) | [Mario.zip](https://drive.google.com/file/d/1l7E_KapxdbWZGlw-BIWp95dqcXJ_pILL/view?usp=share_link) |
+| [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar?raw=true) | [Mario.zip](https://drive.google.com/file/d/1l7E_KapxdbWZGlw-BIWp95dqcXJ_pILL/view?usp=share_link) |
 
 To run the game, you have two options:
 - Run the game using minimum Java 8 by downloading Mario.jar
