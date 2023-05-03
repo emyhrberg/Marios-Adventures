@@ -94,9 +94,8 @@ public class Menu extends GameState {
             game.setGameState(PLAYING);
 
         // OPTIONS
-        if (b.getButtonIndex() == 1) {
+        if (b.getButtonIndex() == 1)
             game.setGameState(OPTIONS);
-        }
 
         // QUIT
         if (b.getButtonIndex() == 2)

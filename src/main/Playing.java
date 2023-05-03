@@ -321,7 +321,6 @@ public class Playing extends GameState {
         else
             spawnPoint = levelManager.getLevel().getSpawnPoint();
 
-        System.out.println("loading: " + spawnPoint);
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;
     }
@@ -353,7 +352,6 @@ public class Playing extends GameState {
     public void saveSpawnPointGoToMenu() {
         savedSpawnPoint = new Point((int) player.getHitbox().x, (int) player.getHitbox().y);
         savedSpawn = true;
-        System.out.println("saved: " + savedSpawnPoint);
         game.setGameState(MENU);
     }
 

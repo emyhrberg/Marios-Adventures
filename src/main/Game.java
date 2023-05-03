@@ -49,7 +49,7 @@ public class Game implements Runnable {
     private final LevelCompleted levelCompleted = new LevelCompleted(this);
     private final GameCompleted gameCompleted   = new GameCompleted(this);
     private final GameOver gameOver             = new GameOver(this);
-    private final Options options               = new Options(this);
+    private final Settings options               = new Settings(this);
 
     // ====== Sounds ======
     private Clip menuClip;
@@ -209,11 +209,10 @@ public class Game implements Runnable {
 
     private void playGameStateSounds() {
         if (gameState == PLAYING) {
+            if (prevState == PAUSED || prevState == OPTIONS)
+                return;
             stopSounds();
             playingClip = SoundPlayer.playSoundLoop("/sounds/playing.wav");
-            if (prevState == PAUSED && playingClip != null) {
-                playingClip.setFramePosition(playingClipFrame);
-            }
         }
 
         else if (gameState == MENU) {
@@ -221,13 +220,6 @@ public class Game implements Runnable {
                 return;
             stopSounds();
             menuClip = SoundPlayer.playSoundLoop("/sounds/menu.wav");
-        }
-
-        else if (gameState == PAUSED) {
-            if (playingClip != null) {
-                playingClipFrame = playingClip.getFramePosition();
-            }
-            stopSounds();
         }
 
         else if (gameState == GAME_OVER) {
@@ -265,6 +257,8 @@ public class Game implements Runnable {
 
     ///////////////// FULL SCREEN ////////////////
 
+    private boolean fullScreen = false;
+
     private void goFullScreen() {
         // dispose old frame
         Window window = SwingUtilities.windowForComponent(gameComponent);
@@ -297,9 +291,6 @@ public class Game implements Runnable {
         fullScreen = false;
     }
 
-    // Declare boolean variables to track the state of each button
-    private boolean fullScreen = false;
-
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_F)
             fullScreen = !fullScreen;
@@ -319,12 +310,8 @@ public class Game implements Runnable {
         return prevState;
     }
 
-    public Options getOptions() {
+    public Settings getOptions() {
         return options;
-    }
-
-    public GameFrame getGameFrame() {
-        return gameFrame;
     }
 
     public GameState getGameState() {

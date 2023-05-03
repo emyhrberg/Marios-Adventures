@@ -5,7 +5,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static ui.Options.actualVolume;
+import static ui.Settings.actualVolume;
 
 public class SoundPlayer {
 
@@ -51,7 +51,6 @@ public class SoundPlayer {
 
 			FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			control.setValue(actualVolume);
-			System.out.println("played new sound with: " + actualVolume);
 
 			// Start the clip
 			clip.start();
