@@ -15,7 +15,7 @@
 | [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar) | [Mario.zip](https://drive.google.com/file/d/1l7E_KapxdbWZGlw-BIWp95dqcXJ_pILL/view?usp=share_link) |
 
 To run the game, you have two options:
-- Run the game using minimum Java 8 by downloading Mario.exe
+- Run the game using minimum Java 8 by downloading Mario.jar
 - Run the game using bundled-in JRE by downloading the ZIP file. This option works if you don't have Java.
 
 ## Introduction
