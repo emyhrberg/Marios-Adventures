@@ -1,6 +1,5 @@
 package main;
 
-import constants.GameState;
 import helpers.ImageLoader;
 
 import javax.swing.*;
@@ -9,6 +8,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
 
+import static constants.GameState.PAUSED;
+import static constants.GameState.PLAYING;
 import static ui.Menu.GAME_HEIGHT;
 import static ui.Menu.GAME_WIDTH;
 
@@ -19,9 +20,8 @@ import static ui.Menu.GAME_WIDTH;
 public class GameFrame extends JFrame {
 
 	private static final BufferedImage icon = ImageLoader.loadImage("/ui/mario-icon.png");
-
-	Cursor blankCursor;
-	Cursor defaultCursor;
+	private final Cursor blankCursor;
+	private final Cursor defaultCursor;
 
     public GameFrame(final GameComponent gameComponent) {
 		// title and icon
@@ -30,31 +30,38 @@ public class GameFrame extends JFrame {
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
+		setResizable(true);
 		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
 
+		// cursor
 		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
 		blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
 		defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 		setCursor(blankCursor);
 
-		// add and pack
+		// add actual game
 		add(gameComponent);
 		pack();
-
-		// center and show
 		setLocationRelativeTo(null);
 		setVisible(true);
 
 		addWindowFocusListener(new WindowFocusListener() {
 			@Override public void windowLostFocus(WindowEvent e) {
 				// Lost focus, pause
-				if (gameComponent.getGame().getGameState() == GameState.PLAYING) {
-					gameComponent.getGame().setGameState(GameState.PAUSED);
+				if (gameComponent.getGame().getGameState() == PLAYING) {
+					gameComponent.getGame().setGameState(PAUSED);
 				}
 			}
 			@Override public void windowGainedFocus(WindowEvent e) {
 			}
 		});
     }
+
+	public Cursor getBlankCursor() {
+		return blankCursor;
+	}
+
+	public Cursor getDefaultCursor() {
+		return defaultCursor;
+	}
 }

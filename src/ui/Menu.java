@@ -9,6 +9,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import static constants.GameState.OPTIONS;
+import static constants.GameState.PLAYING;
+import static ui.PauseButton.BUTTON_H;
+
 /**
  * The Menu class represents the main menu of the game
  * Contains two buttons: Play and Quit which the user can click to start playing the game or exit game
@@ -26,15 +30,13 @@ public class Menu extends GameState {
     public static int GAME_HEIGHT;
     private int userW;
 
-    private final BufferedImage bgImage;
-    private final BufferedImage titleImage;
-    private final MenuButton[] buttons = new MenuButton[2];
+    private final BufferedImage bgImage = ImageLoader.loadImage("/ui/menu-bg.jpg");
+    private final BufferedImage titleImage = ImageLoader.loadImage("/ui/menu-title.png");
+    private final MenuButton[] buttons = new MenuButton[3];
 
     // ====== Constructor ======
     public Menu(Game game) {
         super(game);
-        bgImage = ImageLoader.loadImage("/ui/menu-bg.jpg");
-        titleImage = ImageLoader.loadImage("/ui/menu-title.png");
         initScale();
         initButtons();
     }
@@ -56,16 +58,13 @@ public class Menu extends GameState {
         GAME_HEIGHT         = TILES_SIZE * TILES_IN_HEIGHT;
     }
 
-    public int getUserW() {
-        return userW;
-    }
-
     private void initButtons() {
-        int startY = (int) (300 * SCALE);
-        int quitY = (int) (380 * SCALE);
+        final int PADDING 	= BUTTON_H;
+        final int CENTER 	= GAME_HEIGHT / 2 - BUTTON_H / 2;
 
-        buttons[0] = new MenuButton(0, startY);
-        buttons[1] = new MenuButton(1, quitY);
+        buttons[0] = new MenuButton(0, CENTER);
+        buttons[1] = new MenuButton(1, CENTER + PADDING);
+        buttons[2] = new MenuButton(2, CENTER + 2 * PADDING);
     }
 
     public void update() {
@@ -78,8 +77,8 @@ public class Menu extends GameState {
         g.drawImage(bgImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
 
         // Draw bg title
-        int w = (int) (1280 / 2 * SCALE);
-        int h = (int) (720 / 2 * SCALE);
+        int w = (int) (640 * SCALE);
+        int h = (int) (360 * SCALE);
         int y = (int) (40 * SCALE);
         int x = GAME_WIDTH / 2 - w / 2;
         g.drawImage(titleImage, x, y, w, h, null);
@@ -89,11 +88,26 @@ public class Menu extends GameState {
             button.draw(g);
     }
 
-    private boolean isButtonInsideBounds(MouseEvent e, MenuButton mb) {
-        return mb.getButtonBounds().contains(e.getX(), e.getY());
+    private void selectButton(MenuButton b) {
+        // PLAY
+        if (b.getButtonIndex() == 0)
+            game.setGameState(PLAYING);
+
+        // OPTIONS
+        if (b.getButtonIndex() == 1) {
+            game.setGameState(OPTIONS);
+        }
+
+        // QUIT
+        if (b.getButtonIndex() == 2)
+            System.exit(0);
     }
 
-    public void mousePressed(MouseEvent e) {
+    private boolean isButtonInsideBounds(MouseEvent e, MenuButton mb) {
+        return mb.getBounds().contains(e.getX(), e.getY());
+    }
+
+    public void mouseClicked(MouseEvent e) {
         for (MenuButton button : buttons)
             if (isButtonInsideBounds(e, button))
                 button.setMousePressButton(true);
@@ -102,19 +116,15 @@ public class Menu extends GameState {
     public void mouseReleased(MouseEvent e) {
         for (MenuButton b : buttons)
             if (isButtonInsideBounds(e, b) && b.isMousePressButton())
-                buttonPressed(b);
+            {
+                selectButton(b);
+            }
 
-        for (MenuButton button : buttons) {
-            button.setMouseOverButton(false);
-            button.setMousePressButton(false);
+        // reset button hover and press state
+        for (MenuButton b : buttons) {
+            b.setMouseOverButton(false);
+            b.setMousePressButton(false);
         }
-    }
-
-    private void buttonPressed(MenuButton b) {
-        if (b.getButtonIndex() == 0)
-            game.setGameState(constants.GameState.PLAYING);
-        if (b.getButtonIndex() == 1)
-            System.exit(0);
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -125,11 +135,16 @@ public class Menu extends GameState {
     public void keyPressed(final KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_ENTER:
-                game.setGameState(constants.GameState.PLAYING);
+                game.setGameState(PLAYING);
                 break;
             case KeyEvent.VK_ESCAPE:
                 System.exit(0);
                 break;
         }
     }
+
+    public int getUserW() {
+        return userW;
+    }
+
 }

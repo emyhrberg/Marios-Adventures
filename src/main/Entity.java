@@ -30,6 +30,7 @@ public class Entity {
 	protected float xDirection;
 	protected float xSpeed;
 	protected Direction direction = STILL;
+	protected boolean allowMovement = true;
 
 	// ====== Health =======
 	protected int maxHealth, health;
@@ -54,6 +55,9 @@ public class Entity {
 	// ====== Tile collision ======
 
 	protected boolean canMoveToPosition(float x, float y, float width, float height, Level level) {
+		if (!allowMovement)
+			return false;
+
 		// Get x, y, width and height position for player and see if he can move to the next position or not
 		boolean isTopLeftSolid = isSolid(x, y, level);
 		boolean isTopRightSolid = isSolid(x + width, y, level);
@@ -355,6 +359,10 @@ public class Entity {
 	}
 
 	// ====== Getters & Setters ======
+
+	public void setAllowMovement(boolean allowMovement) {
+		this.allowMovement = allowMovement;
+	}
 
 	public Rectangle2D.Float getLeftbox() {
 		return leftbox;

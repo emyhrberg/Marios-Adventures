@@ -1,7 +1,7 @@
 package objects;
 
 import constants.Direction;
-import helpers.SoundLoader;
+import helpers.SoundPlayer;
 import main.Player;
 
 import static constants.Direction.DOWN;
@@ -49,7 +49,7 @@ public class Question extends GameObject {
             // Set question bounce to up and player goes down
             q.pushYDir = UP;
             player.resetAirSpeed();
-            SoundLoader.playSound("/sounds/question.wav");
+            SoundPlayer.playSound("/sounds/question.wav");
         }
 
         boolean timePassed = System.currentTimeMillis() - q.lastCollision >= POWERUP_SPAWN_DELAY;

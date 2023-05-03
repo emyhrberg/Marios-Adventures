@@ -1,7 +1,7 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
-import helpers.SoundLoader;
+import helpers.SoundPlayer;
 import main.Level;
 import main.Player;
 
@@ -60,7 +60,7 @@ public class Brick extends GameObject {
                     level.getLevelData()[tileY][tileX] = 91;
                     largestContact.setActive(false);
                 }
-                SoundLoader.playSound("/sounds/brick.wav", 0.8);
+                SoundPlayer.playSound("/sounds/brick.wav");
             }
     }
 

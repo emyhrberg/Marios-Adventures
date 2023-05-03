@@ -24,7 +24,7 @@ public class MouseInput extends MouseAdapter {
     public void mousePressed(final MouseEvent e) {
         switch (game.getGameState()) {
             case MENU:
-                game.getMenu().mousePressed(e);
+                game.getMenu().mouseClicked(e);
                 break;
             case PLAYING:
                 game.getPlaying().mousePressed(e);
@@ -34,6 +34,10 @@ public class MouseInput extends MouseAdapter {
                 break;
             case GAME_OVER:
                 game.getGameOverState().mousePressed(e);
+                break;
+            case OPTIONS:
+                game.getOptions().mousePressed(e);
+                break;
             default:
                 // Handle the default case here
                 break;
@@ -48,19 +52,8 @@ public class MouseInput extends MouseAdapter {
             case PAUSED:
                 game.getPauseState().mouseReleased(e);
                 break;
-            default:
-                // Handle the default case here
-                break;
-        }
-    }
-
-    public void mouseMoved(MouseEvent e) {
-        switch (game.getGameState()) {
-            case MENU:
-                game.getMenu().mouseMoved(e);
-                break;
-            case PAUSED:
-                game.getPauseState().mouseMoved(e);
+            case OPTIONS:
+                game.getOptions().mouseReleased();
                 break;
             default:
                 // Handle the default case here

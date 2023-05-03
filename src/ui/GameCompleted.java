@@ -16,7 +16,7 @@ import static ui.Menu.*;
 public class GameCompleted extends GameState {
 
     // ======= Variables =======
-	private static final BufferedImage img = ImageLoader.loadImage("ui/game-completed.png");
+	private static final BufferedImage img = ImageLoader.loadImage("/ui/game-completed.png");
 
     // ====== Constructor ======
     public GameCompleted(Game game) {
@@ -24,8 +24,8 @@ public class GameCompleted extends GameState {
     }
 
     public void drawGameCompleted(Graphics g) {
-		int w = (int) (1920 * SCALE);
-		int h = (int) (1080 * SCALE);
+		int w = (int) (1920 / 2 * SCALE);
+		int h = (int) (1080 / 2* SCALE);
 		int x = GAME_WIDTH / 2 - w / 2;
 		int y = GAME_HEIGHT / 2 - h / 2;
 		g.drawImage(img, x, y, w, h, null);
@@ -36,7 +36,6 @@ public class GameCompleted extends GameState {
 			return;
 		}
 
-		// Reset game and go to 1st level
-		game.getPlaying().resetGameGoToMenu();
+		game.getPlaying().resetGameAndLevel();
 	}
 }

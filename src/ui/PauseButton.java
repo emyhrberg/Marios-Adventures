@@ -5,9 +5,7 @@ import helpers.ImageLoader;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static ui.Menu.GAME_WIDTH;
-import static ui.Menu.SCALE;
-import static ui.Paused.isMuted;
+import static ui.Menu.*;
 
 /**
  * Initializes GUI for buttons on the menu
@@ -17,13 +15,11 @@ public class PauseButton {
 
     // ====== Button Variables ======
     private static final BufferedImage BUTTON_IMAGES = ImageLoader.loadImage("/ui/pause-buttons.png");
-    private static final BufferedImage UNMUTE_IMAGES = ImageLoader.loadImage("/ui/pause-buttons-unmute.png");
-    private static final int BUTTON_W = 300;
-    private static final int BUTTON_H = 80;
+    private static final int BUTTON_W = 605;
+    public static final int BUTTON_H = 123;
     private final BufferedImage[] animations = new BufferedImage[3];
-    private final BufferedImage[] animationsUnmute = new BufferedImage[3];
-    private Rectangle buttonBounds;
-    private final float y;
+    private Rectangle bounds;
+    private final int y;
 
     // ====== Index for buttons ======
     private final int buttonIndex;
@@ -32,7 +28,7 @@ public class PauseButton {
     private boolean mousePressButton;
 
     // ====== Constructor ======
-    public PauseButton(int buttonIndex, float y) {
+    public PauseButton(int buttonIndex, int y) {
         this.buttonIndex = buttonIndex;
         this.y = y;
         initButtonImages();
@@ -43,24 +39,20 @@ public class PauseButton {
         // all buttons
         for (int i = 0; i < animations.length; i++)
             animations[i] = BUTTON_IMAGES.getSubimage(i * BUTTON_W, buttonIndex * BUTTON_H, BUTTON_W, BUTTON_H);
-
-        // all buttons except with unmute instead of mute
-        for (int i = 0; i < animations.length; i++)
-            animationsUnmute[i] = UNMUTE_IMAGES.getSubimage(i * BUTTON_W, buttonIndex * BUTTON_H, BUTTON_W, BUTTON_H);
     }
 
     private void initButtonBounds() {
-        final int GAME_CENTER = GAME_WIDTH / 2 - BUTTON_W / 2;
-        buttonBounds = new Rectangle(GAME_CENTER, (int) y, (int) (BUTTON_W * SCALE), (int) (BUTTON_H * SCALE));
+        int w = (int) (BUTTON_W / 2 * SCALE);
+        int h = (int) (BUTTON_H / 2 * SCALE);
+        int x = GAME_WIDTH / 2 - w / 2;
+        bounds = new Rectangle(x, y, w, h);
     }
 
     public void draw(Graphics g) {
-        final int GAME_CENTER = GAME_WIDTH / 2 - BUTTON_W / 2;
-        if (isMuted) {
-            g.drawImage(animationsUnmute[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * SCALE), (int) (BUTTON_H * SCALE), null);
-        } else {
-            g.drawImage(animations[mouseIndex], GAME_CENTER, (int) y, (int) (BUTTON_W * SCALE), (int) (BUTTON_H * SCALE), null);
-        }
+        int w = (int) (BUTTON_W / 2 * SCALE);
+        int h = (int) (BUTTON_H / 2 * SCALE);
+        int x = GAME_WIDTH / 2 - w / 2;
+        g.drawImage(animations[mouseIndex], x, y, w, h, null);
     }
 
     public void update() {
@@ -81,8 +73,8 @@ public class PauseButton {
         return mousePressButton;
     }
 
-    public Rectangle getButtonBounds() {
-        return buttonBounds;
+    public Rectangle getBounds() {
+        return bounds;
     }
 
     public void setMouseOverButton(final boolean mouseOverButton) {

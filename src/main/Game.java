@@ -1,7 +1,7 @@
 package main;
 
 import constants.GameState;
-import helpers.SoundLoader;
+import helpers.SoundPlayer;
 import ui.Menu;
 import ui.*;
 
@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static constants.GameState.*;
-import static ui.Paused.isMuted;
 
 /**
  * This class implements a runnable Game
@@ -50,6 +49,7 @@ public class Game implements Runnable {
     private final LevelCompleted levelCompleted = new LevelCompleted(this);
     private final GameCompleted gameCompleted   = new GameCompleted(this);
     private final GameOver gameOver             = new GameOver(this);
+    private final Options options               = new Options(this);
 
     // ====== Sounds ======
     private Clip menuClip;
@@ -64,26 +64,21 @@ public class Game implements Runnable {
     private long lastStateCheck;
     private boolean isFirstTime = false;
     private static final int DISALLOW_DRAW_WAIT = 2300;
-    private static final int DISALLOW_KEY_WAIT  = 2300;
-    private static final int GO_PLAYING_WAIT    = 8500;
+    private static final int DISALLOW_KEY_WAIT  = 500;
+    private static final int GO_PLAYING_WAIT    = 9000;
 
     // ====== Constructor ======
     public Game() {
         gameComponent = new GameComponent(this);
         gameFrame = new GameFrame(gameComponent);
 
-        // temp
-        gameState = MENU;
-        isMuted = true;
-
         if (menu.getUserW() == 1920) {
             goFullScreen();
         }
 
         // Set game state on launch
-//        gameState = MENU;
-//        menuClip = SoundLoader.playSound("/sounds/menu.wav");
-
+        gameState = MENU;
+        menuClip = SoundPlayer.playSound("/sounds/menu.wav");
 
         // Start game loop
         gameThread = new Thread(this);
@@ -93,15 +88,15 @@ public class Game implements Runnable {
     public void update() {
         switch (gameState) {
             case MENU:
-                gameFrame.setCursor(gameFrame.defaultCursor);
+                gameFrame.setCursor(gameFrame.getDefaultCursor());
                 menu.update();
                 break;
             case PLAYING:
-                gameFrame.setCursor(gameFrame.blankCursor);
+                gameFrame.setCursor(gameFrame.getBlankCursor());
                 playing.update();
                 break;
             case PAUSED:
-                gameFrame.setCursor(gameFrame.defaultCursor);
+                gameFrame.setCursor(gameFrame.getDefaultCursor());
                 paused.update();
                 break;
             case LEVEL_COMPLETED:
@@ -118,6 +113,9 @@ public class Game implements Runnable {
                     playing.resetGameGoToPlaying();
                 }
                 break;
+            case OPTIONS:
+                options.update();
+                break;
             default:
                 // Handle the default case here
                 break;
@@ -125,6 +123,11 @@ public class Game implements Runnable {
     }
 
     public void draw(Graphics g) {
+        if (gameState == null) {
+            System.err.println("Error: no gamestate??? game.draw()");
+            return;
+        }
+
         switch (gameState) {
             case MENU:
                 menu.draw(g);
@@ -142,12 +145,20 @@ public class Game implements Runnable {
                 break;
             case GAME_COMPLETED:
                 playing.drawBlur(g);
-                playing.draw(g);
                 gameCompleted.drawGameCompleted(g);
                 break;
             case GAME_OVER:
                 playing.draw(g);
                 gameOver.drawGameOver(g);
+                break;
+            case OPTIONS:
+                if (prevState == MENU) {
+                    menu.draw(g);
+                    options.draw(g);
+                } else {
+                    playing.drawBlur(g);
+                    options.draw(g);
+                }
                 break;
             default:
                 // Handle the default case here
@@ -199,15 +210,17 @@ public class Game implements Runnable {
     private void playGameStateSounds() {
         if (gameState == PLAYING) {
             stopSounds();
-            playingClip = SoundLoader.playSoundLoop("/sounds/playing.wav");
+            playingClip = SoundPlayer.playSoundLoop("/sounds/playing.wav");
             if (prevState == PAUSED && playingClip != null) {
                 playingClip.setFramePosition(playingClipFrame);
             }
         }
 
         else if (gameState == MENU) {
+            if (prevState == OPTIONS)
+                return;
             stopSounds();
-            menuClip = SoundLoader.playSoundLoop("/sounds/menu.wav");
+            menuClip = SoundPlayer.playSoundLoop("/sounds/menu.wav");
         }
 
         else if (gameState == PAUSED) {
@@ -219,12 +232,12 @@ public class Game implements Runnable {
 
         else if (gameState == GAME_OVER) {
             stopSounds();
-            gameOverClip = SoundLoader.playSound("/sounds/gameover.wav");
+            gameOverClip = SoundPlayer.playSound("/sounds/gameover.wav");
         }
 
         else if (gameState == GAME_COMPLETED || gameState == LEVEL_COMPLETED) {
             stopSounds();
-            gameCompletedClip = SoundLoader.playSound("/sounds/gamecompleted.wav");
+            gameCompletedClip = SoundPlayer.playSound("/sounds/gamecompleted.wav");
         }
     }
 
@@ -285,63 +298,34 @@ public class Game implements Runnable {
     }
 
     // Declare boolean variables to track the state of each button
-    private boolean isAltPressed = false;
-    private boolean isEnterPressed = false;
-    private boolean altEnter = false;
     private boolean fullScreen = false;
-    private boolean isF = false;
 
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-        int alt = KeyEvent.VK_ALT;
-        int enter = KeyEvent.VK_ENTER;
-
-        // temp
-        if (key == KeyEvent.VK_F)
-            isF = true;
-
-        if (isF) {
+        if (e.getKeyCode() == KeyEvent.VK_F)
             fullScreen = !fullScreen;
-            if (fullScreen) {
-                goFullScreen();
-            } else {
-                goWindowed();
-            }
-            isF = false;
-        }
-
-        if (key == alt) {
-            isAltPressed = true;
-        } else if (key == enter) {
-            isEnterPressed = true;
-        }
-
-        // Check if both buttons are held at the same time
-        if (isAltPressed && isEnterPressed && !altEnter) {
-            fullScreen = !fullScreen;
-            altEnter = true;
-            
-            if (fullScreen) {
-                goFullScreen();
-            } else {
-                goWindowed();
-            }
-        }
     }
 
     public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-        int alt = KeyEvent.VK_ALT;
-        int enter = KeyEvent.VK_ENTER;
-
-        if (key == alt || key == enter) {
-            isAltPressed = false;
-            isEnterPressed = false;
-            altEnter = false;
-        }
+        if (e.getKeyCode() == KeyEvent.VK_F)
+            if (fullScreen)
+                goFullScreen();
+            else
+                goWindowed();
     }
 
     // ====== Getters && Setters ======
+
+    public GameState getPrevState() {
+        return prevState;
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public GameFrame getGameFrame() {
+        return gameFrame;
+    }
 
     public GameState getGameState() {
         return gameState;
@@ -385,5 +369,23 @@ public class Game implements Runnable {
 
     public void setFirstTime(boolean firstTime) {
         isFirstTime = firstTime;
+    }
+
+    // ====== Getters Sounds ======
+
+    public Clip getMenuClip() {
+        return menuClip;
+    }
+
+    public Clip getPlayingClip() {
+        return playingClip;
+    }
+
+    public Clip getGameOverClip() {
+        return gameOverClip;
+    }
+
+    public Clip getGameCompletedClip() {
+        return gameCompletedClip;
     }
 }

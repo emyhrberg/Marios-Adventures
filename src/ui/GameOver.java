@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import static constants.GameState.MENU;
 import static ui.Menu.*;
 
 
@@ -86,7 +87,7 @@ public class GameOver extends GameState {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_ESCAPE:
-                game.setGameState(constants.GameState.PAUSED);
+                game.setGameState(MENU);
                 break;
             case KeyEvent.VK_ENTER:
                 game.getPlaying().resetGameGoToPlaying();

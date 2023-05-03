@@ -113,12 +113,6 @@ public class GameObject {
         return isSparkle;
     }
 
-    public void setSparkle(boolean sparkle) {
-        isSparkle = sparkle;
-        animationTick = 0;
-        animationIndex = 0;
-    }
-
     public boolean isActive() {
         return active;
     }

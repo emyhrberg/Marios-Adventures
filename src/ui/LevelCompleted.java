@@ -16,7 +16,7 @@ import static ui.Menu.*;
 public class LevelCompleted extends GameState {
 
     // ======= Variables =======
-    private static final BufferedImage img = ImageLoader.loadImage("ui/level-completed.png");
+    private static final BufferedImage img = ImageLoader.loadImage("/ui/level-completed.png");
 
     // ====== Constructor ======
     public LevelCompleted(Game game) {
@@ -24,21 +24,18 @@ public class LevelCompleted extends GameState {
     }
 
     public void drawLevelCompleted(Graphics g) {
-        int w = (int) (1920 * SCALE);
-        int h = (int) (1080 * SCALE);
+        int w = (int) (1920 / 2 * SCALE);
+        int h = (int) (1080 / 2* SCALE);
         int x = GAME_WIDTH / 2 - w / 2;
         int y = GAME_HEIGHT / 2 - h / 2;
         g.drawImage(img, x, y, w, h, null);
     }
 
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE :
-                game.getPlaying().resetGameGoToMenu();
-                break;
-            case KeyEvent.VK_ENTER :
-                game.getPlaying().resetGameLoadNextLevel();
-                break;
+        if (game.isKeyNotAllowed()) {
+            return;
         }
+
+        game.getPlaying().resetGameLoadNextLevel();
     }
 }

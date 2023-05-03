@@ -1,7 +1,7 @@
 package main;
 
 import helpers.ImageLoader;
-import helpers.SoundLoader;
+import helpers.SoundPlayer;
 import objects.Bullet;
 
 import java.awt.*;
@@ -46,6 +46,7 @@ public class Player extends Entity {
 	private PlayerAction playerAction 					= IDLE;
 	private static final float SPEED					= 1.1f;
 	private static final int START_HEALTH 				= 5;
+	private static final float ACCELERATION 			= 0.05f;
 
 	// ====== Jumping ======
 	private static final float MAX_JUMP_HEIGHT 			= 2.5f;
@@ -141,7 +142,6 @@ public class Player extends Entity {
 		}
 	}
 
-	private static final float acceleration = 0.05f;
 
 	private void updateDirection() {
 		float targetXDirection = 0.0f;
@@ -153,12 +153,12 @@ public class Player extends Entity {
 		}
 
 		if (xDirection < targetXDirection) {
-			xDirection += acceleration;
+			xDirection += ACCELERATION * SCALE;
 			if (xDirection > targetXDirection) {
 				xDirection = targetXDirection;
 			}
 		} else if (xDirection > targetXDirection) {
-			xDirection -= acceleration;
+			xDirection -= ACCELERATION * SCALE;
 			if (xDirection < targetXDirection) {
 				xDirection = targetXDirection;
 			}
@@ -182,7 +182,7 @@ public class Player extends Entity {
 		jumping = false;
 		canJump = false;
 
-		SoundLoader.playSound("/sounds/jump.wav", 0.5);
+		SoundPlayer.playSound("/sounds/jump.wav");
 	}
 
 	public void jumpOnEnemy() {
@@ -229,7 +229,7 @@ public class Player extends Entity {
 
 		jumpOnEnemy();
 
-		SoundLoader.playSound("/sounds/ouchplayer.wav");
+		SoundPlayer.playSound("/sounds/ouchplayer.wav");
 	}
 
 	public void hitByBullet(Bullet b) {
@@ -244,10 +244,11 @@ public class Player extends Entity {
 
 		jumpOnEnemy();
 
-		SoundLoader.playSound("/sounds/ouchplayer.wav");
+		SoundPlayer.playSound("/sounds/ouchplayer.wav");
 	}
 
 	public void resetPlayer() {
+		airSpeed = 0;
 		jumping = false;
 		inAir = false;
 		attacking = false;
@@ -388,6 +389,10 @@ public class Player extends Entity {
 	}
 
 	// ====== Getters & Setters ======
+
+	public void setPlayerAction(PlayerAction playerAction) {
+		this.playerAction = playerAction;
+	}
 
 	public int disallowCollision() {
 		return 200;

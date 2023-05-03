@@ -1,6 +1,5 @@
 package main;
 
-import helpers.FontLoader;
 import helpers.ImageLoader;
 import objects.ObjectManager;
 
@@ -28,28 +27,38 @@ public class Playing extends GameState {
     // ====== Variables ======
     private static final float PLAYER_SCALE = 1.33f;
     private final Player player;
-    private Point spawnPoint;
     private int levelOffset;
     private int shakeOffset;
-    private long lastSec;
     private boolean movingLeft, movingRight;
-    private static final int START_T = 300;
-    private int t = START_T;
-    private static final Font CUSTOM_FONT = FontLoader.loadFont("/fonts/mario2d.ttf");
+    private Point spawnPoint;
+    private boolean savedSpawn = false;
+    private Point savedSpawnPoint;
 
+    // Game managers
     private final EnemyManager enemyManager;
     private final LevelManager levelManager;
     private final ObjectManager objectManager;
 
-    // Draw Background
+    // Draw background: Sky, forest, clouds
     private static final BufferedImage SKY = ImageLoader.loadImage("/ui/sky.png");
     private static final BufferedImage BIG_CLOUDS = ImageLoader.loadImage("/ui/big-clouds.png");
     private static final BufferedImage SMALL_CLOUDS = ImageLoader.loadImage("/ui/small-clouds.png");
     private static final BufferedImage FOREST = ImageLoader.loadImage("/ui/forest.png");
+    private BufferedImage offScreenImage;
 
-    // Draw HUD
+    // HUD: Icons, font animation, countdown timer
     private static final BufferedImage C_ICON = ImageLoader.loadImage("/ui/c-icon.png");
     private static final BufferedImage H_ICON = ImageLoader.loadImage("/ui/h-icon.png");
+    private static final BufferedImage NUMS = ImageLoader.loadImage("/ui/nums.png");
+    private static final BufferedImage NUMS_Y = ImageLoader.loadImage("/ui/nums-yellow.png");
+    private static final BufferedImage healthX = ImageLoader.loadImage("/ui/x.png");
+    private static final BufferedImage[] nums = new BufferedImage[10];
+    private static final BufferedImage[] numsY = new BufferedImage[10];
+    private static final int numW = 300;
+    private static final int numH = 300;
+    private long lastSec;
+    private static final int START_T = 300;
+    private int t = START_T;
 
     // ====== Constructor ======
     public Playing(Game game) {
@@ -65,6 +74,13 @@ public class Playing extends GameState {
         // Set level and spawn for player class
         player.setLevel(levelManager.getLevel());
         resetSpawnPoint();
+    }
+
+    private void initNums() {
+        for (int i = 0; i < 10; i++) {
+            nums[i] = NUMS.getSubimage(numW * i, 0, numW, numH);
+            numsY[i] = NUMS_Y.getSubimage(numW * i, 0, numW, numH);
+        }
     }
 
     // ====== Update methods ======
@@ -119,6 +135,14 @@ public class Playing extends GameState {
         }
     }
 
+    private void updateCountdownTimer() {
+        long sec = System.currentTimeMillis() / 1000;
+        if (sec != lastSec) {
+            t--;
+            lastSec = sec;
+        }
+    }
+
     private void updateFinalPointState() {
         // Get the X and Y position for the player and "final point"
         int finalX = levelManager.getLevel().getFinalPoint().x / TILES_SIZE;
@@ -129,24 +153,21 @@ public class Playing extends GameState {
         // Player is inside the final position, meaning
         // Exact X position ( + 1 for player hitbox width offset)
         // Exact Y position on the bottom or up to 3 tiles above it.
-        if (playerX + 1 == finalX) {
-            if (playerY <= finalY && playerY + 3 >= finalY) {
-                setLevelCompleted();
-            }
-        }
+        if (playerX + 1 == finalX && playerY <= finalY && playerY + 3 >= finalY)
+            setLevelOrGameCompleted();
     }
 
-    private void updateCountdownTimer() {
-        long sec = System.currentTimeMillis() / 1000;
-        if (sec != lastSec) {
-            t--;
-            lastSec = sec;
-        }
+    private void setLevelOrGameCompleted() {
+        // Set level complete or game complete, if at the last level
+        final int currentLevel = game.getPlaying().getLevelManager().getLevelIndex();
+        final int last = game.getPlaying().getLevelManager().getAmountOfLevels() - 1;
+        if (currentLevel == last)
+            game.setGameState(GAME_COMPLETED);
+        else
+            game.setGameState(LEVEL_COMPLETED);
     }
 
     // ====== Draw ======
-
-    private BufferedImage offScreenImage;
 
     public void drawBlur(Graphics g) {
         // Create off-screen image with the same dimensions as the game screen
@@ -232,65 +253,23 @@ public class Playing extends GameState {
         }
     }
 
-    float bigX;
-    float smallX;
-    float incr;
-    private static final int CLOUDS_W = 1500;
-
     private void drawSmallClouds(Graphics g) {
         // set opacity
         Graphics2D g2d = (Graphics2D) g;
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
 
-        if (levelOffset == 0 || levelOffset == levelManager.getLevel().getMaxLevelOffset() || player.direction == STILL) {
-//            smallX -= 0.08f;
-//            incr += 0.08f;
-        } else {
-//            smallX = -levelOffset * 0.08f - incr;
-        }
-
-        smallX = -levelOffset * 0.08f;
-
-        for (int i = 0; i < 4; i++) {
-            g.drawImage(SMALL_CLOUDS, (int) smallX + i * CLOUDS_W, 25, null);
-        }
+        final int x = (int) (-levelOffset * 0.1f * SCALE);
+        final int y = (int) (25 * SCALE);
+        g.drawImage(SMALL_CLOUDS, x, y, null);
 
         // reset opacity
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 
     private void drawBigClouds(Graphics g) {
-
-        // cloud direction
-        if (levelOffset == 0 || levelOffset == levelManager.getLevel().getMaxLevelOffset() || player.direction == STILL) {
-//            bigX -= 0.5f;
-//            incr += 0.5f;
-        } else {
-//            bigX = -levelOffset * 0.25f - incr;
-        }
-
-        bigX = -levelOffset * 0.25f;
-
-        // draw 4 clouds
-        for (int i = 0; i < 4; i++) {
-            g.drawImage(BIG_CLOUDS, (int) bigX + i * CLOUDS_W, 80, null);
-        }
-    }
-
-
-    private static final BufferedImage NUMS = ImageLoader.loadImage("/ui/nums.png");
-    private static final BufferedImage NUMS_Y = ImageLoader.loadImage("/ui/nums-yellow.png");
-    private static final BufferedImage healthX = ImageLoader.loadImage("/ui/x.png");
-    private static final BufferedImage[] nums = new BufferedImage[10];
-    private static final BufferedImage[] numsY = new BufferedImage[10];
-    private static final int numW = 315;
-    private static final int numH = 300;
-
-    private void initNums() {
-        for (int i = 0; i < 10; i++) {
-            nums[i] = NUMS.getSubimage(numW * i, 0, numW, numH);
-            numsY[i] = NUMS_Y.getSubimage(numW * i, 0, numW, numH);
-        }
+        final int x = (int) (-levelOffset * 0.25f * SCALE);
+        final int y = (int) (80 * SCALE);
+        g.drawImage(BIG_CLOUDS, x, y, null);
     }
 
     private void drawHUD(Graphics g) {
@@ -309,11 +288,11 @@ public class Playing extends GameState {
         g.drawImage(healthX, x, y, w, h, null);
 
         // 2
-        x += 0.7*w;
+        x += 0.65*w;
         g.drawImage(nums[0], x, y, w, h, null);
 
         // 3
-        x += 0.7*w;
+        x += 0.65*w;
         g.drawImage(nums[player.health], x, y, w, h, null);
 
         // ========== COIN ===========
@@ -327,16 +306,14 @@ public class Playing extends GameState {
         g.drawImage(numsY[coinCount / 10], x, y, w, h, null);
 
         // 2
-        x += 0.65*w;
+        x += 0.62*w;
         g.drawImage(numsY[coinCount % 10], x, y, w, h, null);
 
         // Draw countdown?
         String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
     }
-    // ====== Reset methods ======
 
-    private boolean savedSpawn = false;
-    private Point savedSpawnPoint;
+    // ====== Reset methods ======
 
     private void resetSpawnPoint() {
         if (savedSpawn)
@@ -344,6 +321,7 @@ public class Playing extends GameState {
         else
             spawnPoint = levelManager.getLevel().getSpawnPoint();
 
+        System.out.println("loading: " + spawnPoint);
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;
     }
@@ -368,15 +346,15 @@ public class Playing extends GameState {
     }
 
     public void resetGameGoToMenu() {
-        // Reset
-        savedSpawn = false;
         resetGame();
         game.setGameState(MENU);
     }
 
-    public void saveSpawnPoint() {
+    public void saveSpawnPointGoToMenu() {
         savedSpawnPoint = new Point((int) player.getHitbox().x, (int) player.getHitbox().y);
         savedSpawn = true;
+        System.out.println("saved: " + savedSpawnPoint);
+        game.setGameState(MENU);
     }
 
     public void resetGameGoToPlaying() {
@@ -396,14 +374,14 @@ public class Playing extends GameState {
         game.setGameState(PLAYING);
     }
 
-    public void setLevelCompleted() {
-        // Set level complete or game complete, if at the last level
-        final int currentLevel = game.getPlaying().getLevelManager().getLevelIndex();
-        final int last = game.getPlaying().getLevelManager().getAmountOfLevels() - 1;
-        if (currentLevel == last)
-            game.setGameState(GAME_COMPLETED);
-        else
-            game.setGameState(LEVEL_COMPLETED);
+    public void resetGameAndLevel() {
+        levelManager.setLevelIndex(0);
+        player.setLevel(levelManager.getLevel());
+
+        // Reset
+        savedSpawn = false;
+        resetGame();
+        game.setGameState(MENU);
     }
 
     // ====== Key and Mouse events ======

@@ -2,7 +2,7 @@ package main;
 
 import constants.Direction;
 import constants.EnemyConstants;
-import helpers.SoundLoader;
+import helpers.SoundPlayer;
 
 import java.awt.geom.Rectangle2D;
 
@@ -206,7 +206,7 @@ public class Shark extends Enemy {
             if (isTouchingEnemyHead && player.airSpeed > 0) {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
-                SoundLoader.playSound("/sounds/stomp.wav", 0.8);
+                SoundPlayer.playSound("/sounds/stomp.wav");
             } else if (!player.hit && attackbox.intersects(player.hitbox)) {
                 player.hitByEnemy(this);
             }

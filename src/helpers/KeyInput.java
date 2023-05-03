@@ -11,13 +11,13 @@ import java.awt.event.KeyEvent;
  * Extends KeyAdapter for keyPressed and keyReleased methods
  * Every game state has different keyboard inputs as defined in the switch
  */
-public class KeyboardInput extends KeyAdapter {
+public class KeyInput extends KeyAdapter {
 
     // ====== Variables ======
     private final Game game;
 
     // ====== Constructor ======
-    public KeyboardInput(Game game) {
+    public KeyInput(Game game) {
         this.game = game;
     }
 
@@ -43,6 +43,8 @@ public class KeyboardInput extends KeyAdapter {
             case GAME_OVER:
                 game.getGameOverState().keyPressed(e);
                 break;
+            case OPTIONS:
+                game.getOptions().keyPressed(e);
             default:
                 // Handle the default case here
                 break;

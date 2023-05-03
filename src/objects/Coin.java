@@ -1,6 +1,6 @@
 package objects;
 
-import helpers.SoundLoader;
+import helpers.SoundPlayer;
 import main.Player;
 
 import static constants.ObjectConstants.ObjectType;
@@ -32,7 +32,7 @@ public class Coin extends GameObject {
         if (hitbox.intersects(player.getHitbox()))
             if (!isSparkle) {
                 isSparkle = true;
-                SoundLoader.playSound("/sounds/coin.wav", 0.5);
+                SoundPlayer.playSound("/sounds/coin.wav");
                 coinCount++;
             }
     }

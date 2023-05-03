@@ -1,7 +1,8 @@
 package main;
 
-import helpers.KeyboardInput;
+import helpers.KeyInput;
 import helpers.MouseInput;
+import helpers.MouseMotionInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,9 +25,9 @@ public class GameComponent extends JPanel {
 		setFocusable(true);
 
 		// Add inputs
-		addKeyListener(new KeyboardInput(game));
+		addKeyListener(new KeyInput(game));
 		addMouseListener(new MouseInput(game));
-		addMouseMotionListener(new MouseInput(game));
+		addMouseMotionListener(new MouseMotionInput(game));
     }
 
     protected void paintComponent(final Graphics g) {

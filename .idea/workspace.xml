@@ -9,21 +9,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added awesome playing HUD for health and coins!&#10;Working very well in 1280x720 and 1920x1080!">
-      <change afterPath="$PROJECT_DIR$/resources/ui/game-completed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/game-completed.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/level-completed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/nums.psd" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Added basic option in main menu to adjust volume&#10;Changed SoundLoader&#10;Improved HUD">
+      <change afterPath="$PROJECT_DIR$/resources/levels/1_done.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/levels/2_done.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/big-clouds-back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/menu_buttons.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/ui/slider.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/MouseMotionInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/Options.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/levels/nums.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/big-clouds.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/big-clouds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/menu-buttons.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/nums-yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/nums-yellow.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/ui/nums.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/nums.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/nums_back.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/pause-buttons.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/pause-buttons.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/small-clouds.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/small-clouds.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/KeyboardInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SoundLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/LevelCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LevelCompleted.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/PauseButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/PauseButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Paused.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Paused.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,28 +84,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Downloads/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd/Marios-Adventures-86ad64f75d4e733dbc62890c6f9767232971dccd&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Erik/Github/PlatformerTutorial-ep28_finale",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Erik\Github\Marios-Adventures\src\ui" />
+      <recent name="C:\Users\Erik\Github\Marios-Adventures\resources\ui" />
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -185,14 +215,9 @@
       <workItem from="1682939279049" duration="10073000" />
       <workItem from="1682955819577" duration="3080000" />
       <workItem from="1682979661863" duration="6930000" />
-      <workItem from="1683024388709" duration="25953000" />
-    </task>
-    <task id="LOCAL-00049" summary="Improved lots of sound effects! And damage cooldown">
-      <created>1682382221065</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1682382221065</updated>
+      <workItem from="1683024388709" duration="26014000" />
+      <workItem from="1683108678088" duration="8196000" />
+      <workItem from="1683117808117" duration="21238000" />
     </task>
     <task id="LOCAL-00050" summary="Improved lots of sound effects!">
       <created>1682383659721</created>
@@ -530,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683073421173</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Small fixes. Need to fix level/game completed and possible bug when pausing in game over and resuming">
+      <created>1683075734639</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1683075734639</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +583,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="New background added and working well!" />
     <MESSAGE value="Game playtested and looks good!" />
     <MESSAGE value="Refactoring resources" />
     <MESSAGE value="v1.2 release!" />
@@ -576,7 +607,8 @@
     <MESSAGE value="Fixes:&#10;- Add when playing, hide cursor, and when in pause or menu, show cursor&#10;- Fix bug where saved spawn point would not reset when going to next level&#10;- Started working on HUD" />
     <MESSAGE value="Fixes:&#10;- Added when playing, hide cursor, and when in pause or menu, show cursor&#10;- Added working HUD, now can improve on it!&#10;- Fix bug where saved spawn point would not reset when going to next level" />
     <MESSAGE value="Added awesome playing HUD for health and coins!&#10;Working very well in 1280x720 and 1920x1080!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added awesome playing HUD for health and coins!&#10;Working very well in 1280x720 and 1920x1080!" />
+    <MESSAGE value="Small fixes. Need to fix level/game completed and possible bug when pausing in game over and resuming" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes. Need to fix level/game completed and possible bug when pausing in game over and resuming" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
