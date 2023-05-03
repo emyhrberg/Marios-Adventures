@@ -8,11 +8,11 @@
 
 <h4 align="center"> A 2D platformer game written in Java </h4>
 
-## How To Use
+## How To Run
 
 | Java                                                                                | No Java |
 |-------------------------------------------------------------------------------------| ------ |
-| [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar) | [Mario.zip](https://drive.google.com/file/d/1RGNQ7EQuMdbXHUbPki2NY7Wy3T4j70Ep/view?usp=sharing) |
+| [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar) | [Mario.zip](https://drive.google.com/file/d/1l7E_KapxdbWZGlw-BIWp95dqcXJ_pILL/view?usp=share_link) |
 
 To run the game, you have two options:
 - Run the game using minimum Java 8 by downloading Mario.exe
@@ -20,9 +20,7 @@ To run the game, you have two options:
 
 ## Introduction
 
-Introducing "Mario's Adventures" - A Classic Platformer!
-
-Brace yourself for encounters with a colorful cast of enemies and bosses who will do anything to halt Mario's adventures. Strategize your moves, discover their weaknesses, and prove your skills in epic battles that will keep you on the edge of your seat!
+This game was my final project in the course Object-Oriented Programming.
 
 ## Features
 
@@ -30,7 +28,7 @@ Brace yourself for encounters with a colorful cast of enemies and bosses who wil
 * Enemies
 * Traps
 * Moving platforms
-* Breakable bricks
+* Power-ups
 
 ## Screenshot
 
