@@ -169,32 +169,6 @@ public class Playing extends GameState {
 
     // ====== Draw ======
 
-    public void drawBlur(Graphics g) {
-        // Create off-screen image with the same dimensions as the game screen
-        if (offScreenImage == null || offScreenImage.getWidth() != GAME_WIDTH || offScreenImage.getHeight() != GAME_HEIGHT) {
-            offScreenImage = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        }
-
-        // Get graphics object of the off-screen image
-        Graphics2D g2d = offScreenImage.createGraphics();
-
-        // Draw all game elements onto the off-screen image
-        drawGame(g2d);
-
-        // Apply blur effect to the off-screen image
-        applyBlurEffect();
-
-        // Draw the blurred image onto the main graphics context
-        g.drawImage(offScreenImage, 0, 0, null);
-
-        // Add black opacity
-        g.setColor(new Color(0,0,0,220));
-        g.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
-
-        // Dispose of the off-screen graphics object to release system resources
-        g2d.dispose();
-    }
-
     public void draw(Graphics g) {
         drawGame(g);
     }
@@ -230,6 +204,34 @@ public class Playing extends GameState {
         offScreenImage = blur.filter(offScreenImage, null);
     }
 
+    public void drawBlur(Graphics g) {
+        // Create off-screen image with the same dimensions as the game screen
+        if (offScreenImage == null || offScreenImage.getWidth() != GAME_WIDTH || offScreenImage.getHeight() != GAME_HEIGHT) {
+            offScreenImage = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        }
+
+        // Get graphics object of the off-screen image
+        Graphics2D g2d = offScreenImage.createGraphics();
+
+        // Draw all game elements onto the off-screen image
+        drawGame(g2d);
+
+        // Apply blur effect to the off-screen image
+        applyBlurEffect();
+
+        // Draw the blurred image onto the main graphics context
+        g.drawImage(offScreenImage, 0, 0, null);
+
+        // Add black opacity
+        g.setColor(new Color(0,0,0,220));
+        g.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+
+        // Dispose of the off-screen graphics object to release system resources
+        g2d.dispose();
+    }
+
+    // ====== Background ======
+
     private void drawSky(Graphics g) {
         int x = (int) (-levelOffset * 0.17);
         int y = 0;
@@ -238,10 +240,7 @@ public class Playing extends GameState {
         for (int i = 0; i < 8; i++) {
             g.drawImage(SKY, x + i * w, y, w, h, null);
         }
-
     }
-
-    // ====== Background ======
 
     private void drawForest(Graphics g) {
         int x = (int) (-levelOffset * 0.17);
@@ -342,11 +341,6 @@ public class Playing extends GameState {
         resetLevelData();
         coinCount = 0;
         t = START_T;
-    }
-
-    public void resetGameGoToMenu() {
-        resetGame();
-        game.setGameState(MENU);
     }
 
     public void saveSpawnPointGoToMenu() {

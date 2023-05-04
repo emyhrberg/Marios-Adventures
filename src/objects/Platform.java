@@ -83,8 +83,7 @@ public class Platform extends GameObject {
 
         int distanceToTile = 0;
 
-        if (tileX < 0)
-            return false;
+        if (tileX < 0) return false;
 
         return solidTiles.contains(level.getLevelData()[tileY][tileX - distanceToTile]);
     }
@@ -94,6 +93,8 @@ public class Platform extends GameObject {
         int tileY = (int) (hitbox.y / TILES_SIZE);
 
         int distanceToTile = 1;
+
+        if (tileX < 0) return false;
 
         return solidTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
     }
