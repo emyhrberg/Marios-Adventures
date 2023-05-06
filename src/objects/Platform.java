@@ -49,16 +49,17 @@ public class Platform extends GameObject {
     }
 
     private void updatePlatformPos(Player player, Level level) {
-        if (platDir == RIGHT)
-            platSpeed = MAX_SPEED * SCALE;
-        if (platDir == LEFT)
-            platSpeed = -MAX_SPEED * SCALE;
-
+        // Change platform direction
         if (hitSolidTileLeft(level))
             platDir = RIGHT;
         if (hitSolidTileRight(level))
             platDir = LEFT;
 
+        // Set platform speed based on direction
+        if (platDir == RIGHT)
+            platSpeed = MAX_SPEED * SCALE;
+        if (platDir == LEFT)
+            platSpeed = -MAX_SPEED * SCALE;
 
         // Move platform position
         hitbox.x += platSpeed;
@@ -81,9 +82,9 @@ public class Platform extends GameObject {
         int tileX = (int) (hitbox.x / TILES_SIZE);
         int tileY = (int) (hitbox.y / TILES_SIZE);
 
-        int distanceToTile = 0;
-
         if (tileX < 0) return false;
+
+        int distanceToTile = 0;
 
         return solidTiles.contains(level.getLevelData()[tileY][tileX - distanceToTile]);
     }
@@ -92,9 +93,9 @@ public class Platform extends GameObject {
         int tileX = (int) (hitbox.x / TILES_SIZE);
         int tileY = (int) (hitbox.y / TILES_SIZE);
 
-        int distanceToTile = 1;
-
         if (tileX < 0) return false;
+
+        int distanceToTile = 1;
 
         return solidTiles.contains(level.getLevelData()[tileY][tileX + 1 + distanceToTile]);
     }

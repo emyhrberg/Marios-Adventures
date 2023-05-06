@@ -2,18 +2,27 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="module:jar" />
+      <artifact name="Game" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Small fixes 1.3!">
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-04-29_03_44_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-04-29_03_44__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ImageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/VolumeSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VolumeSlider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,26 +55,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Erik/Github/PlatformerTutorial-ep28_finale&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures/out/artifacts",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Erik\Github\Marios-Adventures\src\ui" />
@@ -181,14 +190,17 @@
       <workItem from="1683108678088" duration="8196000" />
       <workItem from="1683117808117" duration="25830000" />
       <workItem from="1683149622931" duration="4604000" />
-      <workItem from="1683206831854" duration="1647000" />
-    </task>
-    <task id="LOCAL-00055" summary="Game playtested, looks ok! need to fix timer and smoothen out GameOverOverlay and death functionality/animation">
-      <created>1682453614686</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1682453614686</updated>
+      <workItem from="1683206831854" duration="2031000" />
+      <workItem from="1683231210330" duration="860000" />
+      <workItem from="1683232194267" duration="3224000" />
+      <workItem from="1683243811522" duration="12000" />
+      <workItem from="1683288224886" duration="1004000" />
+      <workItem from="1683300737026" duration="827000" />
+      <workItem from="1683309877155" duration="16000" />
+      <workItem from="1683328062686" duration="812000" />
+      <workItem from="1683330201759" duration="692000" />
+      <workItem from="1683387780698" duration="568000" />
+      <workItem from="1683389245651" duration="23000" />
     </task>
     <task id="LOCAL-00056" summary="Added jar">
       <created>1682453668758</created>
@@ -526,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683154879770</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03">
+      <created>1683210019832</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1683210019832</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +566,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added save &amp; quit" />
     <MESSAGE value="Small fixes" />
     <MESSAGE value="Updated pause screen" />
     <MESSAGE value="Test" />
@@ -572,7 +590,8 @@
     <MESSAGE value="Nice volume font working well" />
     <MESSAGE value="Game playtested, looks good! Release 1.3!" />
     <MESSAGE value="Small fixes 1.3!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small fixes 1.3!" />
+    <MESSAGE value="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -19,14 +19,14 @@ import static ui.Menu.GAME_WIDTH;
  */
 public class GameFrame extends JFrame {
 
-	private static final BufferedImage icon = ImageLoader.loadImage("/ui/mario-icon.png");
+	private static final BufferedImage ICON = ImageLoader.loadImage("/ui/mario-icon.png");
 	private final Cursor blankCursor;
 	private final Cursor defaultCursor;
 
     public GameFrame(final GameComponent gameComponent) {
 		// title and icon
 		setTitle("Mario's Adventures!");
-		setIconImage(icon);
+		setIconImage(ICON);
 
 		// settings
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

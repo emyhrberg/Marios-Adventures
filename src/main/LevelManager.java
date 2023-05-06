@@ -45,12 +45,15 @@ public class LevelManager {
 		for (int i = 0; i < 2; i++) {
 			try (InputStream is = LevelManager.class.getResourceAsStream("/levels/" + (i + 1) + ".png")) {
 
+				// handle levels not found
 				if (is == null) {
 					System.err.println("Error: failed to load level image from: \n" + "/levels/" + (i + 1) + ".png");
 					System.exit(1);
 				}
 
+				// read the image files and add the levels
 				levels.add(new Level(ImageIO.read(is)));
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

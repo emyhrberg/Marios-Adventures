@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Loads all the images in the game:
+ * Loads all the images in the game, for example:
  * Background images,
  * Tiles for the level,
  * Player and enemy sprites,
@@ -14,23 +14,17 @@ import java.io.InputStream;
  */
 public class ImageLoader {
 
-    public static BufferedImage loadImage(String fileName) {
-		BufferedImage image = null;
-		// Try to load the image from the input-stream
+	public static BufferedImage loadImage(String fileName) {
 		try (InputStream is = ImageLoader.class.getResourceAsStream(fileName)) {
-
-			// Read the image only if it exists
-			if (is != null)
-				image = ImageIO.read(is);
-			else
+			if (is == null) {
 				System.err.println("Error: Image not found\n" + fileName + "\n");
-
+				return null; // handle image not found
+			}
+			return ImageIO.read(is); // read and return the image
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null; // handle image loading error
 		}
-
-		// Return the image
-		return image;
-    }
+	}
 
 }

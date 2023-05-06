@@ -10,54 +10,54 @@ import static ui.VolumeSlider.actualVolume;
 public class SoundPlayer {
 
 	public static Clip playSound(String fileName) {
-
 		try (InputStream is = SoundPlayer.class.getResourceAsStream(fileName)) {
 			if (is == null) {
 				System.err.println("Error: Sound file not found\n" + fileName + "\n");
-				return null;
+				return null; // handle sound not found
 			}
 
-			BufferedInputStream bis = new BufferedInputStream(is);
+			BufferedInputStream bis = new BufferedInputStream(is); // wrap in buffered stream
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(bis));
 
-			// min: -80
-			// max: 6
+			// control values for sound is minimum: -80 and maximum: 6
 			FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			control.setValue(actualVolume);
 
-			// Start the clip
 			clip.start();
-			return clip;
+			return clip; // return the clip started
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	public static Clip playSoundLoop(String fileName) {
 		try (InputStream is = SoundPlayer.class.getResourceAsStream(fileName)) {
+
+			// handle sound not found
 			if (is == null) {
 				System.err.println("Error: Sound file not found\n" + fileName + "\n");
 				return null;
 			}
 
+			// wrap in buffered stream
 			BufferedInputStream bis = new BufferedInputStream(is);
 			Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(bis));
 
-			// Set the clip to loop continuously
+			// play sound in infinite loop
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 
+			// control values for sound is minimum: -80 and maximum: 6
 			FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			control.setValue(actualVolume);
 
-			// Start the clip
 			clip.start();
-			return clip;
+			return clip; // return the clip started
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 }
