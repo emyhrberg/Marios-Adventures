@@ -2,27 +2,78 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Game" />
+      <artifact name="module:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" beforeDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40+ MB to 5 MB&#10;&#10;Need to fix cursor">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jcraft_jorbis.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jl1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/module.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/brick.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/coin.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/gamecompleted.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/gameover.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/jump.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/menu.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/ouchenemy.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/ouchplayer.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/playing.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/powerup.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/question.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sounds/stomp.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/Sounds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Game.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-04-29_03_44_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-04-29_03_44__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/menu_buttons.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/pause-buttons-unmute.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ImageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module.iml" beforeDir="false" afterPath="$PROJECT_DIR$/module.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/akukamu.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/grobold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/insideout.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/mario256.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/mario286.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/mario2d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/marionew.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/vanilla.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/brick.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/coin.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/gamecompleted.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/gameover.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/jump.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/menu.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/ouchenemy.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/ouchplayer.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/playing.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/powerup.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/question.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/stomp.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/65082.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/tiles.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/tiles_all.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/volume-nums.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/volume.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/KeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/VolumeSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VolumeSlider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,20 +109,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures/out/artifacts",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures/libs/jl1.0.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -95,7 +151,7 @@
       <recent name="objects" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Unnamed">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
       <option name="appServicePlanName" />
@@ -127,12 +183,25 @@
       </method>
     </configuration>
     <configuration name="GameRunner" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="helpers.GameRunner" />
       <module name="module" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="helpers.GameRunner" />
+      <module name="module" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.GameRunner" />
+      <item itemvalue="Application.Unnamed" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -201,6 +270,9 @@
       <workItem from="1683330201759" duration="692000" />
       <workItem from="1683387780698" duration="568000" />
       <workItem from="1683389245651" duration="23000" />
+      <workItem from="1683504349242" duration="490000" />
+      <workItem from="1683556735196" duration="15882000" />
+      <workItem from="1683588366888" duration="668000" />
     </task>
     <task id="LOCAL-00056" summary="Added jar">
       <created>1682453668758</created>

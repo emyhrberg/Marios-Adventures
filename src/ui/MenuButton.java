@@ -5,7 +5,8 @@ import helpers.ImageLoader;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static ui.Menu.*;
+import static ui.Menu.GAME_WIDTH;
+import static ui.Menu.SCALE;
 
 /**
  * Initializes GUI for buttons on the menu

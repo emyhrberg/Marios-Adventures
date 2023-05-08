@@ -40,7 +40,7 @@ public class Playing extends GameState {
     private final ObjectManager objectManager;
 
     // Draw background: Sky, forest, clouds
-    private static final BufferedImage SKY = ImageLoader.loadImage("/ui/skys.png");
+    private static final BufferedImage SKY = ImageLoader.loadImage("/ui/sky.png");
     private static final BufferedImage BIG_CLOUDS = ImageLoader.loadImage("/ui/big-clouds.png");
     private static final BufferedImage SMALL_CLOUDS = ImageLoader.loadImage("/ui/small-clouds.png");
     private static final BufferedImage FOREST = ImageLoader.loadImage("/ui/forest.png");
@@ -90,27 +90,13 @@ public class Playing extends GameState {
         player.update();
         enemyManager.update(levelManager.getLevel(), player);
         objectManager.update(levelManager.getLevel(), player);
+        levelOffset = Math.max(Math.min((int) player.getHitbox().x - GAME_WIDTH / 2, levelManager.getLevel().getMaxLevelOffset()), 0);
 
         // Update playing stuff
-        updateLevelOffset();
         updatePlayerOutsideLevel();
         updateFinalPointState();
         updateShake();
         updateCountdownTimer();
-    }
-
-    private void updateLevelOffset() {
-        // Update level offset with player and half the game width to center the player
-        levelOffset = (int) (player.hitbox.x - GAME_WIDTH / 2);
-
-        // Reset level offset if at the leftmost of the map
-        if (levelOffset <= 0)
-            levelOffset = 0;
-
-        // Reset level offset if at the rightmost of the map
-        final int maxLevelOffset = levelManager.getLevel().getMaxLevelOffset();
-        if (levelOffset >= maxLevelOffset)
-            levelOffset = maxLevelOffset;
     }
 
     private void updatePlayerOutsideLevel() {
@@ -363,7 +349,7 @@ public class Playing extends GameState {
         game.setGameState(PLAYING);
     }
 
-    public void resetGameAndLevel() {
+    public void resetGameAndStartAtFirstLevel() {
         levelManager.setLevelIndex(0);
         player.setLevel(levelManager.getLevel());
 

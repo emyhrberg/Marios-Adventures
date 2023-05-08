@@ -36,6 +36,6 @@ public class GameCompleted extends GameState {
 			return;
 		}
 
-		game.getPlaying().resetGameAndLevel();
+		game.getPlaying().resetGameAndStartAtFirstLevel();
 	}
 }

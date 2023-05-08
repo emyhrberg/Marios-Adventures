@@ -2,7 +2,7 @@ package main;
 
 import constants.Direction;
 import constants.EnemyConstants;
-import helpers.SoundPlayer;
+import helpers.Sounds;
 
 import java.awt.geom.Rectangle2D;
 
@@ -11,7 +11,7 @@ import static constants.Direction.RIGHT;
 import static constants.EnemyConstants.SharkAction.ATTACKING;
 import static constants.EnemyConstants.SharkAction.RUNNING;
 import static constants.EnemyConstants.getSharkSpriteAmount;
-import static main.EnemyManager.*;
+import static main.EnemyManager.SHARK_SCALE;
 import static ui.Menu.*;
 
 /**
@@ -21,6 +21,8 @@ import static ui.Menu.*;
  * The update method updates everything related to the shark, including but not limited to its actions, movement, attackbox, animation.
  */
 public class Shark extends Enemy {
+
+    private final Sounds sounds = new Sounds();
 
     // ====== Hitboxes =======
     private static final int HITBOX_WIDTH 		    = 24;
@@ -206,7 +208,7 @@ public class Shark extends Enemy {
             if (isTouchingEnemyHead && player.airSpeed > 0) {
                 reduceEnemyHealth(player);
                 player.jumpOnEnemy();
-                SoundPlayer.playSound("/sounds/stomp.wav");
+                sounds.play("/sounds/stomp.mp3");
             } else if (!player.hit && attackbox.intersects(player.hitbox)) {
                 player.hitByEnemy(this);
             }

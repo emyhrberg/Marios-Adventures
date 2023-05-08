@@ -1,7 +1,7 @@
 package main;
 
 import helpers.ImageLoader;
-import helpers.SoundPlayer;
+import helpers.Sounds;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -40,6 +40,7 @@ public class EnemyManager {
 	// ====== Game values ======
 	private List<Shark> sharks = new ArrayList<>();
 	private List<Plant> plants = new ArrayList<>();
+	private final Sounds sounds = new Sounds();
 
 	// ====== Constructor ======
 
@@ -80,7 +81,7 @@ public class EnemyManager {
 		for (Shark s : sharks) {
 			if (s.isEnemyAlive() && player.attackbox.intersects(s.hitbox)) {
 				s.reduceEnemyHealth(player);
-				SoundPlayer.playSound("/sounds/ouchenemy.wav");
+				sounds.play("/sounds/ouchenemy.mp3");
 			}
 		}
 	}

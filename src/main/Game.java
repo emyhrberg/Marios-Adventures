@@ -1,12 +1,10 @@
 package main;
 
 import constants.GameState;
-import helpers.SoundPlayer;
+import helpers.Sounds;
 import ui.Menu;
 import ui.*;
 
-import javax.sound.sampled.Clip;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -49,14 +47,10 @@ public class Game implements Runnable {
     private final LevelCompleted levelCompleted = new LevelCompleted(this);
     private final GameCompleted gameCompleted   = new GameCompleted(this);
     private final GameOver gameOver             = new GameOver(this);
-    private final VolumeSlider options               = new VolumeSlider(this);
+    private final VolumeSlider options          = new VolumeSlider(this);
 
     // ====== Sounds ======
-    private Clip menuClip;
-    private Clip playingClip;
-    private Clip gameOverClip;
-    private Clip gameCompletedClip;
-    private int playingClipFrame;
+    private final Sounds sounds = new Sounds();
 
     // ====== Overlay settings =====
     private boolean allowPress;
@@ -73,12 +67,12 @@ public class Game implements Runnable {
         gameFrame = new GameFrame(gameComponent);
 
         if (menu.getUserW() == 1920) {
-            goFullScreen();
+//            goFullScreen();
         }
 
         // Set game state on launch
         gameState = MENU;
-        menuClip = SoundPlayer.playSound("/sounds/menu.wav");
+        sounds.play("/sounds/menu.mp3");
 
         // Start game loop
         gameThread = new Thread(this);
@@ -211,40 +205,26 @@ public class Game implements Runnable {
         if (gameState == PLAYING) {
             if (prevState == PAUSED || prevState == OPTIONS)
                 return;
-            stopSounds();
-            playingClip = SoundPlayer.playSoundLoop("/sounds/playing.wav");
+            sounds.stop();
+            sounds.play("/sounds/playing.mp3");
         }
 
         else if (gameState == MENU) {
             if (prevState == OPTIONS)
                 return;
-            stopSounds();
-            menuClip = SoundPlayer.playSoundLoop("/sounds/menu.wav");
+            sounds.stop();
+            sounds.play("/sounds/menu.mp3");
         }
 
         else if (gameState == GAME_OVER) {
-            stopSounds();
-            gameOverClip = SoundPlayer.playSound("/sounds/gameover.wav");
+            sounds.stop();
+            sounds.play("/sounds/gameover.mp3");
         }
 
         else if (gameState == GAME_COMPLETED || gameState == LEVEL_COMPLETED) {
-            stopSounds();
-            gameCompletedClip = SoundPlayer.playSound("/sounds/gamecompleted.wav");
+            sounds.stop();
+            sounds.play("/sounds/gamecompleted.mp3");
         }
-    }
-
-    private void stopSounds() {
-        if (playingClip != null)
-            playingClip.close();
-
-        if (menuClip != null)
-            menuClip.close();
-
-        if (gameCompletedClip != null)
-            gameCompletedClip.close();
-
-        if (gameOverClip != null)
-            gameOverClip.close();
     }
 
     private void handleWaitStates() {
@@ -255,53 +235,9 @@ public class Game implements Runnable {
         }
     }
 
-    ///////////////// FULL SCREEN ////////////////
-
-    private boolean fullScreen = false;
-
-    private void goFullScreen() {
-        // dispose old frame
-        Window window = SwingUtilities.windowForComponent(gameComponent);
-        JFrame frame = (JFrame) window;
-        frame.dispose();
-
-        // set fullscreen on new frame
-        frame.setUndecorated(true);
-        frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(window);
-        frame.add(gameComponent);
-        frame.revalidate();
-        frame.repaint();
-        frame.setVisible(true);
-        fullScreen = true;
-    }
-
-    private void goWindowed() {
-        // dispose old frame
-        Window window = SwingUtilities.windowForComponent(gameComponent);
-        JFrame frame = (JFrame) window;
-        frame.dispose();
-
-        // set windowed on new frame
-        frame.setUndecorated(false);
-        frame.getGraphicsConfiguration().getDevice().setFullScreenWindow(null);
-        frame.add(gameComponent);
-        frame.revalidate();
-        frame.repaint();
-        frame.setVisible(true);
-        fullScreen = false;
-    }
-
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_F)
-            fullScreen = !fullScreen;
-    }
-
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_F)
-            if (fullScreen)
-                goFullScreen();
-            else
-                goWindowed();
+            gameFrame.resizeWindow();
     }
 
     // ====== Getters && Setters ======
@@ -358,21 +294,4 @@ public class Game implements Runnable {
         isFirstTime = firstTime;
     }
 
-    // ====== Getters Sounds ======
-
-    public Clip getMenuClip() {
-        return menuClip;
-    }
-
-    public Clip getPlayingClip() {
-        return playingClip;
-    }
-
-    public Clip getGameOverClip() {
-        return gameOverClip;
-    }
-
-    public Clip getGameCompletedClip() {
-        return gameCompletedClip;
-    }
 }

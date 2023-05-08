@@ -8,7 +8,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
 
-import static constants.GameState.PAUSED;
 import static constants.GameState.PLAYING;
 import static ui.Menu.GAME_HEIGHT;
 import static ui.Menu.GAME_WIDTH;
@@ -37,7 +36,7 @@ public class GameFrame extends JFrame {
 		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
 		blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
 		defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
-		setCursor(blankCursor);
+//		setCursor(blankCursor);
 
 		// add actual game
 		add(gameComponent);
@@ -49,13 +48,34 @@ public class GameFrame extends JFrame {
 			@Override public void windowLostFocus(WindowEvent e) {
 				// Lost focus, pause
 				if (gameComponent.getGame().getGameState() == PLAYING) {
-					gameComponent.getGame().setGameState(PAUSED);
+//					gameComponent.getGame().setGameState(PAUSED);
 				}
 			}
 			@Override public void windowGainedFocus(WindowEvent e) {
 			}
 		});
     }
+
+	private boolean fullScreen = false;
+
+	public void resizeWindow() {
+		fullScreen = !fullScreen;
+		dispose();
+
+		// Set fullscreen or windowed
+		if (fullScreen) {
+			setExtendedState(JFrame.MAXIMIZED_BOTH);
+			setUndecorated(true);
+		} else {
+			setExtendedState(JFrame.NORMAL);
+			setUndecorated(false);
+		}
+
+		// Repaint
+		setVisible(true);
+		revalidate();
+		repaint();
+	}
 
 	public Cursor getBlankCursor() {
 		return blankCursor;

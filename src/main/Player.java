@@ -1,7 +1,7 @@
 package main;
 
 import helpers.ImageLoader;
-import helpers.SoundPlayer;
+import helpers.Sounds;
 import objects.Bullet;
 
 import java.awt.*;
@@ -64,6 +64,7 @@ public class Player extends Entity {
 	// ====== Game variables =======
 	private final Game game;
 	private Level level;
+	private final Sounds sounds = new Sounds();
 
 	// ====== Constructor =======
 
@@ -182,7 +183,7 @@ public class Player extends Entity {
 		jumping = false;
 		canJump = false;
 
-		SoundPlayer.playSound("/sounds/jump.wav");
+		sounds.play("/sounds/jump.mp3");
 	}
 
 	public void jumpOnEnemy() {
@@ -229,7 +230,7 @@ public class Player extends Entity {
 
 		jumpOnEnemy();
 
-		SoundPlayer.playSound("/sounds/ouchplayer.wav");
+		sounds.play("/sounds/ouchplayer.mp3");
 	}
 
 	public void hitByBullet(Bullet b) {
@@ -244,7 +245,7 @@ public class Player extends Entity {
 
 		jumpOnEnemy();
 
-		SoundPlayer.playSound("/sounds/ouchplayer.wav");
+		sounds.play("/sounds/ouchplayer.mp3");
 	}
 
 	public void resetPlayer() {

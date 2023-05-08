@@ -1,6 +1,6 @@
 package objects;
 
-import helpers.SoundPlayer;
+import helpers.Sounds;
 import main.Entity;
 import main.Level;
 import main.Player;
@@ -11,9 +11,9 @@ import static ui.Menu.*;
 
 public class HealthPowerup extends Entity {
 
-    public static final float HEALTH_SIZE = TILES_SIZE_DEFAULT * 0.65f;
+    private final Sounds sounds = new Sounds();
 
-    // properties
+    public static final float HEALTH_SIZE = TILES_SIZE_DEFAULT * 0.65f;
     private boolean isActive = true;
     private boolean spawnMove = true;
     private static final float X_SPEED = 0.45f ;
@@ -39,7 +39,7 @@ public class HealthPowerup extends Entity {
             if (player.getHealth() < 5)
                 player.setHealth(player.getHealth() + 1);
             h.setActive(false);
-            SoundPlayer.playSound("/sounds/powerup.wav");
+            sounds.play("/sounds/powerup.mp3");
         }
     }
 
