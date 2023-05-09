@@ -9,71 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40+ MB to 5 MB&#10;&#10;Need to fix cursor">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jcraft_jorbis.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jl1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/brick.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/coin.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/gamecompleted.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/gameover.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/jump.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/menu.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/ouchenemy.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/ouchplayer.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/playing.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/powerup.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/question.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/stomp.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/Sounds.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Game.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider">
+      <change afterPath="$PROJECT_DIR$/libs/jlayer.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/module_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/menu_buttons.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/pause-buttons-unmute.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-01_01_08__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mario.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/jl1.0.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/module.iml" beforeDir="false" afterPath="$PROJECT_DIR$/module.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/akukamu.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/grobold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/insideout.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/mario256.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/mario286.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/mario2d.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/marionew.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/vanilla.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/brick.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/coin.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/gamecompleted.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/gameover.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/jump.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/menu.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/ouchenemy.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/ouchplayer.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/playing.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/powerup.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/question.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/stomp.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sprites/65082.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sprites/tiles.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sprites/tiles_all.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/menu-buttons.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/volume-nums.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/ui/volume.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/KeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/VolumeSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VolumeSlider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/gamecompleted.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/gamecompleted.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sounds/gameover.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sounds/gameover.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,16 +64,17 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures/libs/jl1.0.jar",
+    "jdk.selected.JAVA_MODULE": "8",
+    "last_opened_file_path": "C:/Users/Erik/Github/Marios-Adventures",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "MavenSettings",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -272,14 +219,11 @@
       <workItem from="1683389245651" duration="23000" />
       <workItem from="1683504349242" duration="490000" />
       <workItem from="1683556735196" duration="15882000" />
-      <workItem from="1683588366888" duration="668000" />
-    </task>
-    <task id="LOCAL-00056" summary="Added jar">
-      <created>1682453668758</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1682453668758</updated>
+      <workItem from="1683588366888" duration="1711000" />
+      <workItem from="1683590102658" duration="424000" />
+      <workItem from="1683614218810" duration="559000" />
+      <workItem from="1683614788124" duration="321000" />
+      <workItem from="1683615903429" duration="433000" />
     </task>
     <task id="LOCAL-00057" summary="Fixed reset timer and coin count">
       <created>1682464813732</created>
@@ -617,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683210019832</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider">
+      <created>1683589236818</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1683589236819</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +589,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Small fixes" />
     <MESSAGE value="Updated pause screen" />
     <MESSAGE value="Test" />
     <MESSAGE value="Another test" />
@@ -663,7 +613,8 @@
     <MESSAGE value="Game playtested, looks good! Release 1.3!" />
     <MESSAGE value="Small fixes 1.3!" />
     <MESSAGE value="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03" />
+    <MESSAGE value="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

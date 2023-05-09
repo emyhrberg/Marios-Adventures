@@ -11,7 +11,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/jl1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/jlayer.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
