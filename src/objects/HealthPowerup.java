@@ -1,6 +1,6 @@
 package objects;
 
-import helpers.Sounds;
+import helpers.Sound;
 import main.Entity;
 import main.Level;
 import main.Player;
@@ -10,8 +10,6 @@ import static objects.Question.lastBoxY;
 import static ui.Menu.*;
 
 public class HealthPowerup extends Entity {
-
-    private final Sounds sounds = new Sounds();
 
     public static final float HEALTH_SIZE = TILES_SIZE_DEFAULT * 0.65f;
     private boolean isActive = true;
@@ -39,7 +37,7 @@ public class HealthPowerup extends Entity {
             if (player.getHealth() < 5)
                 player.setHealth(player.getHealth() + 1);
             h.setActive(false);
-            sounds.play("/sounds/powerup.mp3");
+            Sound.play("/sounds/powerup.wav");
         }
     }
 

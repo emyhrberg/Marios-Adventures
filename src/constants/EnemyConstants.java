@@ -33,8 +33,6 @@ public class EnemyConstants {
 				result = 2;
 				break;
 			default:
-				// Handle the default case here
-				// Set a default value for 'result' if needed
 				result = 0;
 				break;
 		}

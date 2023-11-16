@@ -1,7 +1,7 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
-import helpers.Sounds;
+import helpers.Sound;
 import main.Level;
 import main.Player;
 
@@ -9,8 +9,6 @@ import static main.Level.solidTiles;
 import static ui.Menu.*;
 
 public class Bullet extends GameObject {
-
-    private final Sounds sounds = new Sounds();
 
     // Size
     public static final int BULLET_W = 50;
@@ -57,7 +55,7 @@ public class Bullet extends GameObject {
             if (isOnTopOfBullet && player.getAirSpeed() > 0) {
                 player.jumpOnEnemy();
                 setHit(true);
-                sounds.play("/sounds/stomp.mp3");
+                Sound.play("/sounds/stomp.wav");
             } else {
                 // TAKE DAMAGE FROM BULLET
                 player.hitByBullet(b);

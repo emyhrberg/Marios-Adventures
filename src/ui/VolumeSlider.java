@@ -4,6 +4,7 @@ import helpers.ImageLoader;
 import main.Game;
 import main.GameState;
 
+import javax.sound.sampled.FloatControl;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -126,10 +127,10 @@ public class VolumeSlider extends GameState {
         if (bounds.contains(e.getPoint()))
             updateVolume(e);
         else
-            if (game.getPrevState() == MENU)
-                game.setGameState(MENU);
-            else
-                game.setGameState(PLAYING);
+        if (game.getPrevState() == MENU)
+            game.setGameState(MENU);
+        else
+            game.setGameState(PLAYING);
     }
 
     public void mouseDragged(MouseEvent e) {
@@ -165,24 +166,24 @@ public class VolumeSlider extends GameState {
         actualVolume = volume * 0.5f - 44;
 
         // Check if the audio clip is currently playing
-//        if (game.getMenuClip() != null && game.getMenuClip().isActive()) {
-//            FloatControl control = (FloatControl) game.getMenuClip().getControl(FloatControl.Type.MASTER_GAIN);
-//
-//            if (volume <= 0)
-//                actualVolume = control.getMinimum();
-//
-//            control.setValue(actualVolume);
-//
-//            System.out.println("set to: " + actualVolume + " | which is: " + volume);
-//        } else if (game.getPlayingClip() != null && game.getPlayingClip().isActive()) {
-//            FloatControl control = (FloatControl) game.getPlayingClip().getControl(FloatControl.Type.MASTER_GAIN);
-//
-//            if (volume <= 0)
-//                actualVolume = control.getMinimum();
-//
-//            control.setValue(actualVolume);
-//            System.out.println("set to: " + actualVolume + " | which is: " + volume);
-//        }
+        if (game.getMenuClip() != null && game.getMenuClip().isActive()) {
+            FloatControl control = (FloatControl) game.getMenuClip().getControl(FloatControl.Type.MASTER_GAIN);
+
+            if (volume <= 0)
+                actualVolume = control.getMinimum();
+
+            control.setValue(actualVolume);
+
+            System.out.println("set to: " + actualVolume + " | which is: " + volume);
+        } else if (game.getPlayingClip() != null && game.getPlayingClip().isActive()) {
+            FloatControl control = (FloatControl) game.getPlayingClip().getControl(FloatControl.Type.MASTER_GAIN);
+
+            if (volume <= 0)
+                actualVolume = control.getMinimum();
+
+            control.setValue(actualVolume);
+            System.out.println("set to: " + actualVolume + " | which is: " + volume);
+        }
     }
 
     public void keyPressed(KeyEvent e) {

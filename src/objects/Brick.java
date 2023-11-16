@@ -1,7 +1,7 @@
 package objects;
 
 import constants.ObjectConstants.ObjectType;
-import helpers.Sounds;
+import helpers.Sound;
 import main.Level;
 import main.Player;
 
@@ -13,8 +13,6 @@ import java.util.List;
 import static ui.Menu.*;
 
 public class Brick extends GameObject {
-
-    private final Sounds sounds = new Sounds();
 
     // list of hit bricks
     private final List<Brick> hitBricks = new ArrayList<>();
@@ -62,7 +60,7 @@ public class Brick extends GameObject {
                     level.getLevelData()[tileY][tileX] = 91;
                     largestContact.setActive(false);
                 }
-                sounds.play("/sounds/brick.mp3");
+                Sound.play("/sounds/brick.wav");
             }
     }
 

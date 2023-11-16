@@ -39,7 +39,6 @@ public class MouseInput extends MouseAdapter {
                 game.getOptions().mousePressed(e);
                 break;
             default:
-                // Handle the default case here
                 break;
         }
     }
@@ -56,7 +55,6 @@ public class MouseInput extends MouseAdapter {
                 game.getOptions().mouseReleased();
                 break;
             default:
-                // Handle the default case here
                 break;
         }
     }

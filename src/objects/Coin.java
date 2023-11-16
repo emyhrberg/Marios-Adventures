@@ -1,6 +1,6 @@
 package objects;
 
-import helpers.Sounds;
+import helpers.Sound;
 import main.Player;
 
 import static constants.ObjectConstants.ObjectType;
@@ -9,8 +9,6 @@ import static ui.Menu.SCALE;
 import static ui.Menu.TILES_SIZE_DEFAULT;
 
 public class Coin extends GameObject {
-
-    private final Sounds sounds = new Sounds();
 
     public static final float COIN_SIZE = (int) (TILES_SIZE_DEFAULT * 0.75);
     public static int coinCount;
@@ -32,7 +30,7 @@ public class Coin extends GameObject {
         if (hitbox.intersects(player.getHitbox()))
             if (!isSparkle) {
                 isSparkle = true;
-                sounds.play("/sounds/coin.mp3");
+                Sound.play("/sounds/coin.wav");
                 coinCount++;
             }
     }

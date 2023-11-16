@@ -40,7 +40,6 @@ public class MouseMotionInput extends MouseMotionAdapter {
                 game.getPauseState().mouseMoved(e);
                 break;
             default:
-                // Handle the default case here
                 break;
         }
     }
