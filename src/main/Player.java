@@ -218,33 +218,28 @@ public class Player extends Entity {
 	// ====== Public player methods ======
 
 	public void hitByEnemy(Enemy enemy) {
-		health -= 1;
-		hit = true;
-
-		// Update push direction
 		if (enemy.getHitbox().x < hitbox.x)
-			pushXDir = RIGHT;
+			pushXDir = RIGHT; // set player push dir
 		else
 			pushXDir = LEFT;
 
-		jumpOnEnemy();
-
-		Sound.play("/sounds/ouchplayer.wav");
+		ouchPlayer();
 	}
 
 	public void hitByBullet(Bullet b) {
-		health -= 1;
-		hit = true;
-
-		// set push dir
 		if (b.getHitbox().x < hitbox.x)
-			pushXDir = RIGHT;
+			pushXDir = RIGHT; // set player push dir
 		else
 			pushXDir = LEFT;
 
-		jumpOnEnemy();
+		ouchPlayer();
+	}
 
-		Sound.play("/sounds/ouchplayer.mp3");
+	private void ouchPlayer() {
+		health -= 1;
+		hit = true;
+		jumpOnEnemy();
+		Sound.play("/sounds/ouchplayer.wav");
 	}
 
 	public void resetPlayer() {
