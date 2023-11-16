@@ -31,8 +31,6 @@ public class Playing extends GameState {
     private int shakeOffset;
     private boolean movingLeft, movingRight;
     private Point spawnPoint;
-    private boolean savedSpawn = false;
-    private Point savedSpawnPoint;
 
     // Game managers
     private final EnemyManager enemyManager;
@@ -95,7 +93,7 @@ public class Playing extends GameState {
         // Update playing stuff
         updatePlayerOutsideLevel();
         updateFinalPointState();
-        updateShake();
+//        updateShake();
         updateCountdownTimer();
     }
 
@@ -298,13 +296,12 @@ public class Playing extends GameState {
     // ====== Reset methods ======
 
     private void resetSpawnPoint() {
-        if (savedSpawn)
-            spawnPoint = savedSpawnPoint;
-        else
-            spawnPoint = levelManager.getLevel().getSpawnPoint();
+        Point spawnPoint = levelManager.getLevel().getSpawnPoint();
 
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;
+
+        System.out.println("spawn point: " + spawnPoint);
     }
 
     private void resetLevelData() {
@@ -326,12 +323,6 @@ public class Playing extends GameState {
         t = START_T;
     }
 
-    public void saveSpawnPointGoToMenu() {
-        savedSpawnPoint = new Point((int) player.getHitbox().x, (int) player.getHitbox().y);
-        savedSpawn = true;
-        game.setGameState(MENU);
-    }
-
     public void resetGameGoToPlaying() {
         resetGame();
         game.setGameState(PLAYING);
@@ -344,7 +335,6 @@ public class Playing extends GameState {
         player.setLevel(levelManager.getLevel());
 
         // Reset
-        savedSpawn = false;
         resetGame();
         game.setGameState(PLAYING);
     }
@@ -354,7 +344,6 @@ public class Playing extends GameState {
         player.setLevel(levelManager.getLevel());
 
         // Reset
-        savedSpawn = false;
         resetGame();
         game.setGameState(MENU);
     }

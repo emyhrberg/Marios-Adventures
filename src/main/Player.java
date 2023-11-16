@@ -244,7 +244,7 @@ public class Player extends Entity {
 
 		jumpOnEnemy();
 
-		Sound.play("/sounds/ouchplayer.wav");
+		Sound.play("/sounds/ouchplayer.mp3");
 	}
 
 	public void resetPlayer() {

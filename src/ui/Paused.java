@@ -53,7 +53,7 @@ public class Paused extends GameState {
 
 		// SAVE QUIT
 		if (b.getButtonIndex() == 2) {
-			game.getPlaying().saveSpawnPointGoToMenu();
+			game.setGameState(MENU);
 		}
 	}
 

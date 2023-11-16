@@ -36,7 +36,7 @@ public class KeyInput extends KeyAdapter {
                 game.getLevelCompletedState().keyPressed(e);
                 break;
             case GAME_COMPLETED:
-                game.getGameCompletedState().keyPressed(e);
+                game.getGameCompletedState().keyPressed();
                 break;
             case GAME_OVER:
                 game.getGameOverState().keyPressed(e);

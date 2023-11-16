@@ -90,8 +90,9 @@ public class Menu extends GameState {
 
     private void selectButton(MenuButton b) {
         // PLAY
-        if (b.getButtonIndex() == 0)
-            game.setGameState(PLAYING);
+        if (b.getButtonIndex() == 0) {
+            game.getPlaying().resetGameGoToPlaying();
+        }
 
         // OPTIONS
         if (b.getButtonIndex() == 1)

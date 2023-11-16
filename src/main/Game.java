@@ -62,9 +62,9 @@ public class Game implements Runnable {
     private boolean allowDraw;
     private long lastStateCheck;
     private boolean isFirstTime = false;
-    private static final int DISALLOW_DRAW_WAIT = 2300;
-    private static final int DISALLOW_KEY_WAIT  = 500;
-    private static final int GO_PLAYING_WAIT    = 9000;
+    private static final int DISALLOW_DRAW_WAIT = 1500;
+    private static final int DISALLOW_KEY_WAIT  = 1500;
+    private static final int GO_PLAYING_WAIT    = 9000; // after game over, go to playing after 9 seconds
 
     // ====== Constructor ======
     public Game() {
@@ -77,7 +77,7 @@ public class Game implements Runnable {
 
         // Set game state on launch
         gameState = MENU;
-        menuClip = Sound.play("/sounds/menu.wav");
+        menuClip = Sound.playSoundLoop("/sounds/menu.wav");
 
         // Start game loop
         gameThread = new Thread(this);
@@ -116,7 +116,6 @@ public class Game implements Runnable {
                 options.update(); // empty
                 break;
             default:
-                // Handle the default case here
                 break;
         }
     }

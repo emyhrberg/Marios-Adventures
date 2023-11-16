@@ -10,62 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider">
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/brick.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/coin.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/gamecompleted.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/gameover.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/jump.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/menu.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/ouchenemy.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/ouchplayer.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/playing.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/powerup.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/question.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds-mp3-backup-16nov/stomp.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/brick.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/coin.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/gamecompleted.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/gameover.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/jump.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/menu.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/ouchenemy.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/ouchplayer.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/playing.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/powerup.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/question.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sounds/stomp.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/brick.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/coin.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/gamecompleted.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/gameover.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/jump.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/menu.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/ouchenemy.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/ouchplayer.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/playing.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/powerup.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/question.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sounds/stomp.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/EnemyConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/EnemyConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/FontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/OldFontLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/LoggerWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/OldLoggerWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/MouseMotionInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/MouseMotionInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SoundPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/Sounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/OldSound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/EnemyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EnemyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/1_test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/levels/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/2_test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/levels/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/KeyInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/KeyInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Shark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Brick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/HealthPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/HealthPowerup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/VolumeSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VolumeSlider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Paused.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Paused.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +234,7 @@
       <workItem from="1683614788124" duration="321000" />
       <workItem from="1683615903429" duration="433000" />
       <workItem from="1700151731338" duration="600000" />
-      <workItem from="1700156910816" duration="4682000" />
+      <workItem from="1700156910816" duration="7685000" />
     </task>
     <task id="LOCAL-00057" summary="Fixed reset timer and coin count">
       <created>1682464813732</created>

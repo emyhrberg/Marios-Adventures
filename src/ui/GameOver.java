@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static constants.GameState.MENU;
 import static ui.Menu.*;
 
 
@@ -41,7 +40,7 @@ public class GameOver extends GameState {
 
     public void drawGameOver(Graphics g) {
         if (game.isKeyNotAllowed()) {
-//            return;
+//            return; //
         }
         if (game.isDrawNotAllowed())
             return;
@@ -58,7 +57,8 @@ public class GameOver extends GameState {
         fadeToBlack(g);
 
         // wait for one second
-        if (System.currentTimeMillis() - firstCheckTime <= 1000)
+        float WAIT_UNTIL_DRAW = 500;
+        if (System.currentTimeMillis() - firstCheckTime <= WAIT_UNTIL_DRAW)
             return;
 
         // game text
@@ -85,14 +85,11 @@ public class GameOver extends GameState {
     }
 
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE:
-                game.setGameState(MENU);
-                break;
-            case KeyEvent.VK_ENTER:
-                game.getPlaying().resetGameGoToPlaying();
-                break;
+        if (game.isKeyNotAllowed()) {
+            return;
         }
+
+        game.getPlaying().resetGameGoToPlaying();
     }
 
     public void mousePressed(MouseEvent e) {

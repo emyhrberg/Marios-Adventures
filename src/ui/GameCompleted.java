@@ -5,7 +5,6 @@ import main.Game;
 import main.GameState;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import static ui.Menu.*;
@@ -31,7 +30,7 @@ public class GameCompleted extends GameState {
 		g.drawImage(img, x, y, w, h, null);
 	}
 
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed() {
 		if (game.isKeyNotAllowed()) {
 			return;
 		}
