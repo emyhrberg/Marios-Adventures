@@ -22,7 +22,7 @@ public class MenuButton {
     // ====== Button Animation ======
     private final int NumberOfAnimations = 3;
     private final BufferedImage[] animations = new BufferedImage[NumberOfAnimations];
-    private Rectangle bounds;
+    private final Rectangle bounds;
     private final int y;
 
     // X, Width, Height

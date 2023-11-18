@@ -6,6 +6,8 @@ import objects.ObjectManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
@@ -28,9 +30,7 @@ public class Playing extends GameState {
     private static final float PLAYER_SCALE = 1.33f;
     private final Player player;
     private int levelOffset;
-    private int shakeOffset;
     private boolean movingLeft, movingRight;
-    private Point spawnPoint;
 
     // Game managers
     private final EnemyManager enemyManager;
@@ -44,24 +44,23 @@ public class Playing extends GameState {
     private static final BufferedImage FOREST = ImageLoader.loadImage("/ui/forest.png");
     private BufferedImage offScreenImage;
 
-    // HUD: Icons, font animation, countdown timer
-    private static final BufferedImage C_ICON = ImageLoader.loadImage("/ui/c-icon.png");
-    private static final BufferedImage H_ICON = ImageLoader.loadImage("/ui/h-icon.png");
-    private static final BufferedImage NUMS = ImageLoader.loadImage("/ui/nums.png");
-    private static final BufferedImage NUMS_Y = ImageLoader.loadImage("/ui/nums-yellow.png");
-    private static final BufferedImage healthX = ImageLoader.loadImage("/ui/x.png");
-    private static final BufferedImage[] nums = new BufferedImage[10];
-    private static final BufferedImage[] numsY = new BufferedImage[10];
-    private static final int numW = 300;
-    private static final int numH = 300;
-    private long lastSec;
-    private static final int START_T = 300;
-    private int t = START_T;
+    // Drawing HUD new
+    private static final Font CUSTOM_FONT = helpers.FontLoader.loadFont("/fonts/inside-out.otf");
+    private static final BufferedImage MARIO = ImageLoader.loadImage("/ui/mario-icon.png");
+    private static final BufferedImage COIN = ImageLoader.loadImage("/ui/coin-icon.png");
+    private static final int MARIO_W = (int) (19*SCALE*2);
+    private static final int MARIO_H = (int) (19*SCALE*2);
+    private static final int MARIO_X = (int) (MARIO_W + 10 * SCALE);
+    private static final int MARIO_Y = (int) (MARIO_H / 1.5);
+    private static final int COIN_Y = (int) (MARIO_H / 1.5 + MARIO_H + 10 * SCALE);
+    private static final int TOP_Y = (int) (MARIO_Y + MARIO_H - 4 * SCALE);
+    private static final int X_NEXT_TO_ICON = (int) (MARIO_X + MARIO_W + 4 * SCALE);
+    private static final float sizeX = 28 * SCALE;
+    private static final float size00 = 40 * SCALE;
 
     // ====== Constructor ======
     public Playing(Game game) {
         super(game);
-        initNums();
 
         // Init classes
         levelManager    = new LevelManager();
@@ -72,13 +71,6 @@ public class Playing extends GameState {
         // Set level and spawn for player class
         player.setLevel(levelManager.getLevel());
         resetSpawnPoint();
-    }
-
-    private void initNums() {
-        for (int i = 0; i < 10; i++) {
-            nums[i] = NUMS.getSubimage(numW * i, 0, numW, numH);
-            numsY[i] = NUMS_Y.getSubimage(numW * i, 0, numW, numH);
-        }
     }
 
     // ====== Update methods ======
@@ -93,8 +85,6 @@ public class Playing extends GameState {
         // Update playing stuff
         updatePlayerOutsideLevel();
         updateFinalPointState();
-//        updateShake();
-        updateCountdownTimer();
     }
 
     private void updatePlayerOutsideLevel() {
@@ -104,24 +94,6 @@ public class Playing extends GameState {
 
         if (isPlayerBelowLevel)
             game.setGameState(GAME_OVER);
-    }
-
-    private void updateShake() {
-        shakeOffset = 0;
-
-        if (player.isHit()) {
-            // The maximum amount of pixels to shake the screen
-            final int shakeAmount = 10;
-            shakeOffset = (int) (Math.random() * shakeAmount * 2) - shakeAmount;
-        }
-    }
-
-    private void updateCountdownTimer() {
-        long sec = System.currentTimeMillis() / 1000;
-        if (sec != lastSec) {
-            t--;
-            lastSec = sec;
-        }
     }
 
     private void updateFinalPointState() {
@@ -155,11 +127,21 @@ public class Playing extends GameState {
     }
 
     private void drawGame(Graphics g) {
+        // Draw background
         drawSky(g);
         drawForest(g);
         drawSmallClouds(g);
         drawBigClouds(g);
-        drawHUD(g);
+
+        // Draw mario and coin icon
+        g.drawImage(MARIO, MARIO_X, MARIO_Y,MARIO_W, MARIO_H,null);
+        g.drawImage(COIN, MARIO_X, COIN_Y,MARIO_W, MARIO_H,null);
+
+        // Draw mario and coin text
+        drawHealthCount(g);
+        drawCoinCount(g);
+
+        // Draw game
         objectManager.drawPowerups(g, levelOffset);
         levelManager.draw(g, levelOffset);
         enemyManager.draw(g, levelOffset);
@@ -252,45 +234,70 @@ public class Playing extends GameState {
         g.drawImage(BIG_CLOUDS, x, y, null);
     }
 
-    private void drawHUD(Graphics g) {
-        int icon = (int) (72 * SCALE);
-        int w = (int) (316 / 7 * SCALE);
-        int h = (int) (300 / 7 * SCALE);
-        int x = icon / 2;
-        int y = icon / 3;
+    private void drawHealthCount(Graphics g) {
+        // X
+        Graphics2D g2d = (Graphics2D) g;
+        g.setFont(CUSTOM_FONT.deriveFont(sizeX));
+        int w = g.getFontMetrics().stringWidth("x");
+        TextLayout tl = new TextLayout("x", g.getFont(), g2d.getFontRenderContext());
+        Shape shape = tl.getOutline(null);
+        AffineTransform transform = AffineTransform.getTranslateInstance(X_NEXT_TO_ICON, TOP_Y);
+        g2d.transform(transform);
 
-        // ========== HEALTH ===========
-        g.drawImage(H_ICON, x, y, icon, icon, null);
+        // draw black X
+        g2d.setStroke(new BasicStroke(5f));
+        g2d.setColor(new Color(5, 5, 5));
+        g2d.draw(shape);
 
-        // 1
-        x += 0.75*icon;
-        y += (icon - h);
-        g.drawImage(healthX, x, y, w, h, null);
+        // draw white X
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape);
+        g2d.setTransform(new AffineTransform());
 
-        // 2
-        x += 0.65*w;
-        g.drawImage(nums[0], x, y, w, h, null);
+        // HEALTH
+        final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
+        g.setFont(g.getFont().deriveFont(size00));
+        int x2 = (int) (X_NEXT_TO_ICON + w + 2 * SCALE);
+        TextLayout tl2 = new TextLayout(health, g.getFont(), g2d.getFontRenderContext());
+        Shape shape2 = tl2.getOutline(null);
+        AffineTransform transform2 = AffineTransform.getTranslateInstance(x2, TOP_Y);
+        g2d.transform(transform2);
 
-        // 3
-        x += 0.65*w;
-        g.drawImage(nums[player.health], x, y, w, h, null);
+        // draw black
+        g2d.setStroke(new BasicStroke(5f));
+        g2d.setColor(new Color(5, 5, 5));
+        g2d.draw(shape2);
 
-        // ========== COIN ===========
-        y = icon / 3 + icon;
-        x = icon / 2;
-        g.drawImage(C_ICON, x, y, icon, icon, null);
+        // draw white
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape2);
 
-        // 1
-        x += 0.9*icon;
-        y += h / 2;
-        g.drawImage(numsY[coinCount / 10], x, y, w, h, null);
+        // restore the original transform
+        g2d.setTransform(new AffineTransform());
+    }
 
-        // 2
-        x += 0.62*w;
-        g.drawImage(numsY[coinCount % 10], x, y, w, h, null);
+    private void drawCoinCount(Graphics g) {
+        String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
 
-        // Draw countdown?
-        String countdown = (t < 100 && t >= 10) ? "0" + t : (t < 10) ? "00" + t : String.valueOf(t);
+        Graphics2D g2d = (Graphics2D) g;
+        g.setFont(g.getFont().deriveFont(size00));
+        TextLayout tl = new TextLayout(coins, g.getFont(), g2d.getFontRenderContext());
+        Shape shape2 = tl.getOutline(null);
+        int y = (int) (COIN_Y + MARIO_H - 4 * SCALE);
+        AffineTransform transform = AffineTransform.getTranslateInstance(X_NEXT_TO_ICON, y);
+        g2d.transform(transform);
+
+        // draw black
+        g2d.setStroke(new BasicStroke(5f));
+        g2d.setColor(new Color(5, 5, 5));
+        g2d.draw(shape2);
+
+        // draw white
+        g2d.setColor(new Color(224, 224, 224));
+        g2d.fill(shape2);
+
+        // restore the original transform
+        g2d.setTransform(new AffineTransform());
     }
 
     // ====== Reset methods ======
@@ -322,7 +329,6 @@ public class Playing extends GameState {
         resetSpawnPoint();
         resetLevelData();
         coinCount = 0;
-        t = START_T;
     }
 
     public void resetGameGoToPlaying() {

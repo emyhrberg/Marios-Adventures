@@ -30,9 +30,9 @@ public class Volume extends GameState {
     private boolean dragging = false;
 
     // volume function
-    private double percentVolume = 0.2;
-    private int volume = 20;
-    public static float actualVolume = 20 * 0.5f - 44;
+    private static int volume = 20;
+    private double percentVolume = volume * 0.01;
+    public static float actualVolume = volume * 0.5f - 44;
 
     public Volume(Game game) {
         super(game);

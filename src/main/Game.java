@@ -37,7 +37,6 @@ public class Game implements Runnable {
     // ====== Game Variables ======
     private final GameComponent gameComponent;
     private final GameFrame gameFrame;
-    private Thread gameThread;
     private GameState gameState;
     private GameState prevState;
 
@@ -80,7 +79,7 @@ public class Game implements Runnable {
         menuClip = Sound.playSoundLoop("/sounds/menu.wav");
 
         // Start game loop
-        gameThread = new Thread(this);
+        Thread gameThread = new Thread(this);
         gameThread.start();
     }
 

@@ -62,7 +62,8 @@ public class Menu extends GameState {
 
     private void initButtons() {
         final int PADDING 	= (int) (BUTTON_H * 0.75f);
-        final int CENTER 	= GAME_HEIGHT / 2 - BUTTON_H / 2;
+        int CENTER 	= GAME_HEIGHT / 2 - BUTTON_H / 2;
+        CENTER -= BUTTON_H / 4; // move buttons up a little bit
 
         buttons[0] = new MenuButton(0, CENTER);
         buttons[1] = new MenuButton(1, CENTER + PADDING);
