@@ -8,15 +8,11 @@
 
 <h4 align="center"> A 2D platformer game written in Java </h4>
 
-## How To Run
+## How To Play
 
-| Java                                                                                | No Java |
-|-------------------------------------------------------------------------------------| ------ |
-| [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar?raw=true) | [Mario.zip](https://drive.google.com/file/d/12D67CqS_eAKEyZRmjUTMK_2JyE_j3L61/view?usp=share_link) |
+Download [Mario.zip](https://drive.google.com/file/d/12D67CqS_eAKEyZRmjUTMK_2JyE_j3L61/view?usp=share_link)
 
-To run the game, you have two options:
-- Run the game using minimum Java 8 by downloading Mario.jar
-- Run the game using bundled-in JRE by downloading the ZIP file. This option works if you don't have Java.
+Or using Java, download [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar?raw=true)
 
 ## Introduction
 
