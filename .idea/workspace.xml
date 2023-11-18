@@ -9,16 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider">
-      <change afterPath="$PROJECT_DIR$/resources/fonts/inside-out.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/coin-icon.png" afterDir="false" />
+    <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed font so it looks like the one on GitHub">
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Mario_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/jlayer.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/OldFontLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/FontLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Volume.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Volume.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +224,7 @@
       <workItem from="1700156910816" duration="7685000" />
       <workItem from="1700165119395" duration="1260000" />
       <workItem from="1700307249817" duration="6783000" />
-      <workItem from="1700344151114" duration="1522000" />
+      <workItem from="1700344151114" duration="1760000" />
     </task>
     <task id="LOCAL-00057" summary="Fixed reset timer and coin count">
       <created>1682464813732</created>
@@ -575,7 +569,7 @@
       <option name="project" value="LOCAL" />
       <updated>1683589236819</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +590,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updated pause screen" />
     <MESSAGE value="Test" />
     <MESSAGE value="Another test" />
     <MESSAGE value="Marios Adventures release 1.2.3!" />
@@ -621,7 +614,8 @@
     <MESSAGE value="Small fixes 1.3!" />
     <MESSAGE value="Fixed volume slider bug where 0 volume would not be muted&#10;Improved volume slider fluidity for volumes 00, 01, 02, 03" />
     <MESSAGE value="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed fullscreen&#10;Fixed FPS issues&#10;Removed unnecessary code&#10;Compressed jar size from 40 MB to 6 MB&#10;&#10;Need to fix volume slider" />
+    <MESSAGE value="Fixed font so it looks like the one on GitHub" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed font so it looks like the one on GitHub" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
