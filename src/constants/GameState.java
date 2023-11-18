@@ -13,5 +13,6 @@ public enum GameState {
     LEVEL_COMPLETED,
     GAME_COMPLETED,
     GAME_OVER,
-    OPTIONS
+    VOLUME,
+    CONTROLS
 }

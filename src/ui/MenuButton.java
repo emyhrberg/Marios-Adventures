@@ -20,9 +20,15 @@ public class MenuButton {
     public static final int BUTTON_H = 123;
 
     // ====== Button Animation ======
-    private final BufferedImage[] animations = new BufferedImage[3];
+    private final int NumberOfAnimations = 3;
+    private final BufferedImage[] animations = new BufferedImage[NumberOfAnimations];
     private Rectangle bounds;
     private final int y;
+
+    // X, Width, Height
+    private final int w = (int) (BUTTON_W / 2 * SCALE);
+    private final int h = (int) (BUTTON_H / 2 * SCALE);
+    private final int x = GAME_WIDTH / 2 - w / 2;
 
     // ====== Index for buttons ======
     private final int buttonIndex;
@@ -35,7 +41,7 @@ public class MenuButton {
         this.buttonIndex = buttonIndex;
         this.y = y;
         initButtonImages();
-        initButtonBounds();
+        bounds = new Rectangle(x, y, w, h); // initialize button bounds
     }
 
     private void initButtonImages() {
@@ -43,17 +49,7 @@ public class MenuButton {
             animations[i] = BUTTON_IMAGES.getSubimage(i * BUTTON_W, buttonIndex * BUTTON_H, BUTTON_W, BUTTON_H);
     }
 
-    private void initButtonBounds() {
-        int w = (int) (BUTTON_W / 2 * SCALE);
-        int h = (int) (BUTTON_H / 2 * SCALE);
-        int x = GAME_WIDTH / 2 - w / 2;
-        bounds = new Rectangle(x, y, w, h);
-    }
-
     public void draw(Graphics g) {
-        int w = (int) (BUTTON_W / 2 * SCALE);
-        int h = (int) (BUTTON_H / 2 * SCALE);
-        int x = GAME_WIDTH / 2 - w / 2;
         g.drawImage(animations[mouseIndex], x, y, w, h, null);
     }
 

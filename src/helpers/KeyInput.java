@@ -41,16 +41,20 @@ public class KeyInput extends KeyAdapter {
             case GAME_OVER:
                 game.getGameOverState().keyPressed(e);
                 break;
-            case OPTIONS:
-                game.getOptions().keyPressed(e);
+            case VOLUME:
+                game.getVolume().keyPressed(e);
+            case CONTROLS:
+                game.getControls().keyPressed(e);
             default:
-                // Handle the default case here
                 break;
         }
 
     }
 
     public void keyReleased(KeyEvent e) {
+        // TODO : why double call here?
+        // one for release to resize screen
+        // one for key release when playing for moving A D?
         game.keyReleased(e);
         game.getPlaying().keyReleased(e);
     }

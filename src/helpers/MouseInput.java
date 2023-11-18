@@ -35,9 +35,11 @@ public class MouseInput extends MouseAdapter {
             case GAME_OVER:
                 game.getGameOverState().mousePressed(e);
                 break;
-            case OPTIONS:
-                game.getOptions().mousePressed(e);
+            case VOLUME:
+                game.getVolume().mousePressed(e);
                 break;
+            case CONTROLS:
+                game.getControls().mousePressed(e);
             default:
                 break;
         }
@@ -51,8 +53,11 @@ public class MouseInput extends MouseAdapter {
             case PAUSED:
                 game.getPauseState().mouseReleased(e);
                 break;
-            case OPTIONS:
-                game.getOptions().mouseReleased();
+            case VOLUME:
+                game.getVolume().mouseReleased();
+                break;
+            case CONTROLS:
+                game.getControls().mousePressed(e);
                 break;
             default:
                 break;

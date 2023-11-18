@@ -48,10 +48,10 @@ public class Game implements Runnable {
     private final LevelCompleted levelCompleted = new LevelCompleted(this);
     private final GameCompleted gameCompleted   = new GameCompleted(this);
     private final GameOver gameOver             = new GameOver(this);
-    private final VolumeSlider options          = new VolumeSlider(this);
+    private final Volume volume                 = new Volume(this);
+    private final Controls controls             = new Controls(this);
 
     // ====== Sounds ======
-    private Sound sound;
     private Clip menuClip;
     private Clip playingClip;
     private Clip gameOverClip;
@@ -112,8 +112,11 @@ public class Game implements Runnable {
                     playing.resetGameGoToPlaying();
                 }
                 break;
-            case OPTIONS:
-                options.update(); // empty
+            case VOLUME:
+                volume.update(); // empty
+                break;
+            case CONTROLS:
+                controls.update();
                 break;
             default:
                 break;
@@ -149,13 +152,22 @@ public class Game implements Runnable {
                 playing.draw(g);
                 gameOver.drawGameOver(g);
                 break;
-            case OPTIONS:
+            case VOLUME:
                 if (prevState == MENU) {
                     menu.draw(g);
-                    options.draw(g);
+                    volume.draw(g);
                 } else {
                     playing.drawBlur(g);
-                    options.draw(g);
+                    volume.draw(g);
+                }
+                break;
+            case CONTROLS:
+                if (prevState == MENU) {
+                    menu.draw(g);
+                    controls.draw(g);
+                } else {
+                    playing.drawBlur(g);
+                    controls.draw(g);
                 }
                 break;
             default:
@@ -206,14 +218,14 @@ public class Game implements Runnable {
 
     private void playGameStateSounds() {
         if (gameState == PLAYING) {
-            if (prevState == PAUSED || prevState == OPTIONS)
+            if (prevState == PAUSED || prevState == VOLUME || prevState == CONTROLS)
                 return;
             stopSounds();
             playingClip = Sound.playSoundLoop("/sounds/playing.wav");
         }
 
         else if (gameState == MENU) {
-            if (prevState == OPTIONS)
+            if (prevState == VOLUME || prevState == CONTROLS)
                 return;
             stopSounds();
             menuClip = Sound.playSoundLoop("/sounds/menu.wav");
@@ -263,8 +275,12 @@ public class Game implements Runnable {
         return prevState;
     }
 
-    public VolumeSlider getOptions() {
-        return options;
+    public Volume getVolume() {
+        return volume;
+    }
+
+    public Controls getControls() {
+        return controls;
     }
 
     public GameState getGameState() {

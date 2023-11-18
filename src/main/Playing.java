@@ -296,12 +296,14 @@ public class Playing extends GameState {
     // ====== Reset methods ======
 
     private void resetSpawnPoint() {
+        // get current level spawn point
         Point spawnPoint = levelManager.getLevel().getSpawnPoint();
 
+        // set player position to level spawn point
         player.getHitbox().x = spawnPoint.x;
         player.getHitbox().y = spawnPoint.y;
 
-        System.out.println("spawn point: " + spawnPoint);
+//        System.out.println("spawn point: " + spawnPoint);
     }
 
     private void resetLevelData() {

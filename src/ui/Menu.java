@@ -9,8 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static constants.GameState.OPTIONS;
-import static constants.GameState.PLAYING;
+import static constants.GameState.*;
 import static ui.PauseButton.BUTTON_H;
 
 /**
@@ -32,7 +31,10 @@ public class Menu extends GameState {
 
     private final BufferedImage bgImage = ImageLoader.loadImage("/ui/menu-bg.jpg");
     private final BufferedImage titleImage = ImageLoader.loadImage("/ui/menu-title.png");
-    private final MenuButton[] buttons = new MenuButton[3];
+
+    // Buttons
+    private final int NumberOfButtons = 4;
+    private final MenuButton[] buttons = new MenuButton[NumberOfButtons];
 
     // ====== Constructor ======
     public Menu(Game game) {
@@ -65,6 +67,7 @@ public class Menu extends GameState {
         buttons[0] = new MenuButton(0, CENTER);
         buttons[1] = new MenuButton(1, CENTER + PADDING);
         buttons[2] = new MenuButton(2, CENTER + 2 * PADDING);
+        buttons[3] = new MenuButton(3, CENTER + 3 * PADDING);
     }
 
     public void update() {
@@ -90,16 +93,19 @@ public class Menu extends GameState {
 
     private void selectButton(MenuButton b) {
         // PLAY
-        if (b.getButtonIndex() == 0) {
+        if (b.getButtonIndex() == 0)
             game.getPlaying().resetGameGoToPlaying();
-        }
 
-        // OPTIONS
+        // CONTROLS
         if (b.getButtonIndex() == 1)
-            game.setGameState(OPTIONS);
+            game.setGameState(CONTROLS);
+
+        // VOLUME
+        if (b.getButtonIndex() == 2)
+            game.setGameState(VOLUME);
 
         // QUIT
-        if (b.getButtonIndex() == 2)
+        if (b.getButtonIndex() == 3)
             System.exit(0);
     }
 
@@ -115,8 +121,7 @@ public class Menu extends GameState {
 
     public void mouseReleased(MouseEvent e) {
         for (MenuButton b : buttons)
-            if (isButtonInsideBounds(e, b) && b.isMousePressButton())
-            {
+            if (isButtonInsideBounds(e, b) && b.isMousePressButton()) {
                 selectButton(b);
             }
 

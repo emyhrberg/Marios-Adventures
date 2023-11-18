@@ -49,7 +49,7 @@ public class Paused extends GameState {
 
 		// SETTINGS
 		if (b.getButtonIndex() == 1)
-			game.setGameState(OPTIONS);
+			game.setGameState(VOLUME);
 
 		// SAVE QUIT
 		if (b.getButtonIndex() == 2) {

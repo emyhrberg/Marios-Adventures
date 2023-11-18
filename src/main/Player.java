@@ -49,7 +49,7 @@ public class Player extends Entity {
 	private static final float ACCELERATION 			= 0.05f;
 
 	// ====== Jumping ======
-	private static final float MAX_JUMP_HEIGHT 			= 2.5f;
+	private static final float MAX_JUMP_HEIGHT 			= 3.2f;
 	private float jumpHeight = MAX_JUMP_HEIGHT;
 	private boolean canJump = true;
 	private boolean jumping = false;

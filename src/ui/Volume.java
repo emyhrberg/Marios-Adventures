@@ -14,7 +14,7 @@ import static constants.GameState.MENU;
 import static constants.GameState.PLAYING;
 import static ui.Menu.*;
 
-public class VolumeSlider extends GameState {
+public class Volume extends GameState {
 
     // pos
     private final int w;
@@ -34,7 +34,7 @@ public class VolumeSlider extends GameState {
     private int volume = 20;
     public static float actualVolume = 20 * 0.5f - 44;
 
-    public VolumeSlider(Game game) {
+    public Volume(Game game) {
         super(game);
 
         // Init volume rectangle bounds
@@ -174,7 +174,7 @@ public class VolumeSlider extends GameState {
 
             control.setValue(actualVolume);
 
-            System.out.println("set to: " + actualVolume + " | which is: " + volume);
+//            System.out.println("set to: " + actualVolume + " | which is: " + volume);
         } else if (game.getPlayingClip() != null && game.getPlayingClip().isActive()) {
             FloatControl control = (FloatControl) game.getPlayingClip().getControl(FloatControl.Type.MASTER_GAIN);
 
@@ -182,7 +182,7 @@ public class VolumeSlider extends GameState {
                 actualVolume = control.getMinimum();
 
             control.setValue(actualVolume);
-            System.out.println("set to: " + actualVolume + " | which is: " + volume);
+//            System.out.println("set to: " + actualVolume + " | which is: " + volume);
         }
     }
 

@@ -5,7 +5,7 @@ import main.Game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-import static constants.GameState.OPTIONS;
+import static constants.GameState.VOLUME;
 
 /**
  * This class handles mouse motion for drag/drop, hovering, etc
@@ -21,8 +21,8 @@ public class MouseMotionInput extends MouseMotionAdapter {
     }
 
     public void mouseDragged(MouseEvent e) {
-        if (game.getGameState() == OPTIONS) {
-            game.getOptions().mouseDragged(e);
+        if (game.getGameState() == VOLUME) {
+            game.getVolume().mouseDragged(e);
         }
     }
 
