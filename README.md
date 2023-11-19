@@ -10,9 +10,12 @@
 
 ## How To Play
 
-Download [Mario.zip](https://drive.google.com/file/d/12D67CqS_eAKEyZRmjUTMK_2JyE_j3L61/view?usp=share_link)
+1. Download [Java](https://www.java.com/en/download/)
+2. Download [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar?raw=true)
 
-Or using Java, download [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar?raw=true)
+Or run the game with JDK embedded in a zip: [Mario.zip](https://drive.google.com/file/d/12D67CqS_eAKEyZRmjUTMK_2JyE_j3L61/view?usp=share_link)
+
+
 
 ## Introduction
 
