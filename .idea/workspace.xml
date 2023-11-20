@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="module:jar" />
+      <artifact name="MarioGame" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,9 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdf9e4a7-a7ea-4ef0-b276-7b24a53149e6" name="Changes" comment="Fixed font so it looks like the one on GitHub">
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Mario_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +61,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "8",
-    "last_opened_file_path": "D:/Projects/Marios-Adventures",
+    "last_opened_file_path": "C:/Users/erikm/Downloads/Marios-Adventures-a47ffa6be4c79bdc07d8fcd31d521fbd641e0d5f",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -225,6 +225,7 @@
       <workItem from="1700165119395" duration="1260000" />
       <workItem from="1700307249817" duration="6783000" />
       <workItem from="1700344151114" duration="1760000" />
+      <workItem from="1700505124200" duration="2919000" />
     </task>
     <task id="LOCAL-00057" summary="Fixed reset timer and coin count">
       <created>1682464813732</created>

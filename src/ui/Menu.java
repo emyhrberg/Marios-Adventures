@@ -45,6 +45,7 @@ public class Menu extends GameState {
 
     private void initScale() {
         userW = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+        System.out.println("userW: " + userW);
         if (userW == 1920) {
             SCALE = 1.5f;
         } else if (userW == 1280) {

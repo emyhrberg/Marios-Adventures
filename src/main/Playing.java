@@ -235,8 +235,13 @@ public class Playing extends GameState {
     }
 
     private void drawHealthCount(Graphics g) {
+
+
         // X
         Graphics2D g2d = (Graphics2D) g;
+
+        AffineTransform originalTransform = g2d.getTransform();
+
         g.setFont(CUSTOM_FONT.deriveFont(sizeX));
         int w = g.getFontMetrics().stringWidth("x");
         TextLayout tl = new TextLayout("x", g.getFont(), g2d.getFontRenderContext());
@@ -273,13 +278,18 @@ public class Playing extends GameState {
         g2d.fill(shape2);
 
         // restore the original transform
-        g2d.setTransform(new AffineTransform());
+        g2d.setTransform(originalTransform);
+//        g2d.setTransform(new AffineTransform());
+//        g2d.dispose();
     }
 
     private void drawCoinCount(Graphics g) {
         String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
 
         Graphics2D g2d = (Graphics2D) g;
+
+        AffineTransform originalTransform = g2d.getTransform();
+
         g.setFont(g.getFont().deriveFont(size00));
         TextLayout tl = new TextLayout(coins, g.getFont(), g2d.getFontRenderContext());
         Shape shape2 = tl.getOutline(null);
@@ -297,7 +307,7 @@ public class Playing extends GameState {
         g2d.fill(shape2);
 
         // restore the original transform
-        g2d.setTransform(new AffineTransform());
+        g2d.setTransform(originalTransform);
     }
 
     // ====== Reset methods ======
