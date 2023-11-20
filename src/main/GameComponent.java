@@ -40,7 +40,7 @@ public class GameComponent extends JPanel {
 
         long drawEnd = System.nanoTime();
         long passed  = drawEnd - drawStart;
-//        System.out.println(passed);
+        System.out.println(passed);
     }
 
     public Game getGame() {

@@ -55,8 +55,8 @@ public class Playing extends GameState {
     private static final int COIN_Y = (int) (MARIO_H / 1.5 + MARIO_H + 10 * SCALE);
     private static final int TOP_Y = (int) (MARIO_Y + MARIO_H - 4 * SCALE);
     private static final int X_NEXT_TO_ICON = (int) (MARIO_X + MARIO_W + 4 * SCALE);
-    private static final float sizeX = 28 * SCALE;
-    private static final float size00 = 40 * SCALE;
+    private static final float fontSize28 = 28 * SCALE;
+    private static final float fontSize40 = 40 * SCALE;
 
     // ====== Constructor ======
     public Playing(Game game) {
@@ -143,7 +143,7 @@ public class Playing extends GameState {
 
         // Draw game
         objectManager.drawPowerups(g, levelOffset);
-        levelManager.draw(g, levelOffset);
+        levelManager.draw(g, levelOffset); // this takes most of the processing power
         enemyManager.draw(g, levelOffset);
         objectManager.draw(g, levelOffset);
         player.draw(g, levelOffset);
@@ -235,79 +235,52 @@ public class Playing extends GameState {
     }
 
     private void drawHealthCount(Graphics g) {
-
-
-        // X
         Graphics2D g2d = (Graphics2D) g;
-
         AffineTransform originalTransform = g2d.getTransform();
 
-        g.setFont(CUSTOM_FONT.deriveFont(sizeX));
-        int w = g.getFontMetrics().stringWidth("x");
-        TextLayout tl = new TextLayout("x", g.getFont(), g2d.getFontRenderContext());
+        // Draw 'X'
+        drawTextWithOutline(g2d, "x", fontSize28, X_NEXT_TO_ICON, TOP_Y);
+
+        // Draw health
+        int x = g2d.getFontMetrics().stringWidth("x");
+        final String health = formatNumber(player.getHealth());
+        drawTextWithOutline(g2d, health, fontSize40, x, 0);
+
+        g2d.setTransform(originalTransform);
+    }
+
+
+    private void drawCoinCount(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        AffineTransform originalTransform = g2d.getTransform();
+
+        // Draw coins
+        String coins = formatNumber(coinCount);
+        int y = (int) (COIN_Y + MARIO_H - 4 * SCALE);
+        drawTextWithOutline(g2d, coins, fontSize40, X_NEXT_TO_ICON, y);
+
+        g2d.setTransform(originalTransform);
+    }
+
+    private void drawTextWithOutline(Graphics2D g2d, String text, float fontSize, double x, double y) {
+        g2d.setFont(CUSTOM_FONT.deriveFont(fontSize));
+        TextLayout tl = new TextLayout(text, g2d.getFont(), g2d.getFontRenderContext());
         Shape shape = tl.getOutline(null);
-        AffineTransform transform = AffineTransform.getTranslateInstance(X_NEXT_TO_ICON, TOP_Y);
+        AffineTransform transform = AffineTransform.getTranslateInstance(x, y);
         g2d.transform(transform);
 
-        // draw black X
+        // Draw outline
         g2d.setStroke(new BasicStroke(5f));
         g2d.setColor(new Color(5, 5, 5));
         g2d.draw(shape);
 
-        // draw white X
+        // Fill
         g2d.setColor(new Color(224, 224, 224));
         g2d.fill(shape);
-        g2d.setTransform(new AffineTransform());
-
-        // HEALTH
-        final String health = (player.getHealth() < 10) ? "0" + player.getHealth() : String.valueOf(player.getHealth());
-        g.setFont(g.getFont().deriveFont(size00));
-        int x2 = (int) (X_NEXT_TO_ICON + w + 2 * SCALE);
-        TextLayout tl2 = new TextLayout(health, g.getFont(), g2d.getFontRenderContext());
-        Shape shape2 = tl2.getOutline(null);
-        AffineTransform transform2 = AffineTransform.getTranslateInstance(x2, TOP_Y);
-        g2d.transform(transform2);
-
-        // draw black
-        g2d.setStroke(new BasicStroke(5f));
-        g2d.setColor(new Color(5, 5, 5));
-        g2d.draw(shape2);
-
-        // draw white
-        g2d.setColor(new Color(224, 224, 224));
-        g2d.fill(shape2);
-
-        // restore the original transform
-        g2d.setTransform(originalTransform);
-//        g2d.setTransform(new AffineTransform());
-//        g2d.dispose();
     }
 
-    private void drawCoinCount(Graphics g) {
-        String coins = (coinCount <= 9) ? "0" + coinCount : String.valueOf(coinCount);
-
-        Graphics2D g2d = (Graphics2D) g;
-
-        AffineTransform originalTransform = g2d.getTransform();
-
-        g.setFont(g.getFont().deriveFont(size00));
-        TextLayout tl = new TextLayout(coins, g.getFont(), g2d.getFontRenderContext());
-        Shape shape2 = tl.getOutline(null);
-        int y = (int) (COIN_Y + MARIO_H - 4 * SCALE);
-        AffineTransform transform = AffineTransform.getTranslateInstance(X_NEXT_TO_ICON, y);
-        g2d.transform(transform);
-
-        // draw black
-        g2d.setStroke(new BasicStroke(5f));
-        g2d.setColor(new Color(5, 5, 5));
-        g2d.draw(shape2);
-
-        // draw white
-        g2d.setColor(new Color(224, 224, 224));
-        g2d.fill(shape2);
-
-        // restore the original transform
-        g2d.setTransform(originalTransform);
+    private String formatNumber(int number) {
+        return (number < 10) ? "0" + number : String.valueOf(number);
     }
 
     // ====== Reset methods ======
