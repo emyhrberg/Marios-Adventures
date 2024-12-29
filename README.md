@@ -9,7 +9,7 @@
 <h4 align="center"> A 2D platformer game written in Java </h4>
 
 ## How To Play
-Download [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar?raw=true) 
+Simply run [Mario.jar](https://github.com/emyhrberg/Marios-Adventures/blob/main/Mario.jar?raw=true) 
 
 (Make sure you have [Java 8 or above](https://www.java.com/en/download/))
 
